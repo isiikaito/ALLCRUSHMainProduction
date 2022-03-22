@@ -15,6 +15,7 @@ namespace basecross {
 		const Vec3 eye(0.0f, 5.0f, -5.0f);
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
+
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<Camera>();
 		PtrView->SetCamera(PtrCamera);
@@ -30,8 +31,15 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
+			auto& app = App::GetApp();
+
 			//ビューとライトの作成
 			CreateViewLight();
+
+			// プレイヤーオブジェクトをステージに追加する
+			AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
+
 		}
 		catch (...) {
 			throw;
