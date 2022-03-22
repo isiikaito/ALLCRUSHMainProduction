@@ -3,6 +3,7 @@
 
 namespace basecross {
 
+	// ƒJƒƒ‰
 	void MainCamera::OnUpdate()
 	{
 		auto& app = App::GetApp();
