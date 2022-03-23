@@ -10,7 +10,7 @@ namespace basecross {
 
 	public:
 		MainCamera()
-			: angleY(0.0f), distance(5.0f)
+			: angleY(0.0f), distance(10.0f)
 		{
 		}
 

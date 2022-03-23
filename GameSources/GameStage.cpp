@@ -17,12 +17,14 @@ namespace basecross {
 		auto PtrView = CreateView<SingleView>();
 
 		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<Camera>();
+		auto PtrCamera = ObjectFactory::Create<MainCamera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
+
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
+
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 	}
