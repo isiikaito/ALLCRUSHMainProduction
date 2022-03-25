@@ -17,6 +17,7 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>(); // すでに追加されているコンポーネントを取得する
 		transComp->SetPosition(-2.0f, 0.0f, 0.0f);
 
+
 	}
 
 	void Player::OnUpdate()
@@ -68,6 +69,12 @@ namespace basecross{
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 		}
 
+		auto ptrTarget = m_TargetObject.lock();
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
+		{
+			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
+			SetAt(pos);
+		}
 	}
 
 }
