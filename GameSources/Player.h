@@ -20,7 +20,7 @@ namespace basecross{
 		// ステージを渡せるコンストラクタが必須
 		Player(const std::shared_ptr<Stage>& stage)
 			: GameObject(stage), // ステージは親クラスに投げる
-			MaxMoveSpeed(3.0f),
+			MaxMoveSpeed(6.0f),
 			moveDir(0.0f, 0.0f, 0.0f),
 			speed(0.0f),
 			accel(0.0f)
