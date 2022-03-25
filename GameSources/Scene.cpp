@@ -1,4 +1,3 @@
-
 /*!
 @file Scene.cpp
 @brief シーン実体
@@ -7,13 +6,31 @@
 #include "stdafx.h"
 #include "Project.h"
 
-namespace basecross{
+namespace basecross {
 
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
-	void Scene::OnCreate(){
+	void Scene::CreateResourses() {
+		wstring dataDir;
+		//サンプルのためアセットディレクトリを取得
+		App::GetApp()->GetAssetsDirectory(dataDir);
+		//各ゲームは以下のようにデータディレクトリを取得すべき
+		//App::GetApp()->GetDataDirectory(DataDir);
+		wstring strTexture = dataDir + L"sky.jpg";
+		App::GetApp()->RegisterTexture(L"SKY_TX", strTexture);
+		strTexture = dataDir + L"trace.png";
+		App::GetApp()->RegisterTexture(L"TRACE_TX", strTexture);
+		strTexture = dataDir + L"wall.jpg";
+		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
+		strTexture = dataDir + L"doukutu.png";
+		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
+
+	}
+	void Scene::OnCreate() {
 		try {
+			//リソース作成
+			CreateResourses();
 			//クリアする色を設定
 			Col4 Col;
 			Col.set(31.0f / 255.0f, 30.0f / 255.0f, 71.0f / 255.0f, 255.0f / 255.0f);
