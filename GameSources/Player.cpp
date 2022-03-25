@@ -15,7 +15,7 @@ namespace basecross{
 
 				// トランスフォームコンポーネントを「取得」する（トランスフォームだけは初めから追加されている）
 		auto transComp = GetComponent<Transform>(); // すでに追加されているコンポーネントを取得する
-		transComp->SetPosition(-2.0f, 0.5f, 0.0f);
+		transComp->SetPosition(-2.0f, 0.0f, 0.0f);
 
 	}
 
