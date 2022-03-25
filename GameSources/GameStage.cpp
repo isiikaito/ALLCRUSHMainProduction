@@ -32,8 +32,8 @@ namespace basecross {
 	void GameStage::CreatestageObject() {
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
-		//0番目のカラムがL"TilingFixedBox"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"ObjectC");
+		//0番目のカラムがL"stageObject"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"stageObject");
 		for (auto& v : LineVec) {
 			//トークン（カラム）の配置
 			vector<wstring>Tokens;
