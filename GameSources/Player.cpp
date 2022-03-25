@@ -9,15 +9,40 @@
 namespace basecross{
 	void Player::OnCreate()
 	{
-		// オブジェクトの見た目を決定するドローコンポーネントを「追加」する
-		auto drawComp = AddComponent<PNTStaticDraw>(); // 新規でコンポーネントを追加する
-		drawComp->SetMeshResource(L"DEFAULT_CUBE"); // 形状を設定
+		//初期位置などの設定
+		auto ptrTrans = GetComponent<Transform>();
+		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
+		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
+		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
 
-				// トランスフォームコンポーネントを「取得」する（トランスフォームだけは初めから追加されている）
-		auto transComp = GetComponent<Transform>(); // すでに追加されているコンポーネントを取得する
-		transComp->SetPosition(-2.0f, 0.0f, 0.0f);
+		//CollisionSphere衝突判定を付ける
+		auto ptrColl = AddComponent<CollisionSphere>();
 
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
 
+		//重力をつける
+		auto ptrGra = AddComponent<Gravity>();
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMultiMeshResource(L"Object_WalkAnimation_MESH");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		//描画コンポーネントの設定
+		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
+		ptrDraw->SetFogEnabled(true);
+		//描画するメッシュを設定
+		ptrDraw->SetMultiMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
+		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
 	void Player::OnUpdate()
@@ -69,12 +94,15 @@ namespace basecross{
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 		}
 
-		auto ptrTarget = m_TargetObject.lock();
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
-		{
-			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
-			SetAt(pos);
-		}
+		//auto ptrTarget = m_TargetObject.lock();
+		//if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
+		//{
+		//	auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
+		//	SetAt(pos);
+		//}
+		//auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
+		//ptrDraw->UpdateAnimation(elapsedTime);
 	}
 
 }

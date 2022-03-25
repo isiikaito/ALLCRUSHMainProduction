@@ -26,6 +26,20 @@ namespace basecross {
 		strTexture = dataDir + L"doukutu.png";
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
 
+		//モデル
+		//ボーンモデル(マルチメッシュ)の通常リソース
+		auto multiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(dataDir, L"Object_WalkAnimation.bmf");
+		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
+
+		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
+		multiModelMesh = MultiMeshResource::CreateBoneModelMultiMeshWithTangent(dataDir, L"Object_WalkAnimation.bmf");
+		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
+
+		//法線マップ
+		strTexture = dataDir + L"Tx_Checker_Normal.png";
+		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
+
+
 	}
 	void Scene::OnCreate() {
 		try {
