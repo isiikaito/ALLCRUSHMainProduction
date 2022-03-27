@@ -94,6 +94,7 @@ namespace basecross{
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 		}
 
+		//アニメション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
