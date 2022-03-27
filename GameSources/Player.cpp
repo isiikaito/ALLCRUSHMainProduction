@@ -94,15 +94,10 @@ namespace basecross{
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 		}
 
-		//auto ptrTarget = m_TargetObject.lock();
-		//if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
-		//{
-		//	auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
-		//	SetAt(pos);
-		//}
-		//auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		//float elapsedTime = App::GetApp()->GetElapsedTime();
-		//ptrDraw->UpdateAnimation(elapsedTime);
+		//アニメション
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);
 	}
 
 }
