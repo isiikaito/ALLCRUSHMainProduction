@@ -22,6 +22,8 @@ namespace basecross {
 	virtual ~GameStage() {}
 	//初期化
 	virtual void OnCreate()override;
+	//カベの作成
+	void CreateWall();
 	};
 }
 //end basecross

@@ -14,6 +14,7 @@
 #include "stageObject.h"
 #include "Character.h"
 #include "Player.h"
-
+#include "brakeWall.h"
+#include "Wall.h"
 
 
