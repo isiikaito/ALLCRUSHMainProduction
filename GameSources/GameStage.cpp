@@ -63,7 +63,7 @@ namespace basecross {
 	}
 
 	void GameStage::CreateWall() {
-		AddGameObject<Wall>(Vec3(10.0f, 10.0f, 5.0f), Quat(), Vec3(10.0f, 1.0f, 1.0f));
+		AddGameObject<Wall>(Vec3(100.0f, 100.0f, 100.0f), Quat(), Vec3(0.0f, 1.0f, 0.0f));
 	}
 	void GameStage::OnCreate() {
 		try {

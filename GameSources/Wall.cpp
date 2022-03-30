@@ -26,7 +26,7 @@ namespace basecross {
 		ptrTrans->SetPosition(m_Position);
 
 		auto ptrShadow = AddComponent<Shadowmap>();
-		ptrShadow->SetMeshResource(L"DEFAULT_CUME");
+		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
 
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetFogEnabled(true);
