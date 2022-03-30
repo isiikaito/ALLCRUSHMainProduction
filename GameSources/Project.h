@@ -13,6 +13,7 @@
 #include "MainCamera.h"
 #include "stageObject.h"
 #include "Character.h"
+#include "Enemy.h"
 #include "Player.h"
 
 

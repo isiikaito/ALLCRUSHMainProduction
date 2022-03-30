@@ -77,6 +77,8 @@ namespace basecross {
 
 			// プレイヤーオブジェクトをステージに追加する
 			AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
+
+			//AddGameObject<EnemyObject>();
 			//オブジェクトの追加
 			CreatestageObject();
 		}
