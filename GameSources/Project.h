@@ -11,7 +11,6 @@
 #include "Scene.h"
 #include "GameStage.h"
 #include "MyCamera.h"
-#include "Boss.h"
 #include "stageObject.h"
 #include "Character.h"
 #include "Enemy.h"

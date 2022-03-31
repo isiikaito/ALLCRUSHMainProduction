@@ -37,8 +37,6 @@ namespace basecross {
 		void CreateChara();
 		//プレイヤーの作成
 		void CreatePlayer();
-		//ボスの作成
-		void CreateBoss();
 		//カメラマンの作成
 		void CreateCameraman();
 
