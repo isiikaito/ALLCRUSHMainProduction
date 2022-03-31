@@ -12,9 +12,9 @@ namespace basecross {
 	//	追いかける配置オブジェクト
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos) :
+	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr): //, const Vec3& StartPos) :
 		GameObject(StagePtr),
-		m_StartPos(StartPos),
+		//m_StartPos(StartPos),
 		m_StateChangeSize(5.0f),
 		m_Force(0),
 		m_Velocity(0)
@@ -25,21 +25,26 @@ namespace basecross {
 	//初期化
 	void EnemyObject::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetPosition(m_StartPos);
+		//ptrTransform->SetPosition(m_StartPos);
+		ptrTransform->SetPosition(0.0f, 0.25f, -5.0f);
 		ptrTransform->SetScale(0.125f, 0.25f, 0.25f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
 		//オブジェクトのグループを得る
-		auto group = GetStage()->GetSharedObjectGroup(L"SeekGroup");
+		//auto group = GetStage()->GetSharedObjectGroup(L"SeekGroup");
+		
 		//グループに自分自身を追加
-		group->IntoGroup(GetThis<EnemyObject>());
+		//group->IntoGroup(GetThis<EnemyObject>());
+		
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
+
 		//分離行動をつける
-		auto PtrSep = GetBehavior<SeparationSteering>();
-		PtrSep->SetGameObjectGroup(group);
+		//auto PtrSep = GetBehavior<SeparationSteering>();
+		//PtrSep->SetGameObjectGroup(group);
+		
 		//影をつける
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
@@ -97,10 +102,10 @@ namespace basecross {
 	}
 	void SeekFarState::Execute(const shared_ptr<EnemyObject>& Obj) {
 		auto ptrSeek = Obj->GetBehavior<SeekSteering>();
-		auto ptrSep = Obj->GetBehavior<SeparationSteering>();
+		//auto ptrSep = Obj->GetBehavior<SeparationSteering>();
 		auto force = Obj->GetForce();
 		force = ptrSeek->Execute(force, Obj->GetVelocity(), Obj->GetTargetPos());
-		force += ptrSep->Execute(force);
+		//force += ptrSep->Execute(force);
 		Obj->SetForce(force);
 		Obj->ApplyForce();
 		float f = bsm::length(Obj->GetComponent<Transform>()->GetPosition() - Obj->GetTargetPos());
@@ -123,10 +128,10 @@ namespace basecross {
 	}
 	void SeekNearState::Execute(const shared_ptr<EnemyObject>& Obj) {
 		auto ptrArrive = Obj->GetBehavior<ArriveSteering>();
-		auto ptrSep = Obj->GetBehavior<SeparationSteering>();
+		//auto ptrSep = Obj->GetBehavior<SeparationSteering>();
 		auto force = Obj->GetForce();
 		force = ptrArrive->Execute(force, Obj->GetVelocity(), Obj->GetTargetPos());
-		force += ptrSep->Execute(force);
+		//force += ptrSep->Execute(force);
 		Obj->SetForce(force);
 		Obj->ApplyForce();
 		float f = bsm::length(Obj->GetComponent<Transform>()->GetPosition() - Obj->GetTargetPos());

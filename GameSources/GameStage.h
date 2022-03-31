@@ -16,6 +16,8 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 		void CreatestageObject();
+		//プレイヤーの作成
+		void CreatePlayer();
 		//敵の作成
 		void CreateEnemy();
 	public:

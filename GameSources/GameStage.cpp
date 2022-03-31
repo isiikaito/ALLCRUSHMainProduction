@@ -62,6 +62,14 @@ namespace basecross {
 		}
 	}
 
+	//プレイヤーの作成
+	void GameStage::CreatePlayer() {
+		//プレーヤーの作成
+		auto PlayerPtr = AddGameObject<Player>();
+		//シェア配列にプレイヤーを追加
+		SetSharedGameObject(L"Player", PlayerPtr);
+	}
+
 	void GameStage::OnCreate() {
 		try {
 			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
@@ -76,9 +84,12 @@ namespace basecross {
 			CreateViewLight();
 
 			// プレイヤーオブジェクトをステージに追加する
-			AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
+			//AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
 
-			//AddGameObject<EnemyObject>();
+			//プレーヤーの作成
+			CreatePlayer();
+
+			AddGameObject<EnemyObject>();
 			//オブジェクトの追加
 			CreatestageObject();
 		}

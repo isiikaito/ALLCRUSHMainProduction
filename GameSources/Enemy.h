@@ -23,7 +23,7 @@ namespace basecross {
 		Vec3 m_Velocity;
 	public:
 		//\’z‚Æ”jŠü
-		EnemyObject(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
+		EnemyObject(const shared_ptr<Stage>& StagePtr); // , const Vec3& StartPos);
 		virtual ~EnemyObject();
 		//‰Šú‰»
 		virtual void OnCreate() override;
