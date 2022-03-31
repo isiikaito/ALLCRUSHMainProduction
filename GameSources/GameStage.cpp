@@ -67,6 +67,10 @@ namespace basecross {
 	}
 	void GameStage::OnCreate() {
 		try {
+
+			//物理計算有効
+			SetPhysicsActive(true);
+
 			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
 			auto& app = App::GetApp();
 			wstring DataDir;
@@ -82,6 +86,8 @@ namespace basecross {
 			AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
 			//オブジェクトの追加
 			CreatestageObject();
+			//
+			CreateWall();
 		}
 		catch (...) {
 			throw;

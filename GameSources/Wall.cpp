@@ -1,6 +1,6 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file Wall.cpp
+@brief カベの実体
 */
 
 #include "stdafx.h"

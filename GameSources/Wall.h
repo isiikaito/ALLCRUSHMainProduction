@@ -1,6 +1,6 @@
 /*!
-@file FixedPsBox.h
-@brief 物理計算する固定のボックス
+@file Wall.h
+@brief 壁の実体
 */
 
 #pragma once
