@@ -16,6 +16,12 @@ namespace basecross{
 
 		float accel; // 加速度
 
+		Vec3 GetMoveVector() const;
+
+		InputHandler<Player> m_InputHandler;
+		//void MovePlayer();
+
+
 	public:
 		// ステージを渡せるコンストラクタが必須
 		Player(const std::shared_ptr<Stage>& stage)
@@ -26,6 +32,11 @@ namespace basecross{
 			accel(0.0f)
 		{
 		}
+		//Aボタン
+		void OnPushA();
+		//Bボタンなにもしない
+		void OnPushB() {}
+
 
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
