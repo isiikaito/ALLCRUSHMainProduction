@@ -16,12 +16,19 @@ namespace basecross {
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
 
-		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<MyCamera>();
-		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetEye(eye);
-		PtrCamera->SetAt(at);
-
+		//MyCamera用のビュー
+		m_MyCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrMyCamera = ObjectFactory::Create<MyCamera>();
+		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
+		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		m_MyCameraView->SetCamera(ptrMyCamera);
+		//ObjCamera用のビュー
+		m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
+		m_ObjCameraView->SetCamera(ptrObjCamera);
+		//初期状態で使うView
+		SetView(m_MyCameraView);
+		m_CameraSelect = CameraSelect::myCamera;
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 
@@ -72,6 +79,21 @@ namespace basecross {
 		//シェア配列にプレイヤーを追加
 		SetSharedGameObject(L"Player", PlayerPtr);
 	}
+	//敵の作成
+	void GameStage::CreateEnemy() {
+		//プレーヤーの作成
+		auto EnemyPtr = AddGameObject<EnemyObject>();
+		//シェア配列にプレイヤーを追加
+		SetSharedGameObject(L"Enemy", EnemyPtr);
+	}
+
+	//カメラマンの作成
+	void GameStage::CreateCameraman() {
+		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
+		//シェア配列にCameramanを追加
+		SetSharedGameObject(L"Cameraman", ptrCameraman);
+	}
+
 	void GameStage::OnCreate() {
 		try {
 
@@ -94,6 +116,10 @@ namespace basecross {
 
 			//プレーヤーの作成
 			CreatePlayer();
+			//敵の作成
+			CreateEnemy();
+			//カメラマンの作成
+			CreateCameraman();
 
 			AddGameObject<EnemyObject>();
 			//オブジェクトの追加
@@ -111,13 +137,13 @@ namespace basecross {
 	}
 
 	void GameStage::ToObjCamera() {
-		auto ptrBoss = GetSharedGameObject<Boss>(L"Boss");
+		auto ptrEnemy = GetSharedGameObject<EnemyObject>(L"Enemy");
 		//ObjCameraに変更
 		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
 		auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
 		if (ptrObjCamera) {
 			ptrObjCamera->SetCameraObject(ptrCameraman);
-			ptrObjCamera->SetTargetObject(ptrBoss);
+			ptrObjCamera->SetTargetObject(ptrEnemy);
 			//m_ObjCameraViewを使う
 			SetView(m_ObjCameraView);
 			m_CameraSelect = CameraSelect::objCamera;

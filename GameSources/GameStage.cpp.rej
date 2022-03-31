@@ -1,0 +1,8 @@
+diff a/GameSources/GameStage.cpp b/GameSources/GameStage.cpp	(rejected hunks)
+@@ -79,6 +79,8 @@
+ 		// V F A z  Ƀv   C   [  ǉ 
+ 		SetSharedGameObject(L"Player", PlayerPtr);
+ 	}
+ 	// G ̍쐬
+ 	void GameStage::CreateEnemy() {
+ 		// v   [   [ ̍쐬
