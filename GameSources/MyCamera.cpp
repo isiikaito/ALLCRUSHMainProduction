@@ -3,8 +3,19 @@
 
 namespace basecross {
 
+	shared_ptr<GameObject> MyCamera::GetTargetObject() const {
+		if (!m_TargetObject.expired()) {
+			return m_TargetObject.lock();
+		}
+		return nullptr;
+	}
+
+	void MyCamera::SetTargetObject(const shared_ptr<GameObject>&Obj) {
+			m_TargetObject = Obj;
+		}
+
 	// カメラ
-	void MainCamera::OnUpdate()
+	void MyCamera::OnUpdate()
 	{
 		auto& app = App::GetApp();
 
@@ -12,6 +23,7 @@ namespace basecross {
 
 		auto& device = app->GetInputDevice();
 		const auto& pad = device.GetControlerVec()[0];
+
 
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
@@ -37,5 +49,31 @@ namespace basecross {
 
 		SetEye(eye);
 		SetAt(playerPos); // プレイヤーを中止するようにする
+
+	}
+	//--------------------------------------------------------------------------------------
+//	オブジェクトカメラ（コンポーネントではない）
+//--------------------------------------------------------------------------------------
+//構築と破棄
+	ObjCamera::ObjCamera() :
+		Camera()
+	{}
+	ObjCamera::~ObjCamera() {}
+
+	void ObjCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+		m_TargetObject = Obj;
+	}
+
+	void ObjCamera::OnUpdate() {
+
+		auto ptrTarget = m_TargetObject.lock();
+		if (ptrTarget) {
+			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
+			SetAt(pos);
+		}
+
+
+		//Camera::OnUpdate();
 	}
 }
+//end basecross

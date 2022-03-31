@@ -9,6 +9,7 @@
 namespace basecross{
 	void Player::OnCreate()
 	{
+
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
@@ -61,7 +62,7 @@ namespace basecross{
 		float rad = 0.0f;
 
 		// CameraオブジェクトをMainCameraオブジェクトに「ダウンキャスト」する
-		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+		auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
 		if (mainCamera) // nullptr出なかったら、キャスト成功
 		{
 			rad = mainCamera->GetAngleY() + XMConvertToRadians(90.0f);
@@ -98,7 +99,18 @@ namespace basecross{
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
+
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<Player>());
+		//MovePlayer();
+
 	}
+	//Aボタン
+	void Player::OnPushA() {
+		auto grav = GetComponent<Gravity>();
+		grav->StartJump(Vec3(0, 4.0f, 0));
+	}
+
 
 }
 //end basecross

@@ -17,7 +17,7 @@ namespace basecross {
 		auto PtrView = CreateView<SingleView>();
 
 		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<MainCamera>();
+		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
@@ -95,6 +95,52 @@ namespace basecross {
 		}
 		catch (...) {
 			throw;
+		}
+	}
+	void GameStage::OnUpdate() {
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<GameStage>());
+	}
+
+	void GameStage::ToObjCamera() {
+		auto ptrBoss = GetSharedGameObject<Boss>(L"Boss");
+		//ObjCameraに変更
+		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
+		auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
+		if (ptrObjCamera) {
+			ptrObjCamera->SetCameraObject(ptrCameraman);
+			ptrObjCamera->SetTargetObject(ptrBoss);
+			//m_ObjCameraViewを使う
+			SetView(m_ObjCameraView);
+			m_CameraSelect = CameraSelect::objCamera;
+		}
+	}
+	void GameStage::ToMyCamera() {
+		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		//MyCameraに変更
+		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
+		if (ptrMyCamera) {
+			ptrMyCamera->SetTargetObject(ptrPlayer);
+			//m_MyCameraViewを使う
+			SetView(m_MyCameraView);
+			m_CameraSelect = CameraSelect::myCamera;
+		}
+	}
+
+
+	//Bボタンカメラの変更
+	void GameStage::OnPushB() {
+		switch (m_CameraSelect) {
+		case CameraSelect::myCamera:
+		{
+			ToObjCamera();
+		}
+		break;
+		case CameraSelect::objCamera:
+		{
+			ToMyCamera();
+		}
+		break;
 		}
 	}
 
