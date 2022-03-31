@@ -25,6 +25,7 @@ namespace basecross {
 		ptrTrans->SetQuaternion(m_Qt);
 		ptrTrans->SetPosition(m_Position);
 
+		//‰e‚ð‚Â‚¯‚é
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
 

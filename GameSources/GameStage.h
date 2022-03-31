@@ -16,14 +16,14 @@ namespace basecross {
 	//ビューの作成
 	void CreateViewLight();
 	void CreatestageObject();
+	//カベの作成
+	void CreateWall();
 	public:
 	//構築と破棄
 	GameStage() :Stage() {}
 	virtual ~GameStage() {}
 	//初期化
 	virtual void OnCreate()override;
-	//カベの作成
-	void CreateWall();
 	};
 }
 //end basecross
