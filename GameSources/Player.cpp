@@ -111,7 +111,13 @@ namespace basecross{
 		grav->StartJump(Vec3(0, 4.0f, 0));
 	}
 
-
+	void Player::OnUpdate2() {
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+		if (pos.x <-50.0f) {
+			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		}
+	}
 }
 //end basecross
 
