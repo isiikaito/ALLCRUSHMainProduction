@@ -118,6 +118,14 @@ namespace basecross{
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 	}
+	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
+		if (ptr) {
+				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		}
+		
+	}
+
 }
 //end basecross
 
