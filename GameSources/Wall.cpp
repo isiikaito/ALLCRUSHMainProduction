@@ -41,7 +41,7 @@ namespace basecross {
 
 		auto Coll = AddComponent<CollisionObb>();
 		Coll->SetFixed(true);
-		Coll->SetAfterCollision(AfterCollision::None);
+		//Coll->SetAfterCollision(AfterCollision::None);
 	}
 }
 //end basecross
