@@ -94,6 +94,11 @@ namespace basecross {
 		SetSharedGameObject(L"Cameraman", ptrCameraman);
 	}
 
+	void GameStage::BGM() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+
 	void GameStage::OnCreate() {
 		try {
 
@@ -120,6 +125,8 @@ namespace basecross {
 			CreateEnemy();
 			//カメラマンの作成
 			CreateCameraman();
+			//BGMの再生
+			BGM();
 
 			AddGameObject<EnemyObject>();
 			//オブジェクトの追加

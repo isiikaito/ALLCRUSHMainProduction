@@ -32,14 +32,17 @@ namespace basecross{
 			accel(0.0f)
 		{
 		}
+		
 		//Aボタン
 		void OnPushA();
 		//Bボタンなにもしない
 		void OnPushB() {}
-
+		//敵の攻撃(/)にぶつかったとき
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
+		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 	};
 
 

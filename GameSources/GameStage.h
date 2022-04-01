@@ -32,6 +32,8 @@ namespace basecross {
 		CameraSelect m_CameraSelect;
 		//入力ハンドラー
 		InputHandler<GameStage> m_InputHandler;
+		//BGM
+		shared_ptr<SoundItem> m_BGM;
 		//敵の作成
 		void CreateEnemy();
 		//キャラクターの作成
@@ -40,6 +42,8 @@ namespace basecross {
 		void CreatePlayer();
 		//カメラマンの作成
 		void CreateCameraman();
+		//BGMの再生
+		void BGM();
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}

@@ -9,6 +9,8 @@
 #include "ProjectShader.h"
 #include "ProjectBehavior.h"
 #include "Scene.h"
+#include "ClearObject.h"
+#include "ClearStage.h"
 #include "GameStage.h"
 #include "MyCamera.h"
 #include "stageObject.h"

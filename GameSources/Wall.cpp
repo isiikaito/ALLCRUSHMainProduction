@@ -41,7 +41,10 @@ namespace basecross {
 
 		auto Coll = AddComponent<CollisionObb>();
 		Coll->SetFixed(true);
-		GetStage()->RemoveGameObject<Wall>(GetThis<Wall>());
+		//if ()
+		//{
+			GetStage()->RemoveGameObject<Wall>(GetThis<Wall>());
+		//}
 		//if(Coll(true))
 		//{
 

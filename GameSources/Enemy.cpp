@@ -30,20 +30,11 @@ namespace basecross {
 		ptrTransform->SetScale(0.125f, 0.25f, 0.25f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
-		//オブジェクトのグループを得る
-		//auto group = GetStage()->GetSharedObjectGroup(L"SeekGroup");
-		
-		//グループに自分自身を追加
-		//group->IntoGroup(GetThis<EnemyObject>());
 		
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
-
-		//分離行動をつける
-		//auto PtrSep = GetBehavior<SeparationSteering>();
-		//PtrSep->SetGameObjectGroup(group);
 		
 		//影をつける
 		auto ptrShadow = AddComponent<Shadowmap>();
