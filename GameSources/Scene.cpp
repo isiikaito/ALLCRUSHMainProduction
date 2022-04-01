@@ -28,6 +28,9 @@ namespace basecross {
 		strTexture = dataDir + L"タイトル.jpg";
 		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
 
+		strTexture = dataDir + L"ゲームクリア.jpg";
+		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
+
 		//モデル
 		//ボーンモデル(マルチメッシュ)の通常リソース
 		auto multiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(dataDir, L"Object_WalkAnimation.bmf");
@@ -54,7 +57,9 @@ namespace basecross {
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+
 		}
+
 		catch (...) {
 			throw;
 		}
@@ -78,6 +83,13 @@ namespace basecross {
 			//最初のアクティブステージの設定
 			ResetActiveStage<ClearStage>();
 		}
+
+		else if (event->m_MsgStr == L"ToGameClearStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<ClearStage>();
+		}
+
+
 	}
 
 }
