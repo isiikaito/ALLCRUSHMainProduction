@@ -41,6 +41,9 @@ namespace basecross {
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
+		//ƒTƒEƒ“ƒh
+		wstring CursorWav = dataDir + L"music.mp3";
+		App::GetApp()->RegisterWav(L"BGM", CursorWav);
 
 	}
 	void Scene::OnCreate() {
