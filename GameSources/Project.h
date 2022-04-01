@@ -17,5 +17,7 @@
 #include "Player.h"
 #include "brakeWall.h"
 #include "Wall.h"
+#include "TitleSprite.h"
+#include "TitleStage.h"
 
 
