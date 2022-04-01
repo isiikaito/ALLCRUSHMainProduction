@@ -114,7 +114,7 @@ namespace basecross{
 	void Player::OnUpdate2() {
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
-		if (pos.x <-50.0f) {
+		if (pos.x <-45.0f) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 	}
