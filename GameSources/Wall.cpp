@@ -41,7 +41,23 @@ namespace basecross {
 
 		auto Coll = AddComponent<CollisionObb>();
 		Coll->SetFixed(true);
+		GetStage()->RemoveGameObject<Wall>(GetThis<Wall>());
+		//if(Coll(true))
+		//{
+
 		//Coll->SetAfterCollision(AfterCollision::None);
+		//}
 	}
+	//void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+	//	auto ptr = dynamic_pointer_cast<Player>(Other);
+	//	if (ptr) {
+	//		auto ptrTrans = ptr->GetComponent<Transform>();
+	//		m_ActionVelocity = ptrTrans->GetVelocity();
+	//		m_ActionVelocity.y = 5.0f;
+	//		m_StateMachine->ChangeState(brakeWallState::Instance());
+	//	}
 }
+	//void brakeWallState::Enter(const shared_ptr<Wall>& Obj) {
+	//}
+
 //end basecross
