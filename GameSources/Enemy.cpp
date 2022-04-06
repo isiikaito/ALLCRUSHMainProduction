@@ -30,22 +30,36 @@ namespace basecross {
 		ptrTransform->SetScale(0.125f, 0.25f, 0.25f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
-		
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
+
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
-		
-		//影をつける
-		auto ptrShadow = AddComponent<Shadowmap>();
-		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
 
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影をつける
+		ptrShadow->SetMeshResource(L"EnemyRun_MESH");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetTextureResource(L"TRACE_TX");
+		ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
+		//ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
+
 		//透明処理をする
-		SetAlphaActive(true);
+		//SetAlphaActive(true);
 
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
@@ -62,6 +76,11 @@ namespace basecross {
 		m_StateMachine->Update();
 		auto ptrUtil = GetBehavior<UtilBehavior>();
 		ptrUtil->RotToHead(1.0f);
+
+		//アニメーション
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);
 	}
 
 

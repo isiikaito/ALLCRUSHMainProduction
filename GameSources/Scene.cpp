@@ -40,6 +40,14 @@ namespace basecross {
 		multiModelMesh = MultiMeshResource::CreateBoneModelMultiMeshWithTangent(dataDir, L"Object_WalkAnimation.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
+		//ボーンモデル(マルチメッシュ)の通常リソース
+		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"EnemyRun.bmf");
+		App::GetApp()->RegisterResource(L"EnemyRun_MESH", EnemyModelMesh);
+
+		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
+		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"EnemyRun.bmf");
+		App::GetApp()->RegisterResource(L"EnemyRun_MESH_WITH_TAN", EnemyModelMesh);
+
 		//法線マップ
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
