@@ -39,7 +39,6 @@ namespace basecross {
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
 		
-
 		//Obb‚ÌÕ“Ë”»’è‚ğ‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
 		
@@ -56,5 +55,4 @@ namespace basecross {
 	}
 }
 	
-
 //end basecross
