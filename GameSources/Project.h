@@ -11,7 +11,7 @@
 #include "Scene.h"
 #include "GameOverStage.h"
 #include "GameOverSprite.h"
-#include "ClearObject.h"
+#include "ClearSprite.h"
 #include "ClearStage.h"
 #include "GameStage.h"
 #include "MyCamera.h"

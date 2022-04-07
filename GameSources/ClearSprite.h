@@ -1,6 +1,6 @@
 /*!
-@file GameOverSprite.h
-@brief ゲームオーバースプライト
+@file ClearSprite.h
+@brief ゲームクリアスプライト
 */
 
 #pragma once
@@ -8,21 +8,21 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-	//	ゲームオーバースプライトクラス
+	//	クリアスプライトクラス
 	//--------------------------------------------------------------------------------------
-	class GameOverSprite : public GameObject {
+	class ClearSprite : public GameObject {
 		bool m_Trace;//透明になるかどうか
 		Vec2 m_StartScale;//スケーリング
 		Vec2 m_StartPos;//場所
 		wstring m_TextureKey;//テクスチャの名前
 	public:
-		GameOverSprite(const shared_ptr<Stage>& StagePtr,
+		ClearSprite(const shared_ptr<Stage>& StagePtr,
 			const wstring& TextureKey,
 			bool Trace,
 			const Vec2& StartScale,
 			const Vec2& StartPos);
 		//破壊
-		virtual ~GameOverSprite();
+		virtual ~ClearSprite();
 		//初期化
 		virtual void OnCreate()override;
 		//更新
@@ -30,3 +30,4 @@ namespace basecross {
 	};
 }
 //end namespace basecross
+

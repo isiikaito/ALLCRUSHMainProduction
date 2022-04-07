@@ -31,6 +31,9 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームオーバー.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
+		strTexture = dataDir + L"ゲームクリア.jpg";
+		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
+
 		//モデル
 		//ボーンモデルの通常リソース
 		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Walkman.bmf");
