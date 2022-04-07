@@ -95,10 +95,7 @@ namespace basecross {
 			ResetActiveStage<ClearStage>();
 		}
 
-		else if (event->m_MsgStr == L"ToGameClearStage") {
-			//最初のアクティブステージの設定
-			ResetActiveStage<ClearStage>();
-		}
+		
 
 
 	}
