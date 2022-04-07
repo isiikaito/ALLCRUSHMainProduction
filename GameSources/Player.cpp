@@ -107,8 +107,7 @@ namespace basecross{
 	}
 	//Aƒ{ƒ^ƒ“
 	void Player::OnPushA() {
-		auto grav = GetComponent<Gravity>();
-		grav->StartJump(Vec3(0, 4.0f, 0));
+		
 	}
 
 	void Player::OnUpdate2() {
