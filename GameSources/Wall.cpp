@@ -39,9 +39,20 @@ namespace basecross {
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
 
-		auto Coll = AddComponent<CollisionObb>();
-		Coll->SetFixed(true);
+		//Obb‚ÌÕ“Ë”»’è‚ğ‚Â‚¯‚é
+		auto ptrColl = AddComponent<CollisionObb>();
+		/*auto Coll = AddComponent<CollisionObb>();
+		Coll->SetFixed(true);*/
 		//Coll->SetAfterCollision(AfterCollision::None);
+	}
+	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		auto ptr = dynamic_pointer_cast<Player>(Other);
+		if (ptr) {
+			SetUpdateActive(false);
+			SetDrawActive(false);
+		}
+		
+
 	}
 }
 //end basecross
