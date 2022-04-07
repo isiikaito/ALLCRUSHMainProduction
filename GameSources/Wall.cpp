@@ -38,13 +38,13 @@ namespace basecross {
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
+		
 
 		//Obb‚ÌÕ“Ë”»’è‚ğ‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
-		/*auto Coll = AddComponent<CollisionObb>();
-		Coll->SetFixed(true);*/
-		//Coll->SetAfterCollision(AfterCollision::None);
+		
 	}
+	
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
 		if (ptr) {
@@ -55,4 +55,6 @@ namespace basecross {
 
 	}
 }
+	
+
 //end basecross
