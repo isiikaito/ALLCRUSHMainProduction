@@ -32,12 +32,12 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
 
 		//モデル
-		//ボーンモデル(マルチメッシュ)の通常リソース
-		auto multiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(dataDir, L"Object_WalkAnimation.bmf");
+		//ボーンモデルの通常リソース
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Walkman.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
-		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
-		multiModelMesh = MultiMeshResource::CreateBoneModelMultiMeshWithTangent(dataDir, L"Object_WalkAnimation.bmf");
+		//ボーンモデルのタンジェント付きリソース
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Walkman.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース

@@ -32,14 +32,14 @@ namespace basecross{
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMultiMeshResource(L"Object_WalkAnimation_MESH");
+		ptrShadow->SetMeshResource(L"Object_WalkAnimation_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネントの設定
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMultiMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
+		ptrDraw->SetMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
 		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
