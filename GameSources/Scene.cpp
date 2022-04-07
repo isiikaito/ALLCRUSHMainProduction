@@ -25,7 +25,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
 		strTexture = dataDir + L"doukutu.png";
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
-		strTexture = dataDir + L"タイトル.jpg";
+		strTexture = dataDir + L"Titlle.jpg";
 		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
 
 		strTexture = dataDir + L"ゲームクリア.jpg";
