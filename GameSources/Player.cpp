@@ -107,8 +107,8 @@ namespace basecross{
 	}
 	//Aボタン
 	void Player::OnPushA() {
-		auto grav = GetComponent<Gravity>();
-		grav->StartJump(Vec3(0, 4.0f, 0));
+		//auto grav = GetComponent<Gravity>();
+		//grav->StartJump(Vec3(0, 4.0f, 0));
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
