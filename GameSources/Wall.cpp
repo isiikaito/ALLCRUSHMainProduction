@@ -43,7 +43,7 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionObb>();
 		
 	}
-	
+	//•Ç‚É“–‚½‚Á‚½‚ç
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
 		if (ptr) {

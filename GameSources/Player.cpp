@@ -110,7 +110,7 @@ namespace basecross{
 		auto grav = GetComponent<Gravity>();
 		grav->StartJump(Vec3(0, 4.0f, 0));
 	}
-
+	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
@@ -118,6 +118,7 @@ namespace basecross{
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 	}
+	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
