@@ -23,10 +23,10 @@ namespace basecross {
 		virtual ~GameOverStage() {}
 		//初期化
 		virtual void OnCreate()override;
-		////更新
-		//virtual void OnUpdate()override;
-		////入力イベントに応答する関数
-		//void OnPushB();
+		//更新
+		virtual void OnUpdate()override;
+		//入力イベントに応答する関数
+		void OnPushB();
 	};
 }
 //end namespace basecross

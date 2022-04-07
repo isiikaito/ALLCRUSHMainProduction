@@ -33,16 +33,16 @@ namespace basecross {
 		AddGameObject<GameOverSprite>(L"GAMEOVER_TX", false,
 			Vec2(1300.0f, 800.0f), Vec2(0.0f, 0.0f));
 	}
-	////更新
-	//void GameOverStage::OnUpdate() {
-	//	//コントローラチェックして入力があればコマンド呼び出し
-	//	m_InputHandler.PushHandle(GetThis<GameOverStage>());
+	//更新
+	void GameOverStage::OnUpdate() {
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<GameOverStage>());
 
-	//}
-	/*void GameOverStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+	}
+	void GameOverStage::OnPushB() {
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
-	}*/
+	}
 }
 
 //end namespace basecross
