@@ -42,7 +42,8 @@ namespace basecross {
 			}
 		}
 
-		angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
+		//カメラのスティック操作
+		//angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
 
 		auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
 		eye.y = 2.0f;

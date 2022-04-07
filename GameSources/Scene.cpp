@@ -25,20 +25,28 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
 		strTexture = dataDir + L"doukutu.png";
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
-		strTexture = dataDir + L"タイトル.jpg";
-		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
+		strTexture = dataDir + L"Titlle.jpg";
+		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
 
-		strTexture = dataDir + L"ゲームクリア.jpg";
-		App::GetApp()->RegisterTexture(L"MESSAGE_TX", strTexture);
+		strTexture = dataDir + L"ゲームオーバー.jpg";
+		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
 		//モデル
-		//ボーンモデル(マルチメッシュ)の通常リソース
-		auto multiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(dataDir, L"Object_WalkAnimation.bmf");
+		//ボーンモデルの通常リソース
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Walkman.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
-		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
-		multiModelMesh = MultiMeshResource::CreateBoneModelMultiMeshWithTangent(dataDir, L"Object_WalkAnimation.bmf");
+		//ボーンモデルのタンジェント付きリソース
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Walkman.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
+
+		//ボーンモデル(マルチメッシュ)の通常リソース
+		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"EnemyRun.bmf");
+		App::GetApp()->RegisterResource(L"EnemyRun_MESH", EnemyModelMesh);
+
+		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
+		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"EnemyRun.bmf");
+		App::GetApp()->RegisterResource(L"EnemyRun_MESH_WITH_TAN", EnemyModelMesh);
 
 		//法線マップ
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
@@ -87,10 +95,11 @@ namespace basecross {
 			ResetActiveStage<ClearStage>();
 		}
 
-		else if (event->m_MsgStr == L"ToGameClearStage") {
+		else if (event->m_MsgStr == L"ToGameOverStage") {
 			//最初のアクティブステージの設定
-			ResetActiveStage<ClearStage>();
+			ResetActiveStage<GameOverStage>();
 		}
+		
 
 
 	}

@@ -38,7 +38,6 @@ namespace basecross {
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
-
 		auto Coll = AddComponent<CollisionObb>();
 		Coll->SetFixed(true);
 		//if ()
@@ -48,6 +47,10 @@ namespace basecross {
 		//if(Coll(true))
 		//{
 
+		//Obb‚ÌÕ“Ë”»’è‚ğ‚Â‚¯‚é
+		auto ptrColl = AddComponent<CollisionObb>();
+		/*auto Coll = AddComponent<CollisionObb>();
+		Coll->SetFixed(true);*/
 		//Coll->SetAfterCollision(AfterCollision::None);
 		//}
 	}
@@ -59,6 +62,15 @@ namespace basecross {
 	//		m_ActionVelocity.y = 5.0f;
 	//		m_StateMachine->ChangeState(brakeWallState::Instance());
 	//	}
+	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		auto ptr = dynamic_pointer_cast<Player>(Other);
+		if (ptr) {
+			SetUpdateActive(false);
+			SetDrawActive(false);
+		}
+		
+
+	}
 }
 	//void brakeWallState::Enter(const shared_ptr<Wall>& Obj) {
 	//}

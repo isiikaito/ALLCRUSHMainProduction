@@ -33,6 +33,7 @@ namespace basecross {
 		//virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		//‰Šú‰»
 		virtual void OnCreate() override;
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 	};
 	//class brakeWallState : public ObjState<Wall>
 	//{
