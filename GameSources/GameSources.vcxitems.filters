@@ -17,6 +17,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -83,6 +85,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
