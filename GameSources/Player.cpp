@@ -124,6 +124,7 @@ namespace basecross{
 				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 		
+		
 	}
 
 }
