@@ -33,7 +33,7 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetOwnShadowActive(true);
-		ptrDraw->SetTextureResource(L"SKY_TX");
+		ptrDraw->SetTextureResource(L"WALL_TX");
 
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);

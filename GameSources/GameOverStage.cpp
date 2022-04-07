@@ -30,6 +30,7 @@ namespace basecross {
 	//初期化
 	void GameOverStage::OnCreate() {
 		CreateViewLight();
+		//ゲームオーバーのテクスチャの指定
 		AddGameObject<GameOverSprite>(L"GAMEOVER_TX", false,
 			Vec2(1300.0f, 800.0f), Vec2(0.0f, 0.0f));
 	}
@@ -39,6 +40,7 @@ namespace basecross {
 		m_InputHandler.PushHandle(GetThis<GameOverStage>());
 
 	}
+	//Bボタンを押したときの処理
 	void GameOverStage::OnPushB() {
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
