@@ -168,11 +168,11 @@ namespace basecross {
 		}
 	}
 
-	//void GameStage::OnDestroy() {
-	//	//BGMのストップ
-	//	auto XAPtr = App::GetApp()->GetXAudio2Manager();
-	//	XAPtr->Stop(m_BGM);
-	//}
+	void GameStage::OnDestroy() {
+		//BGMのストップ
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 
 
 	//Bボタンカメラの変更

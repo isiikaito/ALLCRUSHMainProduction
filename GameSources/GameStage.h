@@ -44,7 +44,7 @@ namespace basecross {
 		void CreateCameraman();
 		//BGMの再生
 		void BGM();
-		//void OnDestroy();
+		void OnDestroy();
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}
