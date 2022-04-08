@@ -22,13 +22,9 @@ namespace basecross {
 		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
 		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 		m_MyCameraView->SetCamera(ptrMyCamera);
-		//ObjCamera用のビュー
-		m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
-		m_ObjCameraView->SetCamera(ptrObjCamera);
 		//初期状態で使うView
 		SetView(m_MyCameraView);
-		m_CameraSelect = CameraSelect::myCamera;
+		//m_CameraSelect = CameraSelect::myCamera;
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 
@@ -87,13 +83,6 @@ namespace basecross {
 		SetSharedGameObject(L"Enemy", EnemyPtr);
 	}
 
-	//カメラマンの作成
-	void GameStage::CreateCameraman() {
-		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
-		//シェア配列にCameramanを追加
-		SetSharedGameObject(L"Cameraman", ptrCameraman);
-	}
-
 	void GameStage::BGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
@@ -123,8 +112,6 @@ namespace basecross {
 			CreatePlayer();
 			//敵の作成
 			CreateEnemy();
-			//カメラマンの作成
-			CreateCameraman();
 			//BGMの再生
 			BGM();
 
@@ -143,53 +130,10 @@ namespace basecross {
 		m_InputHandler.PushHandle(GetThis<GameStage>());
 	}
 
-	void GameStage::ToObjCamera() {
-		auto ptrEnemy = GetSharedGameObject<EnemyObject>(L"Enemy");
-		//ObjCameraに変更
-		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
-		auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
-		if (ptrObjCamera) {
-			ptrObjCamera->SetCameraObject(ptrCameraman);
-			ptrObjCamera->SetTargetObject(ptrEnemy);
-			//m_ObjCameraViewを使う
-			SetView(m_ObjCameraView);
-			m_CameraSelect = CameraSelect::objCamera;
-		}
-	}
-	void GameStage::ToMyCamera() {
-		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//MyCameraに変更
-		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
-		if (ptrMyCamera) {
-			ptrMyCamera->SetTargetObject(ptrPlayer);
-			//m_MyCameraViewを使う
-			SetView(m_MyCameraView);
-			m_CameraSelect = CameraSelect::myCamera;
-		}
-	}
-
 	void GameStage::OnDestroy() {
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
-
-
-	//Bボタンカメラの変更
-	void GameStage::OnPushB() {
-		switch (m_CameraSelect) {
-		case CameraSelect::myCamera:
-		{
-			ToObjCamera();
-		}
-		break;
-		case CameraSelect::objCamera:
-		{
-			ToMyCamera();
-		}
-		break;
-		}
-	}
-
 }
 //end basecross

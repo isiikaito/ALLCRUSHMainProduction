@@ -18,9 +18,12 @@ namespace basecross {
 		shared_ptr<GameObject> GetTargetObject() const;
 		float GetToTargetLerp() const;
 		void SetToTargetLerp(float f);
+		//Bボタンカメラの変更
+		void OnPushB();
+
 
 		MyCamera()
-			: angleY(0.0f), distance(10.0f)
+			: angleY(0.0f), distance(5.0f)
 		{
 			//void SetTargetObject(const shared_ptr<GameObject>&Obj);
 			//weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
@@ -37,37 +40,4 @@ namespace basecross {
 		}
 
 	};
-	class ObjCamera : public Camera {
-		weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
-	public:
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief	コンストラクタ
-		*/
-		//--------------------------------------------------------------------------------------
-		ObjCamera();
-		//--------------------------------------------------------------------------------------
-/*!
-@brief	デストラクタ
-*/
-//--------------------------------------------------------------------------------------
-		virtual ~ObjCamera();
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief	カメラの目標オブジェクトを設定する
-		@param[in]	Obj	カメラの目標オブジェクト
-		@return	なし
-		*/
-		//--------------------------------------------------------------------------------------
-		void SetTargetObject(const shared_ptr<GameObject>& Obj);
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief 更新処理
-		@return	なし
-		*/
-		//--------------------------------------------------------------------------------------
-		virtual void OnUpdate()override;
-
-	};
-
 }
