@@ -17,8 +17,8 @@ namespace basecross {
 		App::GetApp()->GetAssetsDirectory(dataDir);
 		//各ゲームは以下のようにデータディレクトリを取得すべき
 		//App::GetApp()->GetDataDirectory(DataDir);
-		wstring strTexture = dataDir + L"sky.jpg";
-		App::GetApp()->RegisterTexture(L"SKY_TX", strTexture);
+		wstring strTexture = dataDir + L"分割岩.jpg";
+		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
 		strTexture = dataDir + L"trace.png";
 		App::GetApp()->RegisterTexture(L"TRACE_TX", strTexture);
 		strTexture = dataDir + L"wall.jpg";
@@ -30,6 +30,9 @@ namespace basecross {
 
 		strTexture = dataDir + L"ゲームオーバー.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
+
+		strTexture = dataDir + L"ゲームクリア.jpg";
+		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
@@ -86,7 +89,7 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToGameStage") {
-			//最初のアクティブステージの設定
+			//ゲームステージの設定
 			ResetActiveStage<GameStage>();
 		}
 

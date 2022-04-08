@@ -33,7 +33,7 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetOwnShadowActive(true);
-		ptrDraw->SetTextureResource(L"SKY_TX");
+		ptrDraw->SetTextureResource(L"WALL_TX");
 
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
@@ -43,7 +43,7 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionObb>();
 		
 	}
-	
+	//•Ç‚É“–‚½‚Á‚½‚ç
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
 		if (ptr) {

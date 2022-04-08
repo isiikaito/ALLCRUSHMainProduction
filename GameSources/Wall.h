@@ -25,25 +25,17 @@ namespace basecross {
 			const Vec3& Position
 		);
 		//アクセサ
-		void brakeWall();
+		
 		Vec3 GetActionVelocity()const {
 			return m_ActionVelocity;
 		}
-		//
-		//virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
+		
 		//初期化
 		virtual void OnCreate() override;
+		//衝突判定
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 	};
-	//class brakeWallState : public ObjState<Wall>
-	//{
-	//public:
-	//	brakeWallState() {}
-	//public:
-		//static shared_ptr<brakeWallState> Instance();
-		//virtual void Enter(const shared_ptr<Wall>& Obj)override;
-
-	//};
+	
 
 
 }
