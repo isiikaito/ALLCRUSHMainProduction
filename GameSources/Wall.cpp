@@ -43,15 +43,18 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionObb>();
 		
 	}
+	//Bƒ{ƒ^ƒ“‚ð‚¨‚µ‚½‚ç
+	//void Wall::OnPushB(shared_ptr<GameObject>& Other)
+	//{
+	//	auto flg = SetApdateActive(false);
+	//}
 	//•Ç‚É“–‚½‚Á‚½‚ç
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
-		if (ptr) {
-			SetUpdateActive(false);
-			SetDrawActive(false);
+			if (ptr) {
+				SetUpdateActive(false);
+				SetDrawActive(false);
 		}
-		
-
 	}
 }
 	
