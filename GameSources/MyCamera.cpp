@@ -44,37 +44,23 @@ namespace basecross {
 
 		//カメラのスティック操作
 		//angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
-
+		
 		auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
 		eye.y = 2.0f;
+		playerPos.y = 0.5f;
 
 		SetEye(eye);
 		SetAt(playerPos); // プレイヤーを中止するようにする
+		//コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
-	}
-	//--------------------------------------------------------------------------------------
-//	オブジェクトカメラ（コンポーネントではない）
-//--------------------------------------------------------------------------------------
-//構築と破棄
-	ObjCamera::ObjCamera() :
-		Camera()
-	{}
-	ObjCamera::~ObjCamera() {}
-
-	void ObjCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
-		m_TargetObject = Obj;
-	}
-
-	void ObjCamera::OnUpdate() {
-
-		auto ptrTarget = m_TargetObject.lock();
-		if (ptrTarget) {
-			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
-			SetAt(pos);
+		//Bボタン
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+			auto eye = playerPos + Vec3(cosf(135.0f), 0.0f, sinf(0.0f)) * distance;
+			eye.y = 2.0f;
+			SetEye(eye);
 		}
 
-
-		//Camera::OnUpdate();
 	}
 }
 //end basecross
