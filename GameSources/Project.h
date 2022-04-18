@@ -23,5 +23,6 @@
 #include "Wall.h"
 #include "TitleSprite.h"
 #include "TitleStage.h"
+#include "MyMovieStage.h"
 
 
