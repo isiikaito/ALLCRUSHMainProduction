@@ -25,6 +25,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
 		strTexture = dataDir + L"doukutu.png";
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
+
 		strTexture = dataDir + L"Titlle.jpg";
 		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
 
@@ -33,6 +34,9 @@ namespace basecross {
 
 		strTexture = dataDir + L"ゲームクリア.jpg";
 		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
+
+		//strTexture = dataDir + L"kari.mp4";
+		//App::GetApp()->RegisterTexture(L"KARI_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
@@ -103,8 +107,11 @@ namespace basecross {
 			ResetActiveStage<GameOverStage>();
 		}
 		
-
-
+		else if (event->m_MsgStr == L"ToMovieStage") {
+			m_MovieActive = true;
+			//最初のアクティブステージの設定
+			ResetActiveStage<MyMovieStage>();
+		}
 	}
 
 }

@@ -48,5 +48,6 @@ namespace basecross {
 		//Bボタンカメラの変更
 		void OnPushB(){}
 	};
+
 }
 //end basecross
