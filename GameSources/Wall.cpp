@@ -43,17 +43,25 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionObb>();
 		
 	}
-	//Bボタンをおしたら
-	//void Wall::OnPushB(shared_ptr<GameObject>& Other)
-	//{
-	//	auto flg = SetApdateActive(false);
-	//}
+	//コントローラの取得
+	auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+	//Xボタンをおしたら
+	void Wall::OnPushX(shared_ptr<GameObject>& Other)
+	{
+		//if (cntlVec[0].wButtons & XINPUT_GAMEPAD_X) {
+		//	SetUpdateActive(false);
+		//	SetDrawActive(false);
+		//}
+	}
 	//壁に当たったら
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
 			if (ptr) {
 				SetUpdateActive(false);
 				SetDrawActive(false);
+				auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+				ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 		}
 	}
 }

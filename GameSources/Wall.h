@@ -34,8 +34,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		//衝突判定
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
-		//コントローラーのボタン判定B
-		//const void OnPushB(shared_ptr<GameObject>& Other);
+		//コントローラーのボタン判定X
+		void OnPushX(shared_ptr<GameObject>& Other);
 	};
 	
 
