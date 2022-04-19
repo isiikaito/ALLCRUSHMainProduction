@@ -20,8 +20,8 @@ namespace basecross{
 
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
-		
-		ptrColl->SetDrawActive(true);
+		//衝突判定を表示
+		/*ptrColl->SetDrawActive(true);*/
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),
