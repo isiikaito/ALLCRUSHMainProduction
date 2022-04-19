@@ -19,6 +19,7 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		void CreateResourses();
+		bool m_MovieActive;
 		Scene() :SceneBase() {}
 		//--------------------------------------------------------------------------------------
 		/*!
@@ -40,6 +41,9 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
+		bool IsMovieActive() const {
+			return m_MovieActive;
+		}
 	};
 
 }
