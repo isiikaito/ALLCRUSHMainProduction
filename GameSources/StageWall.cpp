@@ -53,8 +53,7 @@ namespace basecross {
 		/*PsPtr->SetDrawActive(true);*/
 
 		auto Coll = AddComponent<CollisionObb>();
-		//“–‚½‚è”»’è‚ðŒ©‚¹‚é
-		Coll->SetDrawActive(true);
+		
 		Coll->SetFixed(true);
 		
 
