@@ -10,6 +10,7 @@
 #include "ProjectBehavior.h"
 #include "Scene.h"
 #include "stageWall.h"
+#include "StageFloor.h"
 #include "GameOverStage.h"
 #include "GameOverSprite.h"
 #include "ClearSprite.h"

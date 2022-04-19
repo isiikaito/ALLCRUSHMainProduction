@@ -1,6 +1,6 @@
-,‰œ,ã‰º,‰¡,,,,‰œ,ã‰º,‰¡,
-Name,Scale,,,Rot,,,Pos,,,
-stageObject,50,1,10,0,0,0,-20,-2,0,DOUKUTU_TX
-,50,10,0.5,0,0,0,-20,3,5,DOUKUTU_TX
-,50,10,0.5,0,0,0,-20,3,-5,DOUKUTU_TX
-stageObject,50,-1,10,0,0,0,-20,8,0,DOUKUTU_TX
+,‰œ,ã‰º,‰¡,,,,‰œ,ã‰º,‰¡
+Name,Scale,,,Rot,,,Pos,,
+StageFloor,50,1,9.5,0,0,0,-20,-2,-0.5
+StageWall,50,7,2,0,0,0,-20,1.5,5
+StageWall,50,7,2,0,-59.7,0,-20,1.5,-5
+StageFloor,50,1,10,0,0,0,-20,5,0
