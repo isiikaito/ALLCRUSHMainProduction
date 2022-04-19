@@ -59,8 +59,13 @@ namespace basecross {
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
-		auto staticModelMesh = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
-		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh);
+		//壁のモデル読み込み
+		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
+
+		//床のモデル読み込み
+		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage1.1.bmf");
+		App::GetApp()->RegisterResource(L"STAGEFLOOR_MESH", staticModelMesh2);
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
