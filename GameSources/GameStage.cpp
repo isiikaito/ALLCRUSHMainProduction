@@ -73,6 +73,16 @@ namespace basecross {
 		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-37.0f, 1.0f, 0.0f));
 
 	}
+	//マヤの壁の作成
+	void GameStage::CreateStageWall() {
+		AddGameObject<StageWall>(Vec3(50.0f, 10.0f, 2.0f),Vec3(0.0f,0.0f,0.0f), Vec3(-20.0f, 2.0f, 5.0f));
+		//回転はマイナスが反時計回り（Y）
+		AddGameObject<StageWall>(Vec3(50.0f, 10.0f, 2.0f), Vec3(0.0f,-59.7f,0.0f), Vec3(-20.0f, 2.0f, -5.0f));
+
+			                    
+
+	}
+
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
 		//プレーヤーの作成
@@ -123,6 +133,8 @@ namespace basecross {
 			AddGameObject<EnemyObject>();
 			//オブジェクトの追加
 			CreatestageObject();
+			//マヤでつくったステージの壁の追加
+			CreateStageWall(); 
 			//
 			CreateWall();
 		}

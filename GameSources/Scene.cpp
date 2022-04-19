@@ -55,6 +55,9 @@ namespace basecross {
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
+		auto staticModelMesh = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh);
+
 		//ƒTƒEƒ“ƒh
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);

@@ -16,9 +16,12 @@ namespace basecross{
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
 
+		
+
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
-
+		
+		ptrColl->SetDrawActive(true);
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),

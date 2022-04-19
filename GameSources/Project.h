@@ -9,6 +9,7 @@
 #include "ProjectShader.h"
 #include "ProjectBehavior.h"
 #include "Scene.h"
+#include "stageWall.h"
 #include "GameOverStage.h"
 #include "GameOverSprite.h"
 #include "ClearSprite.h"
