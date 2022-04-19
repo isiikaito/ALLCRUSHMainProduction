@@ -1,47 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearSprite.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{8ec18bd8-adda-49c8-aab4-1017d164f5f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{e7b318eb-55cd-41b8-92b7-32bac59cdeca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
