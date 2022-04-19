@@ -19,6 +19,8 @@ namespace basecross {
 	void CreatestageObject();
 	//マヤによるステージの壁作成
 	void CreateStageWall();
+	//マヤによるステージの床作成
+	void CreateStageFloor();
 	//カベの作成
 	void CreateWall();		
 
