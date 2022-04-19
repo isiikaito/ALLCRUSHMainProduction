@@ -25,6 +25,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
 		strTexture = dataDir + L"doukutu.png";
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
+
 		strTexture = dataDir + L"Titlle.jpg";
 		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
 
@@ -34,13 +35,16 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームクリア.jpg";
 		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
 
+		//strTexture = dataDir + L"kari.mp4";
+		//App::GetApp()->RegisterTexture(L"KARI_TX", strTexture);
+
 		//モデル
 		//ボーンモデルの通常リソース
-		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Walkman.bmf");
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"WalkmanAnimation３.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
 		//ボーンモデルのタンジェント付きリソース
-		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Walkman.bmf");
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"WalkmanAnimation３.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
@@ -54,6 +58,9 @@ namespace basecross {
 		//法線マップ
 		strTexture = dataDir + L"Tx_Checker_Normal.png";
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
+
+		auto staticModelMesh = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh);
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
@@ -103,8 +110,11 @@ namespace basecross {
 			ResetActiveStage<GameOverStage>();
 		}
 		
-
-
+		else if (event->m_MsgStr == L"ToMovieStage") {
+			m_MovieActive = true;
+			//最初のアクティブステージの設定
+			ResetActiveStage<MyMovieStage>();
+		}
 	}
 
 }

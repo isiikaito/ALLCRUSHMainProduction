@@ -17,6 +17,8 @@ namespace basecross {
 	//ビューの作成
 	void CreateViewLight();
 	void CreatestageObject();
+	//マヤによるステージの壁作成
+	void CreateStageWall();
 	//カベの作成
 	void CreateWall();		
 
@@ -48,5 +50,6 @@ namespace basecross {
 		//Bボタンカメラの変更
 		void OnPushB(){}
 	};
+
 }
 //end basecross

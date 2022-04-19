@@ -16,9 +16,12 @@ namespace basecross{
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
 
+		
+
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
-
+		
+		ptrColl->SetDrawActive(true);
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),
@@ -42,12 +45,18 @@ namespace basecross{
 		ptrDraw->SetMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
 		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
-		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
+		ptrDraw->AddAnimation(L"Default", 0, 10, false, 30.0f);
+		ptrDraw->AddAnimation(L"Move", 10, 15, false, 30.0f);
+		ptrDraw->AddAnimation(L"Action", 25, 15, false, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
 	void Player::OnUpdate()
 	{
+		//アニメション
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		auto move = ptrDraw->GetCurrentAnimation();
+
 		// アプリケーションオブジェクトを取得する
 		auto& app = App::GetApp();
 
@@ -93,12 +102,21 @@ namespace basecross{
 		{
 			float rotY = atan2f(-moveDir.z, moveDir.x); // アークタンジェントを使うとベクトルを角度に変換できる
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
+			//歩くアニメーション
+			if (move == L"Default" || move == L"Action") {
+				ptrDraw->ChangeCurrentAnimation(L"Move");
+				if (ptrDraw->IsTargetAnimeEnd()) {
+					ptrDraw->ChangeCurrentAnimation(L"Default");
+				}
+			}
+		}
+		//立ち止まるアニメーション
+		if (move == L"Move" || move == L"Action") {
+			if (ptrDraw->IsTargetAnimeEnd()) {
+				ptrDraw->ChangeCurrentAnimation(L"Default");
+			}
 		}
 
-		//アニメション
-		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		ptrDraw->UpdateAnimation(elapsedTime);
 
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
@@ -107,7 +125,13 @@ namespace basecross{
 	}
 	//Aボタン
 	void Player::OnPushA() {
-		
+		//ハンマーを振るアニメーション
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		auto action = ptrDraw->GetCurrentAnimation();
+		if (action != L"Action" && action != L"Move") {
+			ptrDraw->ChangeCurrentAnimation(L"Action");
+		}
+
 		//auto grav = GetComponent<Gravity>();
 		//grav->StartJump(Vec3(0, 4.0f, 0));
 	}
@@ -118,6 +142,11 @@ namespace basecross{
 		if (pos.x <-45.0f) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
+
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);
+
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
