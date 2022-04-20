@@ -10,7 +10,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	///	スコア表示のスプライト
 	//--------------------------------------------------------------------------------------
-	Time::Time(const shared_ptr<Stage>& StagePtr, UINT NumberOfDigits,
+	MyTime::MyTime(const shared_ptr<Stage>& StagePtr, UINT NumberOfDigits,
 		const wstring& TextureKey, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
 		GameObject(StagePtr),
@@ -22,7 +22,7 @@ namespace basecross {
 		m_Score(0.0f)
 	{}
 
-	void Time::OnCreate() {
+	void MyTime::OnCreate() {
 		float xPiecesize = 1.0f / (float)m_NumberOfDigits;
 		float helfSize = 0.5f;
 
@@ -63,10 +63,10 @@ namespace basecross {
 		//頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PTSpriteDraw>(m_BackupVertices, indices);
 		ptrDraw->SetTextureResource(m_TextureKey);
-		GetStage()->SetSharedGameObject(L"Time", GetThis<Time>());
+		GetStage()->SetSharedGameObject(L"Time", GetThis<MyTime>());
 	}
 
-	void Time::OnUpdate() {
+	void MyTime::OnUpdate() {
 		vector<VertexPositionTexture> newVertices;
 		UINT num;
 		int verNum = 0;

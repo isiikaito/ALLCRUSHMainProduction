@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -32,7 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Time.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
@@ -55,7 +57,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Time.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />

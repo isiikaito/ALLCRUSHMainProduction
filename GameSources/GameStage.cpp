@@ -148,11 +148,17 @@ namespace basecross {
 	}
 	//タイムスプライト作成
 	void GameStage::CreateTime() {
-		AddGameObject<Time>(4,
+		AddGameObject<MyTime>(4,
 			L"NUMBER_TX",
 			true,
 			Vec2(80.0f, 80.0f),
 			Vec3(600.0f, 340.0f, 0.0f));
+	}
+
+	//アイテムスプライト作成
+	void GameStage::CreateMyitem1() {
+		AddGameObject<Myitem1>(L"SHIELD_TX", true,
+			Vec2(240.0f, 240.0f), Vec3(-550.0f, -320.0f, 0.0f));
 	}
 
 	//プレイヤーの作成
@@ -213,6 +219,8 @@ namespace basecross {
 			CreateTime();
 			//
 			CreateWall();
+			//アイテムスプライト
+			CreateMyitem1();
 		}
 		catch (...) {
 			throw;
@@ -226,8 +234,8 @@ namespace basecross {
 		if (m_TotalTime >= 10000.0f) {
 			m_TotalTime = 0.0f;
 		}
-		//スコアを更新する
-		auto ptrScor = GetSharedGameObject<Time>(L"Time");
+		//タイムを更新する
+		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
 	}
 

@@ -10,7 +10,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 		///	スコア表示のスプライト
 		//--------------------------------------------------------------------------------------
-	class Time : public GameObject {
+	class MyTime : public GameObject {
 		bool m_Trace;
 		Vec2 m_StartScale;
 		Vec3 m_StartPos;
@@ -32,7 +32,7 @@ namespace basecross {
 		@param[in]	StartPos	初期位置
 		*/
 		//--------------------------------------------------------------------------------------
-		Time(const shared_ptr<Stage>& StagePtr, UINT NumberOfDigits,
+		MyTime(const shared_ptr<Stage>& StagePtr, UINT NumberOfDigits,
 			const wstring& TextureKey, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);
 		//--------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ namespace basecross {
 		@brief デストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		virtual ~Time() {}
+		virtual ~MyTime() {}
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief スコアのセット

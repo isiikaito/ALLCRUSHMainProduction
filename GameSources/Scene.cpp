@@ -70,6 +70,10 @@ namespace basecross {
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
+		strTexture = dataDir + L"盾.png";
+		App::GetApp()->RegisterTexture(L"SHIELD_TX", strTexture);
+		
+
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
