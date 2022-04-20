@@ -51,7 +51,7 @@ namespace basecross {
 	//auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
 	//Xƒ{ƒ^ƒ“‚ð‚¨‚µ‚½‚ç
-	void Wall::OnPushX(shared_ptr<GameObject>& Other)
+	void Wall::OnPushX()
 	{
 		//auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			SetUpdateActive(false);

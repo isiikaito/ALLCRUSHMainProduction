@@ -50,7 +50,7 @@ namespace basecross {
 					Obj->OnPushB();
 				}
 				//Xƒ{ƒ^ƒ“
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+				else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 					Obj->OnPushX();
 				}
 			}
