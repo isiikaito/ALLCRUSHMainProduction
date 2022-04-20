@@ -54,6 +54,7 @@ namespace basecross {
 
 		auto Coll = AddComponent<CollisionObb>();
 
+		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
 
 
