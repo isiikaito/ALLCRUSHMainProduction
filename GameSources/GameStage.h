@@ -22,7 +22,11 @@ namespace basecross {
 	//マヤによるステージの床作成
 	void CreateStageFloor();
 	//カベの作成
-	void CreateWall();		
+	void CreateWall();
+	//タイム作成
+	void CreateTime();	
+	//トータル時間
+	float m_TotalTime;
 
 		//MyCamera用のビュー
 		shared_ptr<SingleView> m_MyCameraView;
@@ -41,7 +45,7 @@ namespace basecross {
 		void OnDestroy();
 	public:
 		//構築と破棄
-		GameStage() :Stage() {}
+		GameStage() :Stage(), m_TotalTime(0) {}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;

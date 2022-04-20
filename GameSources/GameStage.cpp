@@ -146,6 +146,14 @@ namespace basecross {
 
 
 	}
+	//タイムスプライト作成
+	void GameStage::CreateTime() {
+		AddGameObject<Time>(4,
+			L"NUMBER_TX",
+			true,
+			Vec2(80.0f, 80.0f),
+			Vec3(600.0f, 340.0f, 0.0f));
+	}
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -201,6 +209,8 @@ namespace basecross {
 			CreateStageWall(); 
 			//マヤで作った床の追加
 			CreateStageFloor();
+			//タイムスプライト作成
+			CreateTime();
 			//
 			CreateWall();
 		}
@@ -211,6 +221,14 @@ namespace basecross {
 	void GameStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<GameStage>());
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		m_TotalTime += elapsedTime;
+		if (m_TotalTime >= 10000.0f) {
+			m_TotalTime = 0.0f;
+		}
+		//スコアを更新する
+		auto ptrScor = GetSharedGameObject<Time>(L"Time");
+		ptrScor->SetScore(m_TotalTime);
 	}
 
 	void GameStage::OnDestroy() {
