@@ -64,7 +64,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Time.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,7 +132,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Time.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -148,7 +148,7 @@ namespace basecross {
 	}
 	//タイムスプライト作成
 	void GameStage::CreateTime() {
-		AddGameObject<Time>(4,
+		AddGameObject<MyTime>(4,
 			L"NUMBER_TX",
 			true,
 			Vec2(80.0f, 80.0f),
@@ -227,7 +227,7 @@ namespace basecross {
 			m_TotalTime = 0.0f;
 		}
 		//スコアを更新する
-		auto ptrScor = GetSharedGameObject<Time>(L"Time");
+		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
 	}
 
