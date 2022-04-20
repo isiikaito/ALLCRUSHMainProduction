@@ -23,6 +23,8 @@ namespace basecross {
 	void CreateStageFloor();
 	//カベの作成
 	void CreateWall();
+	//アイテムスプライト作成
+	void CreateMyitem1();
 	//タイム作成
 	void CreateTime();	
 	//トータル時間

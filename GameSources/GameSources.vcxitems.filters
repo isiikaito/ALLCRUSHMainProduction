@@ -67,6 +67,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h">
@@ -120,19 +123,22 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
