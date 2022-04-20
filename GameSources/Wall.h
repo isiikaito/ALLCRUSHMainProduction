@@ -17,6 +17,8 @@ namespace basecross {
 		Quat m_Qt;
 		Vec3 m_Position;
 		Vec3 m_ActionVelocity;
+		//入力ハンドラー
+		InputHandler<Wall> m_InputHandler;
 	public:
 		//構築と破棄
 		Wall(const shared_ptr<Stage>& StagePtr,
@@ -36,6 +38,11 @@ namespace basecross {
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		//コントローラーのボタン判定X
 		void OnPushX(shared_ptr<GameObject>& Other);
+		void OnPushA() {}
+
+		void OnPushB() {}
+
+		void OnUpdate();
 	};
 	
 

@@ -28,7 +28,9 @@ namespace basecross {
 		//更新
 		virtual void OnUpdate()override;
 		//入力イベントに応答する関数
+		void OnPushA(){}
 		void OnPushB();
+		void OnPushX(){}
 	};
 }
 //end namespace basecross

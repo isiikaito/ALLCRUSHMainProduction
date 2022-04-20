@@ -27,6 +27,7 @@ namespace basecross {
 		virtual void OnUpdate()override;
 		//“ü—ÍƒCƒxƒ“ƒg‚É‰“š‚·‚éŠÖ”
 		void OnPushB();
+		void OnPushX(){}
 	};
 }
 //end namespace basecross
