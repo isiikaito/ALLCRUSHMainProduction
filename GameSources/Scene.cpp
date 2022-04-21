@@ -77,10 +77,12 @@ namespace basecross {
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
-
 		//走るサウンド
 		CursorWav = dataDir + L"run.wav";
 		App::GetApp()->RegisterWav(L"run", CursorWav);
+		//ハンマーを振るサウンド
+		CursorWav = dataDir + L"Hammer.wav";
+		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
 
 	}
 	void Scene::OnCreate() {

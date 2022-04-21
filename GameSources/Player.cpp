@@ -132,6 +132,9 @@ namespace basecross{
 		auto action = ptrDraw->GetCurrentAnimation();
 		if (action == L"Default") {
 			ptrDraw->ChangeCurrentAnimation(L"Action");
+			//ƒTƒEƒ“ƒh‚ÌÄ¶
+			auto ptrXA = App::GetApp()->GetXAudio2Manager();
+			ptrXA->Start(L"Hammer", 0, 0.5f);
 		}
 
 		//auto grav = GetComponent<Gravity>();
