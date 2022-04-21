@@ -78,6 +78,10 @@ namespace basecross {
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
 
+		//‘–‚éƒTƒEƒ“ƒh
+		CursorWav = dataDir + L"run.wav";
+		App::GetApp()->RegisterWav(L"run", CursorWav);
+
 	}
 	void Scene::OnCreate() {
 		try {

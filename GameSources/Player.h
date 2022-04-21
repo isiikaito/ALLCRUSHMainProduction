@@ -21,7 +21,8 @@ namespace basecross{
 		InputHandler<Player> m_InputHandler;
 		//void MovePlayer();
 
-
+		shared_ptr<SoundItem> m_BGM;
+		void OnDestroy();
 	public:
 		// ステージを渡せるコンストラクタが必須
 		Player(const std::shared_ptr<Stage>& stage)

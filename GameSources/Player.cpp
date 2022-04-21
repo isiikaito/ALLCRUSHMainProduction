@@ -103,17 +103,19 @@ namespace basecross{
 			float rotY = atan2f(-moveDir.z, moveDir.x); // アークタンジェントを使うとベクトルを角度に変換できる
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 			//歩くアニメーション
-			if (move == L"Default" || move == L"Action") {
+			if (move != L"Move") {
 				ptrDraw->ChangeCurrentAnimation(L"Move");
-				if (ptrDraw->IsTargetAnimeEnd()) {
-					ptrDraw->ChangeCurrentAnimation(L"Default");
-				}
+				//サウンドの再生
+				auto ptrXA = App::GetApp()->GetXAudio2Manager();
+				m_BGM = ptrXA->Start(L"run", 0, 0.5f);
 			}
 		}
 		//立ち止まるアニメーション
-		if (move == L"Move" || move == L"Action") {
+		if (move != L"Default") {
 			if (ptrDraw->IsTargetAnimeEnd()) {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
+				auto ptrXA = App::GetApp()->GetXAudio2Manager();
+				ptrXA->Stop(m_BGM);
 			}
 		}
 
@@ -128,7 +130,7 @@ namespace basecross{
 		//ハンマーを振るアニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
-		if (action != L"Action" && action != L"Move") {
+		if (action == L"Default") {
 			ptrDraw->ChangeCurrentAnimation(L"Action");
 		}
 
@@ -156,6 +158,12 @@ namespace basecross{
 		}
 		
 		
+	}
+
+	void Player::OnDestroy() {
+		//BGMのストップ
+		auto PtrXA = App::GetApp()->GetXAudio2Manager();
+		PtrXA->Stop(m_BGM);
 	}
 
 }
