@@ -87,7 +87,7 @@ namespace basecross{
 			Vec3(-sinf(rad), 0.0f, cosf(rad))); // Z軸の向き
 		moveDir = moveDir * m; // スティックの入力をangleYラジアン回転させる
 
-		speed = MaxMoveSpeed * moveDir.length(); // 最大速×スティックベクトルの大きさ
+		speed = MaxMoveSpeed * moveDir.length() * moveStop; // 最大速×スティックベクトルの大きさ×停止させるかどうかの判定
 		moveDir.normalize(); // 移動方向を正規化する
 
 		auto transComp = GetComponent<Transform>();
@@ -103,7 +103,8 @@ namespace basecross{
 			float rotY = atan2f(-moveDir.z, moveDir.x); // アークタンジェントを使うとベクトルを角度に変換できる
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 			//歩くアニメーション
-			if (move != L"Move") {
+			//if (move != L"Move") {
+			if (move == L"Default") {
 				ptrDraw->ChangeCurrentAnimation(L"Move");
 				//サウンドの再生
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
@@ -116,6 +117,7 @@ namespace basecross{
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
+				moveStop = 1.0f;//移動停止解除
 			}
 		}
 
@@ -130,11 +132,14 @@ namespace basecross{
 		//ハンマーを振るアニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
-		if (action == L"Default") {
+		//if (action == L"Default") {
+		if (action != L"Action") {
 			ptrDraw->ChangeCurrentAnimation(L"Action");
 			//サウンドの再生
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
 			ptrXA->Start(L"Hammer", 0, 0.5f);
+			ptrXA->Stop(m_BGM);//bgm(足音の停止)
+			moveStop = 0.0f;//移動の停止
 		}
 
 		//auto grav = GetComponent<Gravity>();
