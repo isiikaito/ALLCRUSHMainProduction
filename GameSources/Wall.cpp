@@ -49,7 +49,7 @@ namespace basecross {
 		m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
 		// 視点位置を確定
-		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 20.0f);
+		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f,20.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
@@ -63,8 +63,8 @@ namespace basecross {
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
 		dataDir += L"effect\\";
-		wstring wstrEfk = dataDir + L"Laser01.efk";
-		//wstring wstrEfk = dataDir + L"砂煙.efkefc";
+		//wstring wstrEfk = dataDir + L"Laser01.efk";
+		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
 
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
@@ -105,12 +105,20 @@ namespace basecross {
 	//コントローラの取得
 	//auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
+	void  Wall::OnPushB() {
+		//if (!m_isPlayTest) {
+		//	//auto pos = ptr->GetComponent<Transform>()->GetPosition();
+		//	m_handle = m_manager->Play(m_effect, 0,0,0);
+		//	m_isPlayTest = true;
+		//}
+	}
+
 	//Xボタンをおしたら
 	void Wall::OnPushX()
 	{
 		//auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-			SetUpdateActive(false);
-			SetDrawActive(false);
+			/*SetUpdateActive(false);
+			SetDrawActive(false);*/
 	}
 
 	//壁に当たったら
@@ -118,11 +126,15 @@ namespace basecross {
 		auto ptr = dynamic_pointer_cast<Player>(Other);
 			if (ptr) {
 				if (!m_isPlay) {
-					m_handle = m_manager->Play(m_effect, 0, 0, 0);
+					auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+					m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
+					//m_handle = m_manager->Play(m_effect, 0, 0, 0);
+
 					m_isPlay = true;
 				}
-				SetUpdateActive(false);
-				SetDrawActive(false);
+
+				//SetUpdateActive(false);
+				//SetDrawActive(false);
 				
 				auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 				ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");

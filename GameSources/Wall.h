@@ -53,7 +53,7 @@ namespace basecross {
 		void OnPushX();
 		void OnPushA() {}
 
-		void OnPushB() {}
+		void OnPushB();
 
 		void OnUpdate();
 	};
