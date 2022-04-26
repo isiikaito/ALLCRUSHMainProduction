@@ -12,7 +12,7 @@ namespace basecross{
 
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
+		ptrTrans->SetScale(1.0f,1.0f, 1.0f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
 
@@ -20,7 +20,7 @@ namespace basecross{
 
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(true);
+		/*ptrColl->SetDrawActive(true);*/
 		//衝突判定を表示
 		/*ptrColl->SetDrawActive(true);*/
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列

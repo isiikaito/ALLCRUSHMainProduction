@@ -67,6 +67,10 @@ namespace basecross {
 		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage1.1.bmf");
 		App::GetApp()->RegisterResource(L"STAGEFLOOR_MESH", staticModelMesh2);
 
+        //出口のモデル読み込み
+		auto staticModelMesh3 = MeshResource::CreateStaticModelMesh(dataDir, L"ExitWall.bmf");
+		App::GetApp()->RegisterResource(L"EXITWALL_MESH", staticModelMesh3);
+
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);

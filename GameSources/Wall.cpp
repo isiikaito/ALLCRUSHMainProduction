@@ -133,8 +133,8 @@ namespace basecross {
 					m_isPlay = true;
 				}
 
-				//SetUpdateActive(false);
-				//SetDrawActive(false);
+				SetUpdateActive(false);
+				SetDrawActive(false);
 				
 				auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 				ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");

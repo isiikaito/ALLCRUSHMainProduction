@@ -27,7 +27,7 @@ namespace basecross {
 		auto ptrTransform = GetComponent<Transform>();
 		//ptrTransform->SetPosition(m_StartPos);
 		ptrTransform->SetPosition(3.0f, 0.0f, 0.0f);
-		ptrTransform->SetScale(0.125f, 0.25f, 0.25f);
+		ptrTransform->SetScale(0.125f, 0.25f, 0.125f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列

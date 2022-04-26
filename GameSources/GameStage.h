@@ -25,6 +25,7 @@ namespace basecross {
 	void CreateWall();
 	//アイテムスプライト作成
 	void CreateMyitem1();
+	void CreateExitWall();
 	//タイム作成
 	void CreateTime();	
 	//トータル時間
