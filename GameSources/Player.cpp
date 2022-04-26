@@ -14,7 +14,7 @@ namespace basecross{
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(1.0f,1.0f, 1.0f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
-		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
+		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 
 		
 
