@@ -11,6 +11,8 @@ namespace basecross{
 	{
 		const float MaxMoveSpeed; // 移動の最大速
 
+		bool moveStop;//Playerの移動停止の判定
+
 		Vec3 moveDir; // 移動方向ベクトル（単位ベクトル）
 		float speed; // 移動の速さ
 
@@ -28,6 +30,7 @@ namespace basecross{
 		Player(const std::shared_ptr<Stage>& stage)
 			: GameObject(stage), // ステージは親クラスに投げる
 			MaxMoveSpeed(6.0f),
+			moveStop(1.0f),
 			moveDir(0.0f, 0.0f, 0.0f),
 			speed(0.0f),
 			accel(0.0f)

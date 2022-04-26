@@ -48,11 +48,11 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
-		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Enemy1.bmf");
+		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Enemy3.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH", EnemyModelMesh);
 
 		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
-		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Enemy1.bmf");
+		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Enemy3.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH_WITH_TAN", EnemyModelMesh);
 
 		//法線マップ
@@ -77,10 +77,12 @@ namespace basecross {
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
-
 		//走るサウンド
 		CursorWav = dataDir + L"run.wav";
 		App::GetApp()->RegisterWav(L"run", CursorWav);
+		//ハンマーを振るサウンド
+		CursorWav = dataDir + L"Hammer.wav";
+		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
 
 	}
 	void Scene::OnCreate() {
