@@ -45,8 +45,6 @@ namespace basecross{
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 	};
-
-
 }
 //end basecross
 

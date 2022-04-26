@@ -43,6 +43,8 @@ namespace basecross {
 		void OnPushB() {}
 
 		void OnUpdate();
+		bool IsHitSegmentTriangles(const Vec3& StartPos,const Vec3& EndPos,TRIANGLE& tri,Vec3& HitPoint);
+		bool IsHitSphereTriangles(const SPHERE& StartSp, const SPHERE& EndSp, TRIANGLE& tri, Vec3 HitPoint);
 	};
 	
 
