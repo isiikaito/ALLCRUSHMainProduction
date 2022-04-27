@@ -57,9 +57,11 @@ namespace basecross {
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
-
+		
+		
 		//透明処理をする
-		//SetAlphaActive(true);
+		/*SetAlphaActive(false);*/
+		SetDrawActive(false);
 
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
@@ -70,6 +72,8 @@ namespace basecross {
 
 	//操作
 	void EnemyObject::OnUpdate() {
+
+		
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
 		//この中でステートの切り替えが行われる
@@ -81,8 +85,29 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
-	}
 
+
+		
+
+	
+	}
+	void EnemyObject::OnUpdate2() {
+		auto& app = App::GetApp();
+
+		float delta = app->GetElapsedTime();
+
+		auto& device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+
+		//コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		//Bボタン
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+			//表示
+			SetDrawActive(true);
+		}
+	}
 
 	Vec3 EnemyObject::GetTargetPos()const {
 		auto ptrTarget = GetStage()->GetSharedObject(L"Player");
@@ -151,5 +176,18 @@ namespace basecross {
 	}
 	void SeekNearState::Exit(const shared_ptr<EnemyObject>& Obj) {
 	}
+
+	
+	//void EnemyObject::OnPushB() {
+
+	//	auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
+	//	ptrDraw->SetFogEnabled(true);
+	//	ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
+	//	//ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
+	//	
+	//	ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
+	//	ptrDraw->ChangeCurrentAnimation(L"Default");
+
+	//}
 
 }
