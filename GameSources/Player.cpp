@@ -14,7 +14,7 @@ namespace basecross{
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(1.0f,1.0f, 1.0f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
-		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
+		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 
 		
 
@@ -148,11 +148,11 @@ namespace basecross{
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
-		auto ptrTrans = GetComponent<Transform>();
+		/*auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
 		if (pos.x <-45.0f) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-		}
+		}*/
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -164,6 +164,10 @@ namespace basecross{
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+		}
+		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
+		if (ptr1) {
+			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 		
 		

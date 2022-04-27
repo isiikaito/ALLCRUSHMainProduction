@@ -30,10 +30,10 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.2f, 0.2f, 1.0),//スケールkabe
-			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(1.0f, 0.15f, 0.08),//スケールkabe
+			Vec3(0.0f, 5.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.5f, -6.7f)//ポジションkabe
+			Vec3(0.0f, -0.8f, 0.0f)//ポジションkabe
 		);
 
 		//影をつける（シャドウマップを描画する）
