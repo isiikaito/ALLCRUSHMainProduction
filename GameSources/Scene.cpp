@@ -64,7 +64,7 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
 
 		//°‚Ìƒ‚ƒfƒ‹“Ç‚İ‚İ
-		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage1.1.bmf");
+		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"yuka2.bmf");
 		App::GetApp()->RegisterResource(L"STAGEFLOOR_MESH", staticModelMesh2);
 
         //oŒû‚Ìƒ‚ƒfƒ‹“Ç‚İ‚İ
