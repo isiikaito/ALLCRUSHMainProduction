@@ -51,7 +51,10 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
+
 		ptrDraw->SetFogEnabled(true);
+		                       //R    G    B    A
+		ptrDraw->SetDiffuse(Col4(1.0, 1.0, 1.0, 0.1));
 		ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
 		//ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
@@ -60,8 +63,10 @@ namespace basecross {
 		
 		
 		//透明処理をする
-		/*SetAlphaActive(false);*/
-		SetDrawActive(false);
+		//pngのテクスチャを透明化させる処理(jpgは透明化できないので無理)
+		SetAlphaActive(true);
+		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
+		/*SetDrawActive(false);*/
 
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
@@ -97,12 +102,16 @@ namespace basecross {
 		//コントローラの取得
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
-		//Bボタン
+		//Bボタンが押されているとき
 		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
 			//表示
 			SetDrawActive(true);
 		}
-
+		//Bボタンが押されていないとき
+		else {
+			/*SetAlphaActive(true);*/
+			SetDrawActive(false);
+		}
 		
 		////コントローラチェックして入力があればコマンド呼び出し
 		//m_InputHandler.PushHandle(GetThis<EnemyObject>());
