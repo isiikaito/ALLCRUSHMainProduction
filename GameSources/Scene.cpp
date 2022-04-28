@@ -48,11 +48,11 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
-		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Enemy3.bmf");
+		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"EnemyBoss.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH", EnemyModelMesh);
 
 		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
-		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Enemy3.bmf");
+		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"EnemyBoss.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH_WITH_TAN", EnemyModelMesh);
 
 		//法線マップ

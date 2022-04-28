@@ -21,8 +21,8 @@ namespace basecross {
 		Vec3 m_Force;
 		//速度
 		Vec3 m_Velocity;
-		//入力ハンドラー
-		InputHandler2<EnemyObject> m_InputHandler;
+		////入力ハンドラー
+		//InputHandler2<EnemyObject> m_InputHandler;
 	public:
 		//構築と破棄
 		EnemyObject(const shared_ptr<Stage>& StagePtr); // , const Vec3& StartPos);
@@ -52,12 +52,12 @@ namespace basecross {
 			m_Velocity = v;
 		}
 		void ApplyForce();
-		void OnPushB();
-		void OnPushX() {}
+		/*void OnPushB();*/
+		/*void OnPushX() {}*/
 		Vec3 GetTargetPos()const;
 		//操作
 		virtual void OnUpdate() override;
-		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
+		
 	};
 
 	//--------------------------------------------------------------------------------------

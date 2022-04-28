@@ -73,7 +73,8 @@ namespace basecross {
 	//操作
 	void EnemyObject::OnUpdate() {
 
-		
+       
+
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
 		//この中でステートの切り替えが行われる
@@ -86,13 +87,7 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
 
-
-		
-
-	
-	}
-	void EnemyObject::OnUpdate2() {
-		auto& app = App::GetApp();
+         auto& app = App::GetApp();
 
 		float delta = app->GetElapsedTime();
 
@@ -107,6 +102,11 @@ namespace basecross {
 			//表示
 			SetDrawActive(true);
 		}
+
+		
+		////コントローラチェックして入力があればコマンド呼び出し
+		//m_InputHandler.PushHandle(GetThis<EnemyObject>());
+
 	}
 
 	Vec3 EnemyObject::GetTargetPos()const {
@@ -124,7 +124,7 @@ namespace basecross {
 		ptrTrans->SetPosition(pos);
 	}
 
-
+	
 
 	//--------------------------------------------------------------------------------------
 	//	プレイヤーから遠いときの移動
@@ -178,16 +178,10 @@ namespace basecross {
 	}
 
 	
-	//void EnemyObject::OnPushB() {
+	/*void EnemyObject::OnPushB() {
+		
 
-	//	auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
-	//	ptrDraw->SetFogEnabled(true);
-	//	ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
-	//	//ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
-	//	
-	//	ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
-	//	ptrDraw->ChangeCurrentAnimation(L"Default");
 
-	//}
+	}*/
 
 }
