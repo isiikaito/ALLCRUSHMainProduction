@@ -12,7 +12,7 @@ namespace basecross{
 
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(1.0f,1.0f, 1.0f);
+		ptrTrans->SetScale(0.1f,0.1f, 0.1f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 
@@ -48,7 +48,7 @@ namespace basecross{
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 10, false, 30.0f);
 		ptrDraw->AddAnimation(L"Move", 10, 15, false, 30.0f);
-		ptrDraw->AddAnimation(L"Action", 25, 15, false, 30.0f);
+		ptrDraw->AddAnimation(L"Action", 25, 15, false, 20.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
