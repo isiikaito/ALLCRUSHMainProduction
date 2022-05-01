@@ -76,6 +76,9 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
 		strTexture = dataDir + L"盾.png";
 		App::GetApp()->RegisterTexture(L"SHIELD_TX", strTexture);
+
+		strTexture = dataDir + L"ゲージ.jpg";
+		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 		
 
 		//サウンド

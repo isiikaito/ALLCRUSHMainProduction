@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "ExitWall.h"
 #include "Myitem1.h"
+#include"Mygage.h"
 #include "MyTime.h"
 #include "stageWall.h"
 #include "StageFloor.h"
