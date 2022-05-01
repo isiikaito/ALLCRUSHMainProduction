@@ -17,6 +17,7 @@ namespace basecross {
 		Quat m_Qt;
 		Vec3 m_Position;
 		Vec3 m_ActionVelocity;
+		Vec3 m_ActiveMax;
 		//ì¸óÕÉnÉìÉhÉâÅ[
 		InputHandler2<Wall> m_InputHandler;
 
@@ -56,11 +57,41 @@ namespace basecross {
 		void OnPushB();
 
 		void OnUpdate();
-		bool IsHitSegmentTriangles(const Vec3& StartPos,const Vec3& EndPos,TRIANGLE& tri,Vec3& HitPoint);
-		bool IsHitSphereTriangles(const SPHERE& StartSp, const SPHERE& EndSp, TRIANGLE& tri, Vec3 HitPoint);
-	};
-	
+			float m_StateChangeSize;
 
+			Vec3 m_Force;
+
+			Vec3 m_Velocity;
+		public:
+			Wall(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
+			const unique_ptr<StateMachine<Wall>>& GetStateMachine() {
+				return m_StateMachine;
+			}
+			float GetStateChangeSize() const {
+				return m_StateChangeSize;
+			}
+			const Vec3& GetForce()const {
+				return m_Force;
+			}
+			void SetForce(const Vec3& f) {
+				m_Force = f;
+			}
+			void AddForce(const Vec3& f) {
+				m_Force += f;
+			}
+			const Vec3& GetVelocity()const {
+				return m_Velocity;
+			}
+			void SetVelocity(const Vec3& v) {
+				m_Velocity = v;
+			}
+			void ApplyForce();
+			Vec3 GetTargetPos()const;
+
+
+		//bool IsHitSegmentTriangles(const Vec3& StartPos,const Vec3& EndPos,TRIANGLE& tri,Vec3& HitPoint);
+		//bool IsHitSphereTriangles(const SPHERE& StartSp, const SPHERE& EndSp, TRIANGLE& tri, Vec3 HitPoint);
+	};
 
 }
 // namespace basecross

@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-namespace basecross{
+namespace basecross {
 	void Player::OnCreate()
 	{
 
@@ -16,7 +16,7 @@ namespace basecross{
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
 
-		
+
 
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
@@ -35,6 +35,7 @@ namespace basecross{
 		auto ptrGra = AddComponent<Gravity>();
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
+
 		//影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"Object_WalkAnimation_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
@@ -94,9 +95,10 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		auto scale = transComp->GetScale();
-
 		// プレイヤーの移動
 		position += moveDir * speed * delta; // デルタタイムを掛けて「秒間」の移動量に変換する
+
+
 
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
@@ -128,12 +130,17 @@ namespace basecross{
 		//MovePlayer();
 
 	}
+
 	//Aボタン
-	void Player::OnPushA() {
+	void Player::OnPushA() {		
 		//ハンマーを振るアニメーション
+
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
 		//if (action == L"Default") {
+		auto transComp = GetComponent<Transform>();
+		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
+
 		if (action != L"Action") {
 			ptrDraw->ChangeCurrentAnimation(L"Action");
 			//サウンドの再生
@@ -141,6 +148,28 @@ namespace basecross{
 			ptrXA->Start(L"Hammer", 0, 0.5f);
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 			moveStop = 0.0f;//移動の停止
+
+		}
+
+		SPHERE playerSp(position, 2.0f);
+		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
+		auto vec = group->GetGroupVector();
+		for (auto& v : vec) {
+			auto shPtr = v.lock();
+			Vec3 ret;
+			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+			if (ptrWall) {
+				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
+				if (/*近づいたら*/
+					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) { 
+					//壁との距離が2.0以下になった
+					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
+						//コントローラのボタンが押されていたら、shPtrを消す
+						GetStage()->RemoveGameObject<Wall>(shPtr);
+					}
+				}
+			}
 		}
 
 		//auto grav = GetComponent<Gravity>();
@@ -150,8 +179,9 @@ namespace basecross{
 	void Player::OnUpdate2() {
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
-		if (pos.x <-45.0f) {
+		if (pos.x < -45.0f) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+
 		}
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
@@ -163,9 +193,9 @@ namespace basecross{
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
-		
+
 		
 	}
 
@@ -176,5 +206,5 @@ namespace basecross{
 	}
 
 }
-//end basecross
+	//end basecross
 
