@@ -12,15 +12,15 @@ namespace basecross {
 
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
+		ptrTrans->SetScale(0.1f,0.1f, 0.1f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
-		ptrTrans->SetPosition(0.0f, 0.25f, 0.0f);
+		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 
 
 
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(true);
+		/*ptrColl->SetDrawActive(true);*/
 		//衝突判定を表示
 		/*ptrColl->SetDrawActive(true);*/
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -49,7 +49,7 @@ namespace basecross {
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 10, false, 30.0f);
 		ptrDraw->AddAnimation(L"Move", 10, 15, false, 30.0f);
-		ptrDraw->AddAnimation(L"Action", 25, 15, false, 30.0f);
+		ptrDraw->AddAnimation(L"Action", 25, 15, false, 20.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
@@ -177,12 +177,11 @@ namespace basecross {
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
-		auto ptrTrans = GetComponent<Transform>();
-		Vec3 pos = ptrTrans->GetPosition();
-		if (pos.x < -45.0f) {
-			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-
-		}
+		//auto ptrTrans = GetComponent<Transform>();
+		//Vec3 pos = ptrTrans->GetPosition();
+		//if (pos.x < -45.0f) {
+		//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		//}
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -195,7 +194,7 @@ namespace basecross {
 		if (ptr) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
-
+		
 		
 	}
 

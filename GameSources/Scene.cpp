@@ -40,19 +40,19 @@ namespace basecross {
 
 		//モデル
 		//ボーンモデルの通常リソース
-		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"WalkmanAnimation３.bmf");
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player1.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
 		//ボーンモデルのタンジェント付きリソース
-		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"WalkmanAnimation３.bmf");
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"player1.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
-		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"Enemy3.bmf");
+		auto EnemyModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"EnemyBoss1.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH", EnemyModelMesh);
 
 		//ボーンモデル(マルチメッシュ)のタンジェント付きリソース
-		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"Enemy3.bmf");
+		EnemyModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"EnemyBoss1.bmf");
 		App::GetApp()->RegisterResource(L"EnemyRun_MESH_WITH_TAN", EnemyModelMesh);
 
 		//法線マップ
@@ -64,14 +64,21 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
 
 		//床のモデル読み込み
-		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage1.1.bmf");
+		auto staticModelMesh2 = MeshResource::CreateStaticModelMesh(dataDir, L"yuka2.bmf");
 		App::GetApp()->RegisterResource(L"STAGEFLOOR_MESH", staticModelMesh2);
+
+        //出口のモデル読み込み
+		auto staticModelMesh3 = MeshResource::CreateStaticModelMesh(dataDir, L"ExitWall.bmf");
+		App::GetApp()->RegisterResource(L"EXITWALL_MESH", staticModelMesh3);
 
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
 		strTexture = dataDir + L"盾.png";
 		App::GetApp()->RegisterTexture(L"SHIELD_TX", strTexture);
+
+		strTexture = dataDir + L"ゲージ.jpg";
+		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 		
 
 		//サウンド

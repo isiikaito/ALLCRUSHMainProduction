@@ -26,8 +26,8 @@ namespace basecross {
 	void EnemyObject::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
 		//ptrTransform->SetPosition(m_StartPos);
-		ptrTransform->SetPosition(3.0f, 0.0f, 0.0f);
-		ptrTransform->SetScale(0.125f, 0.25f, 0.25f);
+		ptrTransform->SetPosition(60.0f, 0.0f, 0.0f);
+		ptrTransform->SetScale(0.125f, 0.25f, 0.125f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -51,15 +51,22 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
+
 		ptrDraw->SetFogEnabled(true);
+		                       //R    G    B    A
+		ptrDraw->SetDiffuse(Col4(1.0, 1.0, 1.0, 0.1));
 		ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
 		//ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
-
+		
+		
 		//透明処理をする
-		//SetAlphaActive(true);
+		//pngのテクスチャを透明化させる処理(jpgは透明化できないので無理)
+		SetAlphaActive(true);
+		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
+		/*SetDrawActive(false);*/
 
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
@@ -70,6 +77,9 @@ namespace basecross {
 
 	//操作
 	void EnemyObject::OnUpdate() {
+
+       
+
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
 		//この中でステートの切り替えが行われる
@@ -81,8 +91,32 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
-	}
 
+         auto& app = App::GetApp();
+
+		float delta = app->GetElapsedTime();
+
+		auto& device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+
+		//コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		//Bボタンが押されているとき
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+			//表示
+			SetDrawActive(true);
+		}
+		//Bボタンが押されていないとき
+		else {
+			/*SetAlphaActive(true);*/
+			SetDrawActive(false);
+		}
+		
+		////コントローラチェックして入力があればコマンド呼び出し
+		//m_InputHandler.PushHandle(GetThis<EnemyObject>());
+
+	}
 
 	Vec3 EnemyObject::GetTargetPos()const {
 		auto ptrTarget = GetStage()->GetSharedObject(L"Player");
@@ -99,7 +133,7 @@ namespace basecross {
 		ptrTrans->SetPosition(pos);
 	}
 
-
+	
 
 	//--------------------------------------------------------------------------------------
 	//	プレイヤーから遠いときの移動
@@ -151,5 +185,12 @@ namespace basecross {
 	}
 	void SeekNearState::Exit(const shared_ptr<EnemyObject>& Obj) {
 	}
+
+	
+	/*void EnemyObject::OnPushB() {
+		
+
+
+	}*/
 
 }
