@@ -21,6 +21,8 @@ namespace basecross {
 		//入力ハンドラー
 		InputHandler2<Wall> m_InputHandler;
 
+		//エラー
+
 		// エフェクト関連
 		float m_TotalTime;
 		bool m_isPlay;
