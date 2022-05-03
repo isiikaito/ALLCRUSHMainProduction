@@ -143,6 +143,7 @@ namespace basecross {
 
 		if (action != L"Action") {
 			ptrDraw->ChangeCurrentAnimation(L"Action");
+			
 			//ƒTƒEƒ“ƒh‚ÌÄ¶
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
 			ptrXA->Start(L"Hammer", 0, 0.5f);

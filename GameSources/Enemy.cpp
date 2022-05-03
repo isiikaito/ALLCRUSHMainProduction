@@ -17,7 +17,8 @@ namespace basecross {
 		//m_StartPos(StartPos),
 		m_StateChangeSize(5.0f),
 		m_Force(0),
-		m_Velocity(0)
+		m_Velocity(0),
+		m_Speed(20)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
@@ -27,15 +28,15 @@ namespace basecross {
 		auto ptrTransform = GetComponent<Transform>();
 		//ptrTransform->SetPosition(m_StartPos);
 		ptrTransform->SetPosition(60.0f, 0.0f, 0.0f);
-		ptrTransform->SetScale(0.125f, 0.25f, 0.125f);
+		ptrTransform->SetScale(3.0f, 3.0f, 2.0f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.2f, 0.1f, 0.06f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, -0.5f, -1.0f)
 		);
 
 		//Obbの衝突判定をつける
@@ -67,7 +68,7 @@ namespace basecross {
 		SetAlphaActive(true);
 		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
 		/*SetDrawActive(false);*/
-
+	/*	ptrColl->SetDrawActive(true);*/
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
 		//最初のステートをSeekFarStateに設定
@@ -126,7 +127,7 @@ namespace basecross {
 
 	void EnemyObject::ApplyForce() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_Velocity += m_Force * elapsedTime;
+		m_Velocity += m_Force/m_Speed * elapsedTime;
 		auto ptrTrans = GetComponent<Transform>();
 		auto pos = ptrTrans->GetPosition();
 		pos += m_Velocity * elapsedTime;
