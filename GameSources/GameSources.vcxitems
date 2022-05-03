@@ -27,6 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Mygage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />

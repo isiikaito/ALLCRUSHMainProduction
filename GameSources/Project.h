@@ -29,6 +29,7 @@
 #include "Player.h"
 #include "brakeWall.h"
 #include "Wall.h"
+#include "Obstacle1.h"
 #include "TitleSprite.h"
 #include "TitleStage.h"
 #include "MyMovieStage.h"
