@@ -1,5 +1,5 @@
 /*!
-@file Obstacle1.cpp
+@file Obstacle2.cpp
 @brief 障害物実体
 */
 
@@ -8,7 +8,7 @@
 
 namespace basecross {
 	//構築と破棄
-	Obstacle1::Obstacle1(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position) :
+	Obstacle2::Obstacle2(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
 		m_Rotation(Rotation),
@@ -17,7 +17,7 @@ namespace basecross {
 
 
 	//初期化
-	void Obstacle1::OnCreate() {
+	void Obstacle2::OnCreate() {
 		//衝突判定エリアを決める
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
@@ -39,12 +39,12 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"OBSTACLE1_MESH");
+		ptrShadow->SetMeshResource(L"OBSTACLE2_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 
-		ptrDraw->SetMeshResource(L"OBSTACLE1_MESH");
+		ptrDraw->SetMeshResource(L"OBSTACLE2_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);

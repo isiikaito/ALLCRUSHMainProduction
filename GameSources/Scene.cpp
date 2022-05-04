@@ -71,6 +71,14 @@ namespace basecross {
 		auto staticModelMesh3 = MeshResource::CreateStaticModelMesh(dataDir, L"ExitWall.bmf");
 		App::GetApp()->RegisterResource(L"EXITWALL_MESH", staticModelMesh3);
 
+        //áŠQ•¨‚P‚Ì“Ç‚Ýž‚Ý
+		auto staticModelMesh4 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject.KU2.bmf");
+		App::GetApp()->RegisterResource(L"OBSTACLE1_MESH", staticModelMesh4);
+
+		//áŠQ•¨2‚Ì“Ç‚Ýž‚Ý
+		auto staticModelMesh5 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject05.bmf");
+		App::GetApp()->RegisterResource(L"OBSTACLE2_MESH", staticModelMesh5);
+
 		//ƒ^ƒCƒ€‚ÌƒeƒNƒXƒ`ƒƒ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);

@@ -1,5 +1,5 @@
 /*!
-@file Obstacle1.h
+@file Obstacle2.h
 @briefÅ@è·äQï®
 */
 
@@ -8,14 +8,14 @@
 
 namespace basecross {
 
-	class Obstacle1 : public GameObject {
+	class Obstacle2 : public GameObject {
 		Vec3 m_Scale;
 		Vec3 m_Rotation;
 		Vec3 m_Position;
 	public:
 		//ç\ízÇ∆îjä¸
-		Obstacle1(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position);
-		virtual ~Obstacle1() {}
+		Obstacle2(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position);
+		virtual ~Obstacle2() {}
 
 		//èâä˙âª
 		virtual void OnCreate() override;

@@ -23,6 +23,10 @@ namespace basecross {
 	void CreateStageFloor();
 	//カベの作成
 	void CreateWall();
+	//障害物１
+	void CreateObstacle1();
+	//障害物2
+	void CreateObstacle2();
 	//アイテムスプライト作成
 	void CreateMyitem1();
 	//ゲージの追加
