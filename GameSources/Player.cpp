@@ -47,9 +47,9 @@ namespace basecross {
 		ptrDraw->SetMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
 		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
-		ptrDraw->AddAnimation(L"Default", 0, 10, false, 30.0f);
-		ptrDraw->AddAnimation(L"Move", 10, 15, false, 30.0f);
-		ptrDraw->AddAnimation(L"Action", 25, 15, false, 20.0f);
+		ptrDraw->AddAnimation(L"Default", 0, 10, true, 15.0f);
+		ptrDraw->AddAnimation(L"Move", 10, 30, true, 50.0f);
+		ptrDraw->AddAnimation(L"Action", 40, 35, false, 35.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
@@ -114,16 +114,15 @@ namespace basecross {
 				m_BGM = ptrXA->Start(L"run", 0, 0.5f);
 			}
 		}
-		//立ち止まるアニメーション
-		if (move != L"Default") {
-			if (ptrDraw->IsTargetAnimeEnd()) {
-				ptrDraw->ChangeCurrentAnimation(L"Default");
-				auto ptrXA = App::GetApp()->GetXAudio2Manager();
-				ptrXA->Stop(m_BGM);
-				moveStop = 1.0f;//移動停止解除
+		else {
+			//立ち止まるアニメーション
+			if (move == L"Move") {
+					ptrDraw->ChangeCurrentAnimation(L"Default");
+					auto ptrXA = App::GetApp()->GetXAudio2Manager();
+					ptrXA->Stop(m_BGM);
+					moveStop = 1.0f;//移動停止解除
 			}
 		}
-
 
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
@@ -149,7 +148,6 @@ namespace basecross {
 			ptrXA->Start(L"Hammer", 0, 0.5f);
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 			moveStop = 0.0f;//移動の停止
-
 		}
 
 		SPHERE playerSp(position, 2.0f);
@@ -186,7 +184,13 @@ namespace basecross {
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		ptrDraw->UpdateAnimation(elapsedTime);
+		auto now = ptrDraw->UpdateAnimation(elapsedTime);
+		if (now) {
+			ptrDraw->ChangeCurrentAnimation(L"Default");
+			auto ptrXA = App::GetApp()->GetXAudio2Manager();
+			ptrXA->Stop(m_BGM);
+			moveStop = 1.0f;//移動停止解除
+		}
 
 	}
 	//プレイヤーがEnemyに当たったら
