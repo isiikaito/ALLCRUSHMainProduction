@@ -199,7 +199,10 @@ namespace basecross {
 		if (ptr) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
-		
+		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
+		if (ptr1) {
+			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		}
 		
 	}
 
