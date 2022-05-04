@@ -266,7 +266,7 @@ namespace basecross {
 			Vec2(240.0f, 240.0f), Vec3(-550.0f, -320.0f, 0.0f));
 	}
 
-	//アイテムスプライト作成
+	//ゲージの作成
 	void GameStage::CreateMygage() {
 		AddGameObject<Mygage>(L"GAGE_TX", true,
 			Vec2(140.0f, 240.0f), Vec3(-350.0f, -320.0f, 0.0f));
