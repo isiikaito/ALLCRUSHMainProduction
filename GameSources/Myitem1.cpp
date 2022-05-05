@@ -40,6 +40,8 @@ namespace basecross {
 		auto ptrDraw = AddComponent<PTSpriteDraw>(m_BackupVertices, indices);
 		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
 		ptrDraw->SetTextureResource(m_TextureKey);
-		SetDrawActive(true);
+		SetDrawActive(false);
+		//“Ç‚Ýž‚Ý‚ÌÝ’è‚ð‚·‚é
+		GetStage()->SetSharedGameObject(L"Myitem1", GetThis<Myitem1>());
 	}
 }
