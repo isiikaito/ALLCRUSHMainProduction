@@ -65,7 +65,7 @@ namespace basecross {
 		
 		//透明処理をする
 		//pngのテクスチャを透明化させる処理(jpgは透明化できないので無理)
-		SetAlphaActive(true);
+		/*SetAlphaActive(false);*/
 		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
 		/*SetDrawActive(false);*/
 	/*	ptrColl->SetDrawActive(true);*/
@@ -111,7 +111,7 @@ namespace basecross {
 		//Bボタンが押されていないとき
 		else {
 			/*SetAlphaActive(true);*/
-			SetDrawActive(false);
+			SetDrawActive(true);
 		}
 		
 		////コントローラチェックして入力があればコマンド呼び出し

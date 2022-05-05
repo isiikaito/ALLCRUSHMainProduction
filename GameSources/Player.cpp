@@ -157,6 +157,7 @@ namespace basecross {
 			auto shPtr = v.lock();
 			Vec3 ret;
 			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+			 
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				if (/*近づいたら*/
@@ -171,6 +172,26 @@ namespace basecross {
 			}
 		}
 
+		//auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+		//auto vec1 = group1->GetGroupVector();
+		//for (auto& v1 : vec1) {
+		//	auto shPtr = v1.lock();
+		//	Vec3 ret;
+		//	auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr);
+
+		//	if (ptrObstacle1) {
+		//		auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
+		//		if (/*近づいたら*/
+		//			HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret)) {
+		//			//壁との距離が2.0以下になった
+		//			auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		//			if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
+		//				//コントローラのボタンが押されていたら、shPtrを消す
+		//				GetStage()->RemoveGameObject<Obstacle1>(shPtr);
+		//			}
+		//		}
+		//	}
+		//}
 		//auto grav = GetComponent<Gravity>();
 		//grav->StartJump(Vec3(0, 4.0f, 0));
 	}
@@ -195,6 +216,7 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
@@ -202,6 +224,20 @@ namespace basecross {
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		}
+
+		//アイテムの表示
+		
+		auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
+		if (ptr3) {
+			//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
+			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+			Shitem->SetDrawActive(true);
+			/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
+			{
+             //SetDrawActive(true);
+			}
+			
 		}
 		
 	}
