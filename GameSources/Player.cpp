@@ -50,6 +50,8 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 10, true, 15.0f);
 		ptrDraw->AddAnimation(L"Move", 10, 30, true, 50.0f);
 		ptrDraw->AddAnimation(L"Action", 40, 35, false, 35.0f);
+		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
+		ptrDraw->AddAnimation(L"ActionPush", 60, 15, false, 35.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 	}
 
@@ -140,13 +142,12 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 
-		if (action != L"Action") {
-			ptrDraw->ChangeCurrentAnimation(L"Action");
-			
-			//サウンドの再生
+		if (action != L"ActionPull") {
+			ptrDraw->ChangeCurrentAnimation(L"ActionPull");			
+
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
-			ptrXA->Start(L"Hammer", 0, 0.5f);
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
+
 			moveStop = 0.0f;//移動の停止
 		}
 
@@ -206,13 +207,29 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
-		if (now) {
-			ptrDraw->ChangeCurrentAnimation(L"Default");
-			auto ptrXA = App::GetApp()->GetXAudio2Manager();
-			ptrXA->Stop(m_BGM);
-			moveStop = 1.0f;//移動停止解除
-		}
 
+		auto action = ptrDraw->GetCurrentAnimation();
+
+		if (action == L"ActionPull") {
+
+			if (ptrDraw->IsTargetAnimeEnd()) {
+				//ActionPullのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
+				ptrDraw->ChangeCurrentAnimation(L"ActionPush");
+
+				auto ptrXA = App::GetApp()->GetXAudio2Manager();
+				//サウンドの再生
+				ptrXA->Start(L"Hammer", 0, 0.5f);
+			}
+		}
+		else {
+			if (now) {
+				ptrDraw->ChangeCurrentAnimation(L"Default");
+				auto ptrXA = App::GetApp()->GetXAudio2Manager();
+				ptrXA->Stop(m_BGM);
+
+				moveStop = 1.0f;//移動停止解除
+			}
+		}
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
