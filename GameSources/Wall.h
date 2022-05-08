@@ -18,6 +18,7 @@ namespace basecross {
 		Vec3 m_Position;
 		Vec3 m_ActionVelocity;
 		Vec3 m_ActiveMax;
+
 		//入力ハンドラー
 		InputHandler2<Wall> m_InputHandler;
 
@@ -32,7 +33,8 @@ namespace basecross {
 		Effekseer::EffectRef m_effect;
 
 		void CreateEffect();
-
+		//HP
+		//int HP;
 	public:
 		//構築と破棄
 		Wall(const shared_ptr<Stage>& StagePtr,

@@ -133,9 +133,10 @@ namespace basecross {
 	}
 
 	//Aボタン
-	void Player::OnPushA() {		
+	void Player::OnPushA() {
+		//壁の残り耐久値
+		int HP = 4;
 		//ハンマーを振るアニメーション
-
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
 		//if (action == L"Default") {
@@ -158,8 +159,11 @@ namespace basecross {
 			auto shPtr = v.lock();
 			Vec3 ret;
 			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-			 
+
 			if (ptrWall) {
+				while (HP <= 0)
+				{
+				HP = HP - 1;
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				if (/*近づいたら*/
 					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) { 
@@ -167,7 +171,13 @@ namespace basecross {
 					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
-						GetStage()->RemoveGameObject<Wall>(shPtr);
+						if (HP <= 0)
+						{
+							GetStage()->RemoveGameObject<Wall>(shPtr);
+							//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+							//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
+						}
+					}
 					}
 				}
 			}
