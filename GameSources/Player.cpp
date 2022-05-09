@@ -10,17 +10,17 @@ namespace basecross {
 #pragma comment(lib, "Effekseer.lib")
 #pragma comment(lib, "EffekseerRendererDX11.lib")
 
-	Player::Player(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr),
-		MaxMoveSpeed(6.0f),
-		moveStop(1.0f),	
-		moveDir(0.0f, 0.0f, 0.0f),
-		speed(0.0f),
-		accel(0.0f),
-		itemCount(0.0f),
-		m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
-		m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
-	{}
+	//Player::Player(const shared_ptr<Stage>& StagePtr) :
+	//	GameObject(StagePtr),
+	//	MaxMoveSpeed(6.0f),
+	//	moveStop(1.0f),	
+	//	moveDir(0.0f, 0.0f, 0.0f),
+	//	speed(0.0f),
+	//	accel(0.0f),
+	//	itemCount(0.0f),
+	//	m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
+	//	m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
+	//{}
 
 	void Player::CreateEffect() {
 		auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
@@ -234,8 +234,8 @@ namespace basecross {
 						auto ptr = dynamic_pointer_cast<Wall>(shPtr);
 						GetStage()->RemoveGameObject<Wall>(shPtr);
 						if (!m_isPlay) {
-							auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-							m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
+							//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+							m_handle = m_manager->Play(m_effect, 0, 0, 0);
 							m_isPlay = true;
 						}
 					}
@@ -267,8 +267,32 @@ namespace basecross {
 		//grav->StartJump(Vec3(0, 4.0f, 0));
 	}
 
-	
+	void Player::OnDraw() {
+		GameObject::OnDraw();
+		if (m_isPlay) {
+			auto elps = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elps;
+			if (m_TotalTime >= 2.0f) {
+				m_manager->StopEffect(m_handle);
+				m_TotalTime = 0.0f;
+				m_isPlay = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager->Update();
+				// 時間を更新する
+				m_renderer->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager->Draw();
+				// エフェクトの描画終了処理を行う。
+				m_renderer->EndRendering();
+			}
 
+		}
+	}
 
 
 	//プレイヤーがゴールにたどり着いたら
@@ -343,32 +367,6 @@ namespace basecross {
 			 itemCount = 0;
 		}
 
-	}
-	void Player::OnDraw() {
-		GameObject::OnDraw();
-		if (m_isPlay) {
-			auto elps = App::GetApp()->GetElapsedTime();
-			m_TotalTime += elps;
-			if (m_TotalTime >= 2.0f) {
-				m_manager->StopEffect(m_handle);
-				m_TotalTime = 0.0f;
-				m_isPlay = false;
-				return;
-			}
-			else {
-				// マネージャーの更新
-				m_manager->Update();
-				// 時間を更新する
-				m_renderer->SetTime(elps);
-				// エフェクトの描画開始処理を行う。
-				m_renderer->BeginRendering();
-				// エフェクトの描画を行う。
-				m_manager->Draw();
-				// エフェクトの描画終了処理を行う。
-				m_renderer->EndRendering();
-			}
-
-		}
 	}
 
 	void Player::OnDestroy() {
