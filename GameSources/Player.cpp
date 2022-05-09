@@ -161,7 +161,7 @@ namespace basecross {
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		auto scale = transComp->GetScale();
 		// プレイヤーの移動
-		position += moveDir * speed * delta; // デルタタイムを掛けて「秒間」の移動量に変換する
+		position += moveDir * speed * delta*speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
 
 
@@ -364,7 +364,9 @@ namespace basecross {
 	     auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 		 if (itemCount == 1) {
 			 Shitem->SetDrawActive(false);
+			 speed2 = 2;
 			 itemCount = 0;
+			
 		}
 
 	}

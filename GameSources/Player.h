@@ -19,6 +19,7 @@ namespace basecross{
 		float accel; // ‰Á‘¬“x
 
 		int itemCount;
+		float speed2;
 
 		Vec3 GetMoveVector() const;
 
@@ -48,6 +49,7 @@ namespace basecross{
 			moveStop(1.0f),	
 			moveDir(0.0f, 0.0f, 0.0f),
 			speed(0.0f),
+			speed2(1.0f),
 			accel(0.0f),
 			itemCount(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
