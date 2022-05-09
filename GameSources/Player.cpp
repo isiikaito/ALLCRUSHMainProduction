@@ -135,7 +135,7 @@ namespace basecross {
 	//Aボタン
 	void Player::OnPushA() {
 		//壁の残り耐久値
-		int HP = 4;
+		auto HP = 4;
 		//ハンマーを振るアニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
@@ -155,22 +155,23 @@ namespace basecross {
 		SPHERE playerSp(position, 2.0f);
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
+		while (HP <= 0)
+		{
 		for (auto& v : vec) {
 			auto shPtr = v.lock();
 			Vec3 ret;
 			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
 
 			if (ptrWall) {
-				while (HP <= 0)
-				{
-				HP = HP - 1;
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				if (/*近づいたら*/
 					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) { 
 					//壁との距離が2.0以下になった
 					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
-						//コントローラのボタンが押されていたら、shPtrを消す
+						//コントローラーのボタンが押されていたら、耐久値を１減らす
+						HP = HP - 1;
+						//耐久値が0以下になったら、shPtrを消す
 						if (HP <= 0)
 						{
 							GetStage()->RemoveGameObject<Wall>(shPtr);
