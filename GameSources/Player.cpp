@@ -129,6 +129,7 @@ namespace basecross {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		//MovePlayer();
+		m_InputHandler2.PushHandle(GetThis<Player>());
 
 	}
 
@@ -196,6 +197,11 @@ namespace basecross {
 		//auto grav = GetComponent<Gravity>();
 		//grav->StartJump(Vec3(0, 4.0f, 0));
 	}
+
+	
+
+
+
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
 		//auto ptrTrans = GetComponent<Transform>();
@@ -244,12 +250,13 @@ namespace basecross {
 		}
 
 		//アイテムの表示
-		
+		itemCount = 0;
 		auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
-		if (ptr3) {
+		if (ptr3) {	
 			//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
 			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 			Shitem->SetDrawActive(true);
+			itemCount=1;
 			/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
 			{
              //SetDrawActive(true);
@@ -259,6 +266,15 @@ namespace basecross {
 		
 	}
 
+    //Bボタン
+    void Player::OnPushX() {
+	     auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+		 if (itemCount == 1) {
+			 Shitem->SetDrawActive(false);
+			 itemCount = 0;
+		}
+
+	}
 	void Player::OnDestroy() {
 		//BGMのストップ
 		auto PtrXA = App::GetApp()->GetXAudio2Manager();
