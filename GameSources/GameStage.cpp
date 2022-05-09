@@ -269,7 +269,7 @@ namespace basecross {
 	//ÉQÅ[ÉWÇÃçÏê¨
 	void GameStage::CreateMygage() {
 		AddGameObject<Mygage>(L"GAGE_TX", true,
-			Vec2(140.0f, 240.0f), Vec3(-350.0f, -320.0f, 0.0f));
+			Vec2(140.0f, 240.0f), Vec3(550.0f, -320.0f, 0.0f));
 	}
 
 
