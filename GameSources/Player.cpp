@@ -72,23 +72,23 @@ namespace basecross {
 
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(0.1f,0.1f, 0.1f);
+		ptrTrans->SetScale(0.5f,0.5f, 0.5f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 
 
 
 		//CollisionSphere衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionSphere>();
+		auto ptrColl = AddComponent<CollisionCapsule>();
 		/*ptrColl->SetDrawActive(true);*/
 		//衝突判定を表示
-		/*ptrColl->SetDrawActive(true);*/
+		ptrColl->SetDrawActive(true);
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.2f, 0.2f, 0.2f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, -1.0f, 0.0f)
 		);
 
 		//重力をつける
