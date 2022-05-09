@@ -106,6 +106,18 @@ namespace basecross {
 	{
 		m_InputHandler.PushHandle(GetThis<Wall>());
 
+		//コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		//Bボタンが押されているとき
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+			//表示
+			SetDrawActive(false);
+		}
+		//Bボタンが押されていないとき
+		else {
+			SetDrawActive(true);
+		}
 	}
 
 
