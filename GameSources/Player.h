@@ -18,11 +18,13 @@ namespace basecross{
 
 		float accel; // 加速度
 
+		int itemCount;
+
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;
 		//void MovePlayer();
-
+		InputHandler2<Player> m_InputHandler2;
 		shared_ptr<SoundItem> m_BGM;
 		void OnDestroy();
 	public:
@@ -33,14 +35,17 @@ namespace basecross{
 			moveStop(1.0f),
 			moveDir(0.0f, 0.0f, 0.0f),
 			speed(0.0f),
-			accel(0.0f)
+			accel(0.0f),
+			itemCount(0.0f)
 		{
 		}
 		
 		//Aボタン
 		void OnPushA();
-		//Bボタンなにもしない
-		void OnPushB() {}
+		//Bボタン
+		void OnPushB(){}
+		//Xボタン
+		void OnPushX();
 		//敵の攻撃(/)にぶつかったとき
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
