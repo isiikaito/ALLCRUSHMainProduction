@@ -21,17 +21,15 @@ namespace basecross {
 		//入力ハンドラー
 		InputHandler2<Wall> m_InputHandler;
 
-		//エラー
-
 		// エフェクト関連
-		float m_TotalTime;
-		bool m_isPlay;
-		Effekseer::Handle m_handle;
-		Effekseer::ManagerRef m_manager;
-		EffekseerRendererDX11::RendererRef m_renderer;
-		Effekseer::EffectRef m_effect;
+		//float m_TotalTime;
+		//bool m_isPlay;
+		//Effekseer::Handle m_handle;
+		//Effekseer::ManagerRef m_manager;
+		//EffekseerRendererDX11::RendererRef m_renderer;
+		//Effekseer::EffectRef m_effect;
 
-		void CreateEffect();
+		//void CreateEffect();
 
 	public:
 		//構築と破棄
@@ -48,8 +46,6 @@ namespace basecross {
 		
 		//初期化
 		virtual void OnCreate() override;
-		//描画
-		virtual void OnDraw() override;
 		//衝突判定
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		//コントローラーのボタン判定X
