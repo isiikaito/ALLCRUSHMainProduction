@@ -25,16 +25,21 @@ namespace basecross {
 		ptrTrans->SetRotation(m_Rotation);
 		ptrTrans->SetPosition(m_Position);
 
-		//モデルと衝突判定を合わせなければならない
+	
 
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.045f, 1.0f, 0.13f),//スケールyuka
+			Vec3(0.5f, 0.5f, 0.5f),//スケールyuka
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, 0.0f, -0.05f)//ポジションyuka
+			Vec3(-0.4f, -0.5f, -0.6f)//ポジションyuka
 		);
+		
+		////オブジェクトのグループを得る
+		//auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+		////グループに自分自身を追加
+		//group1->IntoGroup(GetThis<Obstacle1>());
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
@@ -43,7 +48,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-
+		
 		ptrDraw->SetMeshResource(L"OBSTACLE1_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
@@ -53,9 +58,9 @@ namespace basecross {
 		/*PsPtr->SetDrawActive(true);*/
 
 		auto Coll = AddComponent<CollisionObb>();
-
+        Coll->SetDrawActive(true); 
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
-		/*Coll->SetFixed(true);*/
+		Coll->SetFixed(true);
 
 
 	}

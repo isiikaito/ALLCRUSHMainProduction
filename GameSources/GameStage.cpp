@@ -282,10 +282,10 @@ namespace basecross {
 	}
 	//敵の作成
 	void GameStage::CreateEnemy() {
-		//プレーヤーの作成
-		auto EnemyPtr = AddGameObject<EnemyObject>();
-		//シェア配列にプレイヤーを追加
-		SetSharedGameObject(L"Enemy", EnemyPtr);
+		////プレーヤーの作成
+		//auto EnemyPtr = AddGameObject<EnemyObject>();
+		////シェア配列にプレイヤーを追加
+		//SetSharedGameObject(L"Enemy", EnemyPtr);
 	}
 
 	void GameStage::BGM() {
