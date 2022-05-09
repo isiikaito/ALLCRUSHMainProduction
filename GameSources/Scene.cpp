@@ -110,7 +110,7 @@ namespace basecross {
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage2");
 
 		}
 
@@ -131,6 +131,11 @@ namespace basecross {
 		else if (event->m_MsgStr == L"ToGameStage") {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage>();
+		}
+
+		else if (event->m_MsgStr == L"ToGameStage2") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage2>();
 		}
 
 		else if (event->m_MsgStr == L"ToClearStage") {

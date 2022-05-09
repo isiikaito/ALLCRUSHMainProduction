@@ -82,6 +82,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle2.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp">
@@ -246,6 +249,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
