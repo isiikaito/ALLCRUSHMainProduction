@@ -226,32 +226,32 @@ namespace basecross {
 
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-				auto WallHP = ptrWall->;
-				while (WallHP <= 0)
-				{
+				//auto WallHP = ptrWall->;
+				//while (WallHP <= 0)
+				//{
 				if (/*近づいたら*/
 					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) { 
 					//壁との距離が2.0以下になった
 					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラーのボタンが押されていたら、耐久値を１減らす
-						WallHP = WallHP - 1;
+						//WallHP = WallHP - 1;
 						//耐久値が0以下になったら、shPtrを消す
-						if (WallHP <= 0)
-						{
-							GetStage()->RemoveGameObject<Wall>(shPtr);
-							//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-							//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
-						}
+						//if (WallHP <= 0)
+						//{
+							//GetStage()->RemoveGameObject<Wall>(shPtr);
+							auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+							ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
+						//}
 					}
 						//コントローラのボタンが押されていたら、shPtrを消す
-						auto ptr = dynamic_pointer_cast<Wall>(shPtr);
-						GetStage()->RemoveGameObject<Wall>(shPtr);
+						//auto ptr = dynamic_pointer_cast<Wall>(shPtr);
+						//GetStage()->RemoveGameObject<Wall>(shPtr);
 						if (!m_isPlay) {
 							//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
 							m_handle = m_manager->Play(m_effect, 0, 0, 0);
 							m_isPlay = true;
-						}
+						//}
 					}
 				}
 			}

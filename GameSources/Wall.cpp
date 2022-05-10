@@ -11,15 +11,15 @@ namespace basecross {
 	Wall::Wall(const shared_ptr<Stage>& StagePtr,
 		const Vec3& Scale,
 		const Quat& Qt,
-		const Vec3& Position,
-		const int& HP
+		const Vec3& Position
+		//const int& HP
 
 	) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
 		m_Qt(Qt),
-		m_Position(Position),
-		m_HP(HP)
+		m_Position(Position)
+		//m_HP(HP)
 		//エフェクト
 		//m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 		//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
@@ -145,13 +145,13 @@ namespace basecross {
 
 	//壁に当たったら
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-		auto ptr = dynamic_pointer_cast<Player>(Other);
-			if (ptr) {
-				if (!m_isPlay) {
-					auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-					m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
+		//auto ptr = dynamic_pointer_cast<Player>(Other);
+		//	if (ptr) {
+		//		if (!m_isPlay) {
+		//			auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+		//			m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
 
-					m_isPlay = true;
+		//			m_isPlay = true;
 				}
 				//if (!m_isPlay) {
 				//	auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
@@ -165,7 +165,7 @@ namespace basecross {
 				//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 				//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 			}
-	}
-}
+	//}
+//}
 	
 //end basecross

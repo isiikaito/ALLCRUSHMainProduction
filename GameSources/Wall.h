@@ -40,8 +40,8 @@ namespace basecross {
 		Wall(const shared_ptr<Stage>& StagePtr,
 			const Vec3& Scale,
 			const Quat& Qt,
-			const Vec3& Position,
-			const int& HP
+			const Vec3& Position
+			//const int& HP
 		);
 		//アクセサ
 		
