@@ -49,11 +49,11 @@ namespace basecross {
 		//RigidbodyBox‚Ì’Ç‰Á
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//“–‚½‚è”»’è‚ðŒ©‚¹‚é
-		/*PsPtr->SetDrawActive(true);*/
+		
 
 		auto Coll = AddComponent<CollisionObb>();
-		
+		//“–‚½‚è”»’è‚ðŒ©‚¹‚é
+		PsPtr->SetDrawActive(true);
 		Coll->SetFixed(true);
 		
 

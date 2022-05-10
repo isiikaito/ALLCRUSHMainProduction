@@ -19,6 +19,7 @@ namespace basecross{
 		float accel; // 加速度
 
 		int itemCount;
+		float speed2;
 
 		Vec3 GetMoveVector() const;
 
@@ -27,19 +28,37 @@ namespace basecross{
 		InputHandler2<Player> m_InputHandler2;
 		shared_ptr<SoundItem> m_BGM;
 		void OnDestroy();
+
+		// エフェクト関連
+		float m_TotalTime;
+		bool m_isPlay;
+		Effekseer::Handle m_handle;
+		Effekseer::ManagerRef m_manager;
+		EffekseerRendererDX11::RendererRef m_renderer;
+		Effekseer::EffectRef m_effect;
+
+		void CreateEffect();
+
 	public:
+		//Player(const shared_ptr<Stage>& StagePtr);
+
 		// ステージを渡せるコンストラクタが必須
 		Player(const std::shared_ptr<Stage>& stage)
 			: GameObject(stage), // ステージは親クラスに投げる
 			MaxMoveSpeed(6.0f),
-			moveStop(1.0f),
+			moveStop(1.0f),	
 			moveDir(0.0f, 0.0f, 0.0f),
 			speed(0.0f),
+			speed2(1.0f),
 			accel(0.0f),
-			itemCount(0.0f)
+			itemCount(0.0f),
+			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
+			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
+
 		{
 		}
-		
+		virtual void OnDraw() override;
+
 		//Aボタン
 		void OnPushA();
 		//Bボタン

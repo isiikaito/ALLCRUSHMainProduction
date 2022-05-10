@@ -22,6 +22,7 @@
 #include "ClearSprite.h"
 #include "ClearStage.h"
 #include "GameStage.h"
+#include "GameStage2.h"
 #include "MyCamera.h"
 #include "stageObject.h"
 #include "Character.h"
