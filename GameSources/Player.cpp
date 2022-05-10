@@ -232,6 +232,9 @@ namespace basecross {
 					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						auto ptr = dynamic_pointer_cast<Wall>(shPtr);
+						auto ptrXA = App::GetApp()->GetXAudio2Manager();
+						//サウンドの再生
+						ptrXA->Start(L"Impact", 0, 0.5f);
 						GetStage()->RemoveGameObject<Wall>(shPtr);
 						if (!m_isPlay) {
 							//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();

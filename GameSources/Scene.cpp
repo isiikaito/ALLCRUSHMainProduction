@@ -99,6 +99,8 @@ namespace basecross {
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
+		CursorWav = dataDir + L"Impact.wav";
+		App::GetApp()->RegisterWav(L"Impact", CursorWav);
 
 	}
 	void Scene::OnCreate() {
