@@ -16,6 +16,7 @@ namespace basecross {
 		Vec3 m_Scale;
 		Quat m_Qt;
 		Vec3 m_Position;
+		int m_HP;
 		Vec3 m_ActionVelocity;
 		Vec3 m_ActiveMax;
 
@@ -40,7 +41,8 @@ namespace basecross {
 		Wall(const shared_ptr<Stage>& StagePtr,
 			const Vec3& Scale,
 			const Quat& Qt,
-			const Vec3& Position
+			const Vec3& Position,
+			const int& HP
 		);
 		//アクセサ
 		
@@ -92,9 +94,6 @@ namespace basecross {
 			void ApplyForce();
 			Vec3 GetTargetPos()const;
 
-
-		//bool IsHitSegmentTriangles(const Vec3& StartPos,const Vec3& EndPos,TRIANGLE& tri,Vec3& HitPoint);
-		//bool IsHitSphereTriangles(const SPHERE& StartSp, const SPHERE& EndSp, TRIANGLE& tri, Vec3 HitPoint);
 	};
 
 }

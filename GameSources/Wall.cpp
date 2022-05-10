@@ -13,12 +13,15 @@ namespace basecross {
 	Wall::Wall(const shared_ptr<Stage>& StagePtr,
 		const Vec3& Scale,
 		const Quat& Qt,
-		const Vec3& Position
+		const Vec3& Position,
+		const int& HP
+
 	) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
 		m_Qt(Qt),
 		m_Position(Position),
+		m_HP(HP),
 		//エフェクト
 		m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 		m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
@@ -137,14 +140,9 @@ namespace basecross {
 				if (!m_isPlay) {
 					auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
 					m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
-					//m_handle = m_manager->Play(m_effect, 0, 0, 0);
 
 					m_isPlay = true;
 				}
-
-				
-				//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-				//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 		}
 	}
 	void Wall::OnDraw() {

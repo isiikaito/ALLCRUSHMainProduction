@@ -156,8 +156,6 @@ namespace basecross {
 		SPHERE playerSp(position, 2.0f);
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
-		while (HP <= 0)
-		{
 		for (auto& v : vec) {
 			auto shPtr = v.lock();
 			Vec3 ret;
@@ -165,15 +163,18 @@ namespace basecross {
 
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
+				auto WallHP = ptrWall->;
+				while (WallHP <= 0)
+				{
 				if (/*近づいたら*/
 					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) { 
 					//壁との距離が2.0以下になった
 					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 					if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラーのボタンが押されていたら、耐久値を１減らす
-						HP = HP - 1;
+						WallHP = WallHP - 1;
 						//耐久値が0以下になったら、shPtrを消す
-						if (HP <= 0)
+						if (WallHP <= 0)
 						{
 							GetStage()->RemoveGameObject<Wall>(shPtr);
 							//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
