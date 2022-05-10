@@ -75,7 +75,7 @@ namespace basecross {
 		ptrTrans->SetScale(0.5f,0.5f, 0.5f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
-
+        itemCount = 0;
 
 
 		//CollisionSphere衝突判定を付ける
@@ -252,7 +252,7 @@ namespace basecross {
 			auto shPtr1 = v1.lock();
 			Vec3 ret1;
 			auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
-
+			
 			if (ptrObstacle1) {
 				auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
 				if (/*近づいたら*/
@@ -262,6 +262,10 @@ namespace basecross {
 					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
+						auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+						Shitem->SetDrawActive(true);
+						itemCount = 1;
+						
 					}
 				}
 			}
@@ -346,26 +350,26 @@ namespace basecross {
 		}
 
 		//アイテムの表示
-		itemCount = 0;
-		auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
-		if (ptr3) {	
-			//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
-			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-			Shitem->SetDrawActive(true);
-			itemCount=1;
-			/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
-			{
-             //SetDrawActive(true);
-			}
-			
-		}
+		//itemCount = 0;
+		//auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
+		//if (ptr3) {	
+		//	Myitem1cppで設定読み込みをしたやつをこちらで読み込む
+		//	auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+		//	Shitem->SetDrawActive(true);
+		//	itemCount=1;
+		//	/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
+		//	{
+  //           SetDrawActive(true);
+		//	}
+		//	
+		//}
 		
 	}
 
     //Bボタン
     void Player::OnPushX() {
 	     auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-		 if (itemCount == 1) {
+		 if (itemCount ==1) {
 			 Shitem->SetDrawActive(false);
 			 speed2 = 2;
 			 itemCount = 0;
