@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mygage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp" />

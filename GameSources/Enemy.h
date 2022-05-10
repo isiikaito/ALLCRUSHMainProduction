@@ -22,6 +22,7 @@ namespace basecross {
 		//速度
 		Vec3 m_Velocity;
 		float m_Speed;
+		float EnemyTime;
 		////入力ハンドラー
 		//InputHandler2<EnemyObject> m_InputHandler;
 	public:

@@ -1,36 +1,35 @@
 /*!
-@file ClearStage.h
-@brief ゲームクリアステージ
+@file menuStage.h
+@brief メニューステージ
 */
-
-
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-	//	クリアステージクラス
+	//	メニューステージクラス
 	//--------------------------------------------------------------------------------------
-	class ClearStage : public Stage {
+	class MenuStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
 
 		//入力ハンドラー
-		InputHandler2<ClearStage> m_InputHandler;
+		InputHandler2<MenuStage> m_InputHandler;
+		int num = 0;
+
 
 	public:
 		//構築と破棄
-		ClearStage() :Stage() {}
-		virtual ~ClearStage() {}
+		MenuStage() :Stage() {}
+		virtual ~MenuStage() {}
 		//初期化
 		virtual void OnCreate()override;
 		//更新
 		virtual void OnUpdate()override;
 		//入力イベントに応答する関数
-		void OnPushA(){}
 		void OnPushB();
-		void OnPushX(){}
+		void OnPushX() {}
 		//十字キー上
 		void OnPushUP() {}
 		//十字キー下
@@ -38,5 +37,3 @@ namespace basecross {
 	};
 }
 //end namespace basecross
-
-

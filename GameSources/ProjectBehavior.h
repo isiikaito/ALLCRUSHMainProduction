@@ -51,9 +51,15 @@ namespace basecross {
 					Obj->OnPushB();
 				}
 				//Xƒ{ƒ^ƒ“
-				else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 					Obj->OnPushX();
 				}
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
+					Obj->OnPushUP();
+				}
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN) {
+					 Obj->OnPushDOUN();
+				 }
 			}
 		}
 	};

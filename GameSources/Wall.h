@@ -56,6 +56,8 @@ namespace basecross {
 		//コントローラーのボタン判定X
 		void OnPushX();
 		void OnPushA() {}
+		void OnPushUP() {}
+		void OnPushDOUN() {}
 
 		void OnPushB();
 
