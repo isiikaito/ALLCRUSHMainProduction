@@ -101,6 +101,8 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
 		CursorWav = dataDir + L"Impact.wav";
 		App::GetApp()->RegisterWav(L"Impact", CursorWav);
+		CursorWav = dataDir + L"EnemyVoice.wav";
+		App::GetApp()->RegisterWav(L"EnemyVoice", CursorWav);
 
 	}
 	void Scene::OnCreate() {

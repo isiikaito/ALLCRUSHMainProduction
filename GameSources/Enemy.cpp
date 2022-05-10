@@ -127,6 +127,17 @@ namespace basecross {
 
 	void EnemyObject::ApplyForce() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+		auto elps = App::GetApp()->GetElapsedTime();
+		EnemyTime += elps;
+		if (EnemyTime >= 6.0f) {
+			EnemyTime = 0.0f;
+			auto ptrXA = App::GetApp()->GetXAudio2Manager();
+			//ƒTƒEƒ“ƒh‚ÌÄ¶
+			ptrXA->Start(L"EnemyVoice", 0, 0.2f);
+			return;
+		}
+
 		m_Velocity += m_Force/m_Speed * elapsedTime;
 		auto ptrTrans = GetComponent<Transform>();
 		auto pos = ptrTrans->GetPosition();
