@@ -35,27 +35,50 @@ namespace basecross {
 	void MenuStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<MenuStage>());
+		auto& app = App::GetApp();
 
-		num = 0;
-		switch (num)
-		{
-			case 1:
-				num+=1;
-				break;
-			case 2:
-				num += 1;
-			case 3:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
-				break;
-		default:
-			break;
-		}
+		float delta = app->GetElapsedTime();
+
+		auto& device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+          //コントローラの取得
+				auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		
+		
 	
 	}
-
+	//十字キー上
+	void MenuStage:: OnPushUP() {
+		num--;
+		if (num < 0)
+		{
+			num = 0;
+		}
+	}
+	//十字キー下
+	void MenuStage::OnPushDOUN() {
+		num++;
+		if (num > 2)
+		{
+			num = 2;
+		}
+	}
 	void MenuStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
-
+		
+		switch (num)
+		{
+			case 0:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
+				break;
+			case 1:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+				break;
+			case 2:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+				break;
+		
+		}
+		
 	}
 }
 
