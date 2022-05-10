@@ -186,6 +186,7 @@ namespace basecross {
 	}
 	//障害物１作成
 	void GameStage::CreateObstacle1() {
+		auto group1 = CreateSharedObjectGroup(L"Obstacle1_Group1");
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
 		//0番目のカラムがL"stageObject"である行を抜き出す

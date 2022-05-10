@@ -243,28 +243,28 @@ namespace basecross {
 			}
 		}
 
-		//auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-		//auto vec1 = group1->GetGroupVector();
-		//for (auto& v1 : vec1) {
-		//	auto shPtr = v1.lock();
-		//	Vec3 ret;
-		//	auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr);
+		auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+		auto vec1 = group1->GetGroupVector();
+		for (auto& v1 : vec1) {
+			auto shPtr1 = v1.lock();
+			Vec3 ret1;
+			auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
 
-		//	if (ptrObstacle1) {
-		//		auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
-		//		if (/*近づいたら*/
-		//			HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret)) {
-		//			//壁との距離が2.0以下になった
-		//			auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		//			if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
-		//				//コントローラのボタンが押されていたら、shPtrを消す
-		//				GetStage()->RemoveGameObject<Obstacle1>(shPtr);
-		//			}
-		//		}
-		//	}
-		//}
-		//auto grav = GetComponent<Gravity>();
-		//grav->StartJump(Vec3(0, 4.0f, 0));
+			if (ptrObstacle1) {
+				auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
+				if (/*近づいたら*/
+					HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
+					//壁との距離が2.0以下になった
+					auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
+					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
+						//コントローラのボタンが押されていたら、shPtrを消す
+						GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
+					}
+				}
+			}
+		}
+		/*auto grav = GetComponent<Gravity>();
+		grav->StartJump(Vec3(0, 4.0f, 0));*/
 	}
 
 	void Player::OnDraw() {

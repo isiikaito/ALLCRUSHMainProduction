@@ -36,10 +36,10 @@ namespace basecross {
 			Vec3(-0.4f, -0.5f, -0.6f)//ポジションyuka
 		);
 		
-		////オブジェクトのグループを得る
-		//auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-		////グループに自分自身を追加
-		//group1->IntoGroup(GetThis<Obstacle1>());
+		//オブジェクトのグループを得る
+		auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+		//グループに自分自身を追加
+		group1->IntoGroup(GetThis<Obstacle1>());
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
