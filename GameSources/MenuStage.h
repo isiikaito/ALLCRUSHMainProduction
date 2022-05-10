@@ -14,6 +14,9 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 
+		//アイテムスプライト作成
+		void CreatemenuSprite1();
+
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
 		int num = 0;

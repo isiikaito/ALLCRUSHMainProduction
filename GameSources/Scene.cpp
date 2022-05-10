@@ -88,6 +88,14 @@ namespace basecross {
 
 		strTexture = dataDir + L"ゲージ.jpg";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
+
+		//文字テクスチャ
+		strTexture = dataDir + L"Stege1.png";
+		App::GetApp()->RegisterTexture(L"STAGE1_TX", strTexture);
+
+		//メニューテクスチャ
+		strTexture = dataDir + L"memu.png";
+		App::GetApp()->RegisterTexture(L"MEMU_TX", strTexture);
 		
 
 		//サウンド
@@ -115,7 +123,7 @@ namespace basecross {
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToMenuStage");
 
 		}
 
