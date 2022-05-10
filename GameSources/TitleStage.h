@@ -28,6 +28,8 @@ namespace basecross {
 		//“ü—ÍƒCƒxƒ“ƒg‚É‰“š‚·‚éŠÖ”
 		void OnPushB();
 		void OnPushX(){}
+		void OnPushUP() {}
+		void OnPushDOUN() {}
 	};
 }
 //end namespace basecross

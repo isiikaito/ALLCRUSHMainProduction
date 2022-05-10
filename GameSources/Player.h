@@ -63,6 +63,10 @@ namespace basecross{
 		void OnPushA();
 		//Bボタン
 		void OnPushB(){}
+		//十字キー上
+		void OnPushUP() {}
+		//十字キー下
+		void OnPushDOUN() {}
 		//Xボタン
 		void OnPushX();
 		//敵の攻撃(/)にぶつかったとき
