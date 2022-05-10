@@ -262,8 +262,9 @@ namespace basecross {
 
 	//アイテムスプライト作成
 	void GameStage::CreateMyitem1() {
-		AddGameObject<Myitem1>(L"SHIELD_TX", true,
-			Vec2(240.0f, 240.0f), Vec3(-550.0f, -320.0f, 0.0f));
+		AddGameObject<Myitem1>(L"SPEED_TX", true,
+			//テクスチャの大きさ　　　　位置
+			Vec2(180.0f, 180.0f), Vec3(-530.0f, -310.0f, 0.0f));
 	}
 
 	//ゲージの作成

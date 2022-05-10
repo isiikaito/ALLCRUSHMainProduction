@@ -262,16 +262,15 @@ namespace basecross {
 
 	//アイテムスプライト作成
 	void GameStage2::CreateMyitem1() {
-		AddGameObject<Myitem1>(L"SHIELD_TX", true,
-			Vec2(240.0f, 240.0f), Vec3(-550.0f, -320.0f, 0.0f));
+		AddGameObject<Myitem1>(L"SPEED_TX", true,
+			Vec2(100.0f, 100.0f), Vec3(-150.0f, -150.0f, 0.0f));
 	}
 
-	//アイテムスプライト作成
+	//ゲージの作成
 	void GameStage2::CreateMygage() {
 		AddGameObject<Mygage>(L"GAGE_TX", true,
-			Vec2(140.0f, 240.0f), Vec3(-350.0f, -320.0f, 0.0f));
+			Vec2(140.0f, 240.0f), Vec3(550.0f, -320.0f, 0.0f));
 	}
-
 
 	//プレイヤーの作成
 	void GameStage2::CreatePlayer() {
