@@ -82,8 +82,9 @@ namespace basecross {
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
-		strTexture = dataDir + L"盾.png";
-		App::GetApp()->RegisterTexture(L"SHIELD_TX", strTexture);
+		//アイテムテクスチャ
+		strTexture = dataDir + L"スピード.png";
+		App::GetApp()->RegisterTexture(L"SPEED_TX", strTexture);
 
 		strTexture = dataDir + L"ゲージ.jpg";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
@@ -98,6 +99,8 @@ namespace basecross {
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
+		CursorWav = dataDir + L"Impact.wav";
+		App::GetApp()->RegisterWav(L"Impact", CursorWav);
 
 	}
 	void Scene::OnCreate() {
