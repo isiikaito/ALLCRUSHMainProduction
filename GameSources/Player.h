@@ -51,7 +51,7 @@ namespace basecross{
 			speed(0.0f),
 			speed2(1.0f),
 			accel(0.0f),
-			itemCount(0.0f),
+			itemCount(0),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
 
@@ -74,6 +74,7 @@ namespace basecross{
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
+		void OnAttack();
 	};
 }
 //end basecross

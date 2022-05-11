@@ -67,11 +67,11 @@ namespace basecross {
 
 	void GameStage::CreateWall() {
 		auto group = CreateSharedObjectGroup(L"Wall_Group");							//HP
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-5.0f, 1.0f, 0.0f)/*,int(1)*/);
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-13.0f, 1.0f, 0.0f)/*,int(2)*/);
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-21.0f, 1.0f, 0.0f)/*,int(3)*/);
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-29.0f, 1.0f, 0.0f)/*,int(4)*/);
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-37.0f, 1.0f, 0.0f)/*,int(4)*/);
+		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-5.0f, 1.0f, 0.0f),1);
+		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-13.0f, 1.0f, 0.0f),3);
+		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-21.0f, 1.0f, 0.0f),1);
+		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-29.0f, 1.0f, 0.0f),2);
+		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-37.0f, 1.0f, 0.0f),4);
 
 	}
 	//É}ÉÑÇÃï«ÇÃçÏê¨

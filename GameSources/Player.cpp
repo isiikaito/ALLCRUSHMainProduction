@@ -75,7 +75,7 @@ namespace basecross {
 		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
-        itemCount = 0;
+		itemCount = 0;
 
 
 		//CollisionSphere衝突判定を付ける
@@ -199,7 +199,7 @@ namespace basecross {
 	//Aボタン
 	void Player::OnPushA() {
 		//壁の残り耐久値
-		auto HP = 4;
+		//auto HP = 4;
 		//ハンマーを振るアニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
@@ -226,7 +226,7 @@ namespace basecross {
 
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-				auto WallHP = ptrWall->;
+				auto WallHP = ptrWall->GetHP();
 				while (WallHP <= 0)
 				{
 					if (/*近づいたら*/
@@ -240,8 +240,8 @@ namespace basecross {
 							if (WallHP <= 0)
 							{
 								GetStage()->RemoveGameObject<Wall>(shPtr);
-								auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-								ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
+								//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+								//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 							}
 						}
 						//コントローラのボタンが押されていたら、shPtrを消す
@@ -261,31 +261,14 @@ namespace basecross {
 					}
 				}
 			}
-
-			auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-			auto vec1 = group1->GetGroupVector();
-			for (auto& v1 : vec1) {
-				auto shPtr1 = v1.lock();
-				Vec3 ret1;
-				auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
-
-				if (ptrObstacle1) {
-					auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
-					if (/*近づいたら*/
-						HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
-						//壁との距離が2.0以下になった
-						auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
-						if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
-							//コントローラのボタンが押されていたら、shPtrを消す
-							GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
-						}
+		}
 		auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
 		auto vec1 = group1->GetGroupVector();
 		for (auto& v1 : vec1) {
 			auto shPtr1 = v1.lock();
 			Vec3 ret1;
 			auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
-			
+
 			if (ptrObstacle1) {
 				auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
 				if (/*近づいたら*/
@@ -295,120 +278,66 @@ namespace basecross {
 					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
-						auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-						Shitem->SetDrawActive(true);
-						itemCount = 1;
+					}
+					auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+					auto vec1 = group1->GetGroupVector();
+					for (auto& v1 : vec1) {
+						auto shPtr1 = v1.lock();
+						Vec3 ret1;
+						auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
+
+						if (ptrObstacle1) {
+							auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
+							if (/*近づいたら*/
+								HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
+								//壁との距離が2.0以下になった
+								auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
+								if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
+									//コントローラのボタンが押されていたら、shPtrを消す
+									GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
+									auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+									Shitem->SetDrawActive(true);
+									itemCount = 1;
+								}
+							}
 						}
+						/*auto grav = GetComponent<Gravity>();
+						grav->StartJump(Vec3(0, 4.0f, 0));*/
+					}
 				}
 			}
-			/*auto grav = GetComponent<Gravity>();
-			grav->StartJump(Vec3(0, 4.0f, 0));*/
+		}
+	}
+	void Player::OnDraw() {
+		GameObject::OnDraw();
+		if (m_isPlay) {
+			auto elps = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elps;
+			if (m_TotalTime >= 2.0f) {
+				m_manager->StopEffect(m_handle);
+				m_TotalTime = 0.0f;
+				m_isPlay = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager->Update();
+				// 時間を更新する
+				m_renderer->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager->Draw();
+				// エフェクトの描画終了処理を行う。
+				m_renderer->EndRendering();
+			}
+
 		}
 	}
 
-		void Player::OnDraw() {
-			GameObject::OnDraw();
-			if (m_isPlay) {
-				auto elps = App::GetApp()->GetElapsedTime();
-				m_TotalTime += elps;
-				if (m_TotalTime >= 2.0f) {
-					m_manager->StopEffect(m_handle);
-					m_TotalTime = 0.0f;
-					m_isPlay = false;
-					return;
-				}
-				else {
-					// マネージャーの更新
-					m_manager->Update();
-					// 時間を更新する
-					m_renderer->SetTime(elps);
-					// エフェクトの描画開始処理を行う。
-					m_renderer->BeginRendering();
-					// エフェクトの描画を行う。
-					m_manager->Draw();
-					// エフェクトの描画終了処理を行う。
-					m_renderer->EndRendering();
-				}
 
-			}
-		}
-
-
-		//プレイヤーがゴールにたどり着いたら
-		void Player::OnUpdate2() {
-			//auto ptrTrans = GetComponent<Transform>();
-			//Vec3 pos = ptrTrans->GetPosition();
-			//if (pos.x < -45.0f) {
-			//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-			//}
-
-			auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-			float elapsedTime = App::GetApp()->GetElapsedTime();
-			auto now = ptrDraw->UpdateAnimation(elapsedTime);
-
-			auto action = ptrDraw->GetCurrentAnimation();
-
-			if (action == L"ActionPull") {
-
-				if (ptrDraw->IsTargetAnimeEnd()) {
-					//ActionPullのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
-					ptrDraw->ChangeCurrentAnimation(L"ActionPush");
-
-					auto ptrXA = App::GetApp()->GetXAudio2Manager();
-					//サウンドの再生
-					ptrXA->Start(L"Hammer", 0, 0.5f);
-				}
-			}
-			else {
-				if (now) {
-					ptrDraw->ChangeCurrentAnimation(L"Default");
-					auto ptrXA = App::GetApp()->GetXAudio2Manager();
-					ptrXA->Stop(m_BGM);
-
-					moveStop = 1.0f;//移動停止解除
-				}
-			}
-		}
-		//プレイヤーがEnemyに当たったら
-		void Player::OnCollisionEnter(shared_ptr<GameObject>&Other) {
-
-			auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
-			if (ptr) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			}
-			auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
-			if (ptr1) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-			}
-
-			//アイテムの表示
-			itemCount = 0;
-			auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
-			if (ptr3) {
-				//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
-				auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-				Shitem->SetDrawActive(true);
-				itemCount = 1;
-				/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
-				{
-					//SetDrawActive(true);
-				}
-
-			}
-
-		}
-
-		//Bボタン
-		void Player::OnPushX() {
-			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-			if (itemCount == 1) {
-				Shitem->SetDrawActive(false);
-				speed2 = 2;
-				itemCount = 0;
-
-			}
 	//プレイヤーがゴールにたどり着いたら
-	void Player::OnUpdate2() {
+	void Player::OnAttack() {
 		//auto ptrTrans = GetComponent<Transform>();
 		//Vec3 pos = ptrTrans->GetPosition();
 		//if (pos.x < -45.0f) {
@@ -444,7 +373,7 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-		
+
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
@@ -455,37 +384,88 @@ namespace basecross {
 		}
 
 		//アイテムの表示
-		//itemCount = 0;
-		//auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
-		//if (ptr3) {	
-		//	Myitem1cppで設定読み込みをしたやつをこちらで読み込む
-		//	auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-		//	Shitem->SetDrawActive(true);
-		//	itemCount=1;
-		//	/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
-		//	{
-  //           SetDrawActive(true);
-		//	}
-		//	
+		itemCount = 0;
+		auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
+		if (ptr3) {
+			//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
+			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+			Shitem->SetDrawActive(true);
+			itemCount = 1;
+			/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
+			{
+				//SetDrawActive(true);
+			}
+
+		}
+
+	}
+
+	//Bボタン
+	void Player::OnPushX() {
+		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+		if (itemCount == 1) {
+			Shitem->SetDrawActive(false);
+			speed2 = 2;
+			itemCount = 0;
+
+		}
+	}
+		//プレイヤーがゴールにたどり着いたら
+		void Player::OnUpdate2() {
+			//auto ptrTrans = GetComponent<Transform>();
+			//Vec3 pos = ptrTrans->GetPosition();
+			//if (pos.x < -45.0f) {
+			//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			//}
+
+			auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			auto now = ptrDraw->UpdateAnimation(elapsedTime);
+
+			auto action = ptrDraw->GetCurrentAnimation();
+
+			if (action == L"ActionPull") {
+
+				if (ptrDraw->IsTargetAnimeEnd()) {
+					//ActionPullのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
+					ptrDraw->ChangeCurrentAnimation(L"ActionPush");
+
+					auto ptrXA = App::GetApp()->GetXAudio2Manager();
+					//サウンドの再生
+					ptrXA->Start(L"Hammer", 0, 0.5f);
+				}
+			}
+			else {
+				if (now) {
+					ptrDraw->ChangeCurrentAnimation(L"Default");
+					auto ptrXA = App::GetApp()->GetXAudio2Manager();
+					ptrXA->Stop(m_BGM);
+
+					moveStop = 1.0f;//移動停止解除
+				}
+			}
+		}
+			//アイテムの表示
+			//itemCount = 0;
+			//auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
+			//if (ptr3) {	
+			//	Myitem1cppで設定読み込みをしたやつをこちらで読み込む
+			//	auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+			//	Shitem->SetDrawActive(true);
+			//	itemCount=1;
+			//	/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
+			//	{
+	  //           SetDrawActive(true);
+			//	}
+			//	
+			//}
+
 		//}
-		
-	}
-
-    //Bボタン
-    void Player::OnPushX() {
-	     auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-		 if (itemCount ==1) {
-			 Shitem->SetDrawActive(false);
-			 speed2 = 2;
-			 itemCount = 0;
-			
-		}
-
-		void Player::OnDestroy() {
-			//BGMのストップ
-			auto PtrXA = App::GetApp()->GetXAudio2Manager();
-			PtrXA->Stop(m_BGM);
-		}
-	}
+			void Player::OnDestroy() {
+				//BGMのストップ
+				auto PtrXA = App::GetApp()->GetXAudio2Manager();
+				PtrXA->Stop(m_BGM);
+			}
+}
 	//end basecross
 

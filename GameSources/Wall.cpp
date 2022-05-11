@@ -11,15 +11,15 @@ namespace basecross {
 	Wall::Wall(const shared_ptr<Stage>& StagePtr,
 		const Vec3& Scale,
 		const Quat& Qt,
-		const Vec3& Position
-		//const int& HP
+		const Vec3& Position,
+		const int HP
 
 	) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
 		m_Qt(Qt),
-		m_Position(Position)
-		//m_HP(HP)
+		m_Position(Position),
+		m_HP(HP)
 		//エフェクト
 		//m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 		//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
