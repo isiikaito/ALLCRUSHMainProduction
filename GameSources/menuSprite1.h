@@ -13,9 +13,10 @@ namespace basecross {
 		Vec2 m_StartScale;
 		Vec3 m_StartPos;
 		wstring m_TextureKey;
-		float m_TotalTime;
+		float m_idleTime;
+		
 		//バックアップ頂点データ
-		vector<VertexPositionTexture> m_BackupVertices;
+		vector< VertexPositionColorTexture> m_BackupVertices;
 	public:
 		//--------------------------------------------------------------------------------------
 		/*!
@@ -29,26 +30,20 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		memuSprite1(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief デストラクタ
-		*/
-		//--------------------------------------------------------------------------------------
+		
 		virtual ~memuSprite1();
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief 初期化
-		@return	なし
-		*/
-		//--------------------------------------------------------------------------------------
+		
 		virtual void OnCreate() override;
-		//--------------------------------------------------------------------------------------
-		/*!
-		@brief 更新
-		@return	なし
-		*/
-		//--------------------------------------------------------------------------------------
-		/*virtual void OnUpdate()override;
-	};*/
+		
+		virtual void OnUpdate()override;
+
+		////入力イベントに応答する関数
+		//void OnPushB();
+		//void OnPushX(){}
+		////十字キー上
+		//void OnPushUP();
+		////十字キー下
+		//void OnPushDOUN();
+	
 	};
 }

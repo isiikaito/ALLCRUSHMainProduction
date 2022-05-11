@@ -19,10 +19,12 @@ namespace basecross {
 
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
+		float m_idleTime;
 		int num = 0;
 
 
 	public:
+		
 		//構築と破棄
 		MenuStage() :Stage() {}
 		virtual ~MenuStage() {}
