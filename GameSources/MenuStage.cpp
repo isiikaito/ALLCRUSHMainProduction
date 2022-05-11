@@ -37,24 +37,6 @@ namespace basecross {
 		//アイテムスプライト
 		CreatemenuSprite1();
 	}
-	//更新
-	void MenuStage::OnUpdate() {
-		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<MenuStage>());
-		auto& app = App::GetApp();
-
-		float delta = app->GetElapsedTime();
-
-		auto& device = app->GetInputDevice();
-		const auto& pad = device.GetControlerVec()[0];
-          //コントローラの取得
-				auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		
-		
-	
-	}
-
-	
 	//十字キー上
 	void MenuStage:: OnPushUP() {
 		num--;
@@ -71,6 +53,46 @@ namespace basecross {
 			num = 2;
 		}
 	}
+	//更新
+	void MenuStage::OnUpdate() {
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<MenuStage>());
+		auto& app = App::GetApp();
+
+		float delta = app->GetElapsedTime();
+
+		auto& device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+          //コントローラの取得
+				auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto ptrStage1 = GetSharedGameObject<memuSprite1>(L"memuSprite1");
+				float elapsedTime = App::GetApp()->GetElapsedTime();
+				m_idleTime += elapsedTime;
+				if (num == 0)
+				{
+					if (m_idleTime >= 1.0f)
+					{
+						
+                        ptrStage1->SetDrawActive(false);
+						if (m_idleTime >= 1.5f)
+						{
+						ptrStage1->SetDrawActive(true);
+							m_idleTime = 0;
+						}
+
+						return;
+					}
+				}
+				else{ ptrStage1->SetDrawActive(true); }
+
+
+				
+				
+				
+	}
+
+	
+	
 	void MenuStage::OnPushB() {
 		
 		switch (num)
