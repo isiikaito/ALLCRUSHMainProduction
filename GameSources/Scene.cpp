@@ -88,6 +88,14 @@ namespace basecross {
 
 		strTexture = dataDir + L"ゲージ.jpg";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
+
+		//文字テクスチャ
+		strTexture = dataDir + L"Stege1.png";
+		App::GetApp()->RegisterTexture(L"STAGE1_TX", strTexture);
+
+		//メニューテクスチャ
+		strTexture = dataDir + L"memu.png";
+		App::GetApp()->RegisterTexture(L"MEMU_TX", strTexture);
 		
 
 		//サウンド
@@ -115,7 +123,7 @@ namespace basecross {
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToMenuStage");
 
 		}
 
@@ -139,23 +147,26 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToGameStage2") {
-			//ゲームステージの設定
+			//ゲームステージ2の設定
 			ResetActiveStage<GameStage2>();
 		}
-
+		else if (event->m_MsgStr == L"ToMenuStage") {
+			//メニューステージの設定
+			ResetActiveStage<MenuStage>();
+		}
 		else if (event->m_MsgStr == L"ToClearStage") {
-			//最初のアクティブステージの設定
+			//クリアステージの設定
 			ResetActiveStage<ClearStage>();
 		}
 
 		else if (event->m_MsgStr == L"ToGameOverStage") {
-			//最初のアクティブステージの設定
+			//ゲームオーバーステージの設定
 			ResetActiveStage<GameOverStage>();
 		}
 		
 		else if (event->m_MsgStr == L"ToMovieStage") {
 			m_MovieActive = true;
-			//最初のアクティブステージの設定
+			//ボスの登場シーンステージの設定
 			ResetActiveStage<MyMovieStage>();
 		}
 	}

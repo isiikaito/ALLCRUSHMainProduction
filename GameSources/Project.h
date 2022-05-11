@@ -21,6 +21,7 @@
 #include "GameOverSprite.h"
 #include "ClearSprite.h"
 #include "ClearStage.h"
+#include "menuSprite1.h"
 #include "MenuStage.h"
 #include "GameStage.h"
 #include "GameStage2.h"

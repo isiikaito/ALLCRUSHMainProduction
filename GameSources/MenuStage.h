@@ -14,6 +14,9 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 
+		//アイテムスプライト作成
+		void CreatemenuSprite1();
+
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
 		int num = 0;
@@ -31,9 +34,9 @@ namespace basecross {
 		void OnPushB();
 		void OnPushX() {}
 		//十字キー上
-		void OnPushUP() {}
+		void OnPushUP();
 		//十字キー下
-		void OnPushDOUN() {}
+		void OnPushDOUN();
 	};
 }
 //end namespace basecross

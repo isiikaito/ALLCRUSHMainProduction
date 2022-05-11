@@ -198,8 +198,6 @@ namespace basecross {
 
 	//Aボタン
 	void Player::OnPushA() {
-		//壁の残り耐久値
-		//auto HP = 4;
 		//ハンマーを振るアニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
