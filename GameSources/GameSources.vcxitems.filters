@@ -88,7 +88,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)memuSprite1.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite2.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -263,7 +266,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)menuSprite1.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite2.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
