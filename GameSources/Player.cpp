@@ -225,15 +225,18 @@ namespace basecross {
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				auto WallHP = ptrWall->GetHP();
-				while (WallHP <= 0)
-				{
 					if (/*近づいたら*/
 						HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
 						//壁との距離が2.0以下になった
+						if (WallHP <= 1)
+						{
 						auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
-							//コントローラーのボタンが押されていたら、耐久値を１減らす
-							WallHP = WallHP - 1;
+							while(WallHP<=0)
+							{
+								//コントローラーのボタンが押されていたら、耐久値を１減らす
+								WallHP = WallHP - 1;
+							}
 							//耐久値が0以下になったら、shPtrを消す
 							if (WallHP <= 0)
 							{
@@ -242,10 +245,7 @@ namespace basecross {
 								//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 							}
 						}
-						//コントローラのボタンが押されていたら、shPtrを消す
 						//auto ptr = dynamic_pointer_cast<Wall>(shPtr);
-						//GetStage()->RemoveGameObject<Wall>(shPtr);
-						auto ptr = dynamic_pointer_cast<Wall>(shPtr);
 						auto ptrXA = App::GetApp()->GetXAudio2Manager();
 						//サウンドの再生
 						ptrXA->Start(L"Impact", 0, 0.5f);
