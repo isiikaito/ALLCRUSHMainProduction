@@ -225,38 +225,36 @@ namespace basecross {
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				auto WallHP = ptrWall->GetHP();
+
 					if (/*近づいたら*/
 						HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
 						//壁との距離が2.0以下になった
-						if (WallHP <= 1)
-						{
 						auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
-							while(WallHP<=0)
-							{
+							//while (WallHP >= 1) {
 								//コントローラーのボタンが押されていたら、耐久値を１減らす
-								WallHP = WallHP - 1;
-							}
-							//耐久値が0以下になったら、shPtrを消す
-							if (WallHP <= 0)
-							{
-								GetStage()->RemoveGameObject<Wall>(shPtr);
-								//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-								//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
-							}
-						}
-						//auto ptr = dynamic_pointer_cast<Wall>(shPtr);
-						auto ptrXA = App::GetApp()->GetXAudio2Manager();
-						//サウンドの再生
-						ptrXA->Start(L"Impact", 0, 0.5f);
-						GetStage()->RemoveGameObject<Wall>(shPtr);
-						if (!m_isPlay) {
-							//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-							m_handle = m_manager->Play(m_effect, 0, 0, 0);
-							m_isPlay = true;
+								WallHP = WallHP - WallHP--;
+								//耐久値が0以下になったら、shPtrを消す
+								auto ptrXA = App::GetApp()->GetXAudio2Manager();
+								//サウンドの再生
+								ptrXA->Start(L"Impact", 0, 0.5f);
+								//GetStage()->RemoveGameObject<Wall>(shPtr);
+								if (!m_isPlay) {
+									//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+									m_handle = m_manager->Play(m_effect, 0, 0, 0);
+									m_isPlay = true;
+								}
+									//}
+									if (WallHP <= 0)
+									{
+										GetStage()->RemoveGameObject<Wall>(shPtr);
+										//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+										//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
+									}
+
 							//}
-						}
 					}
+
 				}
 			}
 		}

@@ -14,15 +14,18 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 
-		//アイテムスプライト作成
-		void CreatemenuSprite1();
-
+		//Stage1スプライト作成
+		void CreateMenuSprite1();
+		//Stage2プライト作成
+		void CreateMenuSprite2();
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
+		float m_idleTime;
 		int num = 0;
 
 
 	public:
+		
 		//構築と破棄
 		MenuStage() :Stage() {}
 		virtual ~MenuStage() {}
