@@ -29,6 +29,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -59,5 +62,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h" />
   </ItemGroup>
 </Project>
