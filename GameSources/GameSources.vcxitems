@@ -33,6 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />

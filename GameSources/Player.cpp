@@ -262,6 +262,9 @@ namespace basecross {
 				}
 			}
 		}
+
+		//障害物１の破壊
+
 		auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
 		auto vec1 = group1->GetGroupVector();
 		for (auto& v1 : vec1) {
@@ -278,32 +281,33 @@ namespace basecross {
 					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
+						auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+						Shitem->SetDrawActive(true);
+						itemCount = 1;
 					}
-					auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-					auto vec1 = group1->GetGroupVector();
-					for (auto& v1 : vec1) {
-						auto shPtr1 = v1.lock();
-						Vec3 ret1;
-						auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
+					
+				}
+			}
+		}
 
-						if (ptrObstacle1) {
-							auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
-							if (/*近づいたら*/
-								HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
-								//壁との距離が2.0以下になった
-								auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
-								if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
-									//コントローラのボタンが押されていたら、shPtrを消す
-									GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
-									auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-									Shitem->SetDrawActive(true);
-									itemCount = 1;
-								}
-							}
-						}
-						/*auto grav = GetComponent<Gravity>();
-						grav->StartJump(Vec3(0, 4.0f, 0));*/
+		auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
+		auto vec2 = group2->GetGroupVector();
+		for (auto& v2 : vec2) {
+			auto shPtr2 = v2.lock();
+			Vec3 ret2;
+			auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
+
+			if (ptrPillar) {
+				auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
+				if (/*近づいたら*/
+					HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
+					//壁との距離が2.0以下になった
+					auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
+					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
+						//コントローラのボタンが押されていたら、shPtrを消す
+						GetStage()->RemoveGameObject<Pillar>(shPtr2);
 					}
+					
 				}
 			}
 		}
@@ -383,20 +387,20 @@ namespace basecross {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 
-		//アイテムの表示
-		itemCount = 0;
-		auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
-		if (ptr3) {
-			//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
-			auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-			Shitem->SetDrawActive(true);
-			itemCount = 1;
-			/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
-			{
-				//SetDrawActive(true);
-			}
+		////アイテムの表示
+		//itemCount = 0;
+		//auto ptr3 = dynamic_pointer_cast<Obstacle1>(Other);
+		//if (ptr3) {
+		//	//Myitem1cppで設定読み込みをしたやつをこちらで読み込む
+		//	auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+		//	Shitem->SetDrawActive(true);
+		//	itemCount = 1;
+		//	/*drawPtr->SetMeshResource(L"SHIELD_TX");*/
+		//	{
+		//		//SetDrawActive(true);
+		//	}
 
-		}
+		//}
 
 	}
 
