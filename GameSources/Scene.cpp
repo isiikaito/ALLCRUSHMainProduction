@@ -79,6 +79,9 @@ namespace basecross {
 		auto staticModelMesh5 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject05.bmf");
 		App::GetApp()->RegisterResource(L"OBSTACLE2_MESH", staticModelMesh5);
 
+		//柱読み込み
+		auto staticModelMesh6 = MeshResource::CreateStaticModelMesh(dataDir, L"pillar.bmf");
+		App::GetApp()->RegisterResource(L"PILLAR_MESH", staticModelMesh6);
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
