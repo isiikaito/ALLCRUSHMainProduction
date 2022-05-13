@@ -259,7 +259,7 @@ namespace basecross {
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
 		//0番目のカラムがL"stageObject"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"Obstacle1");
+		m_CsvC.GetSelect(LineVec, 0, L"Pillar");
 		for (auto& v : LineVec) {
 			//トークン（カラム）の配置
 			vector<wstring>Tokens;

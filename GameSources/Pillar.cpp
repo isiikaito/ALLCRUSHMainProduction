@@ -44,12 +44,12 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"OBSTACLE1_MESH");
+		ptrShadow->SetMeshResource(L"PILLAR_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 
-		ptrDraw->SetMeshResource(L"OBSTACLE1_MESH");
+		ptrDraw->SetMeshResource(L"PILLAR_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
