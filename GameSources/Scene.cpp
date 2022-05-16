@@ -40,11 +40,11 @@ namespace basecross {
 
 		//モデル
 		//ボーンモデルの通常リソース
-		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player3.bmf");
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player04.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
 		//ボーンモデルのタンジェント付きリソース
-		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"player3.bmf");
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"player04.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
@@ -79,6 +79,13 @@ namespace basecross {
 		auto staticModelMesh5 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject05.bmf");
 		App::GetApp()->RegisterResource(L"OBSTACLE2_MESH", staticModelMesh5);
 
+		//柱読み込み
+		auto staticModelMesh6 = MeshResource::CreateStaticModelMesh(dataDir, L"pillar.bmf");
+		App::GetApp()->RegisterResource(L"PILLAR_MESH", staticModelMesh6);
+
+		//落石読み込み
+		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"IWA.bmf");
+		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
