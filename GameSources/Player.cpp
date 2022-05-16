@@ -287,16 +287,17 @@ namespace basecross {
 				}
 			}
 		}
-
+		//’Œ
 		auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
 		auto vec2 = group2->GetGroupVector();
 		for (auto& v2 : vec2) {
 			auto shPtr2 = v2.lock();
 			Vec3 ret2;
 			auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
-
+			auto ptrFallingRock= GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
 			if (ptrPillar) {
 				auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
+				auto Falling = ptrFallingRock->GetFalling();
 				if (/*‹ß‚Ã‚¢‚½‚ç*/
 					HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
 					//•Ç‚Æ‚Ì‹——£‚ª2.0ˆÈ‰º‚É‚È‚Á‚½

@@ -12,7 +12,8 @@ namespace basecross {
 		GameObject(StagePtr),
 		m_Scale(Scale),
 		m_Rotation(Rotation),
-		m_Position(Position)
+		m_Position(Position),
+		m_Falling(0)
 	{}
 
 
@@ -59,7 +60,18 @@ namespace basecross {
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
 
-
+		//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"FallingRock", GetThis<FallingRock>());
 	}
 
+	void FallingRock::OnUpdate()
+	{
+		auto transComp = GetComponent<Transform>();
+		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
+		position.y =-m_Falling;
+		
+		transComp->SetPosition(position); // 現在の位置座標を取得する
+
+	}
+		
 }
