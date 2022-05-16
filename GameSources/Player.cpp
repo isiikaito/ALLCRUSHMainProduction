@@ -233,11 +233,6 @@ namespace basecross {
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 							//while (WallHP >= 1) {
 								//コントローラーのボタンが押されていたら、耐久値を１減らす
-							if (WallHP > 1) {
-								int a = 1;
-							}
-								WallHP--;
-								ptrWall->SetHP(WallHP);
 								//耐久値が0以下になったら、shPtrを消す
 								auto ptrXA = App::GetApp()->GetXAudio2Manager();
 								//サウンドの再生
@@ -248,6 +243,10 @@ namespace basecross {
 									m_handle = m_manager->Play(m_effect, 0, 0, 0);
 									m_isPlay = true;
 								}
+								WallHP--;
+								ptrWall->SetHP(WallHP);
+
+
 									//}
 									if (WallHP <= 0)
 									{
@@ -318,6 +317,7 @@ namespace basecross {
 				m_TotalTime = 0.0f;
 				m_isPlay = false;
 				return;
+				
 			}
 			else {
 				// マネージャーの更新
