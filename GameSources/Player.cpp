@@ -233,11 +233,8 @@ namespace basecross {
 							if (WallHP > 1) {
 								int a = 1;
 							}
-								//耐久値が0以下になったら、shPtrを消す
 				}
-									auto ptrXA = App::GetApp()->GetXAudio2Manager();
-									//サウンドの再生
-									ptrXA->Start(L"Impact", 0, 0.5f);
+									
 									//GetStage()->RemoveGameObject<Wall>(shPtr);
 									if (!m_isPlay) {
 										//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
@@ -249,7 +246,10 @@ namespace basecross {
 								}
 									if (WallHP <= 0)
 									{
+										auto ptrXA = App::GetApp()->GetXAudio2Manager();
 										GetStage()->RemoveGameObject<Wall>(shPtr);
+										//サウンドの再生
+										ptrXA->Start(L"Impact", 0, 0.5f);
 									}
 					}
 
