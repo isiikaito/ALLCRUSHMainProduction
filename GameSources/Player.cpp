@@ -230,8 +230,8 @@ namespace basecross {
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 							//while (WallHP >= 1) {
 								//コントローラーのボタンが押されていたら、耐久値を１減らす
-							if (WallHP > 1) {
-								int a = 1;
+							if (WallHP > 1) {								
+								int a = 1;								
 							}
 				}
 									
@@ -242,6 +242,8 @@ namespace basecross {
 										m_isPlay = true;
 									}
 									WallHP--;
+									////サウンドの再生
+									//ptrXA->Start(L"AttackWall", 0, 0.5f);
 									ptrWall->SetHP(WallHP);
 								}
 									if (WallHP <= 0)
@@ -249,7 +251,7 @@ namespace basecross {
 										auto ptrXA = App::GetApp()->GetXAudio2Manager();
 										GetStage()->RemoveGameObject<Wall>(shPtr);
 										//サウンドの再生
-										ptrXA->Start(L"Impact", 0, 0.5f);
+										ptrXA->Start(L"BrakeWall", 0, 0.5f);
 									}
 					}
 
