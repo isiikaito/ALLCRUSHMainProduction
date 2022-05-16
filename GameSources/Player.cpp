@@ -230,14 +230,11 @@ namespace basecross {
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 							//while (WallHP >= 1) {
 								//コントローラーのボタンが押されていたら、耐久値を１減らす
-							if (WallHP > 1) {
-								int a = 1;
+							if (WallHP > 1) {								
+								int a = 1;								
 							}
-								//耐久値が0以下になったら、shPtrを消す
 				}
-									auto ptrXA = App::GetApp()->GetXAudio2Manager();
-									//サウンドの再生
-									ptrXA->Start(L"Impact", 0, 0.5f);
+									
 									//GetStage()->RemoveGameObject<Wall>(shPtr);
 									if (!m_isPlay) {
 										//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
@@ -245,11 +242,16 @@ namespace basecross {
 										m_isPlay = true;
 									}
 									WallHP--;
+									////サウンドの再生
+									//ptrXA->Start(L"AttackWall", 0, 0.5f);
 									ptrWall->SetHP(WallHP);
 								}
 									if (WallHP <= 0)
 									{
+										auto ptrXA = App::GetApp()->GetXAudio2Manager();
 										GetStage()->RemoveGameObject<Wall>(shPtr);
+										//サウンドの再生
+										ptrXA->Start(L"BrakeWall", 0, 0.5f);
 									}
 					}
 

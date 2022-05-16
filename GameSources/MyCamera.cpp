@@ -24,6 +24,8 @@ namespace basecross {
 		auto& device = app->GetInputDevice();
 		const auto& pad = device.GetControlerVec()[0];
 
+		//auto rotate = GetCameraObject()->GetComponent<Transform>()->GetRotation();
+
 
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
@@ -42,9 +44,18 @@ namespace basecross {
 			}
 		}
 
+		//auto group = GetStage()->GetSharedGameObject();
+
+
 		//カメラのスティック操作
-		//angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
-		
+		angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
+		if (angleY < -XM_PIDIV4 * 3) {
+			angleY = -XM_PIDIV4 * 3;//カメラの右回転の限界回転度
+		}
+		if (angleY > +XM_PIDIV4 * 3) {
+			angleY = +XM_PIDIV4 * 3;//カメラの左回転の限界回転度
+		}
+
 		auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
 		eye.y = 2.0f;
 		playerPos.y = 0.5f;
@@ -54,13 +65,17 @@ namespace basecross {
 		//コントローラの取得
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
+		//auto rot = GetRot;
+
 		//Bボタン
 		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
-			auto eye = playerPos + Vec3(cosf(135.0f), 0.0f, sinf(0.0f)) * distance;
+
+			auto CameraAngleY = XM_PI;
+
+			auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
 			eye.y = 2.0f;
 			SetEye(eye);
 		}
-
 	}
 }
 //end basecross
