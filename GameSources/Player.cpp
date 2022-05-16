@@ -239,22 +239,19 @@ namespace basecross {
 								WallHP--;
 								ptrWall->SetHP(WallHP);
 								//耐久値が0以下になったら、shPtrを消す
-								auto ptrXA = App::GetApp()->GetXAudio2Manager();
-								//サウンドの再生
-								ptrXA->Start(L"Impact", 0, 0.5f);
-								//GetStage()->RemoveGameObject<Wall>(shPtr);
 								if (!m_isPlay) {
 									//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
 									m_handle = m_manager->Play(m_effect, 0, 0, 0);
 									m_isPlay = true;
 								}
-									//}
-									if (WallHP <= 0)
-									{
-										GetStage()->RemoveGameObject<Wall>(shPtr);
-										//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-										//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
-									}
+									
+								if (WallHP <= 0)
+								{
+									GetStage()->RemoveGameObject<Wall>(shPtr);								
+									auto ptrXA = App::GetApp()->GetXAudio2Manager();
+									//サウンドの再生
+									ptrXA->Start(L"Impact", 0, 0.5f);
+								}
 
 							//}
 					}
