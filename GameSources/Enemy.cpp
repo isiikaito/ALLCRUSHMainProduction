@@ -198,7 +198,13 @@ namespace basecross {
 	void SeekNearState::Exit(const shared_ptr<EnemyObject>& Obj) {
 	}
 
-	
+	void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		//óéêŒÇ…ìñÇΩÇ¡ÇΩÇÁ
+		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
+		if (ptr) {
+			PostEvent(0.0f, GetThis<EnemyObject>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+		}
+	}
 	/*void EnemyObject::OnPushB() {
 		
 

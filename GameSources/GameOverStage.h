@@ -31,7 +31,7 @@ namespace basecross {
 		//十字キー上
 		void OnPushUP() {}
 		//十字キー下
-		void OnPushDOUN() {}
+		void OnPushDOWN() {}
 	};
 }
 //end namespace basecross

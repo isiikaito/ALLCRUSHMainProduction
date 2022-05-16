@@ -56,7 +56,7 @@ namespace basecross {
 		}
 	}
 	//\ŽšƒL[‰º
-	void MenuStage::OnPushDOUN() {
+	void MenuStage::OnPushDOWN() {
 		num++;
 		if (num > 1)
 		{
