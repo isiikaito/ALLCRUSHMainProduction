@@ -29,7 +29,7 @@ namespace basecross {
 		void OnPushB();
 		void OnPushX(){}
 		void OnPushUP() {}
-		void OnPushDOUN() {}
+		void OnPushDOWN() {}
 	};
 }
 //end namespace basecross

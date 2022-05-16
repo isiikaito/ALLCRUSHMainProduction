@@ -59,6 +59,8 @@ namespace basecross {
 		Vec3 GetTargetPos()const;
 		//‘€ì
 		virtual void OnUpdate() override;
+		//“G‚ÌUŒ‚(/)‚É‚Ô‚Â‚©‚Á‚½‚Æ‚«
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		
 	};
 

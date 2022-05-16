@@ -291,10 +291,11 @@ namespace basecross {
 			auto shPtr2 = v2.lock();
 			Vec3 ret2;
 			auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
+
 			auto ptrFallingRock= GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
 			if (ptrPillar) {
 				auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
-				auto Falling = ptrFallingRock->GetFalling();
+				auto Falling1 = ptrFallingRock->GetFalling();
 				if (/*近づいたら*/
 					HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
 					//壁との距離が2.0以下になった
@@ -302,6 +303,10 @@ namespace basecross {
 					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						GetStage()->RemoveGameObject<Pillar>(shPtr2);
+						//落石の処理
+						Falling1 = 1;
+						ptrFallingRock->SetFalling(Falling1);
+
 					}
 					
 				}
