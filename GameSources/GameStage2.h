@@ -17,6 +17,7 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 		void CreatestageObject();
+		//柱
 		void CreatePillar();
 		
 		//マヤによるステージの壁作成
@@ -34,6 +35,8 @@ namespace basecross {
 		//ゲージの追加
 		void CreateMygage();
 		void CreateExitWall();
+		//落石
+		void CreateFallingRock();
 		//タイム作成
 		void CreateTime();
 		//トータル時間
