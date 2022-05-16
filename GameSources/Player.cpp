@@ -205,15 +205,6 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 
-		if (action != L"ActionPull") {
-			ptrDraw->ChangeCurrentAnimation(L"ActionPull");
-
-			auto ptrXA = App::GetApp()->GetXAudio2Manager();
-			ptrXA->Stop(m_BGM);//bgm(足音の停止)
-
-			moveStop = 0.0f;//移動の停止
-		}
-
 		SPHERE playerSp(position, 2.0f);
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
@@ -233,25 +224,35 @@ namespace basecross {
 						if (ctrlVec[0].wButtons & XINPUT_GAMEPAD_A) {
 							//while (WallHP >= 1) {
 								//コントローラーのボタンが押されていたら、耐久値を１減らす
-							if (WallHP > 1) {
-								int a = 1;
-							}
-								WallHP--;
-								ptrWall->SetHP(WallHP);
 								//耐久値が0以下になったら、shPtrを消す
-								if (!m_isPlay) {
-									//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-									m_handle = m_manager->Play(m_effect, 0, 0, 0);
-									m_isPlay = true;
-								}
-									
-								if (WallHP <= 0)
-								{
-									GetStage()->RemoveGameObject<Wall>(shPtr);								
+								auto ptrXA = App::GetApp()->GetXAudio2Manager();
+								//アニメーションが止まるまで、操作を受け付けない
+								if (action != L"ActionPull") {
+									ptrDraw->ChangeCurrentAnimation(L"ActionPull");
+
 									auto ptrXA = App::GetApp()->GetXAudio2Manager();
-									//サウンドの再生
+									ptrXA->Stop(m_BGM);//bgm(足音の停止)
+
+									moveStop = 0.0f;//移動の停止
+																	//サウンドの再生
 									ptrXA->Start(L"Impact", 0, 0.5f);
+									//GetStage()->RemoveGameObject<Wall>(shPtr);
+									if (!m_isPlay) {
+										//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+										m_handle = m_manager->Play(m_effect, 0, 0, 0);
+										m_isPlay = true;
+									}
+
+
+									WallHP--;
+									ptrWall->SetHP(WallHP);
 								}
+									if (WallHP <= 0)
+									{
+										GetStage()->RemoveGameObject<Wall>(shPtr);
+										//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+										//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
+									}
 
 							//}
 					}
@@ -320,6 +321,7 @@ namespace basecross {
 				m_TotalTime = 0.0f;
 				m_isPlay = false;
 				return;
+				
 			}
 			else {
 				// マネージャーの更新
