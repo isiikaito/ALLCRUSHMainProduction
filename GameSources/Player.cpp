@@ -204,7 +204,9 @@ namespace basecross {
 		//if (action == L"Default") {
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-
+		SPHERE playerSp(position, 2.0f);
+		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
+		auto vec = group->GetGroupVector();
 		if (action != L"ActionPull") {
 			ptrDraw->ChangeCurrentAnimation(L"ActionPull");
 
@@ -212,16 +214,11 @@ namespace basecross {
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 
 			moveStop = 0.0f;//移動の停止
-		}
 
-		SPHERE playerSp(position, 2.0f);
-		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
-		auto vec = group->GetGroupVector();
 		for (auto& v : vec) {
 			auto shPtr = v.lock();
 			Vec3 ret;
 			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-
 			if (ptrWall) {
 				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
 				auto WallHP = ptrWall->GetHP();
@@ -236,30 +233,26 @@ namespace basecross {
 							if (WallHP > 1) {
 								int a = 1;
 							}
-								WallHP--;
-								ptrWall->SetHP(WallHP);
 								//耐久値が0以下になったら、shPtrを消す
-								auto ptrXA = App::GetApp()->GetXAudio2Manager();
-								//サウンドの再生
-								ptrXA->Start(L"Impact", 0, 0.5f);
-								//GetStage()->RemoveGameObject<Wall>(shPtr);
-								if (!m_isPlay) {
-									//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-									m_handle = m_manager->Play(m_effect, 0, 0, 0);
-									m_isPlay = true;
+				}
+									auto ptrXA = App::GetApp()->GetXAudio2Manager();
+									//サウンドの再生
+									ptrXA->Start(L"Impact", 0, 0.5f);
+									//GetStage()->RemoveGameObject<Wall>(shPtr);
+									if (!m_isPlay) {
+										//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
+										m_handle = m_manager->Play(m_effect, 0, 0, 0);
+										m_isPlay = true;
+									}
+									WallHP--;
+									ptrWall->SetHP(WallHP);
 								}
-									//}
 									if (WallHP <= 0)
 									{
 										GetStage()->RemoveGameObject<Wall>(shPtr);
-										//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-										//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 									}
-
-							//}
 					}
 
-				}
 			}
 		}
 
