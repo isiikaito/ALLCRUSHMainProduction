@@ -53,7 +53,7 @@ namespace basecross {
 
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
 
-		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetFogEnabled(false);
 		                       //R    G    B    A
 		ptrDraw->SetDiffuse(Col4(1.0, 1.0, 1.0, 0.1));
 		ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
