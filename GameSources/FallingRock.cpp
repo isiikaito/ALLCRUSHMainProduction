@@ -1,6 +1,6 @@
 /*!
 @file FallingRock.cpp
-@brief 障害物実体
+@brief 落石実体
 */
 
 #include "stdafx.h"
@@ -31,10 +31,10 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.5f, 0.5f, 0.5f),//スケールyuka
-			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.2f, 0.3f, 0.3f),//スケール
+			Vec3(0.0f, 5.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(-0.4f, -0.5f, -0.6f)//ポジションyuka
+			Vec3(0.0f, -0.5f, -0.7f)//ポジション
 		);
 
 		
@@ -45,33 +45,38 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"IWA_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
+		
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 
 		ptrDraw->SetMeshResource(L"IWA_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
-		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
-		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//当たり判定を見せる
-		/*PsPtr->SetDrawActive(true);*/
+		/*PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
+		auto PsPtr = AddComponent<RigidbodyBox>(param);*/
+		////当たり判定を見せる
+		//PsPtr->SetDrawActive(true);
 
 		auto Coll = AddComponent<CollisionObb>();
+		
+		//衝突判定を表示
 		Coll->SetDrawActive(true);
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
-
+        
 		//読み込みの設定をする
 		GetStage()->SetSharedGameObject(L"FallingRock", GetThis<FallingRock>());
 	}
 
 	void FallingRock::OnUpdate()
 	{
-		auto transComp = GetComponent<Transform>();
-		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		position.y =-m_Falling;
-		
-		transComp->SetPosition(position); // 現在の位置座標を取得する
+		if (m_Falling==1)
+		{
+			//重力をつける
+			auto ptrGra = AddComponent<Gravity>();
+		}
 
 	}
+
+	
 		
 }

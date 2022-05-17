@@ -1,6 +1,6 @@
 /*!
 @file FallingRock.h
-@brief@áŠQ•¨
+@brief@—Î
 */
 
 #pragma once
@@ -18,6 +18,7 @@ namespace basecross {
 		FallingRock(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position);
 		virtual ~FallingRock() {}
 
+		
 		//‰Šú‰»
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

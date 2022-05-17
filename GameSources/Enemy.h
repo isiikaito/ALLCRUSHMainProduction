@@ -23,6 +23,7 @@ namespace basecross {
 		Vec3 m_Velocity;
 		float m_Speed;
 		float EnemyTime;
+
 		////“ü—Íƒnƒ“ƒhƒ‰[
 		//InputHandler2<EnemyObject> m_InputHandler;
 	public:
@@ -59,6 +60,8 @@ namespace basecross {
 		Vec3 GetTargetPos()const;
 		//‘€ì
 		virtual void OnUpdate() override;
+		//“G‚ÌUŒ‚(/)‚É‚Ô‚Â‚©‚Á‚½‚Æ‚«
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		
 	};
 
