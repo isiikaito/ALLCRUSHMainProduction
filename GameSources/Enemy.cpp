@@ -18,9 +18,7 @@ namespace basecross {
 		m_StateChangeSize(5.0f),
 		m_Force(0),
 		m_Velocity(0),
-		m_Speed(20),
-		StopTime(0)
-	
+		StopCount(0)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
@@ -80,26 +78,35 @@ namespace basecross {
 void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		//落石に当たったら
 		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
-		//elapsedTimeを取得することにより時間を使える
-		   float elapsedTime = App::GetApp()->GetElapsedTime();
+		
 		  
 		if (ptr) {
-			
+			//落石オブジェクトを消す
+			GetStage()->RemoveGameObject<FallingRock>(Other);
+			StopCount = 1;
+			//ボスのスピードを0にする
 			m_Speed = 0;
-		 //時間を変数に足す
-		   StopTime += elapsedTime;
-		   if (StopTime >=0.02f)
-		   {
-			   m_Speed = 1.0f;
-		   }
+		
 		}
 		
 	}
 	//操作
 	void EnemyObject::OnUpdate() {
-
-  
+		
+       //ボスのHPが0だった場合
+		if (StopCount==1)
+		{  
+			float elapsedTime = App::GetApp()->GetElapsedTime();
 			
+			
+           //時間を変数に足す
+		   StopTime += elapsedTime;
+		   if (StopTime >=2.0f)
+		   {
+			   //ボスのスピードを１にする
+			   m_Speed=20;
+		   }
+		}
 
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
