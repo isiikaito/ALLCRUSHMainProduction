@@ -16,8 +16,7 @@ namespace basecross {
 		wstring dataDir;
 		//サンプルのためアセットディレクトリを取得
 		App::GetApp()->GetAssetsDirectory(dataDir);
-		App::GetApp()->ClearMovie();
-		wstring strMovie = dataDir + L"Entry.mp4";
+		wstring strMovie = dataDir + L"Entry1.mp4";
 		SetMovieFileName(strMovie);
 		//再生
 		Play();
