@@ -37,7 +37,10 @@ namespace basecross {
 			Vec3(0.0f, -0.5f, -0.7f)//ポジション
 		);
 
-		
+		////オブジェクトのグループを得る
+		//auto group3 = GetStage()->GetSharedObjectGroup(L"FallingRock_Group1");
+		////グループに自分自身を追加
+		//group3->IntoGroup(GetThis < FallingRock > ());
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();

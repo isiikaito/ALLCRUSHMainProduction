@@ -392,7 +392,7 @@ namespace basecross {
 
 	}
 
-	//Bボタン
+	//Xボタン
 	void Player::OnPushX() {
 		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 		if (itemCount == 1) {
