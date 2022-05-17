@@ -141,7 +141,7 @@ namespace basecross {
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToMenuStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 
 		}
 

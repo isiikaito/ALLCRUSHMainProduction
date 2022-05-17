@@ -12,13 +12,13 @@ namespace basecross {
 	//	追いかける配置オブジェクト
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr): //, const Vec3& StartPos) :
+	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr) : //, const Vec3& StartPos) :
 		GameObject(StagePtr),
 		//m_StartPos(StartPos),
 		m_StateChangeSize(5.0f),
 		m_Force(0),
 		m_Velocity(0),
-		m_Speed(20)
+		StopCount(0)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
@@ -75,11 +75,38 @@ namespace basecross {
 		m_StateMachine->ChangeState(SeekFarState::Instance());
 	}
 
-
+void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		//落石に当たったら
+		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
+		
+		  
+		if (ptr) {
+			//落石オブジェクトを消す
+			GetStage()->RemoveGameObject<FallingRock>(Other);
+			StopCount = 1;
+			//ボスのスピードを0にする
+			m_Speed = 0;
+		
+		}
+		
+	}
 	//操作
 	void EnemyObject::OnUpdate() {
-
-       
+		
+       //ボスのHPが0だった場合
+		if (StopCount==1)
+		{  
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			
+			
+           //時間を変数に足す
+		   StopTime += elapsedTime;
+		   if (StopTime >=2.0f)
+		   {
+			   //ボスのスピードを１にする
+			   m_Speed=20;
+		   }
+		}
 
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
@@ -111,7 +138,7 @@ namespace basecross {
 		//Bボタンが押されていないとき
 		else {
 			/*SetAlphaActive(true);*/
-			SetDrawActive(true);
+			SetDrawActive(false);
 		}
 		
 		////コントローラチェックして入力があればコマンド呼び出し
@@ -198,28 +225,7 @@ namespace basecross {
 	void SeekNearState::Exit(const shared_ptr<EnemyObject>& Obj) {
 	}
 
-	void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-		//落石に当たったら
-		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
-		EnemyTime = 0;
-		if (ptr) {
-			
-			/*float elapsedTime = App::GetApp()->GetElapsedTime();
-		auto elps = App::GetApp()->GetElapsedTime();
-        EnemyTime +=elps;
-		
-			if (EnemyTime <= 2.0f)
-			{
-				m_Speed = 0.0f;
-			}
-			return;*/
-		
-		}
-		/*if (EnemyTime >= 2.0f)
-		{
-			m_Speed = 1.0f;
-		}*/
-	}
+	
 	/*void EnemyObject::OnPushB() {
 		
 

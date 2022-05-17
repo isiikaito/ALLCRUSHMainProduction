@@ -16,7 +16,7 @@ namespace basecross {
 		wstring dataDir;
 		//サンプルのためアセットディレクトリを取得
 		App::GetApp()->GetAssetsDirectory(dataDir);
-		wstring strMovie = dataDir + L"kari.mp4";
+		wstring strMovie = dataDir + L"Entry1.mp4";
 		SetMovieFileName(strMovie);
 		//再生
 		Play();
@@ -25,7 +25,17 @@ namespace basecross {
 	void MyMovieStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
+		auto elps = App::GetApp()->GetElapsedTime();
+		MovieTime += elps;
+		if (MovieTime >= 7.5f) {
+			SetAutoRepeat(true);
+			PostEvent(0.0f, GetThis<ObjectInterface>(),
+				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			return;
+		}
+
 	}
+
 
 	//Aボタン
 	void MyMovieStage::OnPushA() {
@@ -34,8 +44,8 @@ namespace basecross {
 	//Bボタン
 	void MyMovieStage::OnPushB() {
 		//ゲームステージに移行
-		PostEvent(0.0f, GetThis<ObjectInterface>(),
-			App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+		//PostEvent(0.0f, GetThis<ObjectInterface>(),
+		//	App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 	}
 }
 //end basecross

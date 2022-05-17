@@ -26,14 +26,14 @@ namespace basecross {
 	void MenuStage::CreateMenuSprite1() {
 		AddGameObject<MenuSprite1>(L"STAGE1_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(180.0f, 180.0f), Vec3(-130.0f, 210.0f, 0.0f));
+			Vec2(270.0f, 270.0f), Vec3(-100.0f, 210.0f, 0.0f));
 	}
 
 	//アイテムスプライト作成
 	void MenuStage::CreateMenuSprite2() {
 		AddGameObject<MenuSprite2>(L"STAGE2_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(200.0f, 200.0f), Vec3(-130.0f, 110.0f, 0.0f));
+			Vec2(300.0f, 300.0f), Vec3(-100.0f, 110.0f, 0.0f));
 	}
 
 	//初期化
@@ -139,7 +139,7 @@ namespace basecross {
 		switch (num)
 		{
 			case 0:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 				break;
 			case 1:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");

@@ -82,7 +82,7 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		/*ptrColl->SetDrawActive(true);*/
 		//衝突判定を表示
-		ptrColl->SetDrawActive(true);
+		/*ptrColl->SetDrawActive(true);*/
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(0.2f, 0.2f, 0.2f),
@@ -392,7 +392,7 @@ namespace basecross {
 
 	}
 
-	//Bボタン
+	//Xボタン
 	void Player::OnPushX() {
 		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 		if (itemCount == 1) {
