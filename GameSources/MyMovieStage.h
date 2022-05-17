@@ -14,6 +14,7 @@ namespace basecross {
 	class MyMovieStage : public MovieStage {
 		//入力ハンドラー
 		InputHandler<MyMovieStage> m_InputHandler;
+		float MovieTime = 0.0f;
 	public:
 		//構築と破棄
 		MyMovieStage() :MovieStage() {}
