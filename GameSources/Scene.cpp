@@ -118,10 +118,13 @@ namespace basecross {
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
+		//壁を攻撃を行った時のサウンド
 		CursorWav = dataDir + L"AttackWall.wav";
 		App::GetApp()->RegisterWav(L"AttackWall", CursorWav);
+		//壁が壊れたときのサウンド
 		CursorWav = dataDir + L"BrakeWall.wav";
 		App::GetApp()->RegisterWav(L"BrakeWall", CursorWav);
+		//敵の声
 		CursorWav = dataDir + L"EnemyVoice.wav";
 		App::GetApp()->RegisterWav(L"EnemyVoice", CursorWav);
 
