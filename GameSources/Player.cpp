@@ -119,7 +119,10 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate()
-	{
+
+	{  
+		
+
 		//アニメション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
@@ -163,8 +166,18 @@ namespace basecross {
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
+        //ボスの座標取得
+		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		//クラスには（）が必要である引数があるときと無い時どっちでも必要
+		auto EnemyPositon = ptrEnemy->GetComponent<Transform>()->GetPosition();
 
-
+		//ボスとプレイヤーが一定の距離に達したら
+		PBdistance = position.x - EnemyPositon.x;
+		if (PBdistance>-15)
+		{
+			/*PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");*/
+		
+		}
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -203,9 +216,11 @@ namespace basecross {
 		auto action = ptrDraw->GetCurrentAnimation();
 		//if (action == L"Default") {
 		auto transComp = GetComponent<Transform>();
+		//プレイヤーの座標取得
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		SPHERE playerSp(position, 2.0f);
-		SPHERE playerSp1(position, 2.0f);
+		
+
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
 		if (action != L"ActionPull") {
@@ -331,18 +346,7 @@ namespace basecross {
 		}
 		}
 		
-		//ボス
-		Vec3 ret3;
-		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
-		if (ptrEnemy) {
-			auto PillarObb = ptrEnemy->GetComponent<CollisionObb>()->GetObb();
-			
-			if (/*近づいたら*/
-				HitTest::SPHERE_OBB(playerSp, PillarObb, ret3)) {
-				
-
-			}
-		}
+		
 	}
 
 

@@ -18,10 +18,20 @@ namespace basecross{
 
 		float accel; // 加速度
 
+		//アイテムの所持数
 		float itemCount;
+		//プレイヤーのスピード
 		float speed2;
+		//落石のカウント
 		float FallingCount;
+<<<<<<< HEAD
 		float SoundTime;
+=======
+
+		//プレイヤーとボスとの距離
+		float PBdistance;
+
+>>>>>>> develop
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;
