@@ -70,6 +70,8 @@ namespace basecross {
 	void Player::OnCreate()
 	{
 
+
+
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
@@ -111,8 +113,15 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Move", 10, 30, true, 50.0f);
 		ptrDraw->AddAnimation(L"Action", 40, 35, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
-		ptrDraw->AddAnimation(L"ActionPush", 60, 15, false, 35.0f);
+		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
+		ptrDraw->AddAnimation(L"GameOver", 70, 10, false, 20.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
+
+		//文字列をつける
+		auto ptrString = AddComponent<StringSprite>();
+		ptrString->SetText(L"");
+		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
+
 
 		CreateEffect();
 
@@ -338,6 +347,7 @@ namespace basecross {
 			}
 
 		}
+
 	}
 
 
@@ -363,7 +373,7 @@ namespace basecross {
 
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
-				ptrXA->Start(L"Hammer", 0, 0.f);
+				ptrXA->Start(L"Hammer", 0, 0.0f);
 			}
 		}
 		else {
@@ -381,7 +391,28 @@ namespace basecross {
 
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
-			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			// アプリケーションオブジェクトを取得する
+			auto& app = App::GetApp();
+
+			// デルタタイムを取得する
+			//float delta = app->GetElapsedTime(); // 前フレームからの「経過時間」
+
+			// ゲームコントローラーオブジェクトを取得する
+			auto& device = app->GetInputDevice();
+			const auto& pad = device.GetControlerVec()[0]; // ゼロ番目のコントローラーを取得する
+
+			auto ptrTrans = GetComponent<Transform>();
+			ptrTrans->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
+
+			auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			ptrDraw->ChangeCurrentAnimation(L"GameOver");
+			auto end = ptrDraw->UpdateAnimation(elapsedTime);
+			endTime += elapsedTime;
+			moveStop = 0.0f;
+			if (endTime >= 3.0f) {
+				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			}
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
@@ -436,6 +467,25 @@ namespace basecross {
 				moveStop = 1.0f;//移動停止解除
 			}
 		}
+		//文字列の表示
+		DrawStrings();
+	}
+
+	//文字列の表示
+	void Player::DrawStrings() {
+		auto pos = GetComponent<Transform>()->GetPosition();
+
+		wstring positionStr(L"Position:\t");
+		positionStr += L"X=" + Util::FloatToWStr(pos.x, 6, Util::FloatModify::Fixed) + L",\t";
+		positionStr += L"Y=" + Util::FloatToWStr(pos.y, 6, Util::FloatModify::Fixed) + L",\t";
+		positionStr += L"Z=" + Util::FloatToWStr(pos.z, 6, Util::FloatModify::Fixed) + L"\n";
+
+		wstring str = positionStr;
+
+		//文字列コンポーネントの取得
+		auto ptrString = GetComponent<StringSprite>();
+		ptrString->SetText(str);
+
 	}
 	
 	void Player::OnDestroy() {

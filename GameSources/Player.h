@@ -9,6 +9,10 @@
 namespace basecross{
 	class Player : public GameObject
 	{
+
+		//•¶š—ñ‚Ì•\¦
+		void DrawStrings();
+
 		const float MaxMoveSpeed; // ˆÚ“®‚ÌÅ‘å‘¬
 
 		bool moveStop;//Player‚ÌˆÚ“®’â~‚Ì”»’è
@@ -20,6 +24,8 @@ namespace basecross{
 
 		float itemCount;
 		float speed2;
+
+		float endTime;
 
 		Vec3 GetMoveVector() const;
 
@@ -53,7 +59,8 @@ namespace basecross{
 			accel(0.0f),
 			itemCount(0),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
-			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
+			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
+			endTime(0.0f)
 
 		{
 		}
