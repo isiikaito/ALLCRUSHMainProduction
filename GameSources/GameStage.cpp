@@ -293,7 +293,7 @@ namespace basecross {
 		
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
-		/*auto group3 = CreateSharedObjectGroup(L"FallingRock_Group1");*/
+		auto group3 = CreateSharedObjectGroup(L"FallingRock_Group1");
 		//0番目のカラムがL"stageObject"である行を抜き出す
 		m_CsvC.GetSelect(LineVec, 0, L"FallingRock");
 		for (auto& v : LineVec) {
