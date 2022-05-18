@@ -242,16 +242,29 @@ namespace basecross {
 							m_isPlay = true;
 						}
 						WallHP--;
-						////サウンドの再生
-						//ptrXA->Start(L"AttackWall", 0, 0.5f);
 						ptrWall->SetHP(WallHP);
-					}
-					if (WallHP <= 0)
-					{
-						auto ptrXA = App::GetApp()->GetXAudio2Manager();
-						GetStage()->RemoveGameObject<Wall>(shPtr);
-						//サウンドの再生
-						ptrXA->Start(L"BrakeWall", 0, 0.5f);
+
+						//if (WallHP >= 1)
+						//{
+						//	auto AttackSound = App::GetApp()->GetXAudio2Manager();
+						//	auto Sound = dynamic_pointer_cast<SoundItem>(AttackSound);
+						//	//サウンドの再生
+						//	AttackSound->Start(L"AttackWall", 0, 0.5f);
+						//	AttackSound->Stop(Sound);
+
+						//	return;
+						//}
+
+						if (WallHP <= 0)
+						{
+							auto BrakeSound = App::GetApp()->GetXAudio2Manager();
+							auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
+							GetStage()->RemoveGameObject<Wall>(shPtr);
+							//サウンドの再生
+							BrakeSound->Start(L"BrakeWall", 0, 0.5f);
+							BrakeSound->Stop(Sound);
+						}
+
 					}
 				}
 
