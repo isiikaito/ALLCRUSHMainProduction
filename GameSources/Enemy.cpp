@@ -62,17 +62,12 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 		
-		
-		//透明処理をする
-		//pngのテクスチャを透明化させる処理(jpgは透明化できないので無理)
-		/*SetAlphaActive(false);*/
-		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
-		/*SetDrawActive(false);*/
-	/*	ptrColl->SetDrawActive(true);*/
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
 		//最初のステートをSeekFarStateに設定
 		m_StateMachine->ChangeState(SeekFarState::Instance());
+		//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"EnemyObject", GetThis<EnemyObject>());
 	}
 
 void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
@@ -93,7 +88,7 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 	//操作
 	void EnemyObject::OnUpdate() {
 		
-       //ボスのHPが0だった場合
+       //ボスのStopCountが１だった場合
 		if (StopCount==1)
 		{  
 			float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -105,7 +100,10 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		   {
 			   //ボスのスピードを１にする
 			   m_Speed=20;
+			   StopCount = 0;
+			   StopTime = 0.0f;
 		   }
+		   return;
 		}
 
 		m_Force = Vec3(0);
@@ -165,7 +163,7 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 			return;
 		}
 
-		m_Velocity += m_Force/m_Speed * elapsedTime;
+		m_Velocity += m_Force / (float)m_Speed * elapsedTime;
 		auto ptrTrans = GetComponent<Transform>();
 		auto pos = ptrTrans->GetPosition();
 		pos += m_Velocity * elapsedTime;
