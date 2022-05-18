@@ -9,6 +9,10 @@
 namespace basecross{
 	class Player : public GameObject
 	{
+
+		//文字列の表示
+		void DrawStrings();
+
 		const float MaxMoveSpeed; // 移動の最大速
 
 		bool moveStop;//Playerの移動停止の判定
@@ -31,6 +35,8 @@ namespace basecross{
 		//プレイヤーとボスとの距離
 		float PBdistance;
 
+
+		float endTime;
 
 		Vec3 GetMoveVector() const;
 
@@ -65,7 +71,8 @@ namespace basecross{
 			itemCount(0),
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
-			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
+			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
+			endTime(0.0f)
 
 		{
 		}
