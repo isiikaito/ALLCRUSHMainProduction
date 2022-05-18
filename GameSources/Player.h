@@ -21,6 +21,7 @@ namespace basecross{
 		float itemCount;
 		float speed2;
 		float FallingCount;
+		float SoundTime;
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;
@@ -52,6 +53,7 @@ namespace basecross{
 			speed2(1.0f),
 			accel(0.0f),
 			itemCount(0),
+			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
 

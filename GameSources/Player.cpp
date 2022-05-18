@@ -237,33 +237,30 @@ namespace basecross {
 						}
 
 						//GetStage()->RemoveGameObject<Wall>(shPtr);
-						if (!m_isPlay) {
-							//auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-							m_handle = m_manager->Play(m_effect, 0, 0, 0);
-							m_isPlay = true;
-						}
+						//if (!m_isPlay) {							
+						//	m_manager->SetTargetLocati on(m_handle, 0, 0, 0);
+						//	m_handle = m_manager->Play(m_effect, ret.x, ret.y, ret.z);
+						//	m_isPlay = true;
+						//}
 						WallHP--;
 						ptrWall->SetHP(WallHP);
-
-						//if (WallHP >= 1)
-						//{
-						//	auto AttackSound = App::GetApp()->GetXAudio2Manager();
-						//	auto Sound = dynamic_pointer_cast<SoundItem>(AttackSound);
-						//	//サウンドの再生
-						//	AttackSound->Start(L"AttackWall", 0, 0.5f);
-						//	AttackSound->Stop(Sound);
-
-						//	return;
-						//}
+						auto elps = App::GetApp()->GetElapsedTime();
+						SoundTime += elps;
+						if (WallHP >= 1)
+						{
+							auto AttackSound = App::GetApp()->GetXAudio2Manager();
+							AttackSound->Start(L"AttackWall", 0, 0.5f);
+							return;
+						}
 
 						if (WallHP <= 0)
 						{
 							auto BrakeSound = App::GetApp()->GetXAudio2Manager();
-							auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
+							//auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
 							GetStage()->RemoveGameObject<Wall>(shPtr);
 							//サウンドの再生
 							BrakeSound->Start(L"BrakeWall", 0, 0.5f);
-							BrakeSound->Stop(Sound);
+							//BrakeSound->Stop(Sound);
 						}
 
 					}
