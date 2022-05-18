@@ -205,6 +205,7 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		SPHERE playerSp(position, 2.0f);
+		SPHERE playerSp1(position, 2.0f);
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
 		if (action != L"ActionPull") {
@@ -284,8 +285,11 @@ namespace basecross {
 				}
 			}
 		}
+
 		//柱
-		auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
+		if (FallingCount == 0)
+		{
+        auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
 		auto vec2 = group2->GetGroupVector();
 		for (auto& v2 : vec2) {
 			auto shPtr2 = v2.lock();
@@ -303,16 +307,35 @@ namespace basecross {
 					if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
 						//コントローラのボタンが押されていたら、shPtrを消す
 						GetStage()->RemoveGameObject<Pillar>(shPtr2);
-						//落石の処理
+						
+                    	//落石の処理
 						Falling1 = 1;
 						ptrFallingRock->SetFalling(Falling1);
 
+						FallingCount = 1;
+					
 					}
 
 				}
 			}
 		}
+		}
+		
+		//ボス
+		Vec3 ret3;
+		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		if (ptrEnemy) {
+			auto PillarObb = ptrEnemy->GetComponent<CollisionObb>()->GetObb();
+			
+			if (/*近づいたら*/
+				HitTest::SPHERE_OBB(playerSp, PillarObb, ret3)) {
+				
+
+			}
+		}
 	}
+
+
 	void Player::OnDraw() {
 		GameObject::OnDraw();
 		if (m_isPlay) {

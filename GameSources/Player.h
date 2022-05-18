@@ -20,7 +20,7 @@ namespace basecross{
 
 		float itemCount;
 		float speed2;
-
+		float FallingCount;
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;
