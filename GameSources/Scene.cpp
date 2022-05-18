@@ -60,7 +60,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
 		//•Ç‚Ìƒ‚ƒfƒ‹“Ç‚İ‚İ
-		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"StageWall.bmf");
 		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
 
 		//°‚Ìƒ‚ƒfƒ‹“Ç‚İ‚İ
