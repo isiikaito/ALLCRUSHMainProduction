@@ -40,5 +40,6 @@
 #include "TitleSprite.h"
 #include "TitleStage.h"
 #include "MyMovieStage.h"
+#include "MyClearStage.h"
 
 
