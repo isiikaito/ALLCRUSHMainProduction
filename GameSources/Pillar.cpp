@@ -62,7 +62,8 @@ namespace basecross {
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
 
-
+		//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"Pillar", GetThis<Pillar>());
 	}
 
 }
