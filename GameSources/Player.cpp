@@ -358,36 +358,6 @@ namespace basecross {
 		//return;
 	//}
 
-
-	void Player::OnDraw() {
-		GameObject::OnDraw();
-		if (m_isPlay) {
-			auto elps = App::GetApp()->GetElapsedTime();
-			m_TotalTime += elps;
-			if (m_TotalTime >= 2.0f) {
-				m_manager->StopEffect(m_handle);
-				m_TotalTime = 0.0f;
-				m_isPlay = false;
-				return;
-			}
-			else {
-				// マネージャーの更新
-				m_manager->Update();
-				// 時間を更新する
-				m_renderer->SetTime(elps);
-				// エフェクトの描画開始処理を行う。
-				m_renderer->BeginRendering();
-				// エフェクトの描画を行う。
-				m_manager->Draw();
-				// エフェクトの描画終了処理を行う。
-				m_renderer->EndRendering();
-			}
-
-		}
-
-	}
-
-
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() {
 		//auto ptrTrans = GetComponent<Transform>();
@@ -529,17 +499,18 @@ namespace basecross {
 
 								if (WallHP <= 0)
 								{
+									if (!m_isPlay) {
+									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+									auto Wallpos = ptrWall->GetComponent<Transform>()->GetWorldPosition();
+									m_handle = m_manager->Play(m_effect, Wallpos.x+20, Wallpos.y, Wallpos.z);
+									m_isPlay = true;
+									}
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
-									auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
 									GetStage()->RemoveGameObject<Wall>(shPtr);
 									//サウンドの再生
 									BrakeSound->Start(L"BrakeWall", 0, 0.5f);
-									BrakeSound->Stop(Sound);
 								}
-								if (!m_isPlay) {
-									m_handle = m_manager->Play(m_effect, 0, 0, 0);
-									m_isPlay = true;
-								}
+								
 
 								//}
 							//}
@@ -622,6 +593,35 @@ namespace basecross {
 		//文字列の表示
 		DrawStrings();
 	}
+
+	void Player::OnDraw() {
+		GameObject::OnDraw();
+		if (m_isPlay) {
+			auto elps = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elps;
+			if (m_TotalTime >= 2.0f) {
+				m_manager->StopEffect(m_handle);
+				m_TotalTime = 0.0f;
+				m_isPlay = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager->Update();
+				// 時間を更新する
+				m_renderer->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager->Draw();
+				// エフェクトの描画終了処理を行う。
+				m_renderer->EndRendering();
+			}
+
+		}
+
+	}
+
 
 	//文字列の表示
 	void Player::DrawStrings() {
