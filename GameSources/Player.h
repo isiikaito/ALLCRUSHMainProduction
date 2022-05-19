@@ -29,12 +29,16 @@ namespace basecross{
 		//落石のカウント
 		float FallingCount;
 
+		//柱カウント
+		float PillarCount;
 		float SoundTime;
 
 
 		//プレイヤーとボスとの距離
 		float PBdistance;
 
+		//プレイヤーと柱の処理
+		float PPdistance;
 
 		float endTime;
 

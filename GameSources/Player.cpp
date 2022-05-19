@@ -188,6 +188,27 @@ namespace basecross {
 			/*PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");*/
 		
 		}
+
+		if (PillarCount == 0)
+		{
+			//柱の座標取得
+		auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+		//クラスには（）が必要である引数があるときと無い時どっちでも必要
+		auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
+
+		//柱とプレイヤーの距離
+		PPdistance = position.x - PillarPositon.x;
+		if (PPdistance <5)
+		{
+			moveStop = 0.0f;//移動の停止
+			position.x = -80;
+			position.z = 1;
+			
+		}
+
+		}
+		
+
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -557,6 +578,7 @@ namespace basecross {
 								HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
 								//壁との距離が2.0以下になった
 									GetStage()->RemoveGameObject<Pillar>(shPtr2);
+									PillarCount = 1;
 									//落石の処理
 									Falling1 = 1;
 									ptrFallingRock->SetFalling(Falling1);
