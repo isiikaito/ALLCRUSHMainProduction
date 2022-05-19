@@ -177,7 +177,7 @@ namespace basecross {
 		}
 		else if (event->m_MsgStr == L"ToClearStage") {
 			//クリアステージの設定
-			ResetActiveStage<ClearStage>();
+			ResetActiveStage<MyClearStage>();
 		}
 
 		else if (event->m_MsgStr == L"ToGameOverStage") {
