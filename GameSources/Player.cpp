@@ -495,6 +495,8 @@ namespace basecross {
 				SPHERE playerSp(position, 2.0f);
 				auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 				auto vec = group->GetGroupVector();
+				ptrXA->Start(L"Hammer", 0, 0.5f);
+				moveStop = 1.0f;//移動停止解除
 
 					for (auto& v : vec) {
 						auto shPtr = v.lock();
@@ -594,19 +596,8 @@ namespace basecross {
 				return;
 			}
 		}
-				else if (action == L"ActionPull") {
-				if (ptrDraw->IsTargetAnimeEnd()) {
-					//ActionPushのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
-					ptrDraw->ChangeCurrentAnimation(L"Default");
-					auto ptrXA = App::GetApp()->GetXAudio2Manager();
-					//サウンドの再生
-					ptrXA->Start(L"Hammer", 0, 0.5f);
-					moveStop = 1.0f;//移動停止解除
 
-				}
-		}
-
-		else if (action == L"ActionPush") {
+		else if (action == L"ActionPull") {
 
 			if (ptrDraw->IsTargetAnimeEnd()) {
 				//ActionPushのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
