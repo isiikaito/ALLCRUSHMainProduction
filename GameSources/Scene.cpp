@@ -60,7 +60,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
 		//壁のモデル読み込み
-		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"StageWall.bmf");
 		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
 
 		//床のモデル読み込み
@@ -177,7 +177,7 @@ namespace basecross {
 		}
 		else if (event->m_MsgStr == L"ToClearStage") {
 			//クリアステージの設定
-			ResetActiveStage<ClearStage>();
+			ResetActiveStage<MyClearStage>();
 		}
 
 		else if (event->m_MsgStr == L"ToGameOverStage") {
