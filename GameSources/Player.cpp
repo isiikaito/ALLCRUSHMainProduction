@@ -172,6 +172,7 @@ namespace basecross {
 
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
+		auto Rotation = transComp->GetRotation();
 		auto scale = transComp->GetScale();
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
@@ -203,6 +204,8 @@ namespace basecross {
 			moveStop = 0.0f;//移動の停止
 			position.x = -80;
 			position.z = 1;
+			Rotation.y = 90;
+			
 			
 		}
 
