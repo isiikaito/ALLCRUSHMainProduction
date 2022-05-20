@@ -21,7 +21,7 @@ namespace basecross {
 		Vec3 m_Force;
 		//‘¬“x
 		Vec3 m_Velocity;
-		int m_Speed=20;
+		int m_Speed=30;
 		float EnemyTime;
 		float StopTime;
 		int StopCount;

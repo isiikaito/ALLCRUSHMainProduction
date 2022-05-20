@@ -43,6 +43,8 @@ namespace basecross {
 				break;
 			}
 		}
+	
+		
 
 		//auto group = GetStage()->GetSharedGameObject();
 
