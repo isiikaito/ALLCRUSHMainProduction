@@ -61,8 +61,8 @@ namespace basecross {
 		App::GetApp()->GetDataDirectory(dataDir);
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
-		//wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
-		wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";
+		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
 
@@ -127,6 +127,8 @@ namespace basecross {
 
 		CreateEffect();
 
+		////“Ç‚Ýž‚Ý‚ÌÝ’è‚ð‚·‚é
+		//GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 	}
 
 	void Player::OnUpdate()

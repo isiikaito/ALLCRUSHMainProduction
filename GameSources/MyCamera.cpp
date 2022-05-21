@@ -29,6 +29,8 @@ namespace basecross {
 
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
+		Vec3 pillarPos(0.0f);
+		int PillarCount(0);
 		auto stage = app->GetScene<Scene>()->GetActiveStage(); // ステージオブジェクトを取得する
 		auto objs = stage->GetGameObjectVec(); // ステージに追加されているすべてのオブジェクト
 		for (auto& obj : objs)
@@ -40,6 +42,18 @@ namespace basecross {
 				// キャストに成功していたら座標を取得する
 				auto playerTrans = player->GetComponent<Transform>();
 				playerPos = playerTrans->GetPosition();
+				PillarCount = player->GetPillarCount();
+				player->SetPillarCount(PillarCount);
+				break;
+			}
+
+			// プレイヤーへのキャストを試みる
+			auto pillar = dynamic_pointer_cast<Pillar>(obj);
+			if (pillar)
+			{
+				// キャストに成功していたら座標を取得する
+				auto pillarTrans = pillar->GetComponent<Transform>();
+				pillarPos = pillarTrans->GetPosition();
 				break;
 			}
 		}
@@ -78,6 +92,21 @@ namespace basecross {
 			eye.y = 2.0f;
 			SetEye(eye);
 		}
+		//プレイヤーと柱の位置が一定の距離になったら振り返る
+		PPdistance = playerPos.x - pillarPos.x;
+		if (PillarCount == 0)
+		{
+         if (PPdistance < -75)
+		  {
+			auto CameraAngleY = XM_PI;
+
+			auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
+			eye.y = 2.0f;
+			SetEye(eye);
+		  }
+		}
+		
+
 	}
 }
 //end basecross

@@ -23,8 +23,12 @@ namespace basecross {
 		Vec3 m_Velocity;
 		int m_Speed=30;
 		float EnemyTime;
+		//ボスの止めている時間
 		float StopTime;
+		//ボスが動きを止めているかどうか
 		int StopCount;
+		//柱が消えているかどうか
+		int PillarCount;
 		////入力ハンドラー
 		//InputHandler2<EnemyObject> m_InputHandler;
 	public:
