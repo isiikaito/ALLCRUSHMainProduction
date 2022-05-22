@@ -208,6 +208,7 @@ namespace basecross {
 			position.x = -80;
 			position.z = 1;
 			Rotation.y = 90;
+			speed = 0;
 			
 			
 		}

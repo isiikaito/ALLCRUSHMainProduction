@@ -84,7 +84,7 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"PILLAR_MESH", staticModelMesh6);
 
 		//—Î“Ç‚İ‚İ
-		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"IWA.bmf");
+		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"Foring.bmf");
 		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 
 		//‰ó‚·•ÇMaya“Ç‚İ‚İ
