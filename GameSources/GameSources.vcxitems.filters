@@ -31,7 +31,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
@@ -69,7 +68,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
