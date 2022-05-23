@@ -42,6 +42,10 @@ namespace basecross{
 
 		float endTime;
 
+		//振り向きカウントタイム
+		float m_TurnTime;
+		
+
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;

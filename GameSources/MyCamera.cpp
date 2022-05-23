@@ -10,9 +10,9 @@ namespace basecross {
 		return nullptr;
 	}
 
-	void MyCamera::SetTargetObject(const shared_ptr<GameObject>&Obj) {
-			m_TargetObject = Obj;
-		}
+	void MyCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+		m_TargetObject = Obj;
+	}
 
 	// カメラ
 	void MyCamera::OnUpdate()
@@ -30,6 +30,7 @@ namespace basecross {
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
 		Vec3 pillarPos(0.0f);
+		int EnemySetDrawActiveCount(0);
 		int PillarCount(0);
 		auto stage = app->GetScene<Scene>()->GetActiveStage(); // ステージオブジェクトを取得する
 		auto objs = stage->GetGameObjectVec(); // ステージに追加されているすべてのオブジェクト
@@ -47,7 +48,7 @@ namespace basecross {
 				break;
 			}
 
-			// プレイヤーへのキャストを試みる
+			// 柱へのキャストを試みる
 			auto pillar = dynamic_pointer_cast<Pillar>(obj);
 			if (pillar)
 			{
@@ -56,9 +57,18 @@ namespace basecross {
 				pillarPos = pillarTrans->GetPosition();
 				break;
 			}
+			//ボスへのキャストを試みる
+			auto Enemy = dynamic_pointer_cast<EnemyObject>(obj);
+			if (Enemy)
+			{
+            EnemySetDrawActiveCount = Enemy->GetEnemySetDrawActiveCount();
+			Enemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
+			break;
+			}
+			
 		}
-	
-		
+
+
 
 		//auto group = GetStage()->GetSharedGameObject();
 
@@ -92,21 +102,59 @@ namespace basecross {
 			eye.y = 2.0f;
 			SetEye(eye);
 		}
-		//プレイヤーと柱の位置が一定の距離になったら振り返る
+		//プレイヤーと柱の距離
 		PPdistance = playerPos.x - pillarPos.x;
-		if (PillarCount == 0)
-		{
-         if (PPdistance < -75)
-		  {
-			auto CameraAngleY = XM_PI;
-
-			auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
-			eye.y = 2.0f;
-			SetEye(eye);
-		  }
-		}
+		//プレイヤーと柱の位置が一定の距離になったら振り返る
 		
+		if (m_Turn==0)
+		{
+           if (PPdistance < -75)
+				{
+					EnemySetDrawActiveCount = 0;
+					auto CameraAngleY = XM_PI;
+
+					auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
+					eye.y = 2.0f;
+					SetEye(eye);
+					
+
+				}
+		}
+				
+		
+			
+
+		//柱が壊れたら
+		if (PillarCount == 1)
+		{
+
+			//elapsedTimeを取得することにより時間を使える
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			//時間を変数に足す
+			m_TurnTime += elapsedTime;
+			//柱が壊れてから二秒後に
+			if (m_TurnTime >2&&m_TurnTime<2.1)
+			{
+				EnemySetDrawActiveCount = 1;
+				//カメラが正面を向く
+				auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
+				eye.y = 2.0f;
+				playerPos.y = 0.5f;
+
+				m_Turn = 1;
+				SetEye(eye);
+				SetAt(playerPos); // プレイヤーを中止するようにする
+				
+			}
+			
+		}
+
+
+
+
+
 
 	}
 }
+
 //end basecross
