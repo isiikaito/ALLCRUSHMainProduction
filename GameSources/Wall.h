@@ -14,7 +14,7 @@ namespace basecross {
 	class Wall : public GameObject {
 		unique_ptr< StateMachine<Wall> > m_StateMachine;
 		Vec3 m_Scale;
-		Quat m_Qt;
+		Vec3 m_Rotation;
 		Vec3 m_Position;
 		int m_HP;
 		Vec3 m_ActionVelocity;
@@ -39,7 +39,7 @@ namespace basecross {
 		//ç\ízÇ∆îjä¸
 		Wall(const shared_ptr<Stage>& StagePtr,
 			const Vec3& Scale,
-			const Quat& Qt,
+			const Vec3& Rotation,
 			const Vec3& Position,
 			const int HP
 		);

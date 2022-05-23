@@ -10,14 +10,14 @@ namespace basecross {
 
 	Wall::Wall(const shared_ptr<Stage>& StagePtr,
 		const Vec3& Scale,
-		const Quat& Qt,
+		const Vec3& Rotation,
 		const Vec3& Position,
 		const int HP
 
 	) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
-		m_Qt(Qt),
+		m_Rotation(Rotation),
 		m_Position(Position),
 		m_HP(HP)
 		//エフェクト
@@ -76,9 +76,8 @@ namespace basecross {
 
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_Scale);
-		ptrTrans->SetQuaternion(m_Qt);
+		ptrTrans->SetRotation(m_Rotation);
 		ptrTrans->SetPosition(m_Position);
-
 		//オブジェクトのグループを得る
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		//グループに自分自身を追加
