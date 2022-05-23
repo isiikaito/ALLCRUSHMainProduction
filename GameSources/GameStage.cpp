@@ -95,9 +95,10 @@ namespace basecross {
 				(float)_wtof(Tokens[9].c_str())
 			);
 			int HP(
+				(int)_wtof(Tokens[10].c_str())
 				);
 			//各値が揃ったのでオブジェクトの作成
-			AddGameObject<Wall>(Scale, Rot, Pos, 1.0f, 1.0f,HP, Tokens[10]);
+			AddGameObject<Wall>(Scale, Rot, Pos,HP);
 		}
 		//HP
 		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-5.0f, 1.0f, 0.0f),1);

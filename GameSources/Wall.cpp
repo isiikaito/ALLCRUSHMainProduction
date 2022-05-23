@@ -124,47 +124,15 @@ namespace basecross {
 
 
 	void  Wall::OnPushB() {
-		//if (!m_isPlayTest) {
-		//	//auto pos = ptr->GetComponent<Transform>()->GetPosition();
-		//	m_handle = m_manager->Play(m_effect, 0,0,0);
-		//	m_isPlayTest = true;
-		//}
 	}
 
 	//Xƒ{ƒ^ƒ“‚ð‚¨‚µ‚½‚ç
 	void Wall::OnPushX()
 	{
-		//auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		//RemoveComponent<Wall>();
-			//SetUpdateActive(false);
-			//SetDrawActive(false);
-			/*SetUpdateActive(false);
-			SetDrawActive(false);*/
 	}
 
 	//•Ç‚É“–‚½‚Á‚½‚ç
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-		//auto ptr = dynamic_pointer_cast<Player>(Other);
-		//	if (ptr) {
-		//		if (!m_isPlay) {
-		//			auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-		//			m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
-
-		//			m_isPlay = true;
 				}
-				//if (!m_isPlay) {
-				//	auto pos = ptr->GetComponent<Transform>()->GetWorldPosition();
-				//	m_handle = m_manager->Play(m_effect, pos.x, pos.y, pos.z);
-				//	//m_handle = m_manager->Play(m_effect, 0, 0, 0);
-
-				//	m_isPlay = true;
-				//}
-
-				
-				//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-				//ptrDraw->SetTextureResource(L"DAMAGEWALL_TX");
 			}
-	//}
-//}
-	
 //end basecross

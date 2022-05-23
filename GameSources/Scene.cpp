@@ -88,8 +88,8 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 
 		//壊す壁Maya読み込み
-		auto staticWallMesh = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall.bmf");
-		App::GetApp()->RegisterResource(L"BREAKWALL_MESH", staticWallMesh);
+		//auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall.bmf");
+		//App::GetApp()->RegisterResource(L"BREAKWALL_MESH", staticModelMesh8);
 
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
