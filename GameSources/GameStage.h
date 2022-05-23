@@ -38,6 +38,9 @@ namespace basecross {
 	void CreateExitWall();
 	//タイム作成
 	void CreateTime();	
+	// テロップ
+	void CreateTickerSprite();
+	float m_idleTime;
 	//トータル時間
 	float m_TotalTime;
 
