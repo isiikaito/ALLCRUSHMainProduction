@@ -35,8 +35,8 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームクリア.jpg";
 		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
 
-		//strTexture = dataDir + L"kari.mp4";
-		//App::GetApp()->RegisterTexture(L"KARI_TX", strTexture);
+		strTexture = dataDir + L"flee.png";
+		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
@@ -84,7 +84,7 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"PILLAR_MESH", staticModelMesh6);
 
 		//落石読み込み
-		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"IWA.bmf");
+		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"Foring.bmf");
 		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 
 		//壊す壁Maya読み込み

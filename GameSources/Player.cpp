@@ -46,7 +46,7 @@ namespace basecross {
 		m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
 		// 視点位置を確定
-		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 20.0f);
+		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
@@ -62,6 +62,7 @@ namespace basecross {
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
 		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
 
@@ -126,6 +127,8 @@ namespace basecross {
 
 		CreateEffect();
 
+		////読み込みの設定をする
+		//GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 	}
 
 	void Player::OnUpdate()
@@ -172,6 +175,7 @@ namespace basecross {
 
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
+		auto Rotation = transComp->GetRotation();
 		auto scale = transComp->GetScale();
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
@@ -188,6 +192,30 @@ namespace basecross {
 			/*PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");*/
 		
 		}
+
+		if (PillarCount == 0)
+		{
+			//柱の座標取得
+		auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+		//クラスには（）が必要である引数があるときと無い時どっちでも必要
+		auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
+
+		//柱とプレイヤーの距離
+		PPdistance = position.x - PillarPositon.x;
+		if (PPdistance <5)
+		{
+			moveStop = 0.0f;//移動の停止
+			position.x = -80;
+			position.z = 1;
+			Rotation.y = 90;
+			speed = 0;
+			
+			
+		}
+
+		}
+		
+
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -225,20 +253,6 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto action = ptrDraw->GetCurrentAnimation();
 
-		//if (action == L"Default") {
-		//auto transComp = GetComponent<Transform>();
-		//プレイヤーの座標取得
-		//auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		//SPHERE playerSp(position, 2.0f);
-		
-
-		//auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
-		//auto vec = group->GetGroupVector();
-		//auto transComp = GetComponent<Transform>();
-		//auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		//SPHERE playerSp(position, 2.0f);
-		//auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
-		//auto vec = group->GetGroupVector();
 		if (action != L"ActionPull") {
 			ptrDraw->ChangeCurrentAnimation(L"ActionPull");
 
@@ -247,146 +261,9 @@ namespace basecross {
 
 			moveStop = 0.0f;//移動の停止
 
-		//	for (auto& v : vec) {
-		//		auto shPtr = v.lock();
-		//		Vec3 ret;
-		//		auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-		//		if (ptrWall) {
-		//			auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-		//			auto WallHP = ptrWall->GetHP();
-
-		//			if (/*近づいたら*/
-		//				HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
-		//				//壁との距離が2.0以下になった
-		//				auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		//					//	ptrDraw->ChangeCurrentAnimation(L"ActionEnd");
-		//						WallHP--;
-		//						ptrWall->SetHP(WallHP);
-		//						if (WallHP <= 0)
-		//						{
-		//							//サウンドの再生
-		//							ptrXA->Start(L"BrakeWall", 0, 0.5f);
-		//							GetStage()->RemoveGameObject<Wall>(shPtr);
-		//						}
-
-						//GetStage()->RemoveGameObject<Wall>(shPtr);
-						//if (!m_isPlay) {							
-						//	m_manager->SetTargetLocati on(m_handle, 0, 0, 0);
-						//	m_handle = m_manager->Play(m_effect, ret.x, ret.y, ret.z);
-						//	m_isPlay = true;
-						//}
-				//		auto elps = App::GetApp()->GetElapsedTime();
-				//		SoundTime += elps;
-				//		if (WallHP >= 1)
-				//		{
-				//			auto AttackSound = App::GetApp()->GetXAudio2Manager();
-				//			AttackSound->Start(L"AttackWall", 0, 0.5f);
-				//			return;
-				//		}
-
-				//		if (WallHP <= 0)
-				//		{
-				//			auto BrakeSound = App::GetApp()->GetXAudio2Manager();
-				//			auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
-				//			GetStage()->RemoveGameObject<Wall>(shPtr);
-				//			//サウンドの再生
-				//			BrakeSound->Start(L"BrakeWall", 0, 0.5f);
-				//			BrakeSound->Stop(Sound);
-				//		}
-
-					//}
 				}
 
 			}
-
-		//	//障害物１の破壊
-
-		//	auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-		//	auto vec1 = group1->GetGroupVector();
-		//	for (auto& v1 : vec1) {
-		//		auto shPtr1 = v1.lock();
-		//		Vec3 ret1;
-		//		auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
-
-		//		if (ptrObstacle1) {
-		//			auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
-		//			if (/*近づいたら*/
-		//				HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
-		//				//壁との距離が2.0以下になった
-		//				auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
-		//				if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
-		//					//コントローラのボタンが押されていたら、shPtrを消す
-		//					GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
-		//					auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-		//					Shitem->SetDrawActive(true);
-		//					itemCount = 1;
-		//				}
-
-		//			}
-		//		}
-		//	}
-		//	//柱
-		//	auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
-		//	auto vec2 = group2->GetGroupVector();
-		//	for (auto& v2 : vec2) {
-		//		auto shPtr2 = v2.lock();
-		//		Vec3 ret2;
-		//		auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
-
-		//		auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
-		//		if (ptrPillar) {
-		//			auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
-		//			auto Falling1 = ptrFallingRock->GetFalling();
-		//			if (/*近づいたら*/
-		//				HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
-		//				//壁との距離が2.0以下になった
-		//				auto ctrlVec1 = App::GetApp()->GetInputDevice().GetControlerVec();
-		//				if (ctrlVec1[0].wButtons & XINPUT_GAMEPAD_A) {
-		//					//コントローラのボタンが押されていたら、shPtrを消す
-		//					GetStage()->RemoveGameObject<Pillar>(shPtr2);
-		//					//落石の処理
-		//					Falling1 = 1;
-		//					ptrFallingRock->SetFalling(Falling1);
-
-		//				}
-
-		//			}
-		//		}
-		//		
-		//	}
-		//}
-		//return;
-	//}
-
-
-	void Player::OnDraw() {
-		GameObject::OnDraw();
-		if (m_isPlay) {
-			auto elps = App::GetApp()->GetElapsedTime();
-			m_TotalTime += elps;
-			if (m_TotalTime >= 2.0f) {
-				m_manager->StopEffect(m_handle);
-				m_TotalTime = 0.0f;
-				m_isPlay = false;
-				return;
-			}
-			else {
-				// マネージャーの更新
-				m_manager->Update();
-				// 時間を更新する
-				m_renderer->SetTime(elps);
-				// エフェクトの描画開始処理を行う。
-				m_renderer->BeginRendering();
-				// エフェクトの描画を行う。
-				m_manager->Draw();
-				// エフェクトの描画終了処理を行う。
-				m_renderer->EndRendering();
-			}
-
-		}
-
-	}
-
 
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() {
@@ -531,17 +408,18 @@ namespace basecross {
 
 								if (WallHP <= 0)
 								{
+									if (!m_isPlay) {
+									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+									auto Wallpos = GetComponent<Transform>()->GetPosition();
+									m_handle = m_manager->Play(m_effect, +6, 0.5f, -0.25);
+									m_isPlay = true;
+									}
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
-									auto Sound = dynamic_pointer_cast<SoundItem>(BrakeSound);
 									GetStage()->RemoveGameObject<Wall>(shPtr);
 									//サウンドの再生
 									BrakeSound->Start(L"BrakeWall", 0, 0.5f);
-									BrakeSound->Stop(Sound);
 								}
-								if (!m_isPlay) {
-									m_handle = m_manager->Play(m_effect, 0, 0, 0);
-									m_isPlay = true;
-								}
+								
 
 								//}
 							//}
@@ -586,6 +464,7 @@ namespace basecross {
 								HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
 								//壁との距離が2.0以下になった
 									GetStage()->RemoveGameObject<Pillar>(shPtr2);
+									PillarCount = 1;
 									//落石の処理
 									Falling1 = 1;
 									ptrFallingRock->SetFalling(Falling1);
@@ -621,6 +500,35 @@ namespace basecross {
 		//文字列の表示
 		DrawStrings();
 	}
+
+	void Player::OnDraw() {
+		GameObject::OnDraw();
+		if (m_isPlay) {
+			auto elps = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elps;
+			if (m_TotalTime >= 2.0f) {
+				m_manager->StopEffect(m_handle);
+				m_TotalTime = 0.0f;
+				m_isPlay = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager->Update();
+				// 時間を更新する
+				m_renderer->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager->Draw();
+				// エフェクトの描画終了処理を行う。
+				m_renderer->EndRendering();
+			}
+
+		}
+
+	}
+
 
 	//文字列の表示
 	void Player::DrawStrings() {

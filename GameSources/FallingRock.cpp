@@ -31,10 +31,10 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.2f, 0.3f, 0.3f),//スケール
+			Vec3(0.2f, 0.2f, 0.2f),//スケール
 			Vec3(0.0f, 5.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.5f, -0.7f)//ポジション
+			Vec3(0.0f, -0.5f, 0.5f)//ポジション
 		);
 
 		//オブジェクトのグループを得る

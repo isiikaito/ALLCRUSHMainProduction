@@ -395,6 +395,13 @@ namespace basecross {
 		//SetSharedGameObject(L"Enemy", EnemyPtr);
 	}
 
+	// 逃げるテロップ
+	void GameStage::CreateTickerSprite()
+	{
+		AddGameObject<TickerSprite>(L"FLEE_TX", true,
+	    Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
 	void GameStage::BGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
@@ -402,6 +409,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+
 
 			//物理計算有効
 			SetPhysicsActive(true);
@@ -449,6 +457,8 @@ namespace basecross {
 			CreateMyitem1();
 			//ゲージスプライト
 			CreateMygage();
+			// 逃げるテロップ
+			CreateTickerSprite();
 		}
 		catch (...) {
 			throw;
@@ -465,6 +475,19 @@ namespace basecross {
 		//タイムを更新する
 		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
+
+
+		// テロップの時間
+		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
+		// 時間の変数に足す
+		m_idleTime += elapsedTime;
+		if (m_idleTime >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage->SetDrawActive(false);
+			return;
+		}
+
 	}
 
 	void GameStage::OnDestroy() {
@@ -472,5 +495,6 @@ namespace basecross {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
+
 }
 //end basecross

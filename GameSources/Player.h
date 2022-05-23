@@ -29,12 +29,16 @@ namespace basecross{
 		//落石のカウント
 		float FallingCount;
 
+		//柱カウント
+		int PillarCount;
 		float SoundTime;
 
 
 		//プレイヤーとボスとの距離
 		float PBdistance;
 
+		//プレイヤーと柱の処理
+		float PPdistance;
 
 		float endTime;
 
@@ -94,6 +98,13 @@ namespace basecross{
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnAttack();
+
+		int GetPillarCount()const {
+			return PillarCount;
+		}
+		void SetPillarCount(int PillarCount) {
+			PillarCount = PillarCount;
+		}
 	};
 }
 //end basecross
