@@ -139,14 +139,19 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 			SetDrawActive(false);
 		}
 		//ボスの座標取得
-		auto ptrPlayer= GetStage()->GetSharedGameObject<Player>(L"Player");
+		/*auto ptrPlayer= GetStage()->GetSharedGameObject<Player>(L"Player");
 		PillarCount = ptrPlayer->GetPillarCount();
 		ptrPlayer->SetPillarCount(PillarCount);
 		if (PillarCount == 0)
 		{
 			SetDrawActive(true);
+		}*/
+		if (m_EnemySetDrawActiveCount == 0)
+		{
+			SetDrawActive(true);
 		}
 
+		
 		
 		////コントローラチェックして入力があればコマンド呼び出し
 		//m_InputHandler.PushHandle(GetThis<EnemyObject>());

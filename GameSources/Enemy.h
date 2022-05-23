@@ -31,6 +31,8 @@ namespace basecross {
 		int PillarCount;
 		////入力ハンドラー
 		//InputHandler2<EnemyObject> m_InputHandler;
+		//ボスの表示カウント
+		int m_EnemySetDrawActiveCount;
 	public:
 		//構築と破棄
 		EnemyObject(const shared_ptr<Stage>& StagePtr); // , const Vec3& StartPos);
@@ -67,6 +69,13 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		//敵の攻撃(/)にぶつかったとき
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
+
+		int GetEnemySetDrawActiveCount()const {
+			return m_EnemySetDrawActiveCount;
+		}
+		void SetEnemySetDrawActiveCount(int m_EnemySetDrawActiveCount) {
+			m_EnemySetDrawActiveCount = m_EnemySetDrawActiveCount;
+		}
 		
 	};
 

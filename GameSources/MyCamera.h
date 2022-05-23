@@ -12,6 +12,8 @@ namespace basecross {
 		bsm::Vec3 m_TargetToAt;	//目標から視点を調整する位置ベクトル
 		float m_ToTargetLerp;	//目標を追いかける際の補間値
 		float PPdistance;
+		float m_TurnTime;
+		float m_Turn;
 	public:
 		void SetTargetObject(const shared_ptr<GameObject>& Obj);
 

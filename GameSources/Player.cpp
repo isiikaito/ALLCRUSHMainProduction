@@ -464,10 +464,16 @@ namespace basecross {
 								HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
 								//•Ç‚Æ‚Ì‹——£‚ª2.0ˆÈ‰º‚É‚È‚Á‚½
 									GetStage()->RemoveGameObject<Pillar>(shPtr2);
-									PillarCount = 1;
+
+									
 									//—ŽÎ‚Ìˆ—
 									Falling1 = 1;
 									ptrFallingRock->SetFalling(Falling1);
+
+									
+										PillarCount = 1;
+										
+									
 						}
 
 					}
