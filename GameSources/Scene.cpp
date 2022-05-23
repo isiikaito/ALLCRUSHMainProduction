@@ -32,9 +32,6 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームオーバー.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
-		strTexture = dataDir + L"ゲームクリア.jpg";
-		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
-
 		strTexture = dataDir + L"flee.png";
 		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
