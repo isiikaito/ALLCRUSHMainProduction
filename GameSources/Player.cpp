@@ -62,9 +62,11 @@ namespace basecross {
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
 		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+		wstring wstrEfk1 = dataDir + L"SpeedUp.efkefc";
 	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
+		m_effect1 = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk1.c_str());
 
 	}
 
@@ -343,8 +345,12 @@ namespace basecross {
 			Shitem->SetDrawActive(false);
 			speed2 = 2;
 			itemCount = 0;
-
+			m_isPlay1 = false;
 		}
+		//if (!m_isPlay1) {
+		//	m_handle = m_manager->Play(m_effect1, 0, 0, 0);
+		//	m_isPlay1 = true;
+		//}
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
@@ -410,7 +416,7 @@ namespace basecross {
 								{
 									if (!m_isPlay) {
 									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-									auto Wallpos = GetComponent<Transform>()->GetPosition();
+									auto Wallpos = ptrWall->GetComponent<Transform>()->GetPosition();
 									m_handle = m_manager->Play(m_effect, +6, 0.5f, -0.25);
 									m_isPlay = true;
 									}
@@ -430,6 +436,7 @@ namespace basecross {
 
 					auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
 					auto vec1 = group1->GetGroupVector();
+					auto PlayerPos = GetComponent<Transform>()->GetPosition();
 					for (auto& v1 : vec1) {
 						auto shPtr1 = v1.lock();
 						Vec3 ret1;
@@ -445,6 +452,10 @@ namespace basecross {
 									auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 									Shitem->SetDrawActive(true);
 									itemCount = 1;
+									if (!m_isPlay1) {
+										m_handle = m_manager->Play(m_effect1, PlayerPos.x, PlayerPos.y, PlayerPos.z);
+										m_isPlay1 = true;
+									}
 							}
 						}
 					}
@@ -532,7 +543,30 @@ namespace basecross {
 			}
 
 		}
+		//スピードアップエフェクト
+		if (m_isPlay1) {
+			auto elps = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elps;
+			if (m_isPlay1 == false) {
+				m_manager->StopEffect(m_handle);
+				m_TotalTime = 0.0f;
+				m_isPlay1 = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager->Update();
+				// 時間を更新する
+				m_renderer->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager->Draw();
+				// エフェクトの描画終了処理を行う。
+				m_renderer->EndRendering();
+			}
 
+		}
 	}
 
 
