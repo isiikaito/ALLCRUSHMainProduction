@@ -35,8 +35,8 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームクリア.jpg";
 		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
 
-		//strTexture = dataDir + L"kari.mp4";
-		//App::GetApp()->RegisterTexture(L"KARI_TX", strTexture);
+		strTexture = dataDir + L"flee.png";
+		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
