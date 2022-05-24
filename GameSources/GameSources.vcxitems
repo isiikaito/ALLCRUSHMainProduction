@@ -22,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />

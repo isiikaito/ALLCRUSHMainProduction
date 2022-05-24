@@ -36,6 +36,7 @@ namespace basecross {
 	//ゲージの追加
 	void CreateMygage();
 	void CreateGageSprite();
+	void CreateGageWhite();
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成

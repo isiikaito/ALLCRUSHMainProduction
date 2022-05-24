@@ -37,6 +37,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -77,5 +78,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
   </ItemGroup>
 </Project>

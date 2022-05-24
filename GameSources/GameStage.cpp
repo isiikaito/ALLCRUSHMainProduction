@@ -383,8 +383,16 @@ namespace basecross {
 	void GameStage::CreateGageSprite()
 	{
 		AddGameObject<GageSprite>(true,
+			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.1f));
+	}
+
+	void GameStage::CreateGageWhite()
+	{
+		AddGameObject<GageSpriteWhite>(true,
 			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
 	}
+
+	
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -464,6 +472,7 @@ namespace basecross {
 			//ゲージスプライト
 			CreateMygage();
 			CreateGageSprite();
+			CreateGageWhite();
 			// 逃げるテロップ
 			CreateTickerSprite();
 		}
