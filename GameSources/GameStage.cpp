@@ -70,7 +70,7 @@ namespace basecross {
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
 		//0番目のカラムがL"BreakWall"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"BREAKWALL");
+		m_CsvC.GetSelect(LineVec, 0, L"Wall");
 		for (auto& v : LineVec) {
 			//トークン（カラム）の配置
 			vector<wstring>Tokens;

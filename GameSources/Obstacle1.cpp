@@ -48,9 +48,9 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-		
 		ptrDraw->SetMeshResource(L"OBSTACLE1_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
 		//RigidbodyBox‚Ì’Ç‰Á
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);

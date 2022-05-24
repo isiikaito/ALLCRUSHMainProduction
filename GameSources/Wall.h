@@ -12,13 +12,11 @@ namespace basecross {
 	///	物理計算する固定のボックス
 	//--------------------------------------------------------------------------------------
 	class Wall : public GameObject {
-		unique_ptr< StateMachine<Wall> > m_StateMachine;
+		
 		Vec3 m_Scale;
 		Vec3 m_Rotation;
 		Vec3 m_Position;
 		int m_HP;
-		Vec3 m_ActionVelocity;
-		Vec3 m_ActiveMax;
 
 		//入力ハンドラー
 		InputHandler2<Wall> m_InputHandler;
@@ -45,9 +43,6 @@ namespace basecross {
 		);
 		//アクセサ
 		
-		Vec3 GetActionVelocity()const {
-			return m_ActionVelocity;
-		}
 		
 		//初期化
 		virtual void OnCreate() override;
@@ -64,36 +59,8 @@ namespace basecross {
 		void OnPushB();
 
 		void OnUpdate();
-			float m_StateChangeSize;
-
-			Vec3 m_Force;
-
-			Vec3 m_Velocity;
 		public:
-			Wall(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
-			const unique_ptr<StateMachine<Wall>>& GetStateMachine() {
-				return m_StateMachine;
-			}
-			float GetStateChangeSize() const {
-				return m_StateChangeSize;
-			}
-			const Vec3& GetForce()const {
-				return m_Force;
-			}
-			void SetForce(const Vec3& f) {
-				m_Force = f;
-			}
-			void AddForce(const Vec3& f) {
-				m_Force += f;
-			}
-			const Vec3& GetVelocity()const {
-				return m_Velocity;
-			}
-			void SetVelocity(const Vec3& v) {
-				m_Velocity = v;
-			}
-			void ApplyForce();
-			Vec3 GetTargetPos()const;
+			
 			int GetHP()const {
 				return m_HP;
 			}
