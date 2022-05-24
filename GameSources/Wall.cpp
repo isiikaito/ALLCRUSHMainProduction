@@ -123,6 +123,8 @@ namespace basecross {
 		//GetStage()->SetSharedGameObject(L"Wall_Group",GetThis<Wall>());
 				//読み込みの設定をする
 		//GetStage()->SetSharedGameObject(L"BREAKWALL", GetThis<Wall>());
+			//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
+		ptrColl->SetFixed(true);
 	}
 	void Wall::OnUpdate()
 	{
