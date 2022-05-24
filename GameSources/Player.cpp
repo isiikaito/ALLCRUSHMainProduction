@@ -62,11 +62,54 @@ namespace basecross {
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
 		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
-		wstring wstrEfk1 = dataDir + L"SpeedUp.efkefc";
 	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
-		m_effect1 = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk1.c_str());
+
+	}
+
+	void Player::CreateEffect1() {
+		auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
+		auto d3D11DeviceContext = App::GetApp()->GetDeviceResources()->GetD3DDeviceContext();;
+		// エフェクトのレンダラーの作成
+		m_renderer1 = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
+
+
+		// エフェクトのマネージャーの作成
+		m_manager1 = ::Effekseer::Manager::Create(8000);
+		// 描画モジュールの設定
+		m_manager1->SetSpriteRenderer(m_renderer1->CreateSpriteRenderer());
+		m_manager1->SetRibbonRenderer(m_renderer1->CreateRibbonRenderer());
+		m_manager1->SetRingRenderer(m_renderer1->CreateRingRenderer());
+		m_manager1->SetTrackRenderer(m_renderer1->CreateTrackRenderer());
+		m_manager1->SetModelRenderer(m_renderer1->CreateModelRenderer());
+
+		// テクスチャ、モデル、カーブ、マテリアルローダーの設定する。
+		// ユーザーが独自で拡張できる。現在はファイルから読み込んでいる。
+		m_manager1->SetTextureLoader(m_renderer1->CreateTextureLoader());
+		m_manager1->SetModelLoader(m_renderer1->CreateModelLoader());
+		m_manager1->SetMaterialLoader(m_renderer1->CreateMaterialLoader());
+		m_manager1->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+
+		// 視点位置を確定
+		auto g_position1 = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
+
+		// 投影行列を設定
+		float w = (float)App::GetApp()->GetGameWidth();
+		float h = (float)App::GetApp()->GetGameHeight();
+		m_renderer1->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
+			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
+		// カメラ行列を設定
+		m_renderer1->SetCameraMatrix(
+			::Effekseer::Matrix44().LookAtRH(g_position1, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+
+		wstring dataDir1;
+		App::GetApp()->GetDataDirectory(dataDir1);
+		dataDir1 += L"effect\\";
+
+		wstring wstrEfk1 = dataDir1 + L"SpeedUp.efkefc";
+
+		m_effect1 = ::Effekseer::Effect::Create(m_manager1, (const char16_t*)wstrEfk1.c_str());
 
 	}
 
@@ -128,6 +171,8 @@ namespace basecross {
 
 
 		CreateEffect();
+		CreateEffect1();
+
 
 		////読み込みの設定をする
 		//GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
@@ -341,11 +386,17 @@ namespace basecross {
 	//Xボタン
 	void Player::OnPushX() {
 		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+		auto PlayerPos = GetComponent<Transform>()->GetPosition();
 		if (itemCount == 1) {
 			Shitem->SetDrawActive(false);
 			speed2 = 2;
 			itemCount = 0;
-			m_isPlay1 = false;
+			if (!m_isPlay1) {
+				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.5, PlayerPos.z-0.5);
+				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
+				m_handle1 = m_manager1->Play(m_effect1,0,0,0);
+				m_isPlay1 = true;
+			}
 		}
 		//if (!m_isPlay1) {
 		//	m_handle = m_manager->Play(m_effect1, 0, 0, 0);
@@ -417,7 +468,7 @@ namespace basecross {
 									if (!m_isPlay) {
 									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
 									auto Wallpos = ptrWall->GetComponent<Transform>()->GetPosition();
-									m_handle = m_manager->Play(m_effect, +6, 0.5f, -0.25);
+									m_handle = m_manager->Play(m_effect,::Effekseer::Vector3D(+6, 0.5f, -0.25),0);
 									m_isPlay = true;
 									}
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
@@ -436,7 +487,6 @@ namespace basecross {
 
 					auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
 					auto vec1 = group1->GetGroupVector();
-					auto PlayerPos = GetComponent<Transform>()->GetPosition();
 					for (auto& v1 : vec1) {
 						auto shPtr1 = v1.lock();
 						Vec3 ret1;
@@ -452,10 +502,6 @@ namespace basecross {
 									auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 									Shitem->SetDrawActive(true);
 									itemCount = 1;
-									if (!m_isPlay1) {
-										m_handle = m_manager->Play(m_effect1, PlayerPos.x, PlayerPos.y, PlayerPos.z);
-										m_isPlay1 = true;
-									}
 							}
 						}
 					}
@@ -520,8 +566,8 @@ namespace basecross {
 
 	void Player::OnDraw() {
 		GameObject::OnDraw();
+		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_isPlay) {
-			auto elps = App::GetApp()->GetElapsedTime();
 			m_TotalTime += elps;
 			if (m_TotalTime >= 2.0f) {
 				m_manager->StopEffect(m_handle);
@@ -537,7 +583,11 @@ namespace basecross {
 				// エフェクトの描画開始処理を行う。
 				m_renderer->BeginRendering();
 				// エフェクトの描画を行う。
-				m_manager->Draw();
+				m_manager->DrawHandle(m_handle);
+				// エフェクトの描画を行う。
+				m_manager->DrawHandleBack(m_handle);
+				// エフェクトの描画を行う。
+				m_manager->DrawHandleFront(m_handle);
 				// エフェクトの描画終了処理を行う。
 				m_renderer->EndRendering();
 			}
@@ -545,25 +595,28 @@ namespace basecross {
 		}
 		//スピードアップエフェクト
 		if (m_isPlay1) {
-			auto elps = App::GetApp()->GetElapsedTime();
-			m_TotalTime += elps;
-			if (m_isPlay1 == false) {
-				m_manager->StopEffect(m_handle);
-				m_TotalTime = 0.0f;
+			m_TotalTime1 += elps;
+			if (m_TotalTime >= 2.0f) {
+				m_manager1->StopEffect(m_handle1);
+				m_TotalTime1 = 0.0f;
 				m_isPlay1 = false;
 				return;
 			}
 			else {
 				// マネージャーの更新
-				m_manager->Update();
+				m_manager1->Update();
 				// 時間を更新する
-				m_renderer->SetTime(elps);
+				m_renderer1->SetTime(elps);
 				// エフェクトの描画開始処理を行う。
-				m_renderer->BeginRendering();
+				m_renderer1->BeginRendering();
 				// エフェクトの描画を行う。
-				m_manager->Draw();
+				m_manager1->Draw();
+				// エフェクトの描画を行う。
+				m_manager1->DrawBack();
+				// エフェクトの描画を行う。
+				m_manager1->DrawFront();
 				// エフェクトの描画終了処理を行う。
-				m_renderer->EndRendering();
+				m_renderer1->EndRendering();
 			}
 
 		}
