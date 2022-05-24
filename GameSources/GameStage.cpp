@@ -377,9 +377,14 @@ namespace basecross {
 	//ゲージの作成
 	void GameStage::CreateMygage() {
 		AddGameObject<Mygage>(L"GAGE_TX", true,
-			Vec2(140.0f, 240.0f), Vec3(550.0f, -320.0f, 0.0f));
+			Vec2(240.0f, 240.0f), Vec3(550.0f, -220.0f, 0.0f));
 	}
 
+	void GameStage::CreateGageSprite()
+	{
+		AddGameObject<GageSprite>(true,
+			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
+	}
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -452,12 +457,13 @@ namespace basecross {
 			CreateExitWall();
 			//タイムスプライト作成
 			CreateTime();
-			//
+			//壊れる壁の作成
 			CreateWall();
 			//アイテムスプライト
 			CreateMyitem1();
 			//ゲージスプライト
 			CreateMygage();
+			CreateGageSprite();
 			// 逃げるテロップ
 			CreateTickerSprite();
 		}
