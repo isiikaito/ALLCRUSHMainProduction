@@ -69,8 +69,8 @@ namespace basecross {
 		auto group = CreateSharedObjectGroup(L"Wall_Group");
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
-		//0番目のカラムがL"Wall"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"Wall");
+		//0番目のカラムがL"BreakWall"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"BREAKWALL");
 		for (auto& v : LineVec) {
 			//トークン（カラム）の配置
 			vector<wstring>Tokens;

@@ -73,6 +73,13 @@ namespace basecross {
 	//}
 
 	void Wall::OnCreate() {
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(0.2f, 0.1f, 0.06f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
+			Vec3(0.0f, -0.5f, -1.0f)
+		);
 
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_Scale);
@@ -86,13 +93,17 @@ namespace basecross {
 		//影をつける
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
+		//影をつける（シャドウマップを描画する）
 
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetOwnShadowActive(true);
-		ptrDraw->SetTextureResource(L"WALL_TX");
+		auto ptrDraw1 = AddComponent<PNTStaticModelDraw>();
+		ptrDraw1->SetMeshResource(L"BREAKWALL_MESH");
+		ptrDraw1->SetMeshToTransformMatrix(spanMat);
 
+		auto ptrDraw2 = AddComponent<BcPNTStaticDraw>();
+		ptrDraw2->SetFogEnabled(true);
+		ptrDraw2->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw2->SetOwnShadowActive(true);
+		ptrDraw2->SetTextureResource(L"BREAK_WALL");
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
@@ -102,7 +113,8 @@ namespace basecross {
 		//auto obb = ptrColl->GetObb();
 		//CreateEffect();
 		//GetStage()->SetSharedGameObject(L"Wall_Group",GetThis<Wall>());
-
+				//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"BREAKWALL", GetThis<Wall>());
 	}
 	void Wall::OnUpdate()
 	{
