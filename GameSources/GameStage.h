@@ -35,6 +35,8 @@ namespace basecross {
 	void CreateMyitem1();
 	//ゲージの追加
 	void CreateMygage();
+	void CreateGageSprite();
+	//出口の作成
 	void CreateExitWall();
 	//タイム作成
 	void CreateTime();	
@@ -43,6 +45,7 @@ namespace basecross {
 	float m_idleTime;
 	//トータル時間
 	float m_TotalTime;
+	
 
 		//MyCamera用のビュー
 		shared_ptr<SingleView> m_MyCameraView;

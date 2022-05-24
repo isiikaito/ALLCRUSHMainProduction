@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
@@ -31,12 +32,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
@@ -58,6 +61,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />

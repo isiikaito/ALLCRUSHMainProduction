@@ -22,6 +22,7 @@
 #include "ClearSprite.h"
 #include "ClearStage.h"
 #include "MenuSprite1.h"
+#include "GageSprite.h"
 #include "Pillar.h"
 #include "FallingRock.h"
 #include "MenuSprite2.h"

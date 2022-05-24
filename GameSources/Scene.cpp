@@ -94,8 +94,8 @@ namespace basecross {
 		//アイテムテクスチャ
 		strTexture = dataDir + L"スピード.png";
 		App::GetApp()->RegisterTexture(L"SPEED_TX", strTexture);
-
-		strTexture = dataDir + L"ゲージ.jpg";
+		//ハンマーゲージ
+		strTexture = dataDir + L"ハンマーゲージ.png";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
