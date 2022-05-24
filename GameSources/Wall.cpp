@@ -19,58 +19,58 @@ namespace basecross {
 		m_Scale(Scale),
 		m_Rotation(Rotation),
 		m_Position(Position),
-		m_HP(HP)
+		m_HP(HP),
 		//エフェクト
-		//m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
-		//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr)
+		m_TotalTime2(0.0f), m_isPlay2(false), m_handle2(0),
+		m_manager2(nullptr), m_renderer2(nullptr), m_effect2(nullptr)
 
 	{}
 
-	//void Wall::CreateEffect() {
-	//	auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
-	//	auto d3D11DeviceContext = App::GetApp()->GetDeviceResources()->GetD3DDeviceContext();;
-	//	// エフェクトのレンダラーの作成
-	//	m_renderer = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
+	void Wall::CreateEffect() {
+		auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
+		auto d3D11DeviceContext = App::GetApp()->GetDeviceResources()->GetD3DDeviceContext();;
+		// エフェクトのレンダラーの作成
+		m_renderer2 = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
 
 
-	//	// エフェクトのマネージャーの作成
-	//	m_manager = ::Effekseer::Manager::Create(8000);
-	//	// 描画モジュールの設定
-	//	m_manager->SetSpriteRenderer(m_renderer->CreateSpriteRenderer());
-	//	m_manager->SetRibbonRenderer(m_renderer->CreateRibbonRenderer());
-	//	m_manager->SetRingRenderer(m_renderer->CreateRingRenderer());
-	//	m_manager->SetTrackRenderer(m_renderer->CreateTrackRenderer());
-	//	m_manager->SetModelRenderer(m_renderer->CreateModelRenderer());
+		// エフェクトのマネージャーの作成
+		m_manager2 = ::Effekseer::Manager::Create(8000);
+		// 描画モジュールの設定
+		m_manager2->SetSpriteRenderer(m_renderer2->CreateSpriteRenderer());
+		m_manager2->SetRibbonRenderer(m_renderer2->CreateRibbonRenderer());
+		m_manager2->SetRingRenderer(m_renderer2->CreateRingRenderer());
+		m_manager2->SetTrackRenderer(m_renderer2->CreateTrackRenderer());
+		m_manager2->SetModelRenderer(m_renderer2->CreateModelRenderer());
 
-	//	// テクスチャ、モデル、カーブ、マテリアルローダーの設定する。
-	//	// ユーザーが独自で拡張できる。現在はファイルから読み込んでいる。
-	//	m_manager->SetTextureLoader(m_renderer->CreateTextureLoader());
-	//	m_manager->SetModelLoader(m_renderer->CreateModelLoader());
-	//	m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
-	//	m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+		// テクスチャ、モデル、カーブ、マテリアルローダーの設定する。
+		// ユーザーが独自で拡張できる。現在はファイルから読み込んでいる。
+		m_manager2->SetTextureLoader(m_renderer2->CreateTextureLoader());
+		m_manager2->SetModelLoader(m_renderer2->CreateModelLoader());
+		m_manager2->SetMaterialLoader(m_renderer2->CreateMaterialLoader());
+		m_manager2->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
-	//	// 視点位置を確定
-	//	auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f,20.0f);
+		// 視点位置を確定
+		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f,0.0f);
 
-	//	// 投影行列を設定
-	//	float w = (float)App::GetApp()->GetGameWidth();
-	//	float h = (float)App::GetApp()->GetGameHeight();
-	//	m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-	//		90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
-	//	// カメラ行列を設定
-	//	m_renderer->SetCameraMatrix(
-	//		::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+		// 投影行列を設定
+		float w = (float)App::GetApp()->GetGameWidth();
+		float h = (float)App::GetApp()->GetGameHeight();
+		m_renderer2->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
+			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
+		// カメラ行列を設定
+		m_renderer2->SetCameraMatrix(
+			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
-	//	wstring dataDir;
-	//	App::GetApp()->GetDataDirectory(dataDir);
-	//	dataDir += L"effect\\";
-	//	//wstring wstrEfk = dataDir + L"Laser01.efk";
-	//	wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+		dataDir += L"effect\\";
+		//wstring wstrEfk = dataDir + L"Laser01.efk";
+		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
 
 
-	//	m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
+		m_effect2 = ::Effekseer::Effect::Create(m_manager2, (const char16_t*)wstrEfk.c_str());
 
-	//}
+	}
 
 	void Wall::OnCreate() {
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -98,6 +98,11 @@ namespace basecross {
 		auto ptrDraw1 = AddComponent<PNTStaticModelDraw>();
 		ptrDraw1->SetMeshResource(L"BREAKWALL_MESH");
 		ptrDraw1->SetMeshToTransformMatrix(spanMat);
+		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		ptrDraw->SetFogEnabled(false);
+		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->SetTextureResource(L"WALL_TX");
 
 		auto ptrDraw2 = AddComponent<BcPNTStaticDraw>();
 		ptrDraw2->SetFogEnabled(true);
@@ -106,12 +111,12 @@ namespace basecross {
 		ptrDraw2->SetTextureResource(L"BREAK_WALL");
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		PsPtr->SetDrawActive(true);
+		PsPtr->SetDrawActive(false);
 
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
 		//auto obb = ptrColl->GetObb();
-		//CreateEffect();
+		CreateEffect();
 		//GetStage()->SetSharedGameObject(L"Wall_Group",GetThis<Wall>());
 				//読み込みの設定をする
 		GetStage()->SetSharedGameObject(L"BREAKWALL", GetThis<Wall>());
@@ -141,10 +146,47 @@ namespace basecross {
 	//Xボタンをおしたら
 	void Wall::OnPushX()
 	{
+		//auto ptrWall = GetStage()->GetSharedGameObject<Wall>(L"Wall_Group");
+		auto WallPos = GetComponent<Transform>()->GetWorldPosition();
+		if (!m_isPlay2) {
+			m_handle2 = m_manager2->Play(m_effect2,WallPos.x,0,0);
+			m_isPlay2 = true;
+		}
 	}
 
+	void Wall::OnDraw() {
+		GameObject::OnDraw();
+		auto elps = App::GetApp()->GetElapsedTime();
+		if (m_isPlay2) {
+			m_TotalTime2 += elps;
+			if (m_TotalTime2 >= 2.0f) {
+				m_manager2->StopEffect(m_handle2);
+				m_TotalTime2 = 0.0f;
+				m_isPlay2 = false;
+				return;
+			}
+			else {
+				// マネージャーの更新
+				m_manager2->Update();
+				// 時間を更新する
+				m_renderer2->SetTime(elps);
+				// エフェクトの描画開始処理を行う。
+				m_renderer2->BeginRendering();
+				// エフェクトの描画を行う。
+				m_manager2->Draw();
+				// エフェクトの描画を行う。
+				//m_manager->DrawHandleBack(m_handle);
+				// エフェクトの描画を行う。
+				//m_manager->DrawHandleFront(m_handle);
+				// エフェクトの描画終了処理を行う。
+				m_renderer2->EndRendering();
+			}
+
+		}
+	}
 	//壁に当たったら
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 				}
-			}
+			
+}
 //end basecross

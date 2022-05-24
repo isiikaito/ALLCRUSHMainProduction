@@ -57,14 +57,21 @@ namespace basecross{
 		// エフェクト関連
 		float m_TotalTime;
 		bool m_isPlay;
-		bool m_isPlay1;
 		Effekseer::Handle m_handle;
 		Effekseer::ManagerRef m_manager;
 		EffekseerRendererDX11::RendererRef m_renderer;
 		Effekseer::EffectRef m_effect;
+
+		// エフェクト関連1
+		float m_TotalTime1;
+		bool m_isPlay1;
+		Effekseer::Handle m_handle1;
+		Effekseer::ManagerRef m_manager1;
+		EffekseerRendererDX11::RendererRef m_renderer1;
 		Effekseer::EffectRef m_effect1;
 
 		void CreateEffect();
+		void CreateEffect1();
 
 	public:
 		//Player(const shared_ptr<Stage>& StagePtr);
@@ -80,8 +87,11 @@ namespace basecross{
 			accel(0.0f),
 			itemCount(0),
 			SoundTime(0.0f),
-			m_TotalTime(0.0f), m_isPlay(false), m_isPlay1(false),m_handle(0),
-			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr), m_effect1(nullptr),
+			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
+			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
+			m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),
+			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr),
+
 			endTime(0.0f)
 
 		{
