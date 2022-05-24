@@ -21,8 +21,18 @@ namespace basecross {
 		Vec3 m_Force;
 		//速度
 		Vec3 m_Velocity;
+		int m_Speed=30;
+		float EnemyTime;
+		//ボスの止めている時間
+		float StopTime;
+		//ボスが動きを止めているかどうか
+		int StopCount;
+		//柱が消えているかどうか
+		int PillarCount;
 		////入力ハンドラー
 		//InputHandler2<EnemyObject> m_InputHandler;
+		//ボスの表示カウント
+		int m_EnemySetDrawActiveCount;
 	public:
 		//構築と破棄
 		EnemyObject(const shared_ptr<Stage>& StagePtr); // , const Vec3& StartPos);
@@ -57,6 +67,15 @@ namespace basecross {
 		Vec3 GetTargetPos()const;
 		//操作
 		virtual void OnUpdate() override;
+		//敵の攻撃(/)にぶつかったとき
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
+
+		int GetEnemySetDrawActiveCount()const {
+			return m_EnemySetDrawActiveCount;
+		}
+		void SetEnemySetDrawActiveCount(int m_EnemySetDrawActiveCount) {
+			m_EnemySetDrawActiveCount = m_EnemySetDrawActiveCount;
+		}
 		
 	};
 

@@ -66,11 +66,46 @@ namespace basecross {
 	}
 
 	void GameStage::CreateWall() {
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-5.0f, 1.0f, 0.0f));
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-13.0f, 1.0f, 0.0f));
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-21.0f, 1.0f, 0.0f));
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-29.0f, 1.0f, 0.0f));
-		AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Quat(), Vec3(-37.0f, 1.0f, 0.0f));
+		auto group = CreateSharedObjectGroup(L"Wall_Group");
+		//CSVの行単位の配列
+		vector<wstring>LineVec;
+		//0番目のカラムがL"Wall"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"Wall");
+		for (auto& v : LineVec) {
+			//トークン（カラム）の配置
+			vector<wstring>Tokens;
+			//トークン（カラム）単位で文字列を抽出（L','）
+			Util::WStrToTokenVector(Tokens, v, L',');
+			//トークン（カラム）をスケール、回転、位置に読み込む
+			Vec3 Scale(
+				(float)_wtof(Tokens[1].c_str()),
+				(float)_wtof(Tokens[2].c_str()),
+				(float)_wtof(Tokens[3].c_str())
+
+			);
+			Vec3 Rot;
+			//回転は「XM_PLDIV2」の文字列になっている場合がある
+			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
+			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
+			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
+
+			Vec3 Pos(
+				(float)_wtof(Tokens[7].c_str()),
+				(float)_wtof(Tokens[8].c_str()),
+				(float)_wtof(Tokens[9].c_str())
+			);
+			int HP(
+				(int)_wtof(Tokens[10].c_str())
+				);
+			//各値が揃ったのでオブジェクトの作成
+			AddGameObject<Wall>(Scale, Rot, Pos,HP);
+		}
+		//HP
+		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-5.0f, 1.0f, 0.0f),1);
+		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-13.0f, 1.0f, 0.0f),3);
+		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-21.0f, 1.0f, 0.0f),1);
+		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-29.0f, 1.0f, 0.0f),2);
+		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-37.0f, 1.0f, 0.0f),4);
 
 	}
 	//マヤの壁の作成
@@ -183,6 +218,146 @@ namespace basecross {
 
 
 	}
+	//障害物１作成
+	void GameStage::CreateObstacle1() {
+		auto group1 = CreateSharedObjectGroup(L"Obstacle1_Group1");
+		//CSVの行単位の配列
+		vector<wstring>LineVec;
+		//0番目のカラムがL"stageObject"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"Obstacle1");
+		for (auto& v : LineVec) {
+			//トークン（カラム）の配置
+			vector<wstring>Tokens;
+			//トークン（カラム）単位で文字列を抽出（L','）
+			Util::WStrToTokenVector(Tokens, v, L',');
+			//トークン（カラム）をスケール、回転、位置に読み込む
+			Vec3 Scale(
+				(float)_wtof(Tokens[1].c_str()),
+				(float)_wtof(Tokens[2].c_str()),
+				(float)_wtof(Tokens[3].c_str())
+
+			);
+			Vec3 Rot;
+			//回転は「XM_PLDIV2」の文字列になっている場合がある
+			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
+			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
+			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
+
+			Vec3 Pos(
+				(float)_wtof(Tokens[7].c_str()),
+				(float)_wtof(Tokens[8].c_str()),
+				(float)_wtof(Tokens[9].c_str())
+			);
+			//各値が揃ったのでオブジェクトの作成
+			AddGameObject<Obstacle1>(Scale, Rot, Pos);
+		}
+	}
+
+	//障害物2作成
+	void GameStage::CreateObstacle2() {
+		//CSVの行単位の配列
+		vector<wstring>LineVec;
+		//0番目のカラムがL"stageObject"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"Obstacle2");
+		for (auto& v : LineVec) {
+			//トークン（カラム）の配置
+			vector<wstring>Tokens;
+			//トークン（カラム）単位で文字列を抽出（L','）
+			Util::WStrToTokenVector(Tokens, v, L',');
+			//トークン（カラム）をスケール、回転、位置に読み込む
+			Vec3 Scale(
+				(float)_wtof(Tokens[1].c_str()),
+				(float)_wtof(Tokens[2].c_str()),
+				(float)_wtof(Tokens[3].c_str())
+
+			);
+			Vec3 Rot;
+			//回転は「XM_PLDIV2」の文字列になっている場合がある
+			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
+			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
+			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
+
+			Vec3 Pos(
+				(float)_wtof(Tokens[7].c_str()),
+				(float)_wtof(Tokens[8].c_str()),
+				(float)_wtof(Tokens[9].c_str())
+			);
+			//各値が揃ったのでオブジェクトの作成
+			AddGameObject<Obstacle2>(Scale, Rot, Pos);
+		}
+	}
+
+	//柱の作成
+	void GameStage::CreatePillar() {
+		auto group2 = CreateSharedObjectGroup(L"Pillar_Group1");
+		//CSVの行単位の配列
+		vector<wstring>LineVec;
+		//0番目のカラムがL"stageObject"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"Pillar");
+		for (auto& v : LineVec) {
+			//トークン（カラム）の配置
+			vector<wstring>Tokens;
+			//トークン（カラム）単位で文字列を抽出（L','）
+			Util::WStrToTokenVector(Tokens, v, L',');
+			//トークン（カラム）をスケール、回転、位置に読み込む
+			Vec3 Scale(
+				(float)_wtof(Tokens[1].c_str()),
+				(float)_wtof(Tokens[2].c_str()),
+				(float)_wtof(Tokens[3].c_str())
+
+			);
+			Vec3 Rot;
+			//回転は「XM_PLDIV2」の文字列になっている場合がある
+			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
+			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
+			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
+
+			Vec3 Pos(
+				(float)_wtof(Tokens[7].c_str()),
+				(float)_wtof(Tokens[8].c_str()),
+				(float)_wtof(Tokens[9].c_str())
+			);
+			//各値が揃ったのでオブジェクトの作成
+			AddGameObject<Pillar>(Scale, Rot, Pos);
+		}
+	}
+
+	//落石の作成
+	void GameStage::CreateFallingRock() {
+		
+		//CSVの行単位の配列
+		vector<wstring>LineVec;
+		auto group3 = CreateSharedObjectGroup(L"FallingRock_Group1");
+		//0番目のカラムがL"stageObject"である行を抜き出す
+		m_CsvC.GetSelect(LineVec, 0, L"FallingRock");
+		for (auto& v : LineVec) {
+			//トークン（カラム）の配置
+			vector<wstring>Tokens;
+			//トークン（カラム）単位で文字列を抽出（L','）
+			Util::WStrToTokenVector(Tokens, v, L',');
+			//トークン（カラム）をスケール、回転、位置に読み込む
+			Vec3 Scale(
+				(float)_wtof(Tokens[1].c_str()),
+				(float)_wtof(Tokens[2].c_str()),
+				(float)_wtof(Tokens[3].c_str())
+
+			);
+			Vec3 Rot;
+			//回転は「XM_PLDIV2」の文字列になっている場合がある
+			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
+			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
+			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
+
+			Vec3 Pos(
+				(float)_wtof(Tokens[7].c_str()),
+				(float)_wtof(Tokens[8].c_str()),
+				(float)_wtof(Tokens[9].c_str())
+			);
+			//各値が揃ったのでオブジェクトの作成
+			AddGameObject<FallingRock>(Scale, Rot, Pos);
+		}
+	}
+
 	//タイムスプライト作成
 	void GameStage::CreateTime() {
 		AddGameObject<MyTime>(4,
@@ -194,9 +369,17 @@ namespace basecross {
 
 	//アイテムスプライト作成
 	void GameStage::CreateMyitem1() {
-		AddGameObject<Myitem1>(L"SHIELD_TX", true,
-			Vec2(240.0f, 240.0f), Vec3(-550.0f, -320.0f, 0.0f));
+		AddGameObject<Myitem1>(L"SPEED_TX", true,
+			//テクスチャの大きさ　　　　位置
+			Vec2(180.0f, 180.0f), Vec3(-530.0f, -310.0f, 0.0f));
 	}
+
+	//ゲージの作成
+	void GameStage::CreateMygage() {
+		AddGameObject<Mygage>(L"GAGE_TX", true,
+			Vec2(140.0f, 240.0f), Vec3(550.0f, -320.0f, 0.0f));
+	}
+
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -207,10 +390,17 @@ namespace basecross {
 	}
 	//敵の作成
 	void GameStage::CreateEnemy() {
-		//プレーヤーの作成
-		auto EnemyPtr = AddGameObject<EnemyObject>();
-		//シェア配列にプレイヤーを追加
-		SetSharedGameObject(L"Enemy", EnemyPtr);
+		////プレーヤーの作成
+		//auto EnemyPtr = AddGameObject<EnemyObject>();
+		////シェア配列にプレイヤーを追加
+		//SetSharedGameObject(L"Enemy", EnemyPtr);
+	}
+
+	// 逃げるテロップ
+	void GameStage::CreateTickerSprite()
+	{
+		AddGameObject<TickerSprite>(L"FLEE_TX", true,
+	    Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	void GameStage::BGM() {
@@ -221,6 +411,7 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 
+
 			//物理計算有効
 			SetPhysicsActive(true);
 
@@ -229,7 +420,7 @@ namespace basecross {
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			//CSVファイルその読み込みC
-			m_CsvC.SetFileName(DataDir + L"stageObject.csv");
+			m_CsvC.SetFileName(DataDir + L"stage1.csv");
 			m_CsvC.ReadCsv();
 
 			//ビューとライトの作成
@@ -245,6 +436,7 @@ namespace basecross {
 			//BGMの再生
 			BGM();
 
+			CreatePillar();
 			AddGameObject<EnemyObject>();
 			//オブジェクトの追加
 			CreatestageObject();
@@ -252,6 +444,10 @@ namespace basecross {
 			CreateStageWall(); 
 			//マヤで作った床の追加
 			CreateStageFloor();
+			//障害物１の追加
+			CreateObstacle1();
+			//落石
+			CreateFallingRock();
 			//マヤでつくった出口
 			CreateExitWall();
 			//タイムスプライト作成
@@ -260,6 +456,10 @@ namespace basecross {
 			CreateWall();
 			//アイテムスプライト
 			CreateMyitem1();
+			//ゲージスプライト
+			CreateMygage();
+			// 逃げるテロップ
+			CreateTickerSprite();
 		}
 		catch (...) {
 			throw;
@@ -276,6 +476,19 @@ namespace basecross {
 		//タイムを更新する
 		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
+
+
+		// テロップの時間
+		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
+		// 時間の変数に足す
+		m_idleTime += elapsedTime;
+		if (m_idleTime >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage->SetDrawActive(false);
+			return;
+		}
+
 	}
 
 	void GameStage::OnDestroy() {
@@ -283,5 +496,6 @@ namespace basecross {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
+
 }
 //end basecross

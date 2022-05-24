@@ -14,16 +14,16 @@ namespace basecross {
 	template<typename T>
 	struct InputHandler {
 		void PushHandle(const shared_ptr<T>& Obj) {
-			//キーボードの取得（優先）
-			const auto& KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-			if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-				Obj->OnPushA();
-				return;
-			}
-			if (KeyState.m_bPressedKeyTbl['B']) {
-				Obj->OnPushB();
-				return;
-			}
+			////キーボードの取得（優先）
+			//const auto& KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+			//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+			//	Obj->OnPushA();
+			//	return;
+			//}
+			//if (KeyState.m_bPressedKeyTbl['B']) {
+			//	Obj->OnPushB();
+			//	return;
+			//}
 			//コントローラの取得
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			if (cntlVec[0].bConnected) {
@@ -35,6 +35,7 @@ namespace basecross {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 					Obj->OnPushB();
 				}
+				
 			}
 		}
 	};
@@ -50,9 +51,17 @@ namespace basecross {
 					Obj->OnPushB();
 				}
 				//Xボタン
-				else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 					Obj->OnPushX();
 				}
+				 //十字キーの上
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
+					Obj->OnPushUP();
+				}
+				 //十字キーの下
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN) {
+					 Obj->OnPushDOWN();
+				 }
 			}
 		}
 	};

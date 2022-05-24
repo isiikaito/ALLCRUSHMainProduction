@@ -32,19 +32,16 @@ namespace basecross {
 		strTexture = dataDir + L"ゲームオーバー.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
-		strTexture = dataDir + L"ゲームクリア.jpg";
-		App::GetApp()->RegisterTexture(L"GAMECREA_TX", strTexture);
-
-		//strTexture = dataDir + L"kari.mp4";
-		//App::GetApp()->RegisterTexture(L"KARI_TX", strTexture);
+		strTexture = dataDir + L"flee.png";
+		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
-		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player1.bmf");
+		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player05.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH", multiModelMesh);
 
 		//ボーンモデルのタンジェント付きリソース
-		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"player1.bmf");
+		multiModelMesh = MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"player05.bmf");
 		App::GetApp()->RegisterResource(L"Object_WalkAnimation_MESH_WITH_TAN", multiModelMesh);
 
 		//ボーンモデル(マルチメッシュ)の通常リソース
@@ -60,7 +57,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"OBJECT_NORMAL_TX", strTexture);
 
 		//壁のモデル読み込み
-		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"Stage2.bmf");
+		auto staticModelMesh1 = MeshResource::CreateStaticModelMesh(dataDir, L"StageWall.bmf");
 		App::GetApp()->RegisterResource(L"STAGEWALL_MESH", staticModelMesh1);
 
 		//床のモデル読み込み
@@ -71,11 +68,47 @@ namespace basecross {
 		auto staticModelMesh3 = MeshResource::CreateStaticModelMesh(dataDir, L"ExitWall.bmf");
 		App::GetApp()->RegisterResource(L"EXITWALL_MESH", staticModelMesh3);
 
+        //障害物１の読み込み
+		auto staticModelMesh4 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject.KU2.bmf");
+		App::GetApp()->RegisterResource(L"OBSTACLE1_MESH", staticModelMesh4);
+
+		//障害物2の読み込み
+		auto staticModelMesh5 = MeshResource::CreateStaticModelMesh(dataDir, L"Obuject05.bmf");
+		App::GetApp()->RegisterResource(L"OBSTACLE2_MESH", staticModelMesh5);
+
+		//柱読み込み
+		auto staticModelMesh6 = MeshResource::CreateStaticModelMesh(dataDir, L"pillar.bmf");
+		App::GetApp()->RegisterResource(L"PILLAR_MESH", staticModelMesh6);
+
+		//落石読み込み
+		auto staticModelMesh7 = MeshResource::CreateStaticModelMesh(dataDir, L"Foring.bmf");
+		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
+
+		//壊す壁Maya読み込み
+		//auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall.bmf");
+		//App::GetApp()->RegisterResource(L"BREAKWALL_MESH", staticModelMesh8);
+
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
-		strTexture = dataDir + L"盾.png";
-		App::GetApp()->RegisterTexture(L"SHIELD_TX", strTexture);
+		//アイテムテクスチャ
+		strTexture = dataDir + L"スピード.png";
+		App::GetApp()->RegisterTexture(L"SPEED_TX", strTexture);
+
+		strTexture = dataDir + L"ゲージ.jpg";
+		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
+
+		//文字テクスチャ
+		strTexture = dataDir + L"Stege1.png";
+		App::GetApp()->RegisterTexture(L"STAGE1_TX", strTexture);
+
+		//文字テクスチャ
+		strTexture = dataDir + L"Stage2.png";
+		App::GetApp()->RegisterTexture(L"STAGE2_TX", strTexture);
+		
+		//メニューテクスチャ
+		strTexture = dataDir + L"memu.png";
+		App::GetApp()->RegisterTexture(L"MEMU_TX", strTexture);
 		
 
 		//サウンド
@@ -87,6 +120,15 @@ namespace basecross {
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
+		//壁を攻撃を行った時のサウンド
+		CursorWav = dataDir + L"AttackWall.wav";
+		App::GetApp()->RegisterWav(L"AttackWall", CursorWav);
+		//壁が壊れたときのサウンド
+		CursorWav = dataDir + L"BrakeWall.wav";
+		App::GetApp()->RegisterWav(L"BrakeWall", CursorWav);
+		//敵の声
+		CursorWav = dataDir + L"EnemyVoice.wav";
+		App::GetApp()->RegisterWav(L"EnemyVoice", CursorWav);
 
 	}
 	void Scene::OnCreate() {
@@ -122,19 +164,27 @@ namespace basecross {
 			ResetActiveStage<GameStage>();
 		}
 
+		else if (event->m_MsgStr == L"ToGameStage2") {
+			//ゲームステージ2の設定
+			ResetActiveStage<GameStage2>();
+		}
+		else if (event->m_MsgStr == L"ToMenuStage") {
+			//メニューステージの設定
+			ResetActiveStage<MenuStage>();
+		}
 		else if (event->m_MsgStr == L"ToClearStage") {
-			//最初のアクティブステージの設定
-			ResetActiveStage<ClearStage>();
+			//クリアステージの設定
+			ResetActiveStage<MyClearStage>();
 		}
 
 		else if (event->m_MsgStr == L"ToGameOverStage") {
-			//最初のアクティブステージの設定
+			//ゲームオーバーステージの設定
 			ResetActiveStage<GameOverStage>();
 		}
 		
 		else if (event->m_MsgStr == L"ToMovieStage") {
 			m_MovieActive = true;
-			//最初のアクティブステージの設定
+			//ボスの登場シーンステージの設定
 			ResetActiveStage<MyMovieStage>();
 		}
 	}

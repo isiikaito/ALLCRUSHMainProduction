@@ -12,12 +12,13 @@ namespace basecross {
 	//	追いかける配置オブジェクト
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr): //, const Vec3& StartPos) :
+	EnemyObject::EnemyObject(const shared_ptr<Stage>& StagePtr) : //, const Vec3& StartPos) :
 		GameObject(StagePtr),
 		//m_StartPos(StartPos),
 		m_StateChangeSize(5.0f),
 		m_Force(0),
-		m_Velocity(0)
+		m_Velocity(0),
+		StopCount(0)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
@@ -27,15 +28,15 @@ namespace basecross {
 		auto ptrTransform = GetComponent<Transform>();
 		//ptrTransform->SetPosition(m_StartPos);
 		ptrTransform->SetPosition(60.0f, 0.0f, 0.0f);
-		ptrTransform->SetScale(0.125f, 0.25f, 0.125f);
+		ptrTransform->SetScale(3.0f, 3.0f, 2.0f);
 		ptrTransform->SetRotation(0.0f, 0.0f, 0.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.2f, 0.1f, 0.06f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, -0.5f, -1.0f)
 		);
 
 		//Obbの衝突判定をつける
@@ -52,7 +53,7 @@ namespace basecross {
 
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
 
-		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetFogEnabled(false);
 		                       //R    G    B    A
 		ptrDraw->SetDiffuse(Col4(1.0, 1.0, 1.0, 0.1));
 		ptrDraw->SetMeshResource(L"EnemyRun_MESH_WITH_TAN"); //EnemyRun_MESH
@@ -61,24 +62,49 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 30, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 		
-		
-		//透明処理をする
-		//pngのテクスチャを透明化させる処理(jpgは透明化できないので無理)
-		SetAlphaActive(true);
-		//ボスの表示自体をなくす処理(jpgでもpngでも関係ない)
-		/*SetDrawActive(false);*/
-
 		//ステートマシンの構築
 		m_StateMachine.reset(new StateMachine<EnemyObject>(GetThis<EnemyObject>()));
 		//最初のステートをSeekFarStateに設定
 		m_StateMachine->ChangeState(SeekFarState::Instance());
+		//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"EnemyObject", GetThis<EnemyObject>());
 	}
 
-
+void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		//落石に当たったら
+		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
+		
+		  
+		if (ptr) {
+			//落石オブジェクトを消す
+			GetStage()->RemoveGameObject<FallingRock>(Other);
+			StopCount = 1;
+			//ボスのスピードを0にする
+			m_Speed = 0;
+		
+		}
+		
+	}
 	//操作
 	void EnemyObject::OnUpdate() {
-
-       
+		
+       //ボスのStopCountが１だった場合
+		if (StopCount==1)
+		{  
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			
+			
+           //時間を変数に足す
+		   StopTime += elapsedTime;
+		   if (StopTime >=2.0f)
+		   {
+			   //ボスのスピードを１にする
+			   m_Speed=20;
+			   StopCount = 0;
+			   StopTime = 0.0f;
+		   }
+		   return;
+		}
 
 		m_Force = Vec3(0);
 		//ステートマシンのUpdateを行う
@@ -112,6 +138,20 @@ namespace basecross {
 			/*SetAlphaActive(true);*/
 			SetDrawActive(false);
 		}
+		//ボスの座標取得
+		/*auto ptrPlayer= GetStage()->GetSharedGameObject<Player>(L"Player");
+		PillarCount = ptrPlayer->GetPillarCount();
+		ptrPlayer->SetPillarCount(PillarCount);
+		if (PillarCount == 0)
+		{
+			SetDrawActive(true);
+		}*/
+		if (m_EnemySetDrawActiveCount == 0)
+		{
+			SetDrawActive(true);
+		}
+
+		
 		
 		////コントローラチェックして入力があればコマンド呼び出し
 		//m_InputHandler.PushHandle(GetThis<EnemyObject>());
@@ -126,7 +166,18 @@ namespace basecross {
 
 	void EnemyObject::ApplyForce() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_Velocity += m_Force * elapsedTime;
+
+		auto elps = App::GetApp()->GetElapsedTime();
+		EnemyTime += elps;
+		if (EnemyTime >= 6.0f) {
+			EnemyTime = 0.0f;
+			auto ptrXA = App::GetApp()->GetXAudio2Manager();
+			//サウンドの再生
+			ptrXA->Start(L"EnemyVoice", 0, 0.2f);
+			return;
+		}
+
+		m_Velocity += m_Force / (float)m_Speed * elapsedTime;
 		auto ptrTrans = GetComponent<Transform>();
 		auto pos = ptrTrans->GetPosition();
 		pos += m_Velocity * elapsedTime;

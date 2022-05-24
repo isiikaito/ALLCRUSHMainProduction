@@ -38,7 +38,7 @@ namespace basecross {
 
 	}
 	void TitleStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMenuStage");
 
 	}
 }

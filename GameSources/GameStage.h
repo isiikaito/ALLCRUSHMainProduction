@@ -17,17 +17,30 @@ namespace basecross {
 	//ビューの作成
 	void CreateViewLight();
 	void CreatestageObject();
+	//柱
+	void CreatePillar();
 	//マヤによるステージの壁作成
 	void CreateStageWall();
 	//マヤによるステージの床作成
 	void CreateStageFloor();
 	//カベの作成
 	void CreateWall();
+	//障害物１
+	void CreateObstacle1();
+	//障害物2
+	void CreateObstacle2();
+	//落石
+	void CreateFallingRock();
 	//アイテムスプライト作成
 	void CreateMyitem1();
+	//ゲージの追加
+	void CreateMygage();
 	void CreateExitWall();
 	//タイム作成
 	void CreateTime();	
+	// テロップ
+	void CreateTickerSprite();
+	float m_idleTime;
 	//トータル時間
 	float m_TotalTime;
 

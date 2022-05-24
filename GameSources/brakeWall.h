@@ -1,6 +1,6 @@
 /*!
-@file brakeWall.h
-@brief キャラクターなど
+@file Myitem1.h
+@brief アイテム
 */
 
 #pragma once
@@ -8,4 +8,3 @@
 
 namespace basecross {
 }
-//end basecross

@@ -30,10 +30,10 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.043f, 0.115f, 1.0),//スケールkabe
+			Vec3(0.01956f, 0.02f, 0.2),//スケールkabe
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.5f, -6.7f)//ポジションkabe
+			Vec3(0.0f, -0.1f, -1.5f)//ポジションkabe
 		);
 
 		//影をつける（シャドウマップを描画する）
@@ -49,11 +49,11 @@ namespace basecross {
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//当たり判定を見せる
-		/*PsPtr->SetDrawActive(true);*/
+		
 
 		auto Coll = AddComponent<CollisionObb>();
-		
+		//当たり判定を見せる
+	/*	PsPtr->SetDrawActive(true);*/
 		Coll->SetFixed(true);
 		
 
