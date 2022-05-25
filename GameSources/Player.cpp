@@ -174,9 +174,9 @@ namespace basecross {
 		CreateEffect1();
 
 
-		////読み込みの設定をする
-		//GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
+		
 	}
+
 
 	void Player::OnUpdate()
 
@@ -227,6 +227,7 @@ namespace basecross {
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
+
         //ボスの座標取得
 		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
@@ -240,6 +241,8 @@ namespace basecross {
 		
 		}
 
+
+		//柱が壊れていないとき
 		if (PillarCount == 0)
 		{
 			//柱の座標取得
@@ -262,6 +265,29 @@ namespace basecross {
 
 		}
 		
+
+
+		////プレイヤーのパワーゲージ
+		////ゲージのオブジェクト取得
+		//auto ptrGage = GetStage()->GetSharedGameObject<GageSprite>(L"GageSprite");
+		////ゲージ上
+		//float GageUP = ptrGage->GetColwUP();
+
+		////ゲージ下
+		//float GageDOWN = ptrGage->GetColwDOWN();
+		//
+		//if (itemCount2==1)
+
+		//{
+		//	GageDOWN = 1.0f;
+		//	GageUP = 1.0f;
+		//	
+  //        ptrGage->SetColwUP(GageUP);
+		//ptrGage->SetColwDOWN(GageDOWN);
+		//	
+		//}
+           
+            
 
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
@@ -401,6 +427,21 @@ namespace basecross {
 				m_isPlay1 = true;
 			}
 		}
+		//ゲージが溜まったら
+		if (PowerCount <= 4)
+		{
+			Power = 0;
+			PowerCount = 0;
+			
+			
+			
+		}
+		////ゲージが溜まっていないとき
+		//if (PowerCount ==1)
+		//{
+		//	m_AttackPower = 1.0f;
+		//	
+		//}
 		//if (!m_isPlay1) {
 		//	m_handle = m_manager->Play(m_effect1, 0, 0, 0);
 		//	m_isPlay1 = true;
@@ -435,6 +476,8 @@ namespace basecross {
 				ptrXA->Start(L"Hammer", 0, 0.5f);
 				moveStop = 1.0f;//移動停止解除
 
+
+				//壁の破壊処理
 					for (auto& v : vec) {
 						auto shPtr = v.lock();
 						Vec3 ret;
@@ -448,8 +491,31 @@ namespace basecross {
 								//壁との距離が2.0以下になった
 								auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 								//	ptrDraw->ChangeCurrentAnimation(L"ActionEnd");
-								WallHP--;
+
+								//パワーアップ時の処理
+								switch (Power)
+								{
+								case 0:
+										WallHP-=10;
+									Power = 1;
+									break;
+									//パワーアップ前の処理
+								case 1:
+									WallHP -= 1;
+									break;
+									/*case 2:
+										PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+										break;*/
+
+								}
+							
+								PowerCount +=1;
+								if (PowerCount >= 4)
+								{
+									PowerCount = 4;
+								}
 								ptrWall->SetHP(WallHP);
+
 								if (WallHP <= 0)
 								{
 								ptrXA->Start(L"BrakeWall", 0, 0.5f);
@@ -481,8 +547,7 @@ namespace basecross {
 								}
 								
 
-								//}
-							//}
+								
 							}
 						}
 					}
@@ -508,7 +573,7 @@ namespace basecross {
 							}
 						}
 					}
-					//柱
+					//柱破壊処理
 					auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
 					auto vec2 = group2->GetGroupVector();
 					for (auto& v2 : vec2) {
@@ -541,6 +606,8 @@ namespace basecross {
 				return;
 			}
 		}
+
+		//攻撃処理
 
 		else if (action == L"ActionPull") {
 
