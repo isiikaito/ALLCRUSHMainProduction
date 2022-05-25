@@ -42,7 +42,6 @@ namespace basecross{
 		//プレイヤーと柱の処理
 		float PPdistance;
 
-		float endTime;
 
 		//振り向きカウントタイム
 		float m_TurnTime;
@@ -98,10 +97,7 @@ namespace basecross{
 			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
 			m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),
-			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr),
-
-			endTime(0.0f)
-
+			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr)
 		{
 		}
 		virtual void OnDraw() override;
