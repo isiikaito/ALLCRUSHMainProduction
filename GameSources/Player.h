@@ -24,6 +24,8 @@ namespace basecross{
 
 		//アイテムの所持数
 		float itemCount;
+		//パワーアップアイテム
+		int PowerCount;
 		//プレイヤーのスピード
 		float speed2;
 		//落石のカウント
@@ -44,6 +46,10 @@ namespace basecross{
 
 		//振り向きカウントタイム
 		float m_TurnTime;
+
+		//パワーアップがあるかないか
+		int Power;
+		
 		
 
 		Vec3 GetMoveVector() const;
@@ -86,6 +92,8 @@ namespace basecross{
 			speed2(1.0f),
 			accel(0.0f),
 			itemCount(0),
+			PowerCount(0),
+			Power(1),
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -120,6 +128,13 @@ namespace basecross{
 		}
 		void SetPillarCount(int PillarCount) {
 			PillarCount = PillarCount;
+		}
+		int GetPower()const {
+			return Power;
+		}
+		void SetPower(int Power)
+		{
+			Power = Power;
 		}
 	};
 }

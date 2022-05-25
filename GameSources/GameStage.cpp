@@ -388,8 +388,8 @@ namespace basecross {
 
 	void GameStage::CreateGageWhite()
 	{
-		AddGameObject<GageSpriteWhite>(true,
-			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
+		/*AddGameObject<GageSpriteWhite>(true,
+			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));*/
 	}
 
 	

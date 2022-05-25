@@ -14,6 +14,8 @@ namespace basecross {
 		Vec2 m_StartScale;
 		Vec3 m_StartPos;
 		float m_TotalTime;
+		float m_ColwUP;//ゲージ上の透明度
+		float m_ColwDOWN;//ゲージ下の透明度
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
 	public:
@@ -25,5 +27,21 @@ namespace basecross {
 		virtual void OnCreate() override;
 
 		virtual void OnUpdate()override;
+
+		////ゲージ上の透明度取得
+		//float GetColwUP()const {
+		//	return m_ColwUP;
+		//}
+		//void SetColwUP(float ColwUP) {
+		//	m_ColwUP = ColwUP;
+		//}
+
+		////ゲージ下の透明度取得
+		//float GetColwDOWN()const {
+		//	return m_ColwDOWN;
+		//}
+		//void SetColwDOWN(float ColwDOWN) {
+		//	m_ColwDOWN = ColwDOWN;
+		//}
 	};
 }
