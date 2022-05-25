@@ -40,7 +40,7 @@ namespace basecross{
 		//ƒvƒŒƒCƒ„[‚Æ’Œ‚Ìˆ—
 		float PPdistance;
 
-		float endTime;
+		bool end;
 
 		Vec3 GetMoveVector() const;
 
@@ -76,8 +76,7 @@ namespace basecross{
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false), m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
-			endTime(0.0f)
-
+			end(false)
 		{
 		}
 		virtual void OnDraw() override;
