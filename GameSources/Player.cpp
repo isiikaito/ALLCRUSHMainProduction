@@ -387,14 +387,17 @@ namespace basecross {
 	void Player::OnPushX() {
 		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 		auto PlayerPos = GetComponent<Transform>()->GetPosition();
+		auto SpeedUpSound = App::GetApp()->GetXAudio2Manager();
 		if (itemCount == 1) {
 			Shitem->SetDrawActive(false);
+			//ƒTƒEƒ“ƒh‚ÌÄ¶
+			SpeedUpSound->Start(L"SpeedUp", 0, 0.5f);
 			speed2 = 2;
 			itemCount = 0;
 			if (!m_isPlay1) {
 				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.5, PlayerPos.z-0.5);
 				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
-				m_handle1 = m_manager1->Play(m_effect1,0,0,0);
+				m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5,0,0);
 				m_isPlay1 = true;
 			}
 		}

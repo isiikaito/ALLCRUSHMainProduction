@@ -117,6 +117,9 @@ namespace basecross {
 		//走るサウンド
 		CursorWav = dataDir + L"run.wav";
 		App::GetApp()->RegisterWav(L"run", CursorWav);
+		//スピードアップのサウンド
+		CursorWav = dataDir + L"SpeedUp.wav";
+		App::GetApp()->RegisterWav(L"SpeedUp", CursorWav);
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);
