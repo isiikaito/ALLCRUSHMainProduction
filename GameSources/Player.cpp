@@ -183,7 +183,7 @@ namespace basecross {
 	{  
 		
 
-		//アニメション
+		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
 
@@ -246,25 +246,32 @@ namespace basecross {
 		if (PillarCount == 0)
 		{
 			//柱の座標取得
-		auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
-		//クラスには（）が必要である引数があるときと無い時どっちでも必要
-		auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
+			auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+			//クラスには（）が必要である引数があるときと無い時どっちでも必要
+			auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
 
-		//柱とプレイヤーの距離
-		PPdistance = position.x - PillarPositon.x;
-		if (PPdistance <5)
-		{
-			moveStop = 0.0f;//移動の停止
-			position.x = -80;
-			position.z = 1;
-			Rotation.y = 90;
-			speed = 0;
-			
-			
-		}
+			//柱とプレイヤーの距離
+			PPdistance = position.x - PillarPositon.x;
+			if (PPdistance < 5)
+			{
+				moveStop = 0.0f;//移動の停止
+				position.x = -80;
+				position.z = 1;
+				Rotation.y = 90;
+				speed = 0;
 
+
+			}
 		}
-		
+		//auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
+		//auto vec = group->GetGroupVector();
+		//for (auto& v : vec) {
+		//	auto shPtr = v.lock();
+		//	auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+		//	if (ptrWall) {
+		//		auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
+		//		auto WallHP = ptrWall->GetHP();
+
 
 
 		////プレイヤーのパワーゲージ
@@ -508,13 +515,33 @@ namespace basecross {
 										break;*/
 
 								}
-							
 								PowerCount +=1;
 								if (PowerCount >= 4)
 								{
 									PowerCount = 4;
 								}
 								ptrWall->SetHP(WallHP);
+				//壁の残り耐久値についての処理
+				if (WallHP >= 4)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
+				}
+				else if (WallHP >= 3)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
+				}
+				else if(WallHP >= 2)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
+				}
+				else if(WallHP >= 1)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
+				}
 
 								if (WallHP <= 0)
 								{

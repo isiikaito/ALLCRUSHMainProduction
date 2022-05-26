@@ -75,9 +75,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
   </ItemGroup>
 </Project>
