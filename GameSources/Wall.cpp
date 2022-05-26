@@ -46,12 +46,34 @@ namespace basecross {
 
 		//影をつける
 		auto ptrShadow = AddComponent<Shadowmap>();
-		ptrShadow->SetMeshResource(L"BREAKWALL_MESH");
+		ptrShadow->SetMeshResource(L"UNBREAKWALL_MESH");
 		//影をつける（シャドウマップを描画する）
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
+		auto WallHP = GetHP();
 		auto ptrDraw1 = AddComponent<PNTStaticModelDraw>();
-		ptrDraw1->SetMeshResource(L"BREAKWALL_MESH");
+		if (WallHP >= 4)
+		{
+			ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
+		}
+		//壁の残り耐久値についての処理
+		if (WallHP >= 4)
+		{
+			ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
+		}
+		else if (WallHP >= 3)
+		{
+			ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
+		}
+		else if (WallHP >= 2)
+		{
+			ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
+		}
+		else if (WallHP >= 1)
+		{
+			ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
+		}
+
 		ptrDraw1->SetMeshToTransformMatrix(spanMat);
 		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		/*ptrDraw->SetFogEnabled(false);

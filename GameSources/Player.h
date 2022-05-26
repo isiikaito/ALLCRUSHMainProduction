@@ -25,6 +25,8 @@ namespace basecross{
 
 		//アイテムの所持数
 		float itemCount;
+		//パワーアップアイテム
+		int PowerCount;
 		//プレイヤーのスピード
 		float speed2;
 		//落石のカウント
@@ -41,11 +43,30 @@ namespace basecross{
 		//プレイヤーと柱の処理
 		float PPdistance;
 
-		float endTime;
 
 		//振り向きカウントタイム
 		float m_TurnTime;
+
+		//パワーアップがあるかないか
+		int Power;
 		
+		
+		// テロップ
+		void CreateTelop();
+		float m_TelopTime;
+
+		// テロップ2
+		void CreateTelop2();
+		float m_Telop2Time;
+
+		// テロップ3
+		void CreateTelop3();
+		float m_Telop3Time;
+
+		// テロップ4
+		void CreateTelop4();
+		float m_Telop4Time;
+
 
 		Vec3 GetMoveVector() const;
 
@@ -88,14 +109,13 @@ namespace basecross{
 			speed2(5.0f),
 			accel(0.0f),
 			itemCount(0),
+			PowerCount(0),
+			Power(1),
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
 			m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),
-			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr),
-
-			endTime(0.0f)
-
+			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr)
 		{
 		}
 		virtual void OnDraw() override;
@@ -122,6 +142,13 @@ namespace basecross{
 		}
 		void SetPillarCount(int PillarCount) {
 			PillarCount = PillarCount;
+		}
+		int GetPower()const {
+			return Power;
+		}
+		void SetPower(int Power)
+		{
+			Power = Power;
 		}
 	};
 }

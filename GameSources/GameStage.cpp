@@ -388,8 +388,8 @@ namespace basecross {
 
 	void GameStage::CreateGageWhite()
 	{
-		AddGameObject<GageSpriteWhite>(true,
-			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
+		/*AddGameObject<GageSpriteWhite>(true,
+			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));*/
 	}
 
 	
@@ -413,7 +413,35 @@ namespace basecross {
 	void GameStage::CreateTickerSprite()
 	{
 		AddGameObject<TickerSprite>(L"FLEE_TX", true,
-	    Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
+	// 柱を壊すテロップ
+	void GameStage::CreateTelop()
+	{
+		AddGameObject<Telop>(L"柱を壊す_TX", true,
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
+	// 柱を壊すタイミングテロップ
+	void GameStage::CreateTelop2()
+	{
+		AddGameObject<Telop2>(L"柱壊すタイミング_TX", true,
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
+	// 出口前テロップ
+	void GameStage::CreateTelop3()
+	{
+		AddGameObject<Telop3>(L"出口前_TX", true,
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
+	// 壁を壊せ！！テロップ
+	void GameStage::CreateTelop4()
+	{
+		AddGameObject<Telop4>(L"壁を壊せ！！_TX", true,
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	void GameStage::BGM() {
@@ -475,6 +503,11 @@ namespace basecross {
 			CreateGageWhite();
 			// 逃げるテロップ
 			CreateTickerSprite();
+
+			CreateTelop();
+			CreateTelop2();
+			CreateTelop3();
+			CreateTelop4();
 		}
 		catch (...) {
 			throw;
@@ -501,9 +534,52 @@ namespace basecross {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage->SetDrawActive(false);
-			return;
 		}
 
+		// テロップの時間
+		auto ptrStage1 = GetSharedGameObject<Telop>(L"Telop");
+		// 時間の変数に足す
+		m_TelopTime += elapsedTime;
+		if (m_TelopTime >= 1.6f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage1->SetDrawActive(false);
+
+		}
+
+		// テロップの時間
+		auto ptrStage2 = GetSharedGameObject<Telop2>(L"Telop2");
+		// 時間の変数に足す
+		m_Telop2Time += elapsedTime;
+		if (m_Telop2Time >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage2->SetDrawActive(false);
+
+		}
+
+		// テロップの時間
+		auto ptrStage3 = GetSharedGameObject<Telop3>(L"Telop3");
+		// 時間の変数に足す
+		m_Telop3Time += elapsedTime;
+		if (m_Telop3Time >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage3->SetDrawActive(false);
+
+		}
+
+		// テロップの時間
+		auto ptrStage4 = GetSharedGameObject<Telop4>(L"Telop4");
+		// 時間の変数に足す
+		m_Telop4Time += elapsedTime;
+		if (m_Telop4Time >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage4->SetDrawActive(false);
+
+		}
+		return;
 	}
 
 	void GameStage::OnDestroy() {
