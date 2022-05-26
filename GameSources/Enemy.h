@@ -33,6 +33,11 @@ namespace basecross {
 		//InputHandler2<EnemyObject> m_InputHandler;
 		//ボスの表示カウント
 		int m_EnemySetDrawActiveCount;
+
+		// テロップ2
+		void CreateTelop2();
+		float m_Telop2Time;
+
 	public:
 		//構築と破棄
 		EnemyObject(const shared_ptr<Stage>& StagePtr); // , const Vec3& StartPos);
@@ -67,6 +72,8 @@ namespace basecross {
 		Vec3 GetTargetPos()const;
 		//操作
 		virtual void OnUpdate() override;
+
+		virtual void OnUpdate2() override;
 		//敵の攻撃(/)にぶつかったとき
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 

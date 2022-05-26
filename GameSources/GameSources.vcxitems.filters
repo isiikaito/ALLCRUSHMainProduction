@@ -8,6 +8,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
@@ -31,13 +33,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -47,6 +47,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
@@ -57,11 +59,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
@@ -69,15 +75,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
   </ItemGroup>
 </Project>

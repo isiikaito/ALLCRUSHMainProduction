@@ -44,25 +44,44 @@ namespace basecross {
 		m_manager->SetModelLoader(m_renderer->CreateModelLoader());
 		m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
 		m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+		//m_manager->GetCameraCullingMaskToShowAllEffects();
+		//m_manager->CreateCullingWorld(10, 10, 10, 5);
 
 		// 視点位置を確定
-		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
+		//auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 20.0f);
+		auto g_position = ::Effekseer::Vector3D(0.0f, 0.0f, -5.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
 		float h = (float)App::GetApp()->GetGameHeight();
+		auto cameraTgt = OnGetDrawCamera();
+		auto eye = cameraTgt->GetEye();
+		cameraTgt->SetEye(eye);
+		auto at = cameraTgt->GetAt();
+		cameraTgt->SetAt(at);
+		auto up = cameraTgt->GetUp();
+		cameraTgt->SetUp(up);
+		auto ne = cameraTgt->GetNear();
+		auto fa = cameraTgt->GetFar();
+		auto fovY = cameraTgt->GetFovY();
+
 		m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
-		// カメラ行列を設定
+			fovY, w / h, ne, fa));
+		 //カメラ行列を設定
+		//m_renderer->SetCameraMatrix(
+		//	::Effekseer::Matrix44().LookAtRH(::Effekseer::Vector3D(eye.x,eye.y,eye.z), ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
 		m_renderer->SetCameraMatrix(
-			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
+		m_renderer->SetCameraParameter(::Effekseer::Vector3D(eye.x,eye.y,eye.z),::Effekseer::Vector3D(g_position));
+		//m_renderer->SetCameraMatrix(
+		//	::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
-		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
-	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
+		//wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+		wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
 
@@ -92,16 +111,25 @@ namespace basecross {
 		m_manager1->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
 		// 視点位置を確定
-		auto g_position1 = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
+		auto g_position = ::Effekseer::Vector3D(5.0f, 3.0f, 5.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
 		float h = (float)App::GetApp()->GetGameHeight();
-		m_renderer1->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
+		auto cameraTgt = OnGetDrawCamera();
+
+		auto eye = cameraTgt->GetEye();
+		auto at = cameraTgt->GetAt();
+		auto up = cameraTgt->GetUp();
+		auto ne = cameraTgt->GetNear();
+		auto fa = cameraTgt->GetFar();
+		auto fovY = cameraTgt->GetFovY();
+
+		m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
+			fovY, w / h, ne, fa));
 		// カメラ行列を設定
-		m_renderer1->SetCameraMatrix(
-			::Effekseer::Matrix44().LookAtRH(g_position1, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+		m_renderer->SetCameraMatrix(
+			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
 		wstring dataDir1;
 		App::GetApp()->GetDataDirectory(dataDir1);
@@ -415,8 +443,8 @@ namespace basecross {
 			itemCount = 0;
 			if (!m_isPlay1) {
 				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.5, PlayerPos.z-0.5);
-				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
-				m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5,0,0);
+				m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
+				//m_handle1 = m_manager1->Play(m_effect1  ,0,0,0);
 				m_isPlay1 = true;
 			}
 		}
@@ -442,16 +470,56 @@ namespace basecross {
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
-		auto ptrXA = App::GetApp()->GetXAudio2Manager();
 
-		//auto ptrTrans = GetComponent<Transform>();
-		//Vec3 pos = ptrTrans->GetPosition();
-		//if (pos.x < -45.0f) {
-		//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-		//}
+		auto ptrXA = App::GetApp()->GetXAudio2Manager();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+		if (pos.x < -52.0f) {
+			auto ptrStage1 = GetStage()->GetSharedGameObject<Telop>(L"Telop");
+			ptrStage1->SetDrawActive(true);
+			// 時間の変数に足す
+			m_TelopTime += elapsedTime;
+			if (m_TelopTime >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage1->SetDrawActive(false);
+
+			}
+		}
+
+		// 出口テロップ
+		if (pos.x < -83.0f) {
+			auto ptrStage3 = GetStage()->GetSharedGameObject<Telop3>(L"Telop3");
+			ptrStage3->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop3Time += elapsedTime;
+			if (m_Telop3Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage3->SetDrawActive(false);
+
+			}
+		}
+
+		// 壁を壊せ！！テロップ
+		if (pos.x < 22.0f) {
+			auto ptrStage4 = GetStage()->GetSharedGameObject<Telop4>(L"Telop4");
+			ptrStage4->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop4Time += elapsedTime;
+			if (m_Telop4Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage4->SetDrawActive(false);
+
+			}
+		}
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
 
 		auto action = ptrDraw->GetCurrentAnimation();
@@ -549,8 +617,12 @@ namespace basecross {
 								{
 									if (!m_isPlay) {
 									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-									auto Wallpos = ptrWall->GetComponent<Transform>()->GetPosition();
-									m_handle = m_manager->Play(m_effect,::Effekseer::Vector3D(+6, 0.5f, -0.25),0);
+									auto WallPos = ptrWall->GetComponent<Transform>()->GetPosition();
+									//m_manager->SetTargetLocation(m_handle, ::Effekseer::Vector3D(WallPos.x, 0, 0));
+									//m_handle = m_manager->Play(m_effect, WallPos.x,0,0);
+
+									m_handle = m_manager->Play(m_effect,0,0,0);
+
 									m_isPlay = true;
 									}
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
@@ -656,8 +728,10 @@ namespace basecross {
 	void Player::OnDraw() {
 		GameObject::OnDraw();
 		auto elps = App::GetApp()->GetElapsedTime();
+		m_manager->Update();
 		if (m_isPlay) {
 			m_TotalTime += elps;
+			m_manager->Update();
 			if (m_TotalTime >= 2.0f) {
 				m_manager->StopEffect(m_handle);
 				m_TotalTime = 0.0f;
@@ -672,11 +746,12 @@ namespace basecross {
 				// エフェクトの描画開始処理を行う。
 				m_renderer->BeginRendering();
 				// エフェクトの描画を行う。
-				m_manager->DrawHandle(m_handle);
-				// エフェクトの描画を行う。
-				m_manager->DrawHandleBack(m_handle);
-				// エフェクトの描画を行う。
-				m_manager->DrawHandleFront(m_handle);
+				m_manager->Draw();
+				//m_manager->DrawHandle(m_handle);
+				//// エフェクトの描画を行う。
+				m_manager->DrawBack();
+				//// エフェクトの描画を行う。
+				m_manager->DrawFront();
 				// エフェクトの描画終了処理を行う。
 				m_renderer->EndRendering();
 			}

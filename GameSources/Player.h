@@ -18,6 +18,7 @@ namespace basecross{
 		bool moveStop;//Playerの移動停止の判定
 
 		Vec3 moveDir; // 移動方向ベクトル（単位ベクトル）
+		Vec3 at1;
 		float speed; // 移動の速さ
 
 		float accel; // 加速度
@@ -50,6 +51,22 @@ namespace basecross{
 		int Power;
 		
 		
+		// テロップ
+		void CreateTelop();
+		float m_TelopTime;
+
+		// テロップ2
+		void CreateTelop2();
+		float m_Telop2Time;
+
+		// テロップ3
+		void CreateTelop3();
+		float m_Telop3Time;
+
+		// テロップ4
+		void CreateTelop4();
+		float m_Telop4Time;
+
 
 		Vec3 GetMoveVector() const;
 
@@ -87,8 +104,9 @@ namespace basecross{
 			MaxMoveSpeed(6.0f),
 			moveStop(1.0f),	
 			moveDir(0.0f, 0.0f, 0.0f),
+			at1(0.0f,0.0f,0.0f),
 			speed(0.0f),
-			speed2(1.0f),
+			speed2(5.0f),
 			accel(0.0f),
 			itemCount(0),
 			PowerCount(0),
