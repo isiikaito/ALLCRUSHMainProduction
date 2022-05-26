@@ -23,6 +23,7 @@
 #include "ClearStage.h"
 #include "MenuSprite1.h"
 #include "GageSprite.h"
+#include "GageSpriteWhite.h"
 #include "Pillar.h"
 #include "FallingRock.h"
 #include "MenuSprite2.h"
@@ -43,4 +44,8 @@
 #include "MyMovieStage.h"
 #include "MyClearStage.h"
 #include "TickerSprite.h"
+#include "Telop.h"
+#include "Telop2.h"
+#include "Telop3.h"
+#include "Telop4.h"
 

@@ -44,25 +44,44 @@ namespace basecross {
 		m_manager->SetModelLoader(m_renderer->CreateModelLoader());
 		m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
 		m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+		//m_manager->GetCameraCullingMaskToShowAllEffects();
+		//m_manager->CreateCullingWorld(10, 10, 10, 5);
 
 		// 視点位置を確定
-		auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
+		//auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 20.0f);
+		auto g_position = ::Effekseer::Vector3D(0.0f, 0.0f, -5.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
 		float h = (float)App::GetApp()->GetGameHeight();
+		auto cameraTgt = OnGetDrawCamera();
+		auto eye = cameraTgt->GetEye();
+		cameraTgt->SetEye(eye);
+		auto at = cameraTgt->GetAt();
+		cameraTgt->SetAt(at);
+		auto up = cameraTgt->GetUp();
+		cameraTgt->SetUp(up);
+		auto ne = cameraTgt->GetNear();
+		auto fa = cameraTgt->GetFar();
+		auto fovY = cameraTgt->GetFovY();
+
 		m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
-		// カメラ行列を設定
+			fovY, w / h, ne, fa));
+		 //カメラ行列を設定
+		//m_renderer->SetCameraMatrix(
+		//	::Effekseer::Matrix44().LookAtRH(::Effekseer::Vector3D(eye.x,eye.y,eye.z), ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
 		m_renderer->SetCameraMatrix(
-			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
+		m_renderer->SetCameraParameter(::Effekseer::Vector3D(eye.x,eye.y,eye.z),::Effekseer::Vector3D(g_position));
+		//m_renderer->SetCameraMatrix(
+		//	::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
 		dataDir += L"effect\\";
 		//wstring wstrEfk = dataDir + L"Laser01.efk";
-		wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
-	/*	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";*/
+		//wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
+		wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
 
@@ -92,16 +111,25 @@ namespace basecross {
 		m_manager1->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
 		// 視点位置を確定
-		auto g_position1 = ::Effekseer::Vector3D(10.0f, 5.0f, 5.0f);
+		auto g_position = ::Effekseer::Vector3D(5.0f, 3.0f, 5.0f);
 
 		// 投影行列を設定
 		float w = (float)App::GetApp()->GetGameWidth();
 		float h = (float)App::GetApp()->GetGameHeight();
-		m_renderer1->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-			90.0f / 180.0f * 3.14f, w / h, 1.0f, 500.0f));
+		auto cameraTgt = OnGetDrawCamera();
+
+		auto eye = cameraTgt->GetEye();
+		auto at = cameraTgt->GetAt();
+		auto up = cameraTgt->GetUp();
+		auto ne = cameraTgt->GetNear();
+		auto fa = cameraTgt->GetFar();
+		auto fovY = cameraTgt->GetFovY();
+
+		m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
+			fovY, w / h, ne, fa));
 		// カメラ行列を設定
-		m_renderer1->SetCameraMatrix(
-			::Effekseer::Matrix44().LookAtRH(g_position1, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
+		m_renderer->SetCameraMatrix(
+			::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
 		wstring dataDir1;
 		App::GetApp()->GetDataDirectory(dataDir1);
@@ -174,16 +202,16 @@ namespace basecross {
 		CreateEffect1();
 
 
-		////読み込みの設定をする
-		//GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
+		
 	}
+
 
 	void Player::OnUpdate()
 
 	{  
 		
 
-		//アニメション
+		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
 
@@ -227,41 +255,79 @@ namespace basecross {
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
+
         //ボスの座標取得
 		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
 		auto EnemyPositon = ptrEnemy->GetComponent<Transform>()->GetPosition();
 
+
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
 		if (PBdistance>-15)
 		{
-			/*PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");*/
-		
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			if (move != L"GameOver") {
+				ptrDraw->ChangeCurrentAnimation(L"GameOver");
+				transComp->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
+				moveStop = false;
+			}
 		}
 
+
+		//柱が壊れていないとき
 		if (PillarCount == 0)
 		{
 			//柱の座標取得
-		auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
-		//クラスには（）が必要である引数があるときと無い時どっちでも必要
-		auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
+			auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+			//クラスには（）が必要である引数があるときと無い時どっちでも必要
+			auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
 
-		//柱とプレイヤーの距離
-		PPdistance = position.x - PillarPositon.x;
-		if (PPdistance <5)
-		{
-			moveStop = 0.0f;//移動の停止
-			position.x = -80;
-			position.z = 1;
-			Rotation.y = 90;
-			speed = 0;
-			
-			
-		}
+			//柱とプレイヤーの距離
+			PPdistance = position.x - PillarPositon.x;
+			if (PPdistance < 5)
+			{
+				moveStop = 0.0f;//移動の停止
+				position.x = -80;
+				position.z = 1;
+				Rotation.y = 90;
+				speed = 0;
 
+
+			}
 		}
-		
+		//auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
+		//auto vec = group->GetGroupVector();
+		//for (auto& v : vec) {
+		//	auto shPtr = v.lock();
+		//	auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+		//	if (ptrWall) {
+		//		auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
+		//		auto WallHP = ptrWall->GetHP();
+
+
+
+		////プレイヤーのパワーゲージ
+		////ゲージのオブジェクト取得
+		//auto ptrGage = GetStage()->GetSharedGameObject<GageSprite>(L"GageSprite");
+		////ゲージ上
+		//float GageUP = ptrGage->GetColwUP();
+
+		////ゲージ下
+		//float GageDOWN = ptrGage->GetColwDOWN();
+		//
+		//if (itemCount2==1)
+
+		//{
+		//	GageDOWN = 1.0f;
+		//	GageUP = 1.0f;
+		//	
+  //        ptrGage->SetColwUP(GageUP);
+		//ptrGage->SetColwDOWN(GageDOWN);
+		//	
+		//}
+           
+            
 
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
@@ -283,7 +349,7 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 			}
 		}
 
@@ -306,7 +372,7 @@ namespace basecross {
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 
-			moveStop = 0.0f;//移動の停止
+			moveStop = false;//移動の停止
 
 				}
 
@@ -334,6 +400,8 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.0f);
+
+				moveStop = false;//移動の停止
 			}
 		}
 		else {
@@ -342,7 +410,7 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
 
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 			}
 		}
 	}
@@ -351,28 +419,7 @@ namespace basecross {
 
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
-			// アプリケーションオブジェクトを取得する
-			auto& app = App::GetApp();
 
-			// デルタタイムを取得する
-			//float delta = app->GetElapsedTime(); // 前フレームからの「経過時間」
-
-			// ゲームコントローラーオブジェクトを取得する
-			auto& device = app->GetInputDevice();
-			const auto& pad = device.GetControlerVec()[0]; // ゼロ番目のコントローラーを取得する
-
-			auto ptrTrans = GetComponent<Transform>();
-			ptrTrans->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
-
-			auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-			float elapsedTime = App::GetApp()->GetElapsedTime();
-			ptrDraw->ChangeCurrentAnimation(L"GameOver");
-			auto end = ptrDraw->UpdateAnimation(elapsedTime);
-			endTime += elapsedTime;
-			moveStop = 0.0f;
-			if (endTime >= 3.0f) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			}
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
@@ -387,17 +434,35 @@ namespace basecross {
 	void Player::OnPushX() {
 		auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 		auto PlayerPos = GetComponent<Transform>()->GetPosition();
+		auto SpeedUpSound = App::GetApp()->GetXAudio2Manager();
 		if (itemCount == 1) {
 			Shitem->SetDrawActive(false);
+			//サウンドの再生
+			SpeedUpSound->Start(L"SpeedUp", 0, 0.5f);
 			speed2 = 2;
 			itemCount = 0;
 			if (!m_isPlay1) {
 				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.5, PlayerPos.z-0.5);
-				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
-				m_handle1 = m_manager1->Play(m_effect1,0,0,0);
+				m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
+				//m_handle1 = m_manager1->Play(m_effect1  ,0,0,0);
 				m_isPlay1 = true;
 			}
 		}
+		//ゲージが溜まったら
+		if (PowerCount <= 4)
+		{
+			Power = 0;
+			PowerCount = 0;
+			
+			
+			
+		}
+		////ゲージが溜まっていないとき
+		//if (PowerCount ==1)
+		//{
+		//	m_AttackPower = 1.0f;
+		//	
+		//}
 		//if (!m_isPlay1) {
 		//	m_handle = m_manager->Play(m_effect1, 0, 0, 0);
 		//	m_isPlay1 = true;
@@ -405,16 +470,56 @@ namespace basecross {
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
-		auto ptrXA = App::GetApp()->GetXAudio2Manager();
 
-		//auto ptrTrans = GetComponent<Transform>();
-		//Vec3 pos = ptrTrans->GetPosition();
-		//if (pos.x < -45.0f) {
-		//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-		//}
+		auto ptrXA = App::GetApp()->GetXAudio2Manager();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+		if (pos.x < -52.0f) {
+			auto ptrStage1 = GetStage()->GetSharedGameObject<Telop>(L"Telop");
+			ptrStage1->SetDrawActive(true);
+			// 時間の変数に足す
+			m_TelopTime += elapsedTime;
+			if (m_TelopTime >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage1->SetDrawActive(false);
+
+			}
+		}
+
+		// 出口テロップ
+		if (pos.x < -83.0f) {
+			auto ptrStage3 = GetStage()->GetSharedGameObject<Telop3>(L"Telop3");
+			ptrStage3->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop3Time += elapsedTime;
+			if (m_Telop3Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage3->SetDrawActive(false);
+
+			}
+		}
+
+		// 壁を壊せ！！テロップ
+		if (pos.x < 22.0f) {
+			auto ptrStage4 = GetStage()->GetSharedGameObject<Telop4>(L"Telop4");
+			ptrStage4->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop4Time += elapsedTime;
+			if (m_Telop4Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage4->SetDrawActive(false);
+
+			}
+		}
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
 
 		auto action = ptrDraw->GetCurrentAnimation();
@@ -432,6 +537,8 @@ namespace basecross {
 				ptrXA->Start(L"Hammer", 0, 0.5f);
 				moveStop = 1.0f;//移動停止解除
 
+
+				//壁の破壊処理
 					for (auto& v : vec) {
 						auto shPtr = v.lock();
 						Vec3 ret;
@@ -445,8 +552,51 @@ namespace basecross {
 								//壁との距離が2.0以下になった
 								auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 								//	ptrDraw->ChangeCurrentAnimation(L"ActionEnd");
-								WallHP--;
+
+								//パワーアップ時の処理
+								switch (Power)
+								{
+								case 0:
+										WallHP-=10;
+									Power = 1;
+									break;
+									//パワーアップ前の処理
+								case 1:
+									WallHP -= 1;
+									break;
+									/*case 2:
+										PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+										break;*/
+
+								}
+								PowerCount +=1;
+								if (PowerCount >= 4)
+								{
+									PowerCount = 4;
+								}
 								ptrWall->SetHP(WallHP);
+				//壁の残り耐久値についての処理
+				if (WallHP >= 4)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
+				}
+				else if (WallHP >= 3)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
+				}
+				else if(WallHP >= 2)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
+				}
+				else if(WallHP >= 1)
+				{
+					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
+					ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
+				}
+
 								if (WallHP <= 0)
 								{
 								ptrXA->Start(L"BrakeWall", 0, 0.5f);
@@ -467,8 +617,12 @@ namespace basecross {
 								{
 									if (!m_isPlay) {
 									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-									auto Wallpos = ptrWall->GetComponent<Transform>()->GetPosition();
-									m_handle = m_manager->Play(m_effect,::Effekseer::Vector3D(+6, 0.5f, -0.25),0);
+									auto WallPos = ptrWall->GetComponent<Transform>()->GetPosition();
+									//m_manager->SetTargetLocation(m_handle, ::Effekseer::Vector3D(WallPos.x, 0, 0));
+									//m_handle = m_manager->Play(m_effect, WallPos.x,0,0);
+
+									m_handle = m_manager->Play(m_effect,0,0,0);
+
 									m_isPlay = true;
 									}
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
@@ -478,8 +632,7 @@ namespace basecross {
 								}
 								
 
-								//}
-							//}
+								
 							}
 						}
 					}
@@ -505,7 +658,7 @@ namespace basecross {
 							}
 						}
 					}
-					//柱
+					//柱破壊処理
 					auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
 					auto vec2 = group2->GetGroupVector();
 					for (auto& v2 : vec2) {
@@ -539,6 +692,8 @@ namespace basecross {
 			}
 		}
 
+		//攻撃処理
+
 		else if (action == L"ActionPull") {
 
 			if (ptrDraw->IsTargetAnimeEnd()) {
@@ -548,7 +703,7 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.5f);
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 
 			}
 		}
@@ -557,7 +712,13 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				ptrXA->Stop(m_BGM);
 
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
+			}
+		}
+
+		if (action == L"GameOver") {
+			if (now) {
+				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
 		//文字列の表示
@@ -567,8 +728,10 @@ namespace basecross {
 	void Player::OnDraw() {
 		GameObject::OnDraw();
 		auto elps = App::GetApp()->GetElapsedTime();
+		m_manager->Update();
 		if (m_isPlay) {
 			m_TotalTime += elps;
+			m_manager->Update();
 			if (m_TotalTime >= 2.0f) {
 				m_manager->StopEffect(m_handle);
 				m_TotalTime = 0.0f;
@@ -583,11 +746,12 @@ namespace basecross {
 				// エフェクトの描画開始処理を行う。
 				m_renderer->BeginRendering();
 				// エフェクトの描画を行う。
-				m_manager->DrawHandle(m_handle);
-				// エフェクトの描画を行う。
-				m_manager->DrawHandleBack(m_handle);
-				// エフェクトの描画を行う。
-				m_manager->DrawHandleFront(m_handle);
+				m_manager->Draw();
+				//m_manager->DrawHandle(m_handle);
+				//// エフェクトの描画を行う。
+				m_manager->DrawBack();
+				//// エフェクトの描画を行う。
+				m_manager->DrawFront();
 				// エフェクトの描画終了処理を行う。
 				m_renderer->EndRendering();
 			}

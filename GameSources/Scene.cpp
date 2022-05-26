@@ -29,11 +29,26 @@ namespace basecross {
 		strTexture = dataDir + L"Titlle.jpg";
 		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
 
+		//strTexture = dataDir + L"GameOver.png";
+		//App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
+
 		strTexture = dataDir + L"ゲームオーバー.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
 		strTexture = dataDir + L"flee.png";
 		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
+
+		strTexture = dataDir + L"柱を壊す.png";
+		App::GetApp()->RegisterTexture(L"柱を壊す_TX", strTexture);
+
+		strTexture = dataDir + L"柱壊すタイミング.png";
+		App::GetApp()->RegisterTexture(L"柱壊すタイミング_TX", strTexture);
+
+		strTexture = dataDir + L"出口前.png";
+		App::GetApp()->RegisterTexture(L"出口前_TX", strTexture);
+
+		strTexture = dataDir + L"壁を壊せ！！.png";
+		App::GetApp()->RegisterTexture(L"壁を壊せ！！_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
@@ -85,8 +100,21 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 
 		//壊す壁Maya読み込み
-		auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakeWall.bmf");
-		App::GetApp()->RegisterResource(L"BREAKWALL_MESH", staticModelMesh8);
+		auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"WallHPMax.bmf");
+		App::GetApp()->RegisterResource(L"UNBREAKWALL_MESH", staticModelMesh8);
+
+
+		//
+		auto staticModelMesh9 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall02.bmf");
+		App::GetApp()->RegisterResource(L"DAMAGEWALL1_MESH", staticModelMesh9);
+
+		//
+		auto staticModelMesh10 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakeWall01.bmf");
+		App::GetApp()->RegisterResource(L"DAMAGEWALL2_MESH", staticModelMesh10);
+
+		//
+		auto staticModelMesh11 = MeshResource::CreateStaticModelMesh(dataDir, L"BerakWall03.bmf");
+		App::GetApp()->RegisterResource(L"DAMAGEWALL3_MESH", staticModelMesh11);
 
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
@@ -117,6 +145,9 @@ namespace basecross {
 		//走るサウンド
 		CursorWav = dataDir + L"run.wav";
 		App::GetApp()->RegisterWav(L"run", CursorWav);
+		//スピードアップのサウンド
+		CursorWav = dataDir + L"SpeedUp.wav";
+		App::GetApp()->RegisterWav(L"SpeedUp", CursorWav);
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);

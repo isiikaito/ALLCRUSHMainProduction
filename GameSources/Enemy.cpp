@@ -158,6 +158,31 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 
 	}
 
+	void EnemyObject::OnUpdate2()
+	{
+		auto ptrXA = App::GetApp()->GetXAudio2Manager();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+
+		//今だ！！テロップ
+		if (pos.x < -45.0f) {
+			auto ptrStage2 = GetStage()->GetSharedGameObject<Telop2>(L"Telop2");
+			ptrStage2->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop2Time += elapsedTime;
+		if (m_Telop2Time >= 2.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrStage2->SetDrawActive(false);
+
+		}
+		}
+
+	}
+
 	Vec3 EnemyObject::GetTargetPos()const {
 		auto ptrTarget = GetStage()->GetSharedObject(L"Player");
 		return ptrTarget->GetComponent<Transform>()->GetWorldPosition();

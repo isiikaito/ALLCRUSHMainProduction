@@ -36,6 +36,7 @@ namespace basecross {
 	//ゲージの追加
 	void CreateMygage();
 	void CreateGageSprite();
+	void CreateGageWhite();
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
@@ -43,6 +44,19 @@ namespace basecross {
 	// テロップ
 	void CreateTickerSprite();
 	float m_idleTime;
+
+	void CreateTelop();
+	float m_TelopTime;
+
+	void CreateTelop2();
+	float m_Telop2Time;
+
+	void CreateTelop3();
+	float m_Telop3Time;
+
+	void CreateTelop4();
+	float m_Telop4Time;
+
 	//トータル時間
 	float m_TotalTime;
 	

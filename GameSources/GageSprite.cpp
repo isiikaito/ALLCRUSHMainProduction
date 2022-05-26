@@ -15,7 +15,9 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0)
+		m_TotalTime(0),
+		m_ColwUP(0),
+		m_ColwDOWN(0)
 	{}
 
 	GageSprite::~GageSprite() {}
@@ -24,10 +26,10 @@ namespace basecross {
 		//頂点配列
 		m_BackupVertices = {
 			                                                             //カラー　透明度
-			{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(2.0f,0.0f,0.0f,0.5f)) },
-			{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(2.0f, 0.0f, 0.0f, 0.5f)) },
-			{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(2.0f, 0.0f, 0.0f, 1.0f)) },
-			{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(2.0f, 0.0f, 0, 1.0f)) },
+			{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(2.0f,0.0f,0.0f,m_ColwUP)) },
+			{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(2.0f, 0.0f, 0.0f, m_ColwUP)) },
+			{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(2.0f, 0.0f, 0.0f, m_ColwDOWN)) },
+			{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(2.0f, 0.0f, 0, m_ColwDOWN)) },
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
@@ -38,6 +40,8 @@ namespace basecross {
 		ptrTrans->SetPosition(m_StartPos);
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
+		//読み込みの設定をする
+		GetStage()->SetSharedGameObject(L"GageSprite", GetThis<GageSprite>());
 	}
 	//点滅処理（Elapsedtimeを利用している）
 	void GageSprite::OnUpdate() {
@@ -62,5 +66,20 @@ namespace basecross {
 		//auto ptrDraw = GetComponent<PCSpriteDraw>();
 		//ptrDraw->UpdateVertices(newVertices);
 
+		
+		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		auto itemCount = ptrPlayer->GetPower();
+		ptrPlayer->SetPower(itemCount);
+		
+		if (itemCount==0)
+
+
+		{ //プレイヤーの座標取得
+		
+			m_ColwUP = 1.0f;
+			m_ColwDOWN = 1.0f;
+			
+		}
+		 
 	}
 }
