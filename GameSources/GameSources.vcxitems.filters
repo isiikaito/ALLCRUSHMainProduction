@@ -31,20 +31,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
-<<<<<<< HEAD
-=======
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop4.cpp" />
->>>>>>> develop
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -64,11 +55,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
@@ -76,22 +69,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
-<<<<<<< HEAD
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
-=======
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h" />
->>>>>>> develop
   </ItemGroup>
 </Project>

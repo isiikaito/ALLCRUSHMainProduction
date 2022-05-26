@@ -449,7 +449,7 @@ namespace basecross {
 
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
-		if (pos.x < -45.0f) {
+		if (pos.x < -52.0f) {
 			auto ptrStage1 = GetStage()->GetSharedGameObject<Telop>(L"Telop");
 			ptrStage1->SetDrawActive(true);
 			// ŠÔ‚Ì•Ï”‚É‘«‚·
