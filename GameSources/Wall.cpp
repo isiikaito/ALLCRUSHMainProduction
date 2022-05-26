@@ -81,10 +81,10 @@ namespace basecross {
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.2f, 0.1f, 0.06f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, XM_PI * -0.5f, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(20.0f, 0.5f, 0.05f),//Scale
+			Vec3(0.25f, 0.0f, 0.0f),//Position
+			Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
+			Vec3(0.0f, -0.5f, 0.0f)//Position
 		);
 
 		
@@ -101,10 +101,6 @@ namespace basecross {
 
 		auto WallHP = GetHP();
 		auto ptrDraw1 = AddComponent<PNTStaticModelDraw>();
-		if (WallHP >= 4)
-		{
-			ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
-		}
 		//壁の残り耐久値についての処理
 		if (WallHP >= 4)
 		{
