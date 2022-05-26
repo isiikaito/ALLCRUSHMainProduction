@@ -44,4 +44,8 @@
 #include "MyMovieStage.h"
 #include "MyClearStage.h"
 #include "TickerSprite.h"
+#include "Telop.h"
+#include "Telop2.h"
+#include "Telop3.h"
+#include "Telop4.h"
 

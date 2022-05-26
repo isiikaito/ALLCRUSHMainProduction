@@ -45,6 +45,22 @@ namespace basecross{
 		//振り向きカウントタイム
 		float m_TurnTime;
 		
+		// テロップ
+		void CreateTelop();
+		float m_TelopTime;
+
+		// テロップ2
+		void CreateTelop2();
+		float m_Telop2Time;
+
+		// テロップ3
+		void CreateTelop3();
+		float m_Telop3Time;
+
+		// テロップ4
+		void CreateTelop4();
+		float m_Telop4Time;
+
 
 		Vec3 GetMoveVector() const;
 
