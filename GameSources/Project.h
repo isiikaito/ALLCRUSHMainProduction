@@ -23,6 +23,8 @@
 #include "ClearStage.h"
 #include "MenuSprite1.h"
 #include "GageSprite.h"
+#include "GageSprite2.h"
+#include "GageSprite3.h"
 #include "GageSpriteWhite.h"
 #include "Pillar.h"
 #include "FallingRock.h"

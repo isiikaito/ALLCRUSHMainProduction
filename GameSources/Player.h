@@ -143,12 +143,12 @@ namespace basecross{
 		void SetPillarCount(int PillarCount) {
 			PillarCount = PillarCount;
 		}
-		int GetPower()const {
-			return Power;
+		int GetPowerCount()const {
+			return PowerCount;
 		}
-		void SetPower(int Power)
+		void SetPowerCount(int PowerCount)
 		{
-			Power = Power;
+			PowerCount = PowerCount;
 		}
 	};
 }

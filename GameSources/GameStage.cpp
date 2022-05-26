@@ -374,22 +374,32 @@ namespace basecross {
 			Vec2(180.0f, 180.0f), Vec3(-530.0f, -310.0f, 0.0f));
 	}
 
-	//ゲージの作成
+	//ゲージの枠作成
 	void GameStage::CreateMygage() {
 		AddGameObject<Mygage>(L"GAGE_TX", true,
 			Vec2(240.0f, 240.0f), Vec3(550.0f, -220.0f, 0.0f));
 	}
-
+	//ゲージのバーの作成
 	void GameStage::CreateGageSprite()
 	{
 		AddGameObject<GageSprite>(true,
-			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.1f));
+			Vec2(40.0f,50.0f), Vec3(550.0f, -310.0f, 0.1f));
+	}
+	void GameStage::CreateGageSprite2()
+	{
+		AddGameObject<GageSprite2>(true,
+			Vec2(40.0f, 40.0f), Vec3(550.0f, -270.0f, 0.1f));
+	}
+	void GameStage::CreateGageSprite3()
+	{
+		AddGameObject<GageSprite3>(true,
+			Vec2(40.0f, 40.0f), Vec3(550.0f, -230.0f, 0.1f));
 	}
 
 	void GameStage::CreateGageWhite()
 	{
-		/*AddGameObject<GageSpriteWhite>(true,
-			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));*/
+		AddGameObject<GageSpriteWhite>(true,
+			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
 	}
 
 	
@@ -500,6 +510,8 @@ namespace basecross {
 			//ゲージスプライト
 			CreateMygage();
 			CreateGageSprite();
+			CreateGageSprite2();
+			CreateGageSprite3();
 			CreateGageWhite();
 			// 逃げるテロップ
 			CreateTickerSprite();

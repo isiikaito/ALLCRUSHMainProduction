@@ -449,7 +449,7 @@ namespace basecross {
 			}
 		}
 		//ゲージが溜まったら
-		if (PowerCount <= 4)
+		if (PowerCount <= 3)
 		{
 			Power = 0;
 			PowerCount = 0;
@@ -569,11 +569,7 @@ namespace basecross {
 										break;*/
 
 								}
-								PowerCount +=1;
-								if (PowerCount >= 4)
-								{
-									PowerCount = 4;
-								}
+								
 								ptrWall->SetHP(WallHP);
 				//壁の残り耐久値についての処理
 				if (WallHP >= 4)
@@ -601,6 +597,12 @@ namespace basecross {
 								{
 								ptrXA->Start(L"BrakeWall", 0, 0.5f);
 								GetStage()->RemoveGameObject<Wall>(shPtr);
+								PowerCount +=1;
+								if (PowerCount >= 3)
+								{
+									PowerCount = 3;
+								}
+								
 								}
 
 								auto elps = App::GetApp()->GetElapsedTime();
