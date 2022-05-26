@@ -1,5 +1,5 @@
 /*!
-@file GageSprite.h
+@file GageSprite3.h
 @brief ゲージ
 */
 
@@ -8,7 +8,7 @@
 
 namespace basecross {
 	//ゲージ
-	class GageSprite : public GameObject
+	class GageSprite3 : public GameObject
 	{
 		bool m_Trace;
 		Vec2 m_StartScale;
@@ -19,12 +19,12 @@ namespace basecross {
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
 
-		
+
 	public:
-		GageSprite(const shared_ptr<Stage>& StagePtr, bool Trace,
+		GageSprite3(const shared_ptr<Stage>& StagePtr, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);
 
-		virtual ~GageSprite();
+		virtual ~GageSprite3();
 
 		virtual void OnCreate() override;
 

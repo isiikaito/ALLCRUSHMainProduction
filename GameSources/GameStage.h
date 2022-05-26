@@ -36,6 +36,8 @@ namespace basecross {
 	//ゲージの追加
 	void CreateMygage();
 	void CreateGageSprite();
+	void CreateGageSprite2();
+	void CreateGageSprite3();
 	void CreateGageWhite();
 	//出口の作成
 	void CreateExitWall();

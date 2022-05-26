@@ -36,6 +36,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -73,9 +77,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite3.h" />
   </ItemGroup>
 </Project>
