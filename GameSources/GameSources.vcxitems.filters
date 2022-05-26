@@ -36,6 +36,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop3.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop4.cpp" />
+>>>>>>> develop
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -76,6 +85,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
+<<<<<<< HEAD
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
+=======
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h" />
+>>>>>>> develop
   </ItemGroup>
 </Project>

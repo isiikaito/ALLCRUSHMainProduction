@@ -38,6 +38,18 @@ namespace basecross {
 		strTexture = dataDir + L"flee.png";
 		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
+		strTexture = dataDir + L"柱を壊す.png";
+		App::GetApp()->RegisterTexture(L"柱を壊す_TX", strTexture);
+
+		strTexture = dataDir + L"柱壊すタイミング.png";
+		App::GetApp()->RegisterTexture(L"柱壊すタイミング_TX", strTexture);
+
+		strTexture = dataDir + L"出口前.png";
+		App::GetApp()->RegisterTexture(L"出口前_TX", strTexture);
+
+		strTexture = dataDir + L"壁を壊せ！！.png";
+		App::GetApp()->RegisterTexture(L"壁を壊せ！！_TX", strTexture);
+
 		//モデル
 		//ボーンモデルの通常リソース
 		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player05.bmf");
