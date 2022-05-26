@@ -233,12 +233,17 @@ namespace basecross {
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
 		auto EnemyPositon = ptrEnemy->GetComponent<Transform>()->GetPosition();
 
+
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
 		if (PBdistance>-15)
 		{
-			/*PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");*/
-		
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			if (move != L"GameOver") {
+				ptrDraw->ChangeCurrentAnimation(L"GameOver");
+				transComp->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
+				moveStop = false;
+			}
 		}
 
 
@@ -316,7 +321,7 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 			}
 		}
 
@@ -339,7 +344,7 @@ namespace basecross {
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 
-			moveStop = 0.0f;//移動の停止
+			moveStop = false;//移動の停止
 
 				}
 
@@ -367,6 +372,8 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.0f);
+
+				moveStop = false;//移動の停止
 			}
 		}
 		else {
@@ -375,7 +382,7 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
 
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 			}
 		}
 	}
@@ -384,28 +391,7 @@ namespace basecross {
 
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
-			// アプリケーションオブジェクトを取得する
-			auto& app = App::GetApp();
 
-			// デルタタイムを取得する
-			//float delta = app->GetElapsedTime(); // 前フレームからの「経過時間」
-
-			// ゲームコントローラーオブジェクトを取得する
-			auto& device = app->GetInputDevice();
-			const auto& pad = device.GetControlerVec()[0]; // ゼロ番目のコントローラーを取得する
-
-			auto ptrTrans = GetComponent<Transform>();
-			ptrTrans->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
-
-			auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-			float elapsedTime = App::GetApp()->GetElapsedTime();
-			ptrDraw->ChangeCurrentAnimation(L"GameOver");
-			auto end = ptrDraw->UpdateAnimation(elapsedTime);
-			endTime += elapsedTime;
-			moveStop = 0.0f;
-			if (endTime >= 3.0f) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			}
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
@@ -645,7 +631,7 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.5f);
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
 
 			}
 		}
@@ -654,7 +640,13 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				ptrXA->Stop(m_BGM);
 
-				moveStop = 1.0f;//移動停止解除
+				moveStop = true;//移動停止解除
+			}
+		}
+
+		if (action == L"GameOver") {
+			if (now) {
+				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
 		//文字列の表示

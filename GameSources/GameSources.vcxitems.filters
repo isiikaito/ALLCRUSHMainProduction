@@ -36,8 +36,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
