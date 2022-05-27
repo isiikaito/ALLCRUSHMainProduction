@@ -127,16 +127,16 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
-		strTexture = dataDir + L"Stege1.png";
-		App::GetApp()->RegisterTexture(L"STAGE1_TX", strTexture);
+		strTexture = dataDir + L"Stage1.png";
+		App::GetApp()->RegisterTexture(L"Stage1_TX", strTexture);
 
 		//文字テクスチャ
 		strTexture = dataDir + L"Stage2.png";
-		App::GetApp()->RegisterTexture(L"STAGE2_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"Stage2_TX", strTexture);
 		
 		//メニューテクスチャ
-		strTexture = dataDir + L"memu.png";
-		App::GetApp()->RegisterTexture(L"MEMU_TX", strTexture);
+		strTexture = dataDir + L"メニュー画面.png";
+		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
 		
 
 		//サウンド
