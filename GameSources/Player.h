@@ -37,6 +37,8 @@ namespace basecross{
 		float SoundTime;
 
 
+		//出口にぶつかった
+		int ExitCount;
 		//プレイヤーとボスとの距離
 		float PBdistance;
 
@@ -112,6 +114,7 @@ namespace basecross{
 			itemCount(0),
 			PowerCount(0),
 			Power(1),
+			ExitCount(0),
 			Gageflash(0),
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
@@ -126,6 +129,8 @@ namespace basecross{
 		void OnPushA();
 		//Bボタン
 		void OnPushB(){}
+		//Yボタン
+		void OnPushY();
 		//十字キー上
 		void OnPushUP() {}
 		//十字キー下
@@ -162,13 +167,22 @@ namespace basecross{
 		{
 			Power = Power;
 		}
-
+		//パワーアップを使ったかどうか
 		int GetGageflash()const {
 			return Gageflash;
 		}
 		void SetGageflash(int Gageflash)
 		{
 			Gageflash = Gageflash;
+		}
+
+		//出口に当たったかどうか
+		int GetExitCount()const {
+			return ExitCount;
+		}
+		void SetExitCount(int ExitCount)
+		{
+			ExitCount = ExitCount;
 		}
 	};
 }

@@ -31,6 +31,8 @@ namespace basecross {
 		void OnPushA(){}
 		void OnPushB();
 		void OnPushX(){}
+		//Yボタン
+		void OnPushY() {}
 		//十字キー上
 		void OnPushUP() {}
 		//十字キー下

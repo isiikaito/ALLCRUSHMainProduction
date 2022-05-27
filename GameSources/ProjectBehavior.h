@@ -54,6 +54,10 @@ namespace basecross {
 				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 					Obj->OnPushX();
 				}
+				 //Yボタン
+				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
+					 Obj->OnPushY();
+				 }
 				 //十字キーの上
 				 if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
 					Obj->OnPushUP();

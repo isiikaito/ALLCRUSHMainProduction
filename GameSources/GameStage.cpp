@@ -403,6 +403,11 @@ namespace basecross {
 	}
 
 	
+	//ゲームクリアのフェードアウト
+	void GameStage::CreateFadeOut() {
+		AddGameObject<FadeOut>(true,
+			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
+	}
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -513,6 +518,9 @@ namespace basecross {
 			CreateGageSprite2();
 			CreateGageSprite3();
 			CreateGageWhite();
+
+			//ゲームクリアのFadeOut
+			CreateFadeOut();
 			// 逃げるテロップ
 			CreateTickerSprite();
 

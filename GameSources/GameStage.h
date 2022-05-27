@@ -39,6 +39,8 @@ namespace basecross {
 	void CreateGageSprite2();
 	void CreateGageSprite3();
 	void CreateGageWhite();
+	//ゲームクリアFadeOut
+	void CreateFadeOut();
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
