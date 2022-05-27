@@ -17,6 +17,8 @@ namespace basecross {
 	//ビューの作成
 	void CreateViewLight();
 	void CreatestageObject();
+	//スパークエフェクトの作成
+	void CreateMultiSpark();
 	//柱
 	void CreatePillar();
 	//マヤによるステージの壁作成

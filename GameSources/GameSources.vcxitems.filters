@@ -46,6 +46,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Telop3.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Telop4.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -97,5 +98,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
   </ItemGroup>
 </Project>

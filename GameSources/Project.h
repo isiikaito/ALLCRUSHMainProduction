@@ -30,6 +30,8 @@
 #include "Pillar.h"
 #include "FallingRock.h"
 #include "MenuSprite2.h"
+#include "ImpactSmoke.h"
+
 #include "MenuStage.h"
 #include "GameStage.h"
 #include "GameStage2.h"

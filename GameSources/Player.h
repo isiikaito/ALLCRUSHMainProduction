@@ -109,7 +109,7 @@ namespace basecross{
 			moveDir(0.0f, 0.0f, 0.0f),
 			at1(0.0f,0.0f,0.0f),
 			speed(0.0f),
-			speed2(5.0f),
+			speed2(1.0f),
 			accel(0.0f),
 			itemCount(0),
 			PowerCount(0),
