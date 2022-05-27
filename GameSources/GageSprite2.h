@@ -30,20 +30,6 @@ namespace basecross {
 
 		virtual void OnUpdate()override;
 
-		////ゲージ上の透明度取得
-		//float GetColwUP()const {
-		//	return m_ColwUP;
-		//}
-		//void SetColwUP(float ColwUP) {
-		//	m_ColwUP = ColwUP;
-		//}
-
-		////ゲージ下の透明度取得
-		//float GetColwDOWN()const {
-		//	return m_ColwDOWN;
-		//}
-		//void SetColwDOWN(float ColwDOWN) {
-		//	m_ColwDOWN = ColwDOWN;
-		//}
+		
 	};
 }

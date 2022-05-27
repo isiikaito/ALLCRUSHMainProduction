@@ -51,7 +51,7 @@ namespace basecross {
 
 
 
-		
+
 	}
 	//点滅処理（Elapsedtimeを利用している）
 	void GageSprite::OnUpdate() {
@@ -62,43 +62,70 @@ namespace basecross {
 		//		ptrDraw->SetDiffuse(Col4(1.0f,0,0,1.0f));
 
 
-				////時間の取得
-				//float elapsedTime = App::GetApp()->GetElapsedTime();
-				//m_TotalTime += elapsedTime;
-				//if (m_TotalTime >= XM_PI) {
-				//	m_TotalTime = 0;
-				//}
-				//
-				//vector<VertexPositionColor> newVertices;
-				//for (size_t i = 0; i < m_BackupVertices.size(); i++) {
-				//	Col4 col = m_BackupVertices[i].color;
-				//	//sinで0～１までにして0の時は透明１の時は表示としている
-				//	col.w = sin(m_TotalTime);
-				//	auto v = VertexPositionColor(
-				//		m_BackupVertices[i].position,
-				//		col
-				//	);
-				//	newVertices.push_back(v);
-				//}
-				//auto ptrDraw = GetComponent<PCSpriteDraw>();
-				//ptrDraw->UpdateVertices(newVertices);
 
-
+		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto PowerCount = ptrPlayer->GetPowerCount();
+		//壁を殴った回数
 		ptrPlayer->SetPowerCount(PowerCount);
+        //パワーアップしているかどうか
+		auto Power = ptrPlayer->GetPower();
+		ptrPlayer->SetPower(Power);
+		//アイテムを使ったかどうか
+		auto Gageflash = ptrPlayer->GetGageflash();
+		ptrPlayer->SetGageflash(Gageflash);
+		//壁を１回殴ったら
+			if (PowerCount == 1)
 
-		if (PowerCount == 1)
+
+			{
+				//ゲージの表示
+				auto ptrDraw = GetComponent<PCSpriteDraw>();
+				ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
 
 
-		{ //プレイヤーの座標取得
 
+
+			}
+
+
+		
+			//パワーアップした時
+		if (Power == 0)
+		{
+            //点滅
+			
+			//時間の取得
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elapsedTime;
+			if (m_TotalTime >= XM_PI) {
+				m_TotalTime = 0;
+			}
+
+			vector<VertexPositionColor> newVertices;
+			for (size_t i = 0; i < m_BackupVertices.size(); i++) {
+				Col4 col = m_BackupVertices[i].color;
+				//sinで0～１までにして0の時は透明１の時は表示としている
+				col.w = sin(m_TotalTime);
+				auto v = VertexPositionColor(
+					m_BackupVertices[i].position,
+					col
+				);
+				newVertices.push_back(v);
+			}
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
-			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
-
-
-
+			ptrDraw->UpdateVertices(newVertices);
 
 		}
+		//アイテムを使った後
+		if (Gageflash == 1)
+		{
+			//ゲージを消す
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
+			Gageflash = 0;
+		}
+
 	}
+
 }

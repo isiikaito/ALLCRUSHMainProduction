@@ -58,11 +58,18 @@ namespace basecross {
 
 
 
-
+		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//壁を壊した回数
 		auto PowerCount = ptrPlayer->GetPowerCount();
 		ptrPlayer->SetPowerCount(PowerCount);
-
+		//パワーアップしてるかどうか
+		auto Power = ptrPlayer->GetPower();
+		ptrPlayer->SetPower(Power);
+		//使い終わってるかどうか
+		auto Gageflash = ptrPlayer->GetGageflash();
+		ptrPlayer->SetGageflash(Gageflash);
+		//壁を三回壊したら
 		if (PowerCount == 3)
 
 
@@ -74,6 +81,40 @@ namespace basecross {
 
 
 
+		}
+		//パワーアップしてるかどうか
+		if (Power == 0)
+		{
+			//点滅
+			//時間の取得
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elapsedTime;
+			if (m_TotalTime >= XM_PI) {
+				m_TotalTime = 0;
+			}
+
+			vector<VertexPositionColor> newVertices;
+			for (size_t i = 0; i < m_BackupVertices.size(); i++) {
+				Col4 col = m_BackupVertices[i].color;
+				//sinで0～１までにして0の時は透明１の時は表示としている
+				col.w = sin(m_TotalTime);
+				auto v = VertexPositionColor(
+					m_BackupVertices[i].position,
+					col
+				);
+				newVertices.push_back(v);
+			}
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->UpdateVertices(newVertices);
+
+		}
+		//ゲージを使い終わったら
+		if (Gageflash == 1)
+		{
+			//消える
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
+			Gageflash = 0;
 		}
 	}
 }

@@ -383,17 +383,17 @@ namespace basecross {
 	void GameStage::CreateGageSprite()
 	{
 		AddGameObject<GageSprite>(true,
-			Vec2(40.0f,50.0f), Vec3(550.0f, -310.0f, 0.1f));
+			Vec2(40.0f,40.0f), Vec3(550.0f, -320.0f, 0.1f));
 	}
 	void GameStage::CreateGageSprite2()
 	{
 		AddGameObject<GageSprite2>(true,
-			Vec2(40.0f, 40.0f), Vec3(550.0f, -270.0f, 0.1f));
+			Vec2(40.0f, 40.0f), Vec3(550.0f, -280.0f, 0.1f));
 	}
 	void GameStage::CreateGageSprite3()
 	{
 		AddGameObject<GageSprite3>(true,
-			Vec2(40.0f, 40.0f), Vec3(550.0f, -230.0f, 0.1f));
+			Vec2(40.0f, 50.0f), Vec3(550.0f, -235.0f, 0.1f));
 	}
 
 	void GameStage::CreateGageWhite()

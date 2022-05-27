@@ -53,27 +53,68 @@ namespace basecross {
 
 
 	}
-	//点滅処理（Elapsedtimeを利用している）
+	
 	void GageSprite2::OnUpdate() {
 
 
 
-
+		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto PowerCount = ptrPlayer->GetPowerCount();
+		//壁を殴った数
 		ptrPlayer->SetPowerCount(PowerCount);
+        //パワーアップ
+		auto Power = ptrPlayer->GetPower();
+		ptrPlayer->SetPower(Power);
+		//ゲージを使った
+		auto Gageflash = ptrPlayer->GetGageflash();
+		ptrPlayer->SetGageflash(Gageflash);
 
+		//壁を２回殴ったら
 		if (PowerCount == 2)
 
 
-		{ //プレイヤーの座標取得
-
+		{ 
+			//ゲージを表示
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
 
 
 
 
+		}
+		//パワーアップ
+		if (Power == 0)
+		{
+			//点滅
+			//時間の取得
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			m_TotalTime += elapsedTime;
+			if (m_TotalTime >= XM_PI) {
+				m_TotalTime = 0;
+			}
+
+			vector<VertexPositionColor> newVertices;
+			for (size_t i = 0; i < m_BackupVertices.size(); i++) {
+				Col4 col = m_BackupVertices[i].color;
+				//sinで0～１までにして0の時は透明１の時は表示としている
+				col.w = sin(m_TotalTime);
+				auto v = VertexPositionColor(
+					m_BackupVertices[i].position,
+					col
+				);
+				newVertices.push_back(v);
+			}
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->UpdateVertices(newVertices);
+
+		}
+		//アイテムを使ったら
+		if (Gageflash == 1)
+		{
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
+			Gageflash = 0;
 		}
 	}
 }

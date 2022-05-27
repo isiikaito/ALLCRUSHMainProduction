@@ -449,10 +449,10 @@ namespace basecross {
 			}
 		}
 		//ゲージが溜まったら
-		if (PowerCount <= 3)
+		if (PowerCount >= 3)
 		{
 			Power = 0;
-			PowerCount = 0;
+			
 			
 			
 			
@@ -559,7 +559,10 @@ namespace basecross {
 								case 0:
 										WallHP-=10;
 									Power = 1;
+									PowerCount = 0;
+									Gageflash = 1;
 									break;
+
 									//パワーアップ前の処理
 								case 1:
 									WallHP -= 1;
