@@ -18,6 +18,8 @@ namespace basecross {
 		float m_ColwDOWN;//ゲージ下の透明度
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
+
+		
 	public:
 		GageSprite(const shared_ptr<Stage>& StagePtr, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);

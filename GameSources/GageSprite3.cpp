@@ -1,5 +1,5 @@
 /*!
-@file GageSprite.cpp
+@file GageSprite2.cpp
 @brief ゲージの実体a
 */
 
@@ -9,7 +9,7 @@
 namespace basecross {
 	//ゲージ
 
-	GageSprite::GageSprite(const shared_ptr<Stage>& StagePtr, bool Trace,
+	GageSprite3::GageSprite3(const shared_ptr<Stage>& StagePtr, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
 		GameObject(StagePtr),
 		m_Trace(Trace),
@@ -20,8 +20,8 @@ namespace basecross {
 		m_ColwDOWN(0)
 	{}
 
-	GageSprite::~GageSprite() {}
-	void GageSprite::OnCreate() {
+	GageSprite3::~GageSprite3() {}
+	void GageSprite3::OnCreate() {
 
 
 		float helfSize = 0.5f;
@@ -54,47 +54,38 @@ namespace basecross {
 
 	}
 	//点滅処理（Elapsedtimeを利用している）
-	void GageSprite::OnUpdate() {
-
-
-
-		//		auto ptrDraw = GetComponent<PCSpriteDraw>();
-		//		ptrDraw->SetDiffuse(Col4(1.0f,0,0,1.0f));
+	void GageSprite3::OnUpdate() {
 
 
 
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//壁を壊した回数
 		auto PowerCount = ptrPlayer->GetPowerCount();
-		//壁を殴った回数
 		ptrPlayer->SetPowerCount(PowerCount);
-        //パワーアップしているかどうか
+		//パワーアップしてるかどうか
 		auto Power = ptrPlayer->GetPower();
 		ptrPlayer->SetPower(Power);
-		//アイテムを使ったかどうか
+		//使い終わってるかどうか
 		auto Gageflash = ptrPlayer->GetGageflash();
 		ptrPlayer->SetGageflash(Gageflash);
-		//壁を１回殴ったら
-			if (PowerCount == 1)
+		//壁を三回壊したら
+		if (PowerCount == 3)
 
 
-			{
-				//ゲージの表示
-				auto ptrDraw = GetComponent<PCSpriteDraw>();
-				ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
+		{ //プレイヤーの座標取得
+
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
 
 
 
 
-			}
-
-
-		
-			//パワーアップした時
+		}
+		//パワーアップしてるかどうか
 		if (Power == 0)
 		{
-            //点滅
-			
+			//点滅
 			//時間の取得
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			m_TotalTime += elapsedTime;
@@ -117,15 +108,13 @@ namespace basecross {
 			ptrDraw->UpdateVertices(newVertices);
 
 		}
-		//アイテムを使った後
+		//ゲージを使い終わったら
 		if (Gageflash == 1)
 		{
-			//ゲージを消す
+			//消える
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
 			Gageflash = 0;
 		}
-
 	}
-
 }

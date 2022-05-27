@@ -50,6 +50,7 @@ namespace basecross{
 		//パワーアップがあるかないか
 		int Power;
 		
+		int Gageflash;
 		
 		// テロップ
 		void CreateTelop();
@@ -111,6 +112,7 @@ namespace basecross{
 			itemCount(0),
 			PowerCount(0),
 			Power(1),
+			Gageflash(0),
 			SoundTime(0.0f),
 			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -136,19 +138,37 @@ namespace basecross{
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
 		void OnAttack();
-
+		//柱カウント
 		int GetPillarCount()const {
 			return PillarCount;
 		}
 		void SetPillarCount(int PillarCount) {
 			PillarCount = PillarCount;
 		}
+		//壁を殴った回数
+		int GetPowerCount()const {
+			return PowerCount;
+		}
+		void SetPowerCount(int PowerCount)
+		{
+			PowerCount = PowerCount;
+		}
+
+		//パワーアップ
 		int GetPower()const {
 			return Power;
 		}
 		void SetPower(int Power)
 		{
 			Power = Power;
+		}
+
+		int GetGageflash()const {
+			return Gageflash;
+		}
+		void SetGageflash(int Gageflash)
+		{
+			Gageflash = Gageflash;
 		}
 	};
 }
