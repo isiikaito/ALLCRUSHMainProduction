@@ -593,8 +593,9 @@ namespace basecross {
 									auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
 									if (PtrSpark) {
 										auto pos = GetComponent<Transform>()->GetPosition();
-										PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
+										//PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
 										PtrSpark->InsertSpark(pos);
+										PtrSpark->InsertSpark1(pos);
 									}
 
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();

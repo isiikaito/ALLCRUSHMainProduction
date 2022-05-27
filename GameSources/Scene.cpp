@@ -141,6 +141,9 @@ namespace basecross {
 		strTexture = dataDir + L"Splash01.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
 
+		strTexture = dataDir + L"spark.png";
+		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
+
 		//ƒTƒEƒ“ƒh
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
