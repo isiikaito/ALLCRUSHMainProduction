@@ -595,7 +595,7 @@ namespace basecross {
 										auto pos = GetComponent<Transform>()->GetPosition();
 										//PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
 										PtrSpark->InsertSpark(pos);
-										//PtrSpark->InsertSpark1(pos);
+										PtrSpark->InsertSpark1(pos);
 									}
 
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();

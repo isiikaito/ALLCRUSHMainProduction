@@ -76,7 +76,7 @@ namespace basecross {
 				rParticleSprite.m_LocalPos.z * 25.0f
 			);
 			//êFÇÃéwíË
-			rParticleSprite.m_Color = Col4(0.0f,1.0f,0.0f,1.0f);
+			rParticleSprite.m_Color = Col4(0.4f,0.4f,0.4f,0.8f);
 		}
 	}
 
