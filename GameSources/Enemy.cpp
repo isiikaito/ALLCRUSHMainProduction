@@ -88,6 +88,17 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 	//操作
 	void EnemyObject::OnUpdate() {
 		
+
+		//プレイヤーの取得
+		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		auto Exit = ptrPlayer->GetExitCount();
+		ptrPlayer->SetExitCount(Exit);
+
+		if (Exit == 1)
+		{
+			m_Speed = 0;
+		}
+
        //ボスのStopCountが１だった場合
 		if (StopCount==1)
 		{  
