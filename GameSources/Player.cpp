@@ -574,24 +574,53 @@ namespace basecross {
 								}
 								
 								ptrWall->SetHP(WallHP);
+								Mat4x4 spanMat; // ƒ‚ƒfƒ‹‚Æƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ÌŠÔ‚Ì·•ªs—ñ
 				//•Ç‚ÌŽc‚è‘Ï‹v’l‚É‚Â‚¢‚Ä‚Ìˆ—
 				if (WallHP >= 4)
 				{
+					//spanMat.affineTransformation(
+					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
+					//	Vec3(0.0f, 0.0f, 0.0f),//Position
+					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//‰ñ“]
+					//	Vec3(0.0f, -0.5f, 0.25f)//Position
+					//);
+
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
 				}
 				else if (WallHP >= 3)
 				{
+					//spanMat.affineTransformation(
+					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
+					//	Vec3(0.0f, 0.0f, 0.0f),//Position
+					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//‰ñ“]
+					//	Vec3(0.0f, -0.5f, 0.25f)//Position
+					//);
+
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
 				}
 				else if(WallHP >= 2)
 				{
+					//spanMat.affineTransformation(
+					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
+					//	Vec3(0.0f, 0.0f, 0.0f),//Position
+					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//‰ñ“]
+					//	Vec3(0.0f, -0.5f, 0.25f)//Position
+					//);
+
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
 				}
 				else if(WallHP >= 1)
 				{
+					//spanMat.affineTransformation(
+					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
+					//	Vec3(0.0f, 0.0f, 0.0f),//Position
+					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//‰ñ“]
+					//	Vec3(0.0f, -0.5f, 0.25f)//Position
+					//);
+
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
 				}
