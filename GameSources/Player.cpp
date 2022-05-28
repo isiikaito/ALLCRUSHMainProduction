@@ -226,14 +226,14 @@ namespace basecross {
 		auto camera = stage->GetView()->GetTargetCamera(); // カメラを取得する
 
 		// カメラの回り込み
-		float rad = 0.0f;
+		float rad = XM_PI * 0.5f;
 
 		// CameraオブジェクトをMainCameraオブジェクトに「ダウンキャスト」する
-		auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
-		if (mainCamera) // nullptr出なかったら、キャスト成功
-		{
-			rad = mainCamera->GetAngleY() + XMConvertToRadians(90.0f);
-		}
+		//auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
+		//if (mainCamera) // nullptr出なかったら、キャスト成功
+		//{
+		//	rad = mainCamera->GetAngleY() + XMConvertToRadians(90.0f);
+		//}
 
 		// ゲームコントローラーオブジェクトを取得する
 		auto& device = app->GetInputDevice();
@@ -264,7 +264,7 @@ namespace basecross {
 
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
-		if (PBdistance>-15)
+		if (PBdistance>-5)
 		{
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			if (move != L"GameOver") {
