@@ -105,11 +105,11 @@ namespace basecross {
 
 
 		//
-		auto staticModelMesh9 = MeshResource::CreateStaticModelMesh(dataDir, L"Berak02.bmf");
+		auto staticModelMesh9 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall02.bmf");
 		App::GetApp()->RegisterResource(L"DAMAGEWALL1_MESH", staticModelMesh9);
 
 		//
-		auto staticModelMesh10 = MeshResource::CreateStaticModelMesh(dataDir, L"Break01.bmf");
+		auto staticModelMesh10 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakeWall01.bmf");
 		App::GetApp()->RegisterResource(L"DAMAGEWALL2_MESH", staticModelMesh10);
 
 		//

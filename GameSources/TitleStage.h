@@ -28,6 +28,7 @@ namespace basecross {
 		//“ü—ÍƒCƒxƒ“ƒg‚É‰“š‚·‚éŠÖ”
 		void OnPushB();
 		void OnPushX(){}
+		void OnPushY(){}
 		void OnPushUP() {}
 		void OnPushDOWN() {}
 	};

@@ -296,36 +296,11 @@ namespace basecross {
 
 			}
 		}
-		//auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
-		//auto vec = group->GetGroupVector();
-		//for (auto& v : vec) {
-		//	auto shPtr = v.lock();
-		//	auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-		//	if (ptrWall) {
-		//		auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-		//		auto WallHP = ptrWall->GetHP();
+		
 
 
 
-		////プレイヤーのパワーゲージ
-		////ゲージのオブジェクト取得
-		//auto ptrGage = GetStage()->GetSharedGameObject<GageSprite>(L"GageSprite");
-		////ゲージ上
-		//float GageUP = ptrGage->GetColwUP();
-
-		////ゲージ下
-		//float GageDOWN = ptrGage->GetColwDOWN();
-		//
-		//if (itemCount2==1)
-
-		//{
-		//	GageDOWN = 1.0f;
-		//	GageUP = 1.0f;
-		//	
-  //        ptrGage->SetColwUP(GageUP);
-		//ptrGage->SetColwDOWN(GageDOWN);
-		//	
-		//}
+	
            
             
 
@@ -380,11 +355,7 @@ namespace basecross {
 
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() {
-		//auto ptrTrans = GetComponent<Transform>();
-		//Vec3 pos = ptrTrans->GetPosition();
-		//if (pos.x < -45.0f) {
-		//	PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-		//}
+	
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -423,11 +394,19 @@ namespace basecross {
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
-			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			ExitCount = 1;
 		}
 
 		
 
+	}
+	void Player::OnPushY() {
+		//ゲージが溜まったら
+		if (PowerCount >= 3)
+		{
+			Power = 0;
+
+		}
 	}
 
 	//Xボタン
@@ -448,25 +427,8 @@ namespace basecross {
 				m_isPlay1 = true;
 			}
 		}
-		//ゲージが溜まったら
-		if (PowerCount >= 3)
-		{
-			Power = 0;
-			
-			
-			
-			
-		}
-		////ゲージが溜まっていないとき
-		//if (PowerCount ==1)
-		//{
-		//	m_AttackPower = 1.0f;
-		//	
-		//}
-		//if (!m_isPlay1) {
-		//	m_handle = m_manager->Play(m_effect1, 0, 0, 0);
-		//	m_isPlay1 = true;
-		//}
+		
+		
 	}
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
@@ -567,60 +529,29 @@ namespace basecross {
 								case 1:
 									WallHP -= 1;
 									break;
-									/*case 2:
-										PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
-										break;*/
+									
 
 								}
 								
 								ptrWall->SetHP(WallHP);
-								Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 				//壁の残り耐久値についての処理
 				if (WallHP >= 4)
 				{
-					//spanMat.affineTransformation(
-					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
-					//	Vec3(0.0f, 0.0f, 0.0f),//Position
-					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-					//	Vec3(0.0f, -0.5f, 0.25f)//Position
-					//);
-
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
 				}
 				else if (WallHP >= 3)
 				{
-					//spanMat.affineTransformation(
-					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
-					//	Vec3(0.0f, 0.0f, 0.0f),//Position
-					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-					//	Vec3(0.0f, -0.5f, 0.25f)//Position
-					//);
-
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
 				}
 				else if(WallHP >= 2)
 				{
-					//spanMat.affineTransformation(
-					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
-					//	Vec3(0.0f, 0.0f, 0.0f),//Position
-					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-					//	Vec3(0.0f, -0.5f, 0.25f)//Position
-					//);
-
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
 				}
 				else if(WallHP >= 1)
 				{
-					//spanMat.affineTransformation(
-					//	Vec3(0.5f, 0.5f, 0.05f),//Scale
-					//	Vec3(0.0f, 0.0f, 0.0f),//Position
-					//	Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-					//	Vec3(0.0f, -0.5f, 0.25f)//Position
-					//);
-
 					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
 					ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
 				}
