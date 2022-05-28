@@ -16,15 +16,27 @@ namespace basecross {
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
 
+		//OpeningCameraView用のビュー
+		m_OpeningCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrOpeningCamera = ObjectFactory::Create<OpeningCamera>();
+		m_OpeningCameraView->SetCamera(ptrOpeningCamera);
+		//EndingCameraView用のビュー
+		//m_EndingCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		//auto ptrEndingCamera = ObjectFactory::Create<EndingCamera>();
+		//m_EndingCameraView->SetCamera(ptrEndingCamera);
 		//MyCamera用のビュー
 		m_MyCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
 		auto ptrMyCamera = ObjectFactory::Create<MyCamera>();
 		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
 		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 		m_MyCameraView->SetCamera(ptrMyCamera);
-		//初期状態で使うView
-		SetView(m_MyCameraView);
-		//m_CameraSelect = CameraSelect::myCamera;
+		//ObjCamera用のビュー
+		m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
+		m_ObjCameraView->SetCamera(ptrObjCamera);
+		//初期状態ではm_OpeningCameraViewを使う
+		SetView(m_OpeningCameraView);
+		m_CameraSelect = CameraSelect::openingCamera;
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 
@@ -476,6 +488,35 @@ namespace basecross {
 		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
+	//カメラマンの作成
+	void GameStage::CreateCameraman() {
+		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
+		//シェア配列にCameramanを追加
+		SetSharedGameObject(L"Cameraman", ptrCameraman);
+		//auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
+		//if (ptrObjCamera) {
+		//	ptrObjCamera->SetCameraObject(ptrCameraman);
+		//	ptrObjCamera->SetTargetObject(ptrPlayer);
+		//	//m_ObjCameraViewを使う
+		//	SetView(m_ObjCameraView);
+		//	m_CameraSelect = CameraSelect::objCamera;
+		//}
+
+		auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
+		//シェア配列にOpeningCameramanを追加
+		SetSharedGameObject(L"OpeningCameraman", ptrOpeningCameraman);
+
+		auto ptrOpeningCamera = dynamic_pointer_cast<OpeningCamera>(m_OpeningCameraView->GetCamera());
+		if (ptrOpeningCamera) {
+			ptrOpeningCamera->SetCameraObject(ptrOpeningCameraman);
+			SetView(m_OpeningCameraView);
+			m_CameraSelect = CameraSelect::openingCamera;
+		}
+
+	}
+
+
 	void GameStage::OnCreate() {
 		try {
 
@@ -538,16 +579,61 @@ namespace basecross {
 			CreateFadeOut();
 			// 逃げるテロップ
 			CreateTickerSprite();
-
 			CreateTelop();
 			CreateTelop2();
 			CreateTelop3();
 			CreateTelop4();
+			//カメラマンの作成
+			CreateCameraman();
 		}
 		catch (...) {
 			throw;
 		}
 	}
+
+	void GameStage::ToObjCamera() {
+		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		//ObjCameraに変更
+		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
+		auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
+		if (ptrObjCamera) {
+			ptrObjCamera->SetCameraObject(ptrCameraman);
+			ptrObjCamera->SetTargetObject(ptrPlayer);
+			//m_ObjCameraViewを使う
+			SetView(m_ObjCameraView);
+			m_CameraSelect = CameraSelect::objCamera;
+		}
+	}
+	void GameStage::ToMyCamera() {
+		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		//MyCameraに変更
+		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
+		if (ptrMyCamera) {
+			ptrMyCamera->SetTargetObject(ptrPlayer);
+			//m_MyCameraViewを使う
+			SetView(m_MyCameraView);
+			m_CameraSelect = CameraSelect::myCamera;
+		}
+	}
+	//void GameStage::ToEndingCamera() {
+	//	//auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
+	//	//シェア配列にCameramanを追加
+	//	//SetSharedGameObject(L"Cameraman", ptrCameraman);
+
+	//	auto ptrEndingCameraman = AddGameObject<EndingCameraman>();
+	//	//シェア配列にEndingCameramanを追加
+	//	SetSharedGameObject(L"EndingCameraman", ptrEndingCameraman);
+
+	//	auto ptrEndingCamera = dynamic_pointer_cast<EndingCameraman>(m_EndingCameraView->GetCamera());
+	//	if (ptrEndingCamera) {
+	//		//ptrEndingCamera->SetCameraObject(ptrEndingCameraman);
+	//		SetView(m_EndingCameraView);
+	//		m_CameraSelect = CameraSelect::endingCamera;
+	//	}
+
+	//}
+
+
 	void GameStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<GameStage>());
@@ -615,6 +701,22 @@ namespace basecross {
 
 		}
 		return;
+	}
+
+	//Bボタンカメラの変更
+	void GameStage::OnPushB() {
+		switch (m_CameraSelect) {
+		case CameraSelect::myCamera:
+		{
+			ToObjCamera();
+		}
+		break;
+		case CameraSelect::objCamera:
+		{
+			ToMyCamera();
+		}
+		break;
+		}
 	}
 
 	void GameStage::OnDestroy() {

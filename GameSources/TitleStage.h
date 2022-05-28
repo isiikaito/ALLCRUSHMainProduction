@@ -13,7 +13,8 @@ namespace basecross {
 	class TitleStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
-
+		void CerateFadeOutBlack();
+		int SceneCountbakc;
 		//入力ハンドラー
 		InputHandler2<TitleStage> m_InputHandler;
 
@@ -31,6 +32,8 @@ namespace basecross {
 		void OnPushY(){}
 		void OnPushUP() {}
 		void OnPushDOWN() {}
+
+		
 	};
 }
 //end namespace basecross
