@@ -141,7 +141,7 @@ namespace basecross {
 		strTexture = dataDir + L"Splash02.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
 
-		strTexture = dataDir + L"spark.png";
+		strTexture = dataDir + L"spark1.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
 
 		//ƒTƒEƒ“ƒh
