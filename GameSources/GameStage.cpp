@@ -32,6 +32,18 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	void GameStage::CreateMultiSpark() {
+		auto MultiSparkPtr = AddGameObject<ImpactSmoke>();
+		//共有オブジェクトにスパークを登録
+		SetSharedGameObject(L"MultiSpark", MultiSparkPtr);
+	}
+
+	void GameStage::CreateMultiSpark1() {
+		auto MultiSparkPtr = AddGameObject<ImpactSmoke>();
+		//共有オブジェクトにスパークを登録
+		SetSharedGameObject(L"MultiSpark1", MultiSparkPtr);
+	}
+
 	void GameStage::CreatestageObject() {
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
@@ -484,6 +496,9 @@ namespace basecross {
 
 			// プレイヤーオブジェクトをステージに追加する
 			//AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
+			//エフェクトの作成
+			CreateMultiSpark();
+			CreateMultiSpark1();
 
 			//プレーヤーの作成
 			CreatePlayer();

@@ -29,7 +29,7 @@ namespace basecross {
 		auto elps = App::GetApp()->GetElapsedTime();
 		MovieTime += elps;
 		if (MovieTime >= 40.6f) {
-			SetAutoRepeat(true);
+			SetAutoRepeat(false);
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 			return;

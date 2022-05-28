@@ -586,10 +586,18 @@ namespace basecross {
 									//m_manager->SetTargetLocation(m_handle, ::Effekseer::Vector3D(WallPos.x, 0, 0));
 									//m_handle = m_manager->Play(m_effect, WallPos.x,0,0);
 
-									m_handle = m_manager->Play(m_effect,0,0,0);
+									//m_handle = m_manager->Play(m_effect,0,0,0);
 
-									m_isPlay = true;
+									//m_isPlay = true;
 									}
+									auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+									if (PtrSpark) {
+										auto pos = GetComponent<Transform>()->GetPosition();
+										//PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
+										PtrSpark->InsertSpark(pos);
+										PtrSpark->InsertSpark1(pos);
+									}
+
 									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
 									GetStage()->RemoveGameObject<Wall>(shPtr);
 									//ƒTƒEƒ“ƒh‚ÌÄ¶
