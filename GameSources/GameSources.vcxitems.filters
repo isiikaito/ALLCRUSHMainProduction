@@ -42,6 +42,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -87,5 +91,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite3.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
   </ItemGroup>
 </Project>
