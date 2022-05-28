@@ -68,62 +68,34 @@ namespace basecross {
 			
 		}
 
+		auto CameraAngleY = XM_PI;
 
-
-		//auto group = GetStage()->GetSharedGameObject();
-
-
-		//カメラのスティック操作
-		angleY += XMConvertToRadians(90.0f) * -pad.fThumbRX * delta;
-		if (angleY < -XM_PIDIV4 * 3) {
-			angleY = -XM_PIDIV4 * 3;//カメラの右回転の限界回転度
-		}
-		if (angleY > +XM_PIDIV4 * 3) {
-			angleY = +XM_PIDIV4 * 3;//カメラの左回転の限界回転度
-		}
-
-		auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
+		auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
 		eye.y = 2.0f;
 		playerPos.y = 0.5f;
 
 		SetEye(eye);
 		SetAt(playerPos); // プレイヤーを中止するようにする
-		//コントローラの取得
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
-		//auto rot = GetRot;
-
-		//Bボタン
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
-
-			auto CameraAngleY = XM_PI;
-
-			auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
-			eye.y = 2.0f;
-			SetEye(eye);
-		}
 		//プレイヤーと柱の距離
 		PPdistance = playerPos.x - pillarPos.x;
 		//プレイヤーと柱の位置が一定の距離になったら振り返る
 		
 		if (m_Turn==0)
 		{
-           if (PPdistance < -75)
-				{
-					EnemySetDrawActiveCount = 0;
-					auto CameraAngleY = XM_PI;
+			if (PPdistance < -75)
+			{
+				EnemySetDrawActiveCount = 0;
+				auto CameraAngleY = XM_PI;
 
-					auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
-					eye.y = 2.0f;
-					SetEye(eye);
-					
+				auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
+				eye.y = 2.0f;
+				SetEye(eye);
 
-				}
+
+			}
 		}
 				
-		
-			
-
 		//柱が壊れたら
 		if (PillarCount == 1)
 		{
@@ -154,6 +126,63 @@ namespace basecross {
 
 
 
+	}
+
+	//--------------------------------------------------------------------------------------
+	//	オープニングカメラ（コンポーネントではない）
+	//--------------------------------------------------------------------------------------
+	OpeningCamera::OpeningCamera() :
+		Camera()
+	{}
+	OpeningCamera::~OpeningCamera() {}
+
+	void OpeningCamera::OnUpdate() {
+		auto ptrOpeningCameraman = dynamic_pointer_cast<OpeningCameraman>(GetCameraObject());
+		if (ptrOpeningCameraman) {
+			auto pos = ptrOpeningCameraman->GetAtPos();
+			SetAt(pos);
+		}
+		Camera::OnUpdate();
+	}
+
+	//--------------------------------------------------------------------------------------
+	//	エンディングカメラ（コンポーネントではない）
+	//--------------------------------------------------------------------------------------
+	//EndingCamera::EndingCamera() :
+	//	Camera()
+	//{}
+	//EndingCamera::~EndingCamera() {}
+
+	//void EndingCamera::OnUpdate() {
+	//	auto ptrEndingCameraman = dynamic_pointer_cast<EndingCameraman>(GetCameraObject());
+	//	if (ptrEndingCameraman) {
+	//		auto pos = ptrEndingCameraman->GetAtPos();
+	//		SetAt(pos);
+	//	}
+	//	Camera::OnUpdate();
+	//}
+
+	//--------------------------------------------------------------------------------------
+	//	オブジェクトカメラ（コンポーネントではない）
+	//--------------------------------------------------------------------------------------
+	//構築と破棄
+	ObjCamera::ObjCamera() :
+		Camera()
+	{}
+	ObjCamera::~ObjCamera() {}
+
+	void ObjCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+		m_TargetObject = Obj;
+	}
+
+	void ObjCamera::OnUpdate() {
+		auto ptrTarget = m_TargetObject.lock();
+		if (ptrTarget) {
+			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
+			pos.y += 1.0f;
+			SetAt(pos);
+		}
+		Camera::OnUpdate();
 	}
 }
 

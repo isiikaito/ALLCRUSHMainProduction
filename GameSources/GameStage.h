@@ -8,6 +8,12 @@
 
 
 namespace basecross {
+	enum class CameraSelect {
+		openingCamera,
+		myCamera,
+		objCamera,
+		//endingCamera,
+	};
 	//--------------------------------------------------------------------------------------
 	// ゲームステージクラス
 	//--------------------------------------------------------------------------------------
@@ -47,9 +53,15 @@ namespace basecross {
 	//トータル時間
 	float m_TotalTime;
 	
-
+		//OpeningCamera用のビュー
+		shared_ptr<SingleView> m_OpeningCameraView;
 		//MyCamera用のビュー
 		shared_ptr<SingleView> m_MyCameraView;
+		//ObjCamera用のビュー
+		shared_ptr<SingleView> m_ObjCameraView;
+		//EndingCamera用のビュー
+		//shared_ptr<SingleView> m_EndingCameraView;
+		CameraSelect m_CameraSelect;
 		//入力ハンドラー
 		InputHandler<GameStage> m_InputHandler;
 		//BGM
@@ -63,6 +75,8 @@ namespace basecross {
 		//BGMの再生
 		void BGM();
 		void OnDestroy();
+		//カメラマンの作成
+		void CreateCameraman();
 	public:
 		//構築と破棄
 		GameStage() :Stage(), m_TotalTime(0) {}
@@ -74,7 +88,15 @@ namespace basecross {
 		//Aボタンなにもしない
 		void OnPushA() {}
 		//Bボタンカメラの変更
-		void OnPushB(){}
+		void OnPushB();
+
+		CameraSelect GetCameraSelect() const {
+			return m_CameraSelect;
+		}
+		void ToObjCamera();
+		void ToMyCamera();
+		//void ToEndingCamera();
+
 	};
 
 }
