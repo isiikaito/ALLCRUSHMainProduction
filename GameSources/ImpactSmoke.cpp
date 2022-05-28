@@ -40,22 +40,23 @@ namespace basecross {
 
 
 	void ImpactSmoke::InsertSpark(const Vec3& Pos) {
-		auto ptrParticle = InsertParticle(60);
+		auto ptrParticle = InsertParticle(17);
 		ptrParticle->SetEmitterPos(Pos);
 		ptrParticle->SetTextureResource(L"SPARK_TX");
 		ptrParticle->SetMaxTime(1.0f);
-		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec()) {
+		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec()) {			
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.2f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.2f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.2f - 0.1f;
 			//各パーティクルの移動速度を指定
+			rParticleSprite.m_Color = Col4(0.8f, 0.8f, 0.0f, 0.4f);
+
 			rParticleSprite.m_Velocity = Vec3(
-				rParticleSprite.m_LocalPos.x * 25.0f,
-				rParticleSprite.m_LocalPos.y * 25.0f,
-				rParticleSprite.m_LocalPos.z * 25.0f
+				rParticleSprite.m_LocalPos.x * 18.0f,
+				rParticleSprite.m_LocalPos.y * 18.0f,
+				rParticleSprite.m_LocalPos.z * 18.0f
 			);
 			//色の指定
-			rParticleSprite.m_Color = Col4(0.4f,0.2f,0.0f,0.4f);
 		}
 	}
 
@@ -75,7 +76,7 @@ namespace basecross {
 				rParticleSprite.m_LocalPos.z * 25.0f
 			);
 			//色の指定
-			rParticleSprite.m_Color = Col4(0.55f,0.55f,0.55f,1.0f);
+			rParticleSprite.m_Color = Col4(0.0f,1.0f,0.0f,1.0f);
 		}
 	}
 
