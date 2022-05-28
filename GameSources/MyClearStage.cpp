@@ -30,7 +30,7 @@ namespace basecross {
 		if (MovieTime >= 21.0f) {
 			SetAutoRepeat(true);
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
-				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+				App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 			return;
 		}
 
