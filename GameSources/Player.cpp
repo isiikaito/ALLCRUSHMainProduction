@@ -534,27 +534,7 @@ namespace basecross {
 								}
 								
 								ptrWall->SetHP(WallHP);
-				//•Ç‚ÌŽc‚è‘Ï‹v’l‚É‚Â‚¢‚Ä‚Ìˆ—
-				if (WallHP >= 4)
-				{
-					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-					ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
-				}
-				else if (WallHP >= 3)
-				{
-					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-					ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
-				}
-				else if(WallHP >= 2)
-				{
-					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-					ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
-				}
-				else if(WallHP >= 1)
-				{
-					auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-					ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
-				}
+				
 
 								if (WallHP <= 0)
 								{

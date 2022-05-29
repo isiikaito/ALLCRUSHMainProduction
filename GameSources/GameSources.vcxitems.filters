@@ -46,6 +46,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -95,5 +97,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
   </ItemGroup>
 </Project>

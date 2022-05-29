@@ -47,8 +47,8 @@ namespace basecross {
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
 
-		//読み込みの設定をする
-		GetStage()->SetSharedGameObject(L"FadeOutBlack", GetThis<FadeOutBlack>());
+		////読み込みの設定をする
+		//GetStage()->SetSharedGameObject(L"FadeOutBlack", GetThis<FadeOutBlack>());
 
 		
 	}
