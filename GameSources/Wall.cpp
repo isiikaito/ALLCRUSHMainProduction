@@ -33,7 +33,7 @@ namespace basecross {
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(0.5f, 0.5f, 0.05f),//Scale
-			Vec3(0.0f, 0.0f, 0.0f),//Position
+			Vec3(0.25f, 0.0f, 0.0f),//Position
 			Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
 			Vec3(0.0f, -0.5f, 0.0f)//Position
 		);
@@ -50,74 +50,15 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto WallHP = GetHP();
-		auto ptrDraw1 = AddComponent<PNTStaticModelDraw>();
-		//壁の残り耐久値についての処理
-		if (WallHP >= 4)
-		{
-			spanMat.affineTransformation(
-				Vec3(0.2f, 0.5f, 0.05f),//Scale
-				Vec3(0.0f, 0.0f, 0.0f),//Position
-				Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-				Vec3(0.0f, -0.5f, 0.0f)//Position
-			);
-
-			ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
-		}
-		else if (WallHP >= 3)
-		{
-			spanMat.affineTransformation(
-				Vec3(0.5f, 0.5f, 0.05f),//Scale
-				Vec3(0.0f, 0.0f, 0.0f),//Position
-				Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-				Vec3(0.0f, -0.5f, -0.9f)//Position
-			);
-
-			ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
-		}
-		else if (WallHP >= 2)
-		{
-			spanMat.affineTransformation(
-				Vec3(0.75f, 0.5f, 0.05f),//Scale
-				Vec3(0.0f, 0.0f, 0.0f),//Position
-				Vec3(0.0f, XM_PI * 0.0f, 0.0f),//回転
-				Vec3(-0.2f, -0.5f, 0.0f)//Position
-			);
-
-			ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
-		}
-		else if (WallHP >= 1)
-		{
-			spanMat.affineTransformation(
-				Vec3(1.0f, 0.5f, 0.05f),//Scale
-				Vec3(0.0f, 0.0f, 0.0f),//Position
-				Vec3(0.0f, XM_PI * 0.5f, 0.0f),//回転
-				Vec3(0.0f, -0.75f, 0.25f)//Position
-			);
-			ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
-		}
-
-		ptrDraw1->SetMeshToTransformMatrix(spanMat);
-		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		/*ptrDraw->SetFogEnabled(false);
-		ptrDraw->SetOwnShadowActive(true);*/
-
-		//auto ptrDraw2 = AddComponent<BcPNTStaticDraw>();
-		//ptrDraw2->SetFogEnabled(true);
-		//ptrDraw2->SetMeshResource(L"DEFAULT_CUBE");
-		//ptrDraw2->SetOwnShadowActive(true);
-		//ptrDraw2->SetTextureResource(L"WALL_TX");
-		//PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
-		//auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//PsPtr->SetDrawActive(false);
-
+		
+		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		ptrDraw->SetMeshResource(L"UNBREAKWALL_MESH");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetDrawActive(true);
-		//auto obb = ptrColl->GetObb();
-		//GetStage()->SetSharedGameObject(L"Wall_Group",GetThis<Wall>());
-				//読み込みの設定をする
-		//GetStage()->SetSharedGameObject(L"BREAKWALL", GetThis<Wall>());
+	
 			//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		ptrColl->SetFixed(true);
 	}
@@ -137,6 +78,58 @@ namespace basecross {
 		else {
 			SetDrawActive(true);
 		}
+		
+		
+		
+		auto WallHP = GetHP();
+		auto ptrDraw = GetComponent<PNTStaticModelDraw>();
+		
+		//壁の残り耐久値についての処理
+		if (WallHP >= 4)
+		{
+			ptrDraw->SetMeshResource(L"UNBREAKWALL_MESH");
+		}
+		else if (WallHP >= 3)
+		{
+			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+			spanMat.affineTransformation(
+				Vec3(1.0f, 0.1f, 0.1f),//Scale
+				Vec3(0.0f, 5.0f, 0.0f),//Position
+				Vec3(0.0f, 0.0f, 0.0f),//回転
+				Vec3(-0.5f, -0.5f, 0.0f)//Position
+			);
+			ptrDraw->SetMeshResource(L"DAMAGEWALL2_MESH");
+			ptrDraw->SetMeshToTransformMatrix(spanMat);
+			
+		}
+		else if (WallHP <= 1)
+		{
+		
+			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+			spanMat.affineTransformation(
+				Vec3(1.0f, 0.1f, 0.1f),//Scale
+				Vec3(0.0f, 5.0f, 0.0f),//Position
+				Vec3(0.0f,0.0f, 0.0f),//回転
+				Vec3(1.0f, -0.5f, 0.0f)//Position
+			);
+			ptrDraw->SetMeshResource(L"DAMAGEWALL1_MESH");
+			ptrDraw->SetMeshToTransformMatrix(spanMat);
+		}
+		else if (WallHP >= 1)
+		{
+			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+			spanMat.affineTransformation(
+				Vec3(1.0f, 0.1f, 0.1f),//Scale
+				Vec3(0.0f, 5.0f, 0.0f),//Position
+				Vec3(0.0f, 0.0f, 0.0f),//回転
+				Vec3(0.0f, -0.5f, 0.0f)//Position
+			);
+			ptrDraw->SetMeshResource(L"DAMAGEWALL3_MESH");
+		
+			ptrDraw->SetMeshToTransformMatrix(spanMat);
+			
+		}
+
 	}
 
 

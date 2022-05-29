@@ -105,11 +105,11 @@ namespace basecross {
 
 
 		//
-		auto staticModelMesh9 = MeshResource::CreateStaticModelMesh(dataDir, L"Berak02.bmf");
+		auto staticModelMesh9 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall02.bmf");
 		App::GetApp()->RegisterResource(L"DAMAGEWALL1_MESH", staticModelMesh9);
 
 		//
-		auto staticModelMesh10 = MeshResource::CreateStaticModelMesh(dataDir, L"Break01.bmf");
+		auto staticModelMesh10 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakeWall01.bmf");
 		App::GetApp()->RegisterResource(L"DAMAGEWALL2_MESH", staticModelMesh10);
 
 		//
@@ -127,17 +127,22 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
-		strTexture = dataDir + L"Stege1.png";
-		App::GetApp()->RegisterTexture(L"STAGE1_TX", strTexture);
+		strTexture = dataDir + L"Stage1.png";
+		App::GetApp()->RegisterTexture(L"Stage1_TX", strTexture);
 
 		//文字テクスチャ
 		strTexture = dataDir + L"Stage2.png";
-		App::GetApp()->RegisterTexture(L"STAGE2_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"Stage2_TX", strTexture);
 		
 		//メニューテクスチャ
-		strTexture = dataDir + L"memu.png";
-		App::GetApp()->RegisterTexture(L"MEMU_TX", strTexture);
+		strTexture = dataDir + L"メニュー画面.png";
+		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
 		
+		strTexture = dataDir + L"Splash02.png";
+		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
+
+		strTexture = dataDir + L"spark1.png";
+		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";

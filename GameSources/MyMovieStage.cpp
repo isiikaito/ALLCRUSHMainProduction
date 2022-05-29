@@ -28,8 +28,8 @@ namespace basecross {
 		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
 		auto elps = App::GetApp()->GetElapsedTime();
 		MovieTime += elps;
-		if (MovieTime >= 40.6f) {
-			SetAutoRepeat(true);
+		if (MovieTime >= 3.6f) {
+			SetAutoRepeat(false);
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 			return;

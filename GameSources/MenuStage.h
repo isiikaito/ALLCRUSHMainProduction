@@ -18,6 +18,8 @@ namespace basecross {
 		void CreateMenuSprite1();
 		//Stage2プライト作成
 		void CreateMenuSprite2();
+
+		void CerateFadeOutBlack1();
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
 		float m_idleTime;
@@ -36,6 +38,8 @@ namespace basecross {
 		//入力イベントに応答する関数
 		void OnPushB();
 		void OnPushX() {}
+		//Yボタン
+		void OnPushY() {}
 		//十字キー上
 		void OnPushUP();
 		//十字キー下

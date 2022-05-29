@@ -24,22 +24,29 @@ namespace basecross {
 
     //アイテムスプライト作成
 	void MenuStage::CreateMenuSprite1() {
-		AddGameObject<MenuSprite1>(L"STAGE1_TX", true,
+		AddGameObject<MenuSprite1>(L"Stage1_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(270.0f, 270.0f), Vec3(-100.0f, 210.0f, 0.0f));
+			Vec2(200.0f, 100.0f), Vec3(120.0f, 50.0f, 0.0f));
 	}
 
 	//アイテムスプライト作成
 	void MenuStage::CreateMenuSprite2() {
-		AddGameObject<MenuSprite2>(L"STAGE2_TX", true,
+		AddGameObject<MenuSprite2>(L"Stage2_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(300.0f, 300.0f), Vec3(-100.0f, 110.0f, 0.0f));
+			Vec2(200.0f, 100.0f), Vec3(120.0f, -100.0f, 0.0f));
+	}
+	void MenuStage::CerateFadeOutBlack1()
+	{
+
+		AddGameObject<FadeOutBlack1>(true,
+			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
+
 	}
 
 	//初期化
 	void MenuStage::OnCreate() {
 		CreateViewLight();
-		AddGameObject<TitleSprite>(L"MEMU_TX", false,
+		AddGameObject<TitleSprite>(L"メニュー画面_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
 		//Stage1スプライト
 		CreateMenuSprite1();
@@ -139,7 +146,8 @@ namespace basecross {
 		switch (num)
 		{
 			case 0:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
+				CerateFadeOutBlack1();
+				/*PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");*/
 				break;
 			case 1:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
