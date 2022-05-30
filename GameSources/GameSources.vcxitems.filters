@@ -99,5 +99,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h" />
   </ItemGroup>
 </Project>
