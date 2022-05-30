@@ -145,7 +145,8 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
 		strTexture = dataDir + L"SpeedUp.png";
 		App::GetApp()->RegisterTexture(L"SPEEDUP_TX", strTexture);
-
+		strTexture = dataDir + L"Impact.png";
+		App::GetApp()->RegisterTexture(L"IMPACT_TX", strTexture);
 
 		//ƒTƒEƒ“ƒh
 		wstring CursorWav = dataDir + L"music.mp3";
@@ -171,6 +172,10 @@ namespace basecross {
 		//“G‚Ìº
 		CursorWav = dataDir + L"EnemyVoice.wav";
 		App::GetApp()->RegisterWav(L"EnemyVoice", CursorWav);
+		//“G‚ÉŠâ‚ª“–‚½‚é‰¹
+		CursorWav = dataDir + L"RockAttack.wav";
+		App::GetApp()->RegisterWav(L"RockAttack", CursorWav);
+
 
 	}
 	void Scene::OnCreate() {
