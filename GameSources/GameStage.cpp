@@ -388,7 +388,7 @@ namespace basecross {
 	void GameStage::CreateMyitem1() {
 		AddGameObject<Myitem1>(L"SPEED_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(180.0f, 180.0f), Vec3(-530.0f, -310.0f, 0.0f));
+			Vec2(180.0f, 180.0f), Vec3(-530.0f, -280.0f, 0.0f));
 	}
 
 	//ゲージの枠作成

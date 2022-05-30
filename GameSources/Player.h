@@ -23,6 +23,8 @@ namespace basecross{
 
 		float accel; // 加速度
 
+		float itemtime;
+
 		//アイテムの所持数
 		float itemCount;
 		//パワーアップアイテム
