@@ -58,7 +58,7 @@ namespace basecross {
 		/*PsPtr->SetDrawActive(true);*/
 
 		auto Coll = AddComponent<CollisionObb>();
-		Coll->SetDrawActive(true);
+		
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
 

@@ -156,17 +156,14 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 			/*SetAlphaActive(true);*/
 			SetDrawActive(false);
 		}
-		//ƒ{ƒX‚ÌÀ•WŽæ“¾
-		/*auto ptrPlayer= GetStage()->GetSharedGameObject<Player>(L"Player");
-		PillarCount = ptrPlayer->GetPillarCount();
-		ptrPlayer->SetPillarCount(PillarCount);
-		if (PillarCount == 0)
-		{
-			SetDrawActive(true);
-		}*/
+		
 		if (m_EnemySetDrawActiveCount == 0)
 		{
 			SetDrawActive(true);
+		}
+		if (m_EnemySetDrawActiveCount == 1)
+		{
+			SetDrawActive(false);
 		}
 
 		

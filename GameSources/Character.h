@@ -12,6 +12,10 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Cameraman : public GameObject {
 		float m_ToPlayerLen;
+		float m_PPdistance;
+		int m_PillarCount;
+		float m_TurnTime;
+		int m_Turn;
 	public:
 		//構築と破棄
 		Cameraman(const shared_ptr<Stage>& StagePtr,
@@ -33,6 +37,7 @@ namespace basecross{
 		Vec3 m_AtEndPos;
 		Vec3 m_AtPos;
 		float m_TotalTime;
+		
 		//ステートマシーン
 		unique_ptr< StateMachine<OpeningCameraman> >  m_StateMachine;
 	public:

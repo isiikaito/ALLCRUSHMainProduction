@@ -57,7 +57,7 @@ namespace basecross {
 		
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetDrawActive(true);
+		
 	
 			//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		ptrColl->SetFixed(true);

@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-namespace basecross{
+namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//　球体のカメラマン
 	//--------------------------------------------------------------------------------------
@@ -29,10 +29,20 @@ namespace basecross{
 	}
 	//操作
 	void Cameraman::OnUpdate() {
+		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//プレイヤーのポジション取得
 		auto playerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
+		//ボスの取得
+		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		//ボスの表示の取得
+		auto EnemySetDrawActiveCount = ptrEnemy->GetEnemySetDrawActiveCount();
+		ptrEnemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
+
+		//カメラのポジション取得
 		auto ptrTrans = GetComponent<Transform>();
 		auto pos = ptrTrans->GetPosition();
+		//カメラとプレイヤーの間の距離
 		Vec3 span = pos - playerPos;
 		float nowLen = length(span);
 		span.normalize();
@@ -42,6 +52,44 @@ namespace basecross{
 		Vec3 v;
 		target.y = playerPos.y + 2.0f;
 		target.x = playerPos.x + 5.0f;
+
+		m_PillarCount = ptrPlayer->GetPillarCount();
+		ptrPlayer->SetPillarCount(m_PillarCount);
+		if (m_Turn == 0)
+		{
+			if (m_PillarCount == 0)
+			{
+				//柱の取得
+				auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+				auto PillarPos = ptrPillar->GetComponent<Transform>()->GetPosition();
+				m_PPdistance = playerPos.x - PillarPos.x;
+			}
+				if (m_PPdistance < 2)
+				{
+					EnemySetDrawActiveCount = 0;
+					target.y = playerPos.y + 2.0f;
+					target.x = playerPos.x - 5.0f;
+				}
+			
+		}
+
+		if (m_PillarCount == 1)
+		{
+			//elapsedTimeを取得することにより時間を使える
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			//時間を変数に足す
+			m_TurnTime += elapsedTime;
+			if (m_TurnTime > 2 && m_TurnTime < 2.1)
+			{
+				target.y = playerPos.y + 2.0f;
+				target.x = playerPos.x + 5.0f;
+				m_Turn = 1;
+			}
+		}
+
+
+
+
 
 		v = easig.EaseIn(EasingType::Cubic, pos, target, 1.0f, 1.0f);
 		//if (playerPos.z > -7.0f) {
