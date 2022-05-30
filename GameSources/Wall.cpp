@@ -35,7 +35,7 @@ namespace basecross {
 			Vec3(0.5f, 0.5f, 0.05f),//Scale
 			Vec3(0.25f, 0.0f, 0.0f),//Position
 			Vec3(0.0f, XM_PI * 0.5f, 0.0f),//‰ñ“]
-			Vec3(0.0f, -0.5f, 0.0f)//Position
+			Vec3(-0.3f, -0.6f, 0.0f)//Position
 		);
 
 		
@@ -93,10 +93,10 @@ namespace basecross {
 		{
 			Mat4x4 spanMat; // ƒ‚ƒfƒ‹‚Æƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ÌŠÔ‚Ì·•ªs—ñ
 			spanMat.affineTransformation(
-				Vec3(1.0f, 0.1f, 0.1f),//Scale
+				Vec3(1.0f, 0.3f, 0.1f),//Scale
 				Vec3(0.0f, 5.0f, 0.0f),//Position
 				Vec3(0.0f, 0.0f, 0.0f),//‰ñ“]
-				Vec3(-0.5f, -0.5f, 0.0f)//Position
+				Vec3(-0.5f, -0.6f, 0.0f)//Position
 			);
 			ptrDraw->SetMeshResource(L"DAMAGEWALL2_MESH");
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
@@ -110,7 +110,7 @@ namespace basecross {
 				Vec3(1.0f, 0.1f, 0.1f),//Scale
 				Vec3(0.0f, 5.0f, 0.0f),//Position
 				Vec3(0.0f,0.0f, 0.0f),//‰ñ“]
-				Vec3(1.0f, -0.5f, 0.0f)//Position
+				Vec3(1.0f, -0.6f, 0.0f)//Position
 			);
 			ptrDraw->SetMeshResource(L"DAMAGEWALL1_MESH");
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
@@ -122,7 +122,7 @@ namespace basecross {
 				Vec3(1.0f, 0.1f, 0.1f),//Scale
 				Vec3(0.0f, 5.0f, 0.0f),//Position
 				Vec3(0.0f, 0.0f, 0.0f),//‰ñ“]
-				Vec3(0.0f, -0.5f, 0.0f)//Position
+				Vec3(-0.2f, -0.6f, 0.0f)//Position
 			);
 			ptrDraw->SetMeshResource(L"DAMAGEWALL3_MESH");
 		
