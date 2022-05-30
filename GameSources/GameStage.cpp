@@ -124,13 +124,6 @@ namespace basecross {
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<Wall>(Scale, Rot, Pos,HP);
 		}
-		//HP
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-5.0f, 1.0f, 0.0f),1);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-13.0f, 1.0f, 0.0f),3);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-21.0f, 1.0f, 0.0f),1);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-29.0f, 1.0f, 0.0f),2);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-37.0f, 1.0f, 0.0f),4);
-
 	}
 	//マヤの壁の作成
 	void GameStage::CreateStageWall() {
@@ -585,8 +578,6 @@ namespace basecross {
 			CreateTelop4();
 			//カメラマンの作成
 			CreateCameraman();
-
-			GameOver();
 		}
 		catch (...) {
 			throw;
@@ -711,7 +702,6 @@ namespace basecross {
 		case CameraSelect::myCamera:
 		{
 			ToObjCamera();
-
 		}
 		break;
 		case CameraSelect::objCamera:
@@ -720,21 +710,6 @@ namespace basecross {
 		}
 		break;
 		}
-	}
-
-	void GameStage::GameOver() {
-		//ボスの座標取得
-		//auto ptrEnemy = GetSharedGameObject<EnemyObject>(L"EnemyObject");
-		//auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//auto enemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
-		//auto playerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
-
-		//float distance = playerPos.x - enemyPos.x;
-
-		//if (distance < 0.0f) {
-		//	ToMyCamera();
-		//}
-
 	}
 
 	void GameStage::OnDestroy() {

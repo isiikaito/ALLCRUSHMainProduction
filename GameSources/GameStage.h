@@ -98,7 +98,6 @@ namespace basecross {
 		void OnDestroy();
 		//カメラマンの作成
 		void CreateCameraman();
-
 	public:
 		//構築と破棄
 		GameStage() :Stage(), m_TotalTime(0) {}
@@ -118,7 +117,6 @@ namespace basecross {
 		void ToObjCamera();
 		void ToMyCamera();
 		//void ToEndingCamera();
-		void GameOver();
 
 	};
 

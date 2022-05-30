@@ -7,7 +7,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp" />
@@ -17,7 +16,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp" />
@@ -46,6 +44,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack1.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -54,7 +56,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h" />
@@ -64,7 +65,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h" />
@@ -95,5 +95,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
   </ItemGroup>
 </Project>

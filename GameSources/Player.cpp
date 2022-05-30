@@ -298,6 +298,12 @@ namespace basecross {
 		}
 		
 
+
+
+	
+           
+            
+
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -327,6 +333,15 @@ namespace basecross {
 		//MovePlayer();
 		m_InputHandler2.PushHandle(GetThis<Player>());
 
+		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
+		if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
+			return;
+		}
+		
+
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<Player>());
+		//moveStop = false;
 	}
 
 	//Aボタン
@@ -343,9 +358,9 @@ namespace basecross {
 
 			moveStop = false;//移動の停止
 
-		}
+				}
 
-	}
+			}
 
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() {
@@ -494,88 +509,64 @@ namespace basecross {
 
 
 				//壁の破壊処理
-				for (auto& v : vec) {
-					auto shPtr = v.lock();
-					Vec3 ret;
-					auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-					if (ptrWall) {
-						auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-						auto WallHP = ptrWall->GetHP();
+					for (auto& v : vec) {
+						auto shPtr = v.lock();
+						Vec3 ret;
+						auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
+						if (ptrWall) {
+							auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
+							auto WallHP = ptrWall->GetHP();
 
-						if (/*近づいたら*/
-							HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
-							//壁との距離が2.0以下になった
-							auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-							//	ptrDraw->ChangeCurrentAnimation(L"ActionEnd");
+							if (/*近づいたら*/
+								HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
+								//壁との距離が2.0以下になった
+								auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+								//	ptrDraw->ChangeCurrentAnimation(L"ActionEnd");
 
-							//パワーアップ時の処理
-							switch (Power)
-							{
-							case 0:
-								WallHP -= 10;
-								Power = 1;
-								PowerCount = 0;
-								Gageflash = 1;
-								break;
+								//パワーアップ時の処理
+								switch (Power)
+								{
+								case 0:
+										WallHP-=10;
+									Power = 1;
+									PowerCount = 0;
+									Gageflash = 1;
+									break;
 
-								//パワーアップ前の処理
-							case 1:
-								WallHP -= 1;
-								break;
+									//パワーアップ前の処理
+								case 1:
+									WallHP -= 1;
+									break;
+									
 
 								}
 								ptrWall->SetHP(WallHP);
 
-							}
-
-							ptrWall->SetHP(WallHP);
-							//壁の残り耐久値についての処理
-							if (WallHP >= 4)
-							{
-								auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-								ptrDraw1->SetMeshResource(L"UNBREAKWALL_MESH");
-							}
-							else if (WallHP >= 3)
-							{
-								auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-								ptrDraw1->SetMeshResource(L"DAMAGEWALL1_MESH");
-							}
-							else if (WallHP >= 2)
-							{
-								auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-								ptrDraw1->SetMeshResource(L"DAMAGEWALL2_MESH");
-							}
-							else if (WallHP >= 1)
-							{
-								auto ptrDraw1 = ptrWall->GetComponent<PNTStaticModelDraw>();
-								ptrDraw1->SetMeshResource(L"DAMAGEWALL3_MESH");
-							}
-
-							if (WallHP <= 0)
-							{
+								if (WallHP <= 0)
+								{
 								ptrXA->Start(L"BrakeWall", 0, 0.5f);
 								GetStage()->RemoveGameObject<Wall>(shPtr);
-								PowerCount += 1;
+								PowerCount +=1;
 								if (PowerCount >= 3)
 								{
 									PowerCount = 3;
 								}
+								
+								}
 
-							}
-
-							auto elps = App::GetApp()->GetElapsedTime();
-							SoundTime += elps;
-							if (WallHP >= 1)
-							{
+								auto elps = App::GetApp()->GetElapsedTime();
+								SoundTime += elps;
+								if (WallHP >= 1)
+								{
 								auto AttackSound = App::GetApp()->GetXAudio2Manager();
 								AttackSound->Start(L"AttackWall", 0, 0.5f);
-								return;
-							}
+									return;
+								}
 
 
-							if (WallHP <= 0)
-							{
-								if (!m_isPlay) {
+								if (WallHP <= 0)
+								{
+									if (!m_isPlay) {
 									auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
 									auto WallPos = ptrWall->GetComponent<Transform>()->GetPosition();
 									//m_manager->SetTargetLocation(m_handle, ::Effekseer::Vector3D(WallPos.x, 0, 0));
@@ -584,73 +575,74 @@ namespace basecross {
 									//m_handle = m_manager->Play(m_effect,0,0,0);
 
 									//m_isPlay = true;
-								}
-								auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
-								if (PtrSpark) {
-									auto pos = GetComponent<Transform>()->GetPosition();
-									//PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
-									PtrSpark->InsertSpark(pos);
-									PtrSpark->InsertSpark1(pos);
-								}
+									}
+									auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+									if (PtrSpark) {
+										auto pos = GetComponent<Transform>()->GetPosition();
+										//PtrSpark->GetComponent<Transform>()->SetScale(5,5,5);
+										PtrSpark->InsertSpark(pos);
+										PtrSpark->InsertSpark1(pos);
+									}
 
-								auto BrakeSound = App::GetApp()->GetXAudio2Manager();
-								GetStage()->RemoveGameObject<Wall>(shPtr);
-								//サウンドの再生
-								BrakeSound->Start(L"BrakeWall", 0, 0.5f);
+									auto BrakeSound = App::GetApp()->GetXAudio2Manager();
+									GetStage()->RemoveGameObject<Wall>(shPtr);
+									//サウンドの再生
+									BrakeSound->Start(L"BrakeWall", 0, 0.5f);
+								}
+								
+
+								
 							}
-
-
-
 						}
 					}
-				//障害物１の破壊
+					//障害物１の破壊
 
-				auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
-				auto vec1 = group1->GetGroupVector();
-				for (auto& v1 : vec1) {
-					auto shPtr1 = v1.lock();
-					Vec3 ret1;
-					auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
+					auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
+					auto vec1 = group1->GetGroupVector();
+					for (auto& v1 : vec1) {
+						auto shPtr1 = v1.lock();
+						Vec3 ret1;
+						auto ptrObstacle1 = dynamic_pointer_cast<Obstacle1>(shPtr1);
 
-					if (ptrObstacle1) {
-						auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
-						if (/*近づいたら*/
-							HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
-							//壁との距離が2.0以下になった
-								//コントローラのボタンが押されていたら、shPtrを消す
-							GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
-							auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
-							Shitem->SetDrawActive(true);
-							itemCount = 1;
+						if (ptrObstacle1) {
+							auto Obstacle1Obb = ptrObstacle1->GetComponent<CollisionObb>()->GetObb();
+							if (/*近づいたら*/
+								HitTest::SPHERE_OBB(playerSp, Obstacle1Obb, ret1)) {
+								//壁との距離が2.0以下になった
+									//コントローラのボタンが押されていたら、shPtrを消す
+									GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
+									auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
+									Shitem->SetDrawActive(true);
+									itemCount = 1;
+							}
 						}
 					}
-				}
-				//柱破壊処理
-				auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
-				auto vec2 = group2->GetGroupVector();
-				for (auto& v2 : vec2) {
-					auto shPtr2 = v2.lock();
-					Vec3 ret2;
-					auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
+					//柱破壊処理
+					auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
+					auto vec2 = group2->GetGroupVector();
+					for (auto& v2 : vec2) {
+						auto shPtr2 = v2.lock();
+						Vec3 ret2;
+						auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
 
-					auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
-					if (ptrPillar) {
-						auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
-						auto Falling1 = ptrFallingRock->GetFalling();
-						if (/*近づいたら*/
-							HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
-							//壁との距離が2.0以下になった
-							GetStage()->RemoveGameObject<Pillar>(shPtr2);
+						auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
+						if (ptrPillar) {
+							auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
+							auto Falling1 = ptrFallingRock->GetFalling();
+							if (/*近づいたら*/
+								HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
+								//壁との距離が2.0以下になった
+									GetStage()->RemoveGameObject<Pillar>(shPtr2);
 
+									
+									//落石の処理
+									Falling1 = 1;
+									ptrFallingRock->SetFalling(Falling1);
 
-							//落石の処理
-							Falling1 = 1;
-							ptrFallingRock->SetFalling(Falling1);
-
-
-							PillarCount = 1;
-
-
+									
+										PillarCount = 1;
+										
+									
 						}
 
 					}
