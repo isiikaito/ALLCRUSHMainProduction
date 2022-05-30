@@ -48,6 +48,9 @@ namespace basecross {
 		
 	}
 	void TitleStage::OnPushB() {
+		auto WalkSound = App::GetApp()->GetXAudio2Manager();
+		WalkSound->Start(L"WalkSound", 0, 0.5f);
+
 			CerateFadeOutBlack();
 	}
 }
