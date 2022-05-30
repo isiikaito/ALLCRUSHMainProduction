@@ -124,13 +124,6 @@ namespace basecross {
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<Wall>(Scale, Rot, Pos,HP);
 		}
-		//HP
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-5.0f, 1.0f, 0.0f),1);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-13.0f, 1.0f, 0.0f),3);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-21.0f, 1.0f, 0.0f),1);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-29.0f, 1.0f, 0.0f),2);
-		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-37.0f, 1.0f, 0.0f),4);
-
 	}
 	//マヤの壁の作成
 	void GameStage::CreateStageWall() {

@@ -333,6 +333,15 @@ namespace basecross {
 		//MovePlayer();
 		m_InputHandler2.PushHandle(GetThis<Player>());
 
+		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
+		if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
+			return;
+		}
+		
+
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<Player>());
+		//moveStop = false;
 	}
 
 	//Aボタン
