@@ -183,6 +183,7 @@ namespace basecross {
 			SetAt(pos);
 		}
 		Camera::OnUpdate();
+
 	}
 }
 

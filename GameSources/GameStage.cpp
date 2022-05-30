@@ -585,6 +585,8 @@ namespace basecross {
 			CreateTelop4();
 			//カメラマンの作成
 			CreateCameraman();
+
+			GameOver();
 		}
 		catch (...) {
 			throw;
@@ -709,6 +711,7 @@ namespace basecross {
 		case CameraSelect::myCamera:
 		{
 			ToObjCamera();
+
 		}
 		break;
 		case CameraSelect::objCamera:
@@ -717,6 +720,21 @@ namespace basecross {
 		}
 		break;
 		}
+	}
+
+	void GameStage::GameOver() {
+		//ボスの座標取得
+		//auto ptrEnemy = GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		//auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		//auto enemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
+		//auto playerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
+
+		//float distance = playerPos.x - enemyPos.x;
+
+		//if (distance < 0.0f) {
+		//	ToMyCamera();
+		//}
+
 	}
 
 	void GameStage::OnDestroy() {
