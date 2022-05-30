@@ -81,6 +81,13 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 			StopCount = 1;
 			//ボスのスピードを0にする
 			m_Speed = 0;
+			auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+			auto RockSound = App::GetApp()->GetXAudio2Manager();
+			RockSound->Start(L"RockAttack", 0, 0.5f);
+			if (PtrSpark) {
+				auto pos = GetComponent<Transform>()->GetPosition();
+				PtrSpark->InsertSpark3(pos);
+			}
 		
 		}
 		

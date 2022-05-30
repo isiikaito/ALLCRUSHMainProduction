@@ -60,6 +60,7 @@ namespace basecross {
 		
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			m_TotalTime += elapsedTime;
+
 			if (m_TotalTime >= XM_PI) {
 				m_TotalTime = 0;
 			}
@@ -79,7 +80,6 @@ namespace basecross {
 			ptrDraw->UpdateVertices(newVertices);
 			if (m_TotalTime >= 1)
 			{
-				
 	              PostEvent(0.0f, GetThis<FadeOutBlack>(), App::GetApp()->GetScene<Scene>(), L"ToMenuStage");
 				
 			

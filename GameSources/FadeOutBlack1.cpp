@@ -78,6 +78,8 @@ namespace basecross {
 		ptrDraw->UpdateVertices(newVertices);
 		if (m_TotalTime >= 1)
 		{
+			
+
 
 			PostEvent(0.0f, GetThis<FadeOutBlack1>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 

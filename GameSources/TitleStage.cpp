@@ -24,10 +24,9 @@ namespace basecross {
 	}
 
 	void TitleStage::CerateFadeOutBlack()
-	{
-		
-			AddGameObject<FadeOutBlack>(true,
-				Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
+	{		
+		AddGameObject<FadeOutBlack>(true,
+			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
 		
 	}
 
@@ -47,7 +46,7 @@ namespace basecross {
 		
 		
 	}
-	void TitleStage::OnPushB() {
+	void TitleStage::OnPushB() {	
 		auto WalkSound = App::GetApp()->GetXAudio2Manager();
 		WalkSound->Start(L"WalkSound", 0, 0.5f);
 
