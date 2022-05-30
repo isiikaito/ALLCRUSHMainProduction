@@ -138,16 +138,22 @@ namespace basecross {
 		strTexture = dataDir + L"メニュー画面.png";
 		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
 		
+		//エフェクト関連
 		strTexture = dataDir + L"Splash02.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
-
-		strTexture = dataDir + L"spark1.png";
+		strTexture = dataDir + L"spark2.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
+		strTexture = dataDir + L"SpeedUp.png";
+		App::GetApp()->RegisterTexture(L"SPEEDUP_TX", strTexture);
+
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
 		App::GetApp()->RegisterWav(L"BGM", CursorWav);
-		//走るサウンド
+		//敵の声
+		CursorWav = dataDir + L"WalkSound.wav";
+		App::GetApp()->RegisterWav(L"WalkSound", CursorWav);
+		//走るサウンド	
 		CursorWav = dataDir + L"run.wav";
 		App::GetApp()->RegisterWav(L"run", CursorWav);
 		//スピードアップのサウンド

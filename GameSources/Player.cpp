@@ -420,11 +420,10 @@ namespace basecross {
 			SpeedUpSound->Start(L"SpeedUp", 0, 0.5f);
 			speed2 = 2;
 			itemCount = 0;
-			if (!m_isPlay1) {
-				//m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.5, PlayerPos.z-0.5);
-				m_handle1 = m_manager1->Play(m_effect1,PlayerPos.x + 5, PlayerPos.y +0.25, PlayerPos.z - 1.0);
-				//m_handle1 = m_manager1->Play(m_effect1  ,0,0,0);
-				m_isPlay1 = true;
+			auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+			if (PtrSpark) {
+				auto pos = GetComponent<Transform>()->GetPosition();
+				PtrSpark->InsertSpark2(pos);
 			}
 		}
 		
