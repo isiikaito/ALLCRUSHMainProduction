@@ -40,15 +40,62 @@ namespace basecross{
 		Vec3 target = playerPos + span;
 		Easing<Vec3> easig;
 		Vec3 v;
+		auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
+		auto pillarPos = ptrPillar->GetComponent<Transform>()->GetPosition();
+		float PillarDis = playerPos.x - pillarPos.x;
+
+		int EnemySetDrawActiveCount(0);
+		int PillarCount(0);
+
+		PillarCount = ptrPlayer->GetPillarCount();
+		ptrPlayer->SetPillarCount(PillarCount);
+
+
+		if (m_Turn == 0)
+		{
+			if (PillarDis < 10)
+			{
+				EnemySetDrawActiveCount = 0;
+				target.x = playerPos.x - 5.0f;
+			}
+		}
+
+		//柱が壊れたら
+		if (PillarCount == 1)
+		{
+
+			//elapsedTimeを取得することにより時間を使える
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+			//時間を変数に足す
+			m_TurnTime += elapsedTime;
+			//柱が壊れてから二秒後に
+			if (m_TurnTime > 2 && m_TurnTime < 2.1)
+			{
+				EnemySetDrawActiveCount = 1;
+				//カメラが正面を向く
+				target.x = playerPos.x + 5.0f;
+
+				m_Turn = 1;
+			}
+
+		}
+
 		target.y = playerPos.y + 2.0f;
 		target.x = playerPos.x + 5.0f;
 
+		//ボスの座標取得
+		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		auto enemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
+		float distance = playerPos.x - enemyPos.x;
+
+		if (distance > -5.0f) {//敵に当たったら
+			target.y = playerPos.y + 2.0f;
+			target.x = playerPos.x - 5.0f;
+		}
+
+
 		v = easig.EaseIn(EasingType::Cubic, pos, target, 1.0f, 1.0f);
-		//if (playerPos.z > -7.0f) {
-		//	target.y = playerPos.y + 2.0f;
-		//	target.z = playerPos.z - 5.0f;
-		//	target.x = playerPos.x;
-		//}
+
 		//else {
 		//}
 		//if (playerPos.x <= -6.5f || playerPos.x >= -7.5f) {
@@ -133,9 +180,6 @@ namespace basecross{
 		ptrGameGtage->ToObjCamera();
 	}
 
-
-
-
 	//--------------------------------------------------------------------------------------
 	//	class OpeningCameramanToGoalState : public ObjState<OpeningCameraman>;
 	//--------------------------------------------------------------------------------------
@@ -185,128 +229,5 @@ namespace basecross{
 	}
 	void OpeningCameramanEndState::Exit(const shared_ptr<OpeningCameraman>& Obj) {
 	}
-	//--------------------------------------------------------------------------------------
-	//　エンディングカメラマン
-	//--------------------------------------------------------------------------------------
-	//構築と破棄
-	//EndingCameraman::EndingCameraman(const shared_ptr<Stage>& StagePtr) :
-	//	GameObject(StagePtr),
-	//	m_StartPos(-20.0f, 5.0f, -20.0f),
-	//	m_EndPos(18.0f, 2.0f, 10.0f),
-	//	m_AtStartPos(0.0f, 0.0f, 0.0f),
-	//	m_AtEndPos(18.0f, 0.0f, 18.0f),
-	//	m_AtPos(m_AtStartPos),
-	//	m_TotalTime(0.0f)
-	//{}
-	//EndingCameraman::~EndingCameraman() {}
-	////初期化
-	//void EndingCameraman::OnCreate() {
-	//	//初期位置などの設定
-	//	auto ptr = GetComponent<Transform>();
-	//	ptr->SetScale(0.25f, 0.25f, 0.25f);	//直径25センチの球体
-	//	ptr->SetRotation(0.0f, 0.0f, 0.0f);
-	//	ptr->SetPosition(m_StartPos);
-	//	//ステートマシンの構築
-	//	m_StateMachine.reset(new StateMachine<EndingCameraman>(GetThis<EndingCameraman>()));
-	//	//最初のステートをEndingCameramanToGoalStateに設定
-	//	m_StateMachine->ChangeState(EndingCameramanToGoalState::Instance());
-	//}
-	////操作
-	//void EndingCameraman::OnUpdate() {
-	//	//ステートマシンのUpdateを行う
-	//	//この中でステートの切り替えが行われる
-	//	m_StateMachine->Update();
-	//}
-
-	//void EndingCameraman::ToGoalEnterBehavior() {
-	//	m_StartPos = Vec3(0.0f, 2.0f, 0.0f);
-	//	m_EndPos = Vec3(0.0f, 2.0f, 0.0f);
-	//	m_AtStartPos = Vec3(40.0f, 0.0f, 0.0f);
-	//	m_AtEndPos = Vec3(60.0f, 2.0f, 0.0f);
-	//	m_AtPos = m_AtStartPos;
-	//	m_TotalTime = 0.0f;
-	//}
-
-	//void EndingCameraman::ToStartEnterBehavior() {
-	//	m_StartPos = Vec3(50.0f, 2.0f, -2.0f);
-	//	m_EndPos = Vec3(47.0f, 2.0f, -2.0f);
-	//	m_AtStartPos = Vec3(60.0f, 2.0f, 0.0f);
-	//	m_AtEndPos = Vec3(60.0f, 2.0f, 0.0f);
-	//	m_AtPos = m_AtStartPos;
-	//	m_TotalTime = 0.0f;
-	//}
-
-	//bool EndingCameraman::ExcuteBehavior(float totaltime) {
-	//	float ElapsedTime = App::GetApp()->GetElapsedTime();
-	//	m_TotalTime += ElapsedTime * 3.0f;
-	//	if (m_TotalTime > totaltime) {
-	//		return true;
-	//	}
-	//	Easing<Vec3> easing;
-	//	auto TgtPos = easing.EaseInOut(EasingType::Cubic, m_StartPos, m_EndPos, m_TotalTime, totaltime);
-	//	m_AtPos = easing.EaseInOut(EasingType::Cubic, m_AtStartPos, m_AtEndPos, m_TotalTime, totaltime);
-	//	auto ptrTrans = GetComponent<Transform>();
-	//	ptrTrans->SetPosition(TgtPos);
-	//	return false;
-	//}
-
-	//void EndingCameraman::EndStateEnterBehavior() {
-	//	auto ptrGameGtage = GetTypeStage<GameStage>();
-	//	ptrGameGtage->ToMyCamera();
-	//}
-
-
-
-
-	////--------------------------------------------------------------------------------------
-	////	class EndingCameramanToGoalState : public ObjState<EndingCameraman>;
-	////--------------------------------------------------------------------------------------
-	//shared_ptr<EndingCameramanToGoalState> EndingCameramanToGoalState::Instance() {
-	//	static shared_ptr<EndingCameramanToGoalState> instance(new EndingCameramanToGoalState);
-	//	return instance;
-	//}
-	//void EndingCameramanToGoalState::Enter(const shared_ptr<EndingCameraman>& Obj) {
-	//	Obj->ToGoalEnterBehavior();
-	//}
-	//void EndingCameramanToGoalState::Execute(const shared_ptr<EndingCameraman>& Obj) {
-	//	if (Obj->ExcuteBehavior(5.0f)) {
-	//		Obj->GetStateMachine()->ChangeState(EndingCameramanToStartState::Instance());
-	//	}
-	//}
-	//void EndingCameramanToGoalState::Exit(const shared_ptr<EndingCameraman>& Obj) {
-	//}
-	////--------------------------------------------------------------------------------------
-	////	class EndingCameramanToStartState : public ObjState<EndingCameraman>;
-	////--------------------------------------------------------------------------------------
-	//shared_ptr<EndingCameramanToStartState> EndingCameramanToStartState::Instance() {
-	//	static shared_ptr<EndingCameramanToStartState> instance(new EndingCameramanToStartState);
-	//	return instance;
-	//}
-	//void EndingCameramanToStartState::Enter(const shared_ptr<EndingCameraman>& Obj) {
-	//	Obj->ToStartEnterBehavior();
-	//}
-	//void EndingCameramanToStartState::Execute(const shared_ptr<EndingCameraman>& Obj) {
-	//	if (Obj->ExcuteBehavior(3.0f)) {
-	//		Obj->GetStateMachine()->ChangeState(EndingCameramanEndState::Instance());
-	//	}
-	//}
-	//void EndingCameramanToStartState::Exit(const shared_ptr<EndingCameraman>& Obj) {
-	//}
-
-	////--------------------------------------------------------------------------------------
-	////	class EndingCameramanEndState : public ObjState<EndingCameraman>;
-	////--------------------------------------------------------------------------------------
-	//shared_ptr<EndingCameramanEndState> EndingCameramanEndState::Instance() {
-	//	static shared_ptr<EndingCameramanEndState> instance(new EndingCameramanEndState);
-	//	return instance;
-	//}
-	//void EndingCameramanEndState::Enter(const shared_ptr<EndingCameraman>& Obj) {
-	//	Obj->EndStateEnterBehavior();
-	//}
-	//void EndingCameramanEndState::Execute(const shared_ptr<EndingCameraman>& Obj) {
-	//}
-	//void EndingCameramanEndState::Exit(const shared_ptr<EndingCameraman>& Obj) {
-	//}
-
 }
 //end basecross
