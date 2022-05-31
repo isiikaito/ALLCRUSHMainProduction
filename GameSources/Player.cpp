@@ -77,18 +77,24 @@ namespace basecross {
 		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
-		//if (elapsedTime)
-		//{
-		//	m_opningStop += elapsedTime;
-		//	if (m_opningStop >= XM_PI) {
-		//		m_opningStop = 0;
-		//	}
+		if (elapsedTime)
+		{
+			m_opningStop += elapsedTime;
+			if (m_opningStop >= XM_PI) {
+				m_opningStop = 0;
+			}
 
-		//	if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
-		//		return;
-		//	}
-		//	moveStop = false;
-		//}
+			if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
+				return;
+			}
+			//moveStop = false;
+
+			if (m_opningStop == 1)
+			{
+				moveStop = true;
+			}
+		}
+
 		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
