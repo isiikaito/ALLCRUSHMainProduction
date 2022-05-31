@@ -125,6 +125,9 @@ namespace basecross {
 		//Xボタンテクスチャ
 		strTexture = dataDir + L"ボタンX.png";
 		App::GetApp()->RegisterTexture(L"XButton_TX", strTexture);
+		//Yボタンテクスチャ
+		strTexture = dataDir + L"ボタンY.png";
+		App::GetApp()->RegisterTexture(L"YButton_TX", strTexture);
 		//ハンマーゲージ
 		strTexture = dataDir + L"ハンマーゲージ.png";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
