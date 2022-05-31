@@ -133,7 +133,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
-		strTexture = dataDir + L"Stage1.png";
+		strTexture = dataDir + L"go.png";
 		App::GetApp()->RegisterTexture(L"Stage1_TX", strTexture);
 
 		//文字テクスチャ
