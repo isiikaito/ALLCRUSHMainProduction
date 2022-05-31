@@ -72,9 +72,6 @@ namespace basecross{
 		void CreateTelop4();
 		float m_Telop4Time;
 
-		//
-		void CreateGameOverTelop();
-		float m_gameoverTelopTime;
 
 		Vec3 GetMoveVector() const;
 

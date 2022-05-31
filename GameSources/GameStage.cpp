@@ -480,12 +480,6 @@ namespace basecross {
 		AddGameObject<Telop3>(L"出口前_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
-	//ゲームオーバーテロップ
-	void GameStage::CreateGameOverTelop()
-	{
-		AddGameObject<Telop3>(L"GAMEOVER_TX", true,
-			Vec2(500.0f, 400.0f), Vec2(0.0f, 0.0f));
-	}
 
 	// 壁を壊せ！！テロップ
 	void GameStage::CreateTelop4()
