@@ -40,7 +40,7 @@ namespace basecross {
 
 		AddGameObject<FadeOutBlack1>(true,
 			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-
+		
 	}
 
 	//初期化
@@ -89,6 +89,14 @@ namespace basecross {
 		auto ptrStage1 = GetSharedGameObject<MenuSprite1>(L"MenuSprite1");
 		//elapsedTimeを取得することにより時間を使える
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		if (OnPushBCheck) {
+			if (!OnPushBCheck1)
+			{
+				auto WalkSound = App::GetApp()->GetXAudio2Manager();
+				WalkSound->Start(L"WalkSound", 0, 0.4f);
+				OnPushBCheck1 = true;
+			}
+		}
 		//時間を変数に足す
 		m_idleTime += elapsedTime;
 		//十字キーを利用してnumが０の時
@@ -143,6 +151,7 @@ namespace basecross {
 	
 	void MenuStage::OnPushB() {
 		CerateFadeOutBlack1();
+		OnPushBCheck = true;
 		//switch (num)
 		//{
 		//	case 0:

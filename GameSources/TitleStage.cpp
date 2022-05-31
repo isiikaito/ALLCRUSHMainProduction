@@ -27,7 +27,6 @@ namespace basecross {
 	{		
 		AddGameObject<FadeOutBlack>(true,
 			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-		
 	}
 
 	//初期化
@@ -43,15 +42,21 @@ namespace basecross {
 	void TitleStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<TitleStage>());
-		
+		if (OnPushBCheck) {
+			if (!OnPushBCheck1)
+			{
+			auto WalkSound = App::GetApp()->GetXAudio2Manager();
+			WalkSound->Start(L"WalkSound", 0, 0.5f);
+			OnPushBCheck1 = true;
+			}			
+		}
 		
 	}
 	void TitleStage::OnPushB() {	
-		auto WalkSound = App::GetApp()->GetXAudio2Manager();
-		WalkSound->Start(L"WalkSound", 0, 0.5f);
-
 			CerateFadeOutBlack();
+			OnPushBCheck = true;
 	}
+	
 }
 
 //end namespace basecross

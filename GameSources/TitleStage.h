@@ -15,6 +15,8 @@ namespace basecross {
 		void CreateViewLight();
 		void CerateFadeOutBlack();
 		int SceneCountbakc;
+		bool  OnPushBCheck = false;
+		bool  OnPushBCheck1 = false;
 		//“ü—Íƒnƒ“ƒhƒ‰[
 		InputHandler2<TitleStage> m_InputHandler;
 

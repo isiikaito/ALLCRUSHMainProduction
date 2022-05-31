@@ -24,6 +24,8 @@ namespace basecross {
 		InputHandler2<MenuStage> m_InputHandler;
 		float m_idleTime;
 		int num = 0;
+		bool  OnPushBCheck = false;
+		bool  OnPushBCheck1 = false;
 
 
 	public:
