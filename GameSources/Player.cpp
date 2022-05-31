@@ -144,8 +144,6 @@ namespace basecross {
 	void Player::OnCreate()
 	{
 
-
-
 		//初期位置などの設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
@@ -201,16 +199,28 @@ namespace basecross {
 		CreateEffect();
 		CreateEffect1();
 
-
-
 	}
 
 
 	void Player::OnUpdate()
 
 	{
+		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		if (elapsedTime)
+		{
+			m_opningStop += elapsedTime;
+			if (m_opningStop >= XM_PI) {
+				m_opningStop = 0;
+			}
 
-
+			if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
+				return;
+			}
+			//コントローラチェックして入力があればコマンド呼び出し
+			moveStop = false;
+		}
+		moveStop = true;
 		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
@@ -348,7 +358,6 @@ namespace basecross {
 		//MovePlayer();
 		m_InputHandler2.PushHandle(GetThis<Player>());
 
-		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
 		if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
 			return;
 		}

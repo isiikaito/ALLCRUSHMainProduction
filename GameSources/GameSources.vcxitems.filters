@@ -48,7 +48,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutEnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
@@ -100,6 +99,5 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutEnd.h" />
   </ItemGroup>
 </Project>
