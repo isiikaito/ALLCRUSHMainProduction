@@ -3,19 +3,19 @@
 
 namespace basecross {
 
-	shared_ptr<GameObject> MyCamera::GetTargetObject() const {
+	shared_ptr<GameObject> BackCamera::GetTargetObject() const {
 		if (!m_TargetObject.expired()) {
 			return m_TargetObject.lock();
 		}
 		return nullptr;
 	}
 
-	void MyCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+	void BackCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
 		m_TargetObject = Obj;
 	}
 
 	// カメラ
-	void MyCamera::OnUpdate()
+	void BackCamera::OnUpdate()
 	{
 		auto& app = App::GetApp();
 
@@ -144,38 +144,20 @@ namespace basecross {
 		}
 		Camera::OnUpdate();
 	}
-
 	//--------------------------------------------------------------------------------------
-	//	エンディングカメラ（コンポーネントではない）
-	//--------------------------------------------------------------------------------------
-	//EndingCamera::EndingCamera() :
-	//	Camera()
-	//{}
-	//EndingCamera::~EndingCamera() {}
-
-	//void EndingCamera::OnUpdate() {
-	//	auto ptrEndingCameraman = dynamic_pointer_cast<EndingCameraman>(GetCameraObject());
-	//	if (ptrEndingCameraman) {
-	//		auto pos = ptrEndingCameraman->GetAtPos();
-	//		SetAt(pos);
-	//	}
-	//	Camera::OnUpdate();
-	//}
-
-	//--------------------------------------------------------------------------------------
-	//	オブジェクトカメラ（コンポーネントではない）
+	//	メインカメラ（コンポーネントではない）
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	ObjCamera::ObjCamera() :
+	MainCamera::MainCamera() :
 		Camera()
 	{}
-	ObjCamera::~ObjCamera() {}
+	MainCamera::~MainCamera() {}
 
-	void ObjCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+	void MainCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
 		m_TargetObject = Obj;
 	}
 
-	void ObjCamera::OnUpdate() {
+	void MainCamera::OnUpdate() {
 		auto ptrTarget = m_TargetObject.lock();
 		if (ptrTarget) {
 			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
