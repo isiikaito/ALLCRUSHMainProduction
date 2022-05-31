@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
@@ -67,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />

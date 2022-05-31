@@ -458,7 +458,8 @@ namespace basecross {
 			itemCount = 2;
 
 
-
+			auto XSprite1 = GetStage()->GetSharedGameObject<XSprite>(L"XSprite");
+			XSprite1->SetDrawActive(false);
 			Shitem->SetDrawActive(false);
 			//ƒTƒEƒ“ƒh‚ÌÄ¶
 			SpeedUpSound->Start(L"SpeedUp", 0, 0.5f);
@@ -650,6 +651,8 @@ namespace basecross {
 							GetStage()->RemoveGameObject<Obstacle1>(shPtr1);
 							auto Shitem = GetStage()->GetSharedGameObject<Myitem1>(L"Myitem1");
 							Shitem->SetDrawActive(true);
+							auto XSprite1 = GetStage()->GetSharedGameObject<XSprite>(L"XSprite");
+							XSprite1->SetDrawActive(true);
 							itemCount = 1;
 						}
 					}
