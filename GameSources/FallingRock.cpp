@@ -61,8 +61,8 @@ namespace basecross {
 
 		auto Coll = AddComponent<CollisionObb>();
 		
-		//衝突判定を表示
-		Coll->SetDrawActive(true);
+		////衝突判定を表示
+		//Coll->SetDrawActive(true);
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
         
