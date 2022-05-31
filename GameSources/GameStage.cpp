@@ -20,20 +20,16 @@ namespace basecross {
 		m_OpeningCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
 		auto ptrOpeningCamera = ObjectFactory::Create<OpeningCamera>();
 		m_OpeningCameraView->SetCamera(ptrOpeningCamera);
-		//EndingCameraView用のビュー
-		//m_EndingCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		//auto ptrEndingCamera = ObjectFactory::Create<EndingCamera>();
-		//m_EndingCameraView->SetCamera(ptrEndingCamera);
-		//MyCamera用のビュー
-		m_MyCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrMyCamera = ObjectFactory::Create<MyCamera>();
-		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
-		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
-		m_MyCameraView->SetCamera(ptrMyCamera);
-		//ObjCamera用のビュー
-		m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
-		m_ObjCameraView->SetCamera(ptrObjCamera);
+		//BackCamera用のビュー
+		m_BackCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrBackCamera = ObjectFactory::Create<BackCamera>();
+		ptrBackCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
+		ptrBackCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		m_BackCameraView->SetCamera(ptrBackCamera);
+		//MainCamera用のビュー
+		m_MainCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrMainCamera = ObjectFactory::Create<MainCamera>();
+		m_MainCameraView->SetCamera(ptrMainCamera);
 		//初期状態ではm_OpeningCameraViewを使う
 		SetView(m_OpeningCameraView);
 		m_CameraSelect = CameraSelect::openingCamera;
@@ -607,48 +603,30 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::ToObjCamera() {
+	void GameStage::ToMainCamera() {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		//ObjCameraに変更
 		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
-		auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
-		if (ptrObjCamera) {
-			ptrObjCamera->SetCameraObject(ptrCameraman);
-			ptrObjCamera->SetTargetObject(ptrPlayer);
+		auto ptrMainCamera = dynamic_pointer_cast<MainCamera>(m_MainCameraView->GetCamera());
+		if (ptrMainCamera) {
+			ptrMainCamera->SetCameraObject(ptrCameraman);
+			ptrMainCamera->SetTargetObject(ptrPlayer);
 			//m_ObjCameraViewを使う
-			SetView(m_ObjCameraView);
-			m_CameraSelect = CameraSelect::objCamera;
+			SetView(m_MainCameraView);
+			m_CameraSelect = CameraSelect::mainCamera;
 		}
 	}
-	void GameStage::ToMyCamera() {
+	void GameStage::ToBackCamera() {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//MyCameraに変更
-		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
-		if (ptrMyCamera) {
-			ptrMyCamera->SetTargetObject(ptrPlayer);
-			//m_MyCameraViewを使う
-			SetView(m_MyCameraView);
-			m_CameraSelect = CameraSelect::myCamera;
+		//BackCameraに変更
+		auto ptrBackCamera = dynamic_pointer_cast<BackCamera>(m_BackCameraView->GetCamera());
+		if (ptrBackCamera) {
+			ptrBackCamera->SetTargetObject(ptrPlayer);
+			//m_BackCameraViewを使う
+			SetView(m_BackCameraView);
+			m_CameraSelect = CameraSelect::backCamera;
 		}
 	}
-	//void GameStage::ToEndingCamera() {
-	//	//auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
-	//	//シェア配列にCameramanを追加
-	//	//SetSharedGameObject(L"Cameraman", ptrCameraman);
-
-	//	auto ptrEndingCameraman = AddGameObject<EndingCameraman>();
-	//	//シェア配列にEndingCameramanを追加
-	//	SetSharedGameObject(L"EndingCameraman", ptrEndingCameraman);
-
-	//	auto ptrEndingCamera = dynamic_pointer_cast<EndingCameraman>(m_EndingCameraView->GetCamera());
-	//	if (ptrEndingCamera) {
-	//		//ptrEndingCamera->SetCameraObject(ptrEndingCameraman);
-	//		SetView(m_EndingCameraView);
-	//		m_CameraSelect = CameraSelect::endingCamera;
-	//	}
-
-	//}
-
 
 	void GameStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
@@ -662,15 +640,14 @@ namespace basecross {
 		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
 
-auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-			auto GameOver = ptrPlayer->GetGameOver();
-			
-			if (GameOver >= 1) {
+		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+		auto GameOver = ptrPlayer->GetGameOver();
+	
+		if (GameOver >= 1) {
 			//ゲームのオーバー時のFadeOutEnd
-				CreateFadeOutEnd();
-			
-			}
-            ptrPlayer->SetGameOver(GameOver);
+			CreateFadeOutEnd();
+		}
+        ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間
 		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
 		// 時間の変数に足す
@@ -730,14 +707,14 @@ auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 	//Bボタンカメラの変更
 	void GameStage::OnPushB() {
 		switch (m_CameraSelect) {
-		case CameraSelect::myCamera:
+		case CameraSelect::backCamera:
 		{
-			ToObjCamera();
+			ToMainCamera();
 		}
 		break;
-		case CameraSelect::objCamera:
+		case CameraSelect::mainCamera:
 		{
-			ToMyCamera();
+			ToBackCamera();
 		}
 		break;
 		}

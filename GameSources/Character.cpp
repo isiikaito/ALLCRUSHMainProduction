@@ -8,7 +8,7 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-	//　球体のカメラマン
+	//　メインのカメラマン
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
 	Cameraman::Cameraman(const shared_ptr<Stage>& StagePtr,
@@ -183,11 +183,8 @@ namespace basecross {
 
 	void OpeningCameraman::EndStateEnterBehavior() {
 		auto ptrGameGtage = GetTypeStage<GameStage>();
-		ptrGameGtage->ToObjCamera();
+		ptrGameGtage->ToMainCamera();
 	}
-
-
-
 
 	//--------------------------------------------------------------------------------------
 	//	class OpeningCameramanToGoalState : public ObjState<OpeningCameraman>;

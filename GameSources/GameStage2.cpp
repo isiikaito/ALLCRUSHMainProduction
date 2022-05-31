@@ -18,13 +18,13 @@ namespace basecross {
 
 		//BackCamera用のビュー
 		m_BackCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrBackCamera = ObjectFactory::Create<MyCamera>();
+		auto ptrBackCamera = ObjectFactory::Create<BackCamera>();
 		ptrBackCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
 		ptrBackCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 		m_BackCameraView->SetCamera(ptrBackCamera);
-		//ObjCamera用のビュー
+		//MainCamera用のビュー
 		m_MainCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrMainCamera = ObjectFactory::Create<ObjCamera>();
+		auto ptrMainCamera = ObjectFactory::Create<MainCamera>();
 		m_MainCameraView->SetCamera(ptrMainCamera);
 		//初期状態ではm_OpeningCameraViewを使う
 		SetView(m_MainCameraView);
@@ -408,7 +408,7 @@ namespace basecross {
 		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
 		//シェア配列にCameramanを追加
 		SetSharedGameObject(L"Cameraman", ptrCameraman);
-		auto ptrMainCamera = dynamic_pointer_cast<ObjCamera>(m_MainCameraView->GetCamera());
+		auto ptrMainCamera = dynamic_pointer_cast<MainCamera>(m_MainCameraView->GetCamera());
 		if (ptrMainCamera) {
 			ptrMainCamera->SetCameraObject(ptrCameraman);
 			ptrMainCamera->SetTargetObject(ptrPlayer);
@@ -492,7 +492,7 @@ namespace basecross {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		//MainCameraに変更
 		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
-		auto ptrMainCamera = dynamic_pointer_cast<ObjCamera>(m_MainCameraView->GetCamera());
+		auto ptrMainCamera = dynamic_pointer_cast<MainCamera>(m_MainCameraView->GetCamera());
 		if (ptrMainCamera) {
 			ptrMainCamera->SetCameraObject(ptrCameraman);
 			ptrMainCamera->SetTargetObject(ptrPlayer);
@@ -504,7 +504,7 @@ namespace basecross {
 	void GameStage2::ToBackCamera() {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		//MyCameraに変更
-		auto ptrBackCamera = dynamic_pointer_cast<MyCamera>(m_BackCameraView->GetCamera());
+		auto ptrBackCamera = dynamic_pointer_cast<BackCamera>(m_BackCameraView->GetCamera());
 		if (ptrBackCamera) {
 			ptrBackCamera->SetTargetObject(ptrPlayer);
 			//m_BackCameraViewを使う
