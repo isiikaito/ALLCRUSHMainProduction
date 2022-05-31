@@ -43,7 +43,6 @@ namespace basecross {
 	//Bƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
 	void GameOverStage::OnPushB() {
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
-
 	}
 }
 

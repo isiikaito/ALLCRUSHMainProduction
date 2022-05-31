@@ -75,6 +75,8 @@ namespace basecross {
 	void CreateTelop4();
 	float m_Telop4Time;
 
+	void CreateGameOverTelop();
+	float m_gameoverTelop;
 	//トータル時間
 	float m_TotalTime;
 	

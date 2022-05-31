@@ -290,11 +290,22 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-
+		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
+			auto ptrStage1 = GetStage()->GetSharedGameObject<GameOverTelop>(L"GAMEOVER_TX");
+			ptrStage1->SetDrawActive(true);
+			// 時間の変数に足す
+			m_gameoverTelopTime += elapsedTime;
+			if (m_TelopTime >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage1->SetDrawActive(false);
+
+			}
 
 		}
+		//
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
 			ExitCount = 1;

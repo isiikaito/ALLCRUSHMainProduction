@@ -140,6 +140,10 @@ namespace basecross {
 		strTexture = dataDir + L"Stage2.png";
 		App::GetApp()->RegisterTexture(L"Stage2_TX", strTexture);
 		
+		//文字テクスチャ
+		strTexture = dataDir + L"Game Over_font.png";
+		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
+
 		//メニューテクスチャ
 		strTexture = dataDir + L"メニュー画面.png";
 		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
