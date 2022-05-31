@@ -43,6 +43,15 @@ namespace basecross{
 		target.y = playerPos.y + 2.0f;
 		target.x = playerPos.x + 5.0f;
 
+		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
+		auto enemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
+
+		float distance = playerPos.x - enemyPos.x;
+
+		if (distance > -5.0f) {
+			target.x = playerPos.x - 5.0f;
+		}
+
 		v = easig.EaseIn(EasingType::Cubic, pos, target, 1.0f, 1.0f);
 		//if (playerPos.z > -7.0f) {
 		//	target.y = playerPos.y + 2.0f;
