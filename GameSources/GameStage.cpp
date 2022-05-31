@@ -438,6 +438,12 @@ namespace basecross {
 			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
 	}
 
+	//ゲームオーバー時ののフェードアウト
+	void GameStage::CreateFadeOutEnd() {
+		AddGameObject<FadeOutEnd>(true,
+			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
+	}
+
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
 		//プレーヤーの作成
@@ -585,6 +591,8 @@ namespace basecross {
 
 			//ゲームクリアのFadeOut
 			CreateFadeOut();
+			
+			
 			// 逃げるテロップ
 			CreateTickerSprite();
 			CreateTelop();
@@ -654,7 +662,15 @@ namespace basecross {
 		auto ptrScor = GetSharedGameObject<MyTime>(L"Time");
 		ptrScor->SetScore(m_TotalTime);
 
-
+auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+			auto GameOver = ptrPlayer->GetGameOver();
+			
+			if (GameOver >= 1) {
+			//ゲームのオーバー時のFadeOutEnd
+				CreateFadeOutEnd();
+			
+			}
+            ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間
 		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
 		// 時間の変数に足す
