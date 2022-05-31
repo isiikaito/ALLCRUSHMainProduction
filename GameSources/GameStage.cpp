@@ -396,6 +396,12 @@ namespace basecross {
 			//テクスチャの大きさ　　　　位置
 			Vec2(80.0f, 80.0f), Vec3(-520.0f, -190.0f, 0.0f));
 	}
+	//Yボタンスプライト
+	void GameStage::CreateYSprite() {
+		AddGameObject<YSprite>(L"YButton_TX", true,
+			//テクスチャの大きさ　　　　位置
+			Vec2(80.0f, 80.0f), Vec3(550.0f, -90.0f, 0.0f));
+	}
 
 	//ゲージの枠作成
 	void GameStage::CreateMygage() {
@@ -568,6 +574,7 @@ namespace basecross {
 			//アイテムスプライト
 			CreateMyitem1();
 			CreateXSprite();
+			CreateYSprite();
 			//ゲージスプライト
 			CreateMygage();
 			CreateGageSprite();
