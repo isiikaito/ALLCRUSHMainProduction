@@ -44,6 +44,7 @@ namespace basecross {
 	//アイテムスプライト作成
 	void CreateMyitem1();
 	void CreateXSprite();
+	void CreateYSprite();
 	//ゲージの追加
 	void CreateMygage();
 	void CreateGageSprite();
