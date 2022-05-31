@@ -25,6 +25,8 @@ namespace basecross{
 
 		float itemtime;
 
+		int GameOver = 0;
+
 		//アイテムの所持数
 		float itemCount;
 		//パワーアップアイテム
@@ -99,7 +101,6 @@ namespace basecross{
 
 		void CreateEffect();
 		void CreateEffect1();
-
 	public:
 		//Player(const shared_ptr<Stage>& StagePtr);
 
@@ -186,6 +187,13 @@ namespace basecross{
 		{
 			ExitCount = ExitCount;
 		}
+		int GetGameOver()const {
+			return GameOver;
+		}
+		void SetGameOver(int GameOver) {
+			GameOver = GameOver;
+		}
+
 	};
 }
 //end basecross

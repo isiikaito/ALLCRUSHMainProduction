@@ -141,6 +141,7 @@ namespace basecross {
 
 	}
 
+
 	void Player::OnCreate()
 	{
 
@@ -201,10 +202,7 @@ namespace basecross {
 		CreateEffect();
 		CreateEffect1();
 
-
-
 	}
-
 
 	void Player::OnUpdate()
 
@@ -700,11 +698,12 @@ namespace basecross {
 			}
 		}
 
-		//if (action == L"GameOver") {
-		//	if (now) {
-		//		PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-		//	}
-		//}
+		if (action == L"GameOver") {
+			if (now) {
+				GameOver = 1;
+				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			}
+		}
 		//•¶Žš—ñ‚Ì•\Ž¦
 		DrawStrings();
 	}

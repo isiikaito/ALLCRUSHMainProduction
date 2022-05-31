@@ -51,6 +51,8 @@ namespace basecross {
 	void CreateGageWhite();
 	//ゲームクリアFadeOut
 	void CreateFadeOut();
+	//ゲームオーバー時のFadeOut
+	void CreateFadeOutEnd();
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
@@ -114,6 +116,7 @@ namespace basecross {
 		CameraSelect GetCameraSelect() const {
 			return m_CameraSelect;
 		}
+
 		void ToObjCamera();
 		void ToMyCamera();
 		//void ToEndingCamera();
