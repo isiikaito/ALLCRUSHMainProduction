@@ -10,6 +10,7 @@
 
 #include "ProjectShader.h"
 #include "ProjectBehavior.h"
+#include "XSprite.h"
 #include "Scene.h"
 #include "ExitWall.h"
 #include "Myitem1.h"

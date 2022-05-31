@@ -41,9 +41,9 @@ namespace basecross {
 		//Yボタン
 		void OnPushY() {}
 		//十字キー上
-		void OnPushUP();
+		void OnPushUP(){}
 		//十字キー下
-		void OnPushDOWN();
+		void OnPushDOWN(){}
 	};
 }
 //end namespace basecross

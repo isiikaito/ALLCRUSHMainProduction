@@ -26,7 +26,7 @@ namespace basecross {
 	void MenuStage::CreateMenuSprite1() {
 		AddGameObject<MenuSprite1>(L"Stage1_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(200.0f, 100.0f), Vec3(120.0f, 50.0f, 0.0f));
+			Vec2(200.0f, 100.0f), Vec3(-50.0f, 0.0f, 0.0f));
 	}
 
 	//アイテムスプライト作成
@@ -51,25 +51,25 @@ namespace basecross {
 		//Stage1スプライト
 		CreateMenuSprite1();
 
-		//Stage2スプライト
-		CreateMenuSprite2();
+		////Stage2スプライト
+		//CreateMenuSprite2();
 	}
-	//十字キー上
-	void MenuStage:: OnPushUP() {
-		num--;
-		if (num < 0)
-		{
-			num = 0;
-		}
-	}
-	//十字キー下
-	void MenuStage::OnPushDOWN() {
-		num++;
-		if (num > 1)
-		{
-			num = 1;
-		}
-	}
+	////十字キー上
+	//void MenuStage:: OnPushUP() {
+	//	num--;
+	//	if (num < 0)
+	//	{
+	//		num = 0;
+	//	}
+	//}
+	////十字キー下
+	//void MenuStage::OnPushDOWN() {
+	//	num++;
+	//	if (num > 1)
+	//	{
+	//		num = 1;
+	//	}
+	//}
 	//更新
 	void MenuStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
@@ -92,8 +92,8 @@ namespace basecross {
 		//時間を変数に足す
 		m_idleTime += elapsedTime;
 		//十字キーを利用してnumが０の時
-		 if (num == 0)
-		    {   //時間が1秒後に表示がオフになる
+		/* if (num == 0)
+		    {  */ //時間が1秒後に表示がオフになる
 				if (m_idleTime >= 1.0f)
 				  {
                      ptrStage1->SetDrawActive(false);
@@ -106,57 +106,55 @@ namespace basecross {
 					   }
 						return;
 				  }
-		   }
-		 //選択されてないときは表示されたまま
-		else{ ptrStage1->SetDrawActive(true); }
+		 /*  }*/
+		// //選択されてないときは表示されたまま
+		//else{ ptrStage1->SetDrawActive(true); }
 
 
-		 //menuSprite1を取得する
-		 auto ptrStage2 = GetSharedGameObject<MenuSprite2>(L"MenuSprite2");
+		 ////menuSprite1を取得する
+		 //auto ptrStage2 = GetSharedGameObject<MenuSprite2>(L"MenuSprite2");
 		
-		 //時間を変数に足す
+		 ////時間を変数に足す
 		
-		 //十字キーを利用してnumが０の時
-		 if (num == 1)
-		 {   //時間が1秒後に表示がオフになる
-			 if (m_idleTime >= 1.0f)
-			 {
-				 ptrStage2->SetDrawActive(false);
-				 //時間が1.5秒後にオンになる
-				 if (m_idleTime >= 1.5f)
-				 {
-					 ptrStage2->SetDrawActive(true);
-					 //m_idleTimeを0にすることにより元に戻ってループする。
-					 m_idleTime = 0;
-				 }
-				 return;
-			 }
-		 }
-		 //選択されてないときは表示されたまま
-		 else { ptrStage2->SetDrawActive(true); }
-				
-				
+		 ////十字キーを利用してnumが０の時
+		 //if (num == 1)
+		 //{   //時間が1秒後に表示がオフになる
+			// if (m_idleTime >= 1.0f)
+			// {
+			//	 ptrStage2->SetDrawActive(false);
+			//	 //時間が1.5秒後にオンになる
+			//	 if (m_idleTime >= 1.5f)
+			//	 {
+			//		 ptrStage2->SetDrawActive(true);
+			//		 //m_idleTimeを0にすることにより元に戻ってループする。
+			//		 m_idleTime = 0;
+			//	 }
+			//	 return;
+			// }
+		 //}
+		 ////選択されてないときは表示されたまま
+		 //else { ptrStage2->SetDrawActive(true); }
+			//	
+			//	
 				
 	}
 
 	
 	
 	void MenuStage::OnPushB() {
-		
-		switch (num)
-		{
-			case 0:
-				CerateFadeOutBlack1();
-				/*PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");*/
-				break;
-			case 1:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
-				break;
-			/*case 2:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
-				break;*/
-		
-		}
+		CerateFadeOutBlack1();
+		//switch (num)
+		//{
+		//	case 0:
+		//		
+		//		/*PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");*/
+		//		break;
+		//	case 1:
+		//		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+		//		break;
+		//
+		//
+		//}
 		
 	}
 }

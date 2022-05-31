@@ -1,5 +1,5 @@
 /*!
-@file Myitem1.h
+@file XSprite.h
 @brief アイテム
 */
 
@@ -8,7 +8,7 @@
 
 namespace basecross {
 
-	class Myitem1 : public GameObject {
+	class XSprite : public GameObject {
 		bool m_Trace;
 		Vec2 m_StartScale;
 		Vec3 m_StartPos;
@@ -17,13 +17,13 @@ namespace basecross {
 		//バックアップ頂点データ
 		vector<VertexPositionTexture> m_BackupVertices;
 	public:
-		
-		Myitem1(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
+
+		XSprite(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);
-		
-		virtual ~Myitem1();
-		
+
+		virtual ~XSprite();
+
 		virtual void OnCreate() override;
-		
+
 	};
 }

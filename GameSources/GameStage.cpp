@@ -390,6 +390,12 @@ namespace basecross {
 			//テクスチャの大きさ　　　　位置
 			Vec2(180.0f, 180.0f), Vec3(-530.0f, -280.0f, 0.0f));
 	}
+	//Xボタンスプライト
+	void GameStage::CreateXSprite() {
+		AddGameObject<XSprite>(L"XButton_TX", true,
+			//テクスチャの大きさ　　　　位置
+			Vec2(80.0f, 80.0f), Vec3(-520.0f, -190.0f, 0.0f));
+	}
 
 	//ゲージの枠作成
 	void GameStage::CreateMygage() {
@@ -561,12 +567,14 @@ namespace basecross {
 			CreateWall();
 			//アイテムスプライト
 			CreateMyitem1();
+			CreateXSprite();
 			//ゲージスプライト
 			CreateMygage();
 			CreateGageSprite();
 			CreateGageSprite2();
 			CreateGageSprite3();
 			CreateGageWhite();
+
 
 			//ゲームクリアのFadeOut
 			CreateFadeOut();

@@ -43,6 +43,7 @@ namespace basecross {
 	void CreateFallingRock();
 	//アイテムスプライト作成
 	void CreateMyitem1();
+	void CreateXSprite();
 	//ゲージの追加
 	void CreateMygage();
 	void CreateGageSprite();
