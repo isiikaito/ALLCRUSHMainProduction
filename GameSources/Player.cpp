@@ -10,6 +10,7 @@ namespace basecross {
 //#pragma comment(lib, "Effekseer.lib")
 //#pragma comment(lib, "EffekseerRendererDX11.lib")
 
+
 	void Player::OnCreate()
 	{
 
@@ -64,12 +65,10 @@ namespace basecross {
 		ptrString->SetText(L"");
 		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
-
 		//CreateEffect();
 		//CreateEffect1();
 
 	}
-
 
 	void Player::OnUpdate()
 
@@ -564,11 +563,12 @@ namespace basecross {
 			}
 		}
 
-		//if (action == L"GameOver") {
-		//	if (now) {
-		//		PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-		//	}
-		//}
+		if (action == L"GameOver") {
+			if (now) {
+				GameOver = 1;
+				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			}
+		}
 		//•¶Žš—ñ‚Ì•\Ž¦
 		DrawStrings();
 	}

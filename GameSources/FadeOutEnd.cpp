@@ -7,7 +7,6 @@
 #include "Project.h"
 
 namespace basecross {
-	//ÉQÅ[ÉW
 	FadeOutEnd::FadeOutEnd(const shared_ptr<Stage>& StagePtr, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
 		GameObject(StagePtr),

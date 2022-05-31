@@ -23,6 +23,8 @@ namespace basecross{
 
 		float accel; // 加速度
 
+		int GameOver = 0;
+
 		//アイテムの所持数
 		float itemCount;
 		//
@@ -102,6 +104,15 @@ namespace basecross{
 
 		//オープニング
 		float m_opningStop;
+		float m_TotalTime1;
+		bool m_isPlay1;
+		Effekseer::Handle m_handle1;
+		Effekseer::ManagerRef m_manager1;
+		EffekseerRendererDX11::RendererRef m_renderer1;
+		Effekseer::EffectRef m_effect1;
+
+		//void CreateEffect();
+		//void CreateEffect1();
 	public:
 		//Player(const shared_ptr<Stage>& StagePtr);
 
@@ -188,6 +199,13 @@ namespace basecross{
 		{
 			ExitCount = ExitCount;
 		}
+		int GetGameOver()const {
+			return GameOver;
+		}
+		void SetGameOver(int GameOver) {
+			GameOver = GameOver;
+		}
+
 	};
 }
 //end basecross
