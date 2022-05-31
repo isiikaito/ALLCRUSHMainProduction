@@ -147,6 +147,8 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"SPEEDUP_TX", strTexture);
 		strTexture = dataDir + L"Impact.png";
 		App::GetApp()->RegisterTexture(L"IMPACT_TX", strTexture);
+		strTexture = dataDir + L"PowerUp.png";
+		App::GetApp()->RegisterTexture(L"POWERUP_TX1", strTexture);
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";
@@ -160,6 +162,9 @@ namespace basecross {
 		//スピードアップのサウンド
 		CursorWav = dataDir + L"SpeedUp.wav";
 		App::GetApp()->RegisterWav(L"SpeedUp", CursorWav);
+		//スピードアップのサウンド
+		CursorWav = dataDir + L"PowerUp.wav";
+		App::GetApp()->RegisterWav(L"PowerUp", CursorWav);
 		//ハンマーを振るサウンド
 		CursorWav = dataDir + L"Hammer.wav";
 		App::GetApp()->RegisterWav(L"Hammer", CursorWav);

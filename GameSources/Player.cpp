@@ -425,11 +425,15 @@ namespace basecross {
 
 	}
 	void Player::OnPushY() {
+		auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+		auto PowerUpSound = App::GetApp()->GetXAudio2Manager();
 		//ƒQ[ƒW‚ª—­‚Ü‚Á‚½‚ç
 		if (PowerCount >= 3)
 		{
+			auto pos = GetComponent<Transform>()->GetPosition();
+			PowerUpSound->Start(L"PowerUp", 0, 0.5f);
 			Power = 0;
-
+			PtrSpark->InsertSpark4(pos);
 		}
 	}
 
@@ -468,7 +472,6 @@ namespace basecross {
 
 		auto ptrXA = App::GetApp()->GetXAudio2Manager();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-
 
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();

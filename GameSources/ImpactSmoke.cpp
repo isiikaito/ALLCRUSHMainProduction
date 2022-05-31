@@ -119,5 +119,26 @@ namespace basecross {
 			rParticleSprite.m_Color = Col4(0.4f, 0.4f, 0.4f, 0.8f);
 		}
 	}
+
+	void ImpactSmoke::InsertSpark4(const Vec3& Pos) {
+		auto ptrParticle = InsertParticle(14);
+		ptrParticle->SetEmitterPos(Pos);
+		ptrParticle->SetTextureResource(L"POWERUP_TX1");
+		ptrParticle->SetMaxTime(1.0f);
+		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec()) {
+			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.2f - 0.1f;
+			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.2f;
+			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.2f - 0.1f;
+			//各パーティクルの移動速度を指定
+			rParticleSprite.m_Velocity = Vec3(
+				rParticleSprite.m_LocalPos.x * 18.0f,
+				rParticleSprite.m_LocalPos.y * 18.0f,
+				rParticleSprite.m_LocalPos.z * 18.0f
+			);
+			//色の指定
+			rParticleSprite.m_Color = Col4(0.4f, 0.4f, 0.4f, 0.8f);
+		}
+	}
+
 }
 // end namespace basecross
