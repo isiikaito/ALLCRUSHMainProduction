@@ -82,23 +82,23 @@ namespace basecross{
 		void OnDestroy();
 
 		// エフェクト関連
-		float m_TotalTime;
-		bool m_isPlay;
-		Effekseer::Handle m_handle;
-		Effekseer::ManagerRef m_manager;
-		EffekseerRendererDX11::RendererRef m_renderer;
-		Effekseer::EffectRef m_effect;
+		//float m_TotalTime;
+		//bool m_isPlay;
+		//Effekseer::Handle m_handle;
+		//Effekseer::ManagerRef m_manager;
+		//EffekseerRendererDX11::RendererRef m_renderer;
+		//Effekseer::EffectRef m_effect;
 
 		// エフェクト関連1
-		float m_TotalTime1;
-		bool m_isPlay1;
-		Effekseer::Handle m_handle1;
-		Effekseer::ManagerRef m_manager1;
-		EffekseerRendererDX11::RendererRef m_renderer1;
-		Effekseer::EffectRef m_effect1;
+		//float m_TotalTime1;
+		//bool m_isPlay1;
+		//Effekseer::Handle m_handle1;
+		//Effekseer::ManagerRef m_manager1;
+		//EffekseerRendererDX11::RendererRef m_renderer1;
+		//Effekseer::EffectRef m_effect1;
 
-		void CreateEffect();
-		void CreateEffect1();
+		//void CreateEffect();
+		//void CreateEffect1();
 
 		//オープニング
 		float m_opningStop;
@@ -120,14 +120,14 @@ namespace basecross{
 			Power(1),
 			ExitCount(0),
 			Gageflash(0),
-			SoundTime(0.0f),
-			m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
-			m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
-			m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),
-			m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr)
+			SoundTime(0.0f)
+			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
+			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
+			//m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),
+			//m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr)
 		{
 		}
-		virtual void OnDraw() override;
+		//virtual void OnDraw() override;
 
 		//Aボタン
 		void OnPushA();

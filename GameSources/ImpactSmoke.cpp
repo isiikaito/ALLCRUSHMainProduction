@@ -139,6 +139,5 @@ namespace basecross {
 			rParticleSprite.m_Color = Col4(0.4f, 0.4f, 0.4f, 0.8f);
 		}
 	}
-
 }
 // end namespace basecross
