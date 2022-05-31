@@ -23,10 +23,10 @@ namespace basecross{
 
 		float accel; // 加速度
 
-		float itemtime;
-
 		//アイテムの所持数
 		float itemCount;
+		//
+		float itemtime;
 		//パワーアップアイテム
 		int PowerCount;
 		//プレイヤーのスピード
@@ -100,6 +100,8 @@ namespace basecross{
 		void CreateEffect();
 		void CreateEffect1();
 
+		//オープニング
+		float m_opningStop;
 	public:
 		//Player(const shared_ptr<Stage>& StagePtr);
 
