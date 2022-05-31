@@ -28,6 +28,7 @@
 #include "FadeOut.h"
 #include "FadeOutBlack.h"
 #include "FadeOutBlack1.h"
+#include "FadeOutEnd.h"
 #include "GageSpriteWhite.h"
 #include "Pillar.h"
 #include "FallingRock.h"

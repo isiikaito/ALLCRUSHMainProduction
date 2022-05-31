@@ -189,7 +189,7 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
-		ptrDraw->AddAnimation(L"GameOver", 70, 10, false, 20.0f);
+		ptrDraw->AddAnimation(L"GameOver", 70, 10, false, 15.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		//•¶Žš—ñ‚ð‚Â‚¯‚é
@@ -269,7 +269,14 @@ namespace basecross {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			if (move != L"GameOver") {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
-				transComp->SetRotation(0.0f, XMConvertToRadians(180.0f), 0.0f);
+				float d;
+				if (moveDir.y > 180.0f) {
+					d = +1.0f;
+				}
+				else {
+					d = -1.0f;
+				}
+				moveDir += XMConvertToRadians(180.0f) * d;
 				moveStop = false;
 			}
 		}
@@ -693,11 +700,11 @@ namespace basecross {
 			}
 		}
 
-		if (action == L"GameOver") {
-			if (now) {
-				PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			}
-		}
+		//if (action == L"GameOver") {
+		//	if (now) {
+		//		PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+		//	}
+		//}
 		//•¶Žš—ñ‚Ì•\Ž¦
 		DrawStrings();
 	}
