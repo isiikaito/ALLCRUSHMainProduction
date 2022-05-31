@@ -26,7 +26,7 @@ namespace basecross {
 	void MenuStage::CreateMenuSprite1() {
 		AddGameObject<MenuSprite1>(L"Stage1_TX", true,
 			//テクスチャの大きさ　　　　位置
-			Vec2(200.0f, 100.0f), Vec3(-50.0f, 0.0f, 0.0f));
+			Vec2(300.0f, 300.0f), Vec3(-50.0f, 0.0f, 0.0f));
 	}
 
 	//アイテムスプライト作成
