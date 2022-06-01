@@ -52,8 +52,6 @@ namespace basecross {
 		SetSharedGameObject(L"MultiSpark1", MultiSparkPtr);
 	}
 
-	
-
 	void GameStage::CreateWall() {
 		auto group = CreateSharedObjectGroup(L"Wall_Group");
 		//CSVの行単位の配列
@@ -121,10 +119,7 @@ namespace basecross {
 			);
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<StageWall>(Scale, Rot, Pos);
-			
-
 		}
-
 	}
 
 	//マヤの壁の作成
@@ -143,7 +138,6 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
-
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -158,10 +152,7 @@ namespace basecross {
 			);
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<ExitWall>(Scale, Rot, Pos);
-
-
 		}
-
 	}
 
 	//マヤの床の作成
@@ -180,7 +171,6 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
-
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -196,8 +186,6 @@ namespace basecross {
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<StageFloor>(Scale, Rot, Pos);
 		}
-		
-
 
 	}
 	//障害物１作成
@@ -234,7 +222,6 @@ namespace basecross {
 			AddGameObject<Obstacle1>(Scale, Rot, Pos);
 		}
 	}
-
 	//障害物2作成
 	void GameStage::CreateObstacle2() {
 		//CSVの行単位の配列
@@ -251,7 +238,6 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
-
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -286,7 +272,6 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
-
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -322,14 +307,12 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
-
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
 			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
 			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
 			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
-
 			Vec3 Pos(
 				(float)_wtof(Tokens[7].c_str()),
 				(float)_wtof(Tokens[8].c_str()),
@@ -396,7 +379,6 @@ namespace basecross {
 			Vec2(40.0f, 130.0f), Vec3(550.0f, -274.0f, 0.2f));
 	}
 
-	
 	//ゲームクリアのフェードアウト
 	void GameStage::CreateFadeOut() {
 		AddGameObject<FadeOut>(true,
@@ -486,7 +468,6 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 
-
 			//物理計算有効
 			SetPhysicsActive(true);
 
@@ -542,10 +523,8 @@ namespace basecross {
 			CreateGageSprite3();
 			CreateGageWhite();
 
-
 			//ゲームクリアのFadeOut
 			CreateFadeOut();
-			
 			
 			// 逃げるテロップ
 			CreateTickerSprite();
@@ -624,7 +603,6 @@ namespace basecross {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage1->SetDrawActive(false);
-
 		}
 
 		// テロップの時間
@@ -635,7 +613,6 @@ namespace basecross {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage2->SetDrawActive(false);
-
 		}
 
 		// テロップの時間
@@ -646,7 +623,6 @@ namespace basecross {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage3->SetDrawActive(false);
-
 		}
 
 		// テロップの時間
@@ -657,7 +633,6 @@ namespace basecross {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage4->SetDrawActive(false);
-
 		}
 		return;
 	}

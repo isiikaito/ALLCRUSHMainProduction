@@ -37,8 +37,6 @@ namespace basecross {
 		MultiParticle::OnUpdate();
 	}
 
-
-
 	void ImpactSmoke::InsertSpark(const Vec3& Pos) {
 		auto ptrParticle = InsertParticle(25);
 		ptrParticle->SetEmitterPos(Pos);

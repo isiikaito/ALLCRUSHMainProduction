@@ -33,9 +33,7 @@ namespace basecross {
 				App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 			return;
 		}
-
 	}
-
 
 	//Aƒ{ƒ^ƒ“
 	void MyClearStage::OnPushA() {

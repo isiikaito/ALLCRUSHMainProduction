@@ -44,8 +44,5 @@ namespace basecross {
 		PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 		PtrDraw->SetTextureResource(m_TextureKey);
 	}
-
-
-
 }
 //end namespace basecross

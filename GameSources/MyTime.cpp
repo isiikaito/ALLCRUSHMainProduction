@@ -113,7 +113,5 @@ namespace basecross {
 		auto ptrDraw = GetComponent<PTSpriteDraw>();
 		ptrDraw->UpdateVertices(newVertices);
 	}
-
-
 }
 //end basecross

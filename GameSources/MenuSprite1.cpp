@@ -17,13 +17,10 @@ namespace basecross {
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
 		m_idleTime(0)
-	
-		
 	{}
 
 	MenuSprite1::~MenuSprite1() {}
 	void MenuSprite1::OnCreate() {
-
 
 		float helfSize = 0.5f;
 		//’¸“_”z—ñ(c‰¡5ŒÂ‚¸‚Â•\Ž¦)
@@ -48,7 +45,5 @@ namespace basecross {
 		//“Ç‚Ýž‚Ý‚ÌÝ’è‚ð‚·‚é
 		GetStage()->SetSharedGameObject(L"MenuSprite1", GetThis<MenuSprite1>());
 	}
-	
-
 	
 }
