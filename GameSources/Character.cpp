@@ -183,7 +183,7 @@ namespace basecross {
 
 	void OpeningCameraman::EndStateEnterBehavior() {
 		auto ptrGameGtage = GetTypeStage<GameStage>();
-		ptrGameGtage->ToMainCamera();
+		ptrGameGtage->ToMyCamera();
 	}
 
 	//--------------------------------------------------------------------------------------

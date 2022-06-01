@@ -3,19 +3,19 @@
 
 namespace basecross {
 
-	shared_ptr<GameObject> BackCamera::GetTargetObject() const {
+	shared_ptr<GameObject> MyCamera::GetTargetObject() const {
 		if (!m_TargetObject.expired()) {
 			return m_TargetObject.lock();
 		}
 		return nullptr;
 	}
 
-	void BackCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+	void MyCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
 		m_TargetObject = Obj;
 	}
 
 	// カメラ
-	void BackCamera::OnUpdate()
+	void MyCamera::OnUpdate()
 	{
 		auto& app = App::GetApp();
 
@@ -26,10 +26,10 @@ namespace basecross {
 
 		//auto rotate = GetCameraObject()->GetComponent<Transform>()->GetRotation();
 
-
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
 		Vec3 pillarPos(0.0f);
+		Vec3 enemyPos(0.0f);//敵の座標（仮）
 		int EnemySetDrawActiveCount(0);
 		int PillarCount(0);
 		auto stage = app->GetScene<Scene>()->GetActiveStage(); // ステージオブジェクトを取得する
@@ -61,18 +61,28 @@ namespace basecross {
 			auto Enemy = dynamic_pointer_cast<EnemyObject>(obj);
 			if (Enemy)
 			{
-            EnemySetDrawActiveCount = Enemy->GetEnemySetDrawActiveCount();
-			Enemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
-			break;
+				EnemySetDrawActiveCount = Enemy->GetEnemySetDrawActiveCount();
+				Enemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
+				enemyPos = Enemy->GetComponent<Transform>()->GetPosition();
+				break;
 			}
 			
 		}
 
-		auto CameraAngleY = XM_PI;
+		//float ed = playerPos.x - enemyPos.x;//プレイヤーとエネミーの距離
 
-		auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
+		auto eye = playerPos + Vec3(cosf(0.0f), 0.0f, sinf(0.0f)) * distance;//
 		eye.y = 2.0f;
 		playerPos.y = 0.5f;
+
+
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B)// || ed <= 5.0f
+		{
+			//auto CameraAngleY = XM_PI;
+			eye.x = playerPos.x - 5.0f;
+		}
+
 
 		SetEye(eye);
 		SetAt(playerPos); // プレイヤーを中止するようにする
@@ -118,14 +128,7 @@ namespace basecross {
 				SetAt(playerPos); // プレイヤーを中止するようにする
 				
 			}
-			
 		}
-
-
-
-
-
-
 	}
 
 	//--------------------------------------------------------------------------------------
@@ -148,16 +151,16 @@ namespace basecross {
 	//	メインカメラ（コンポーネントではない）
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	MainCamera::MainCamera() :
+	ObjCamera::ObjCamera() :
 		Camera()
 	{}
-	MainCamera::~MainCamera() {}
+	ObjCamera::~ObjCamera() {}
 
-	void MainCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
+	void ObjCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
 		m_TargetObject = Obj;
 	}
 
-	void MainCamera::OnUpdate() {
+	void ObjCamera::OnUpdate() {
 		auto ptrTarget = m_TargetObject.lock();
 		if (ptrTarget) {
 			auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();

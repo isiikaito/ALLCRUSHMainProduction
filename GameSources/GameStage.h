@@ -10,10 +10,10 @@
 namespace basecross {
 	enum class CameraSelect {
 		openingCamera,
-		//myCamera,
+		myCamera,
 		//objCamera,
-		mainCamera,
-		backCamera
+		//mainCamera,
+		//backCamera
 	};
 	//--------------------------------------------------------------------------------------
 	// ゲームステージクラス
@@ -82,9 +82,9 @@ namespace basecross {
 		//OpeningCamera用のビュー
 		shared_ptr<SingleView> m_OpeningCameraView;
 		//MyCamera用のビュー
-		shared_ptr<SingleView> m_BackCameraView;
+		shared_ptr<SingleView> m_MyCameraView;
 		//ObjCamera用のビュー
-		shared_ptr<SingleView> m_MainCameraView;
+		//shared_ptr<SingleView> m_ObjCameraView;
 		CameraSelect m_CameraSelect;
 		//入力ハンドラー
 		InputHandler<GameStage> m_InputHandler;
@@ -118,8 +118,8 @@ namespace basecross {
 			return m_CameraSelect;
 		}
 
-		void ToMainCamera();
-		void ToBackCamera();
+		//void ToObjCamera();
+		void ToMyCamera();
 	};
 
 }

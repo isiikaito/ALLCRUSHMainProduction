@@ -20,16 +20,16 @@ namespace basecross {
 		m_OpeningCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
 		auto ptrOpeningCamera = ObjectFactory::Create<OpeningCamera>();
 		m_OpeningCameraView->SetCamera(ptrOpeningCamera);
-		//BackCamera用のビュー
-		m_BackCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrBackCamera = ObjectFactory::Create<BackCamera>();
-		ptrBackCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
-		ptrBackCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
-		m_BackCameraView->SetCamera(ptrBackCamera);
-		//MainCamera用のビュー
-		m_MainCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrMainCamera = ObjectFactory::Create<MainCamera>();
-		m_MainCameraView->SetCamera(ptrMainCamera);
+		//MyCamera用のビュー
+		m_MyCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrMyCamera = ObjectFactory::Create<MyCamera>();
+		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
+		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		m_MyCameraView->SetCamera(ptrMyCamera);
+		//ObjCamera用のビュー
+		//m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		//auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
+		//m_ObjCameraView->SetCamera(ptrObjCamera);
 		//初期状態ではm_OpeningCameraViewを使う
 		SetView(m_OpeningCameraView);
 		m_CameraSelect = CameraSelect::openingCamera;
@@ -501,17 +501,9 @@ namespace basecross {
 		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
 		//シェア配列にCameramanを追加
 		SetSharedGameObject(L"Cameraman", ptrCameraman);
-		//auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
-		//if (ptrObjCamera) {
-		//	ptrObjCamera->SetCameraObject(ptrCameraman);
-		//	ptrObjCamera->SetTargetObject(ptrPlayer);
-		//	//m_ObjCameraViewを使う
-		//	SetView(m_ObjCameraView);
-		//	m_CameraSelect = CameraSelect::objCamera;
-		//}
 
-		auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
 		//シェア配列にOpeningCameramanを追加
+		auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
 		SetSharedGameObject(L"OpeningCameraman", ptrOpeningCameraman);
 
 		auto ptrOpeningCamera = dynamic_pointer_cast<OpeningCamera>(m_OpeningCameraView->GetCamera());
@@ -520,9 +512,7 @@ namespace basecross {
 			SetView(m_OpeningCameraView);
 			m_CameraSelect = CameraSelect::openingCamera;
 		}
-
 	}
-
 
 	void GameStage::OnCreate() {
 		try {
@@ -603,28 +593,28 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::ToMainCamera() {
+	//void GameStage::ToObjCamera() {
+	//	auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+	//	//ObjCameraに変更
+	//	auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
+	//	auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
+	//	if (ptrObjCamera) {
+	//		ptrObjCamera->SetCameraObject(ptrCameraman);
+	//		ptrObjCamera->SetTargetObject(ptrPlayer);
+	//		//m_ObjCameraViewを使う
+	//		SetView(m_ObjCameraView);
+	//		m_CameraSelect = CameraSelect::objCamera;
+	//	}
+	//}
+	void GameStage::ToMyCamera() {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//ObjCameraに変更
-		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
-		auto ptrMainCamera = dynamic_pointer_cast<MainCamera>(m_MainCameraView->GetCamera());
-		if (ptrMainCamera) {
-			ptrMainCamera->SetCameraObject(ptrCameraman);
-			ptrMainCamera->SetTargetObject(ptrPlayer);
-			//m_ObjCameraViewを使う
-			SetView(m_MainCameraView);
-			m_CameraSelect = CameraSelect::mainCamera;
-		}
-	}
-	void GameStage::ToBackCamera() {
-		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//BackCameraに変更
-		auto ptrBackCamera = dynamic_pointer_cast<BackCamera>(m_BackCameraView->GetCamera());
-		if (ptrBackCamera) {
-			ptrBackCamera->SetTargetObject(ptrPlayer);
-			//m_BackCameraViewを使う
-			SetView(m_BackCameraView);
-			m_CameraSelect = CameraSelect::backCamera;
+		//MyCameraに変更
+		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
+		if (ptrMyCamera) {
+			ptrMyCamera->SetTargetObject(ptrPlayer);
+			//m_MyCameraViewを使う
+			SetView(m_MyCameraView);
+			m_CameraSelect = CameraSelect::myCamera;
 		}
 	}
 
@@ -706,18 +696,18 @@ namespace basecross {
 
 	//Bボタンカメラの変更
 	void GameStage::OnPushB() {
-		switch (m_CameraSelect) {
-		case CameraSelect::backCamera:
-		{
-			ToMainCamera();
-		}
-		break;
-		case CameraSelect::mainCamera:
-		{
-			ToBackCamera();
-		}
-		break;
-		}
+		//switch (m_CameraSelect) {
+		//case CameraSelect::myCamera:
+		//{
+		//	ToObjCamera();
+		//}
+		//break;
+		//case CameraSelect::objCamera:
+		//{
+		//	ToMyCamera();
+		//}
+		//break;
+		//}
 	}
 
 	void GameStage::OnDestroy() {
