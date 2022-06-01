@@ -57,13 +57,10 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
-		ptrDraw->AddAnimation(L"GameOver", 70, 10, false, 15.0f);
+		ptrDraw->AddAnimation(L"GameOver", 75, 24, false, 15.0f);
+		//ptrDraw->AddAnimation(L"GameOverFirst", 70, 10, false, 15.0f);
+		//ptrDraw->AddAnimation(L"GameOverLast", 80, 14, false, 10.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
-
-		//文字列をつける
-		auto ptrString = AddComponent<StringSprite>();
-		ptrString->SetText(L"");
-		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
 		//CreateEffect();
 		//CreateEffect1();
@@ -152,6 +149,7 @@ namespace basecross {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			if (move != L"GameOver") {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
+				GameOver = 1;
 				float d;
 				if (moveDir.y > 180.0f) {
 					d = +1.0f;
@@ -562,31 +560,6 @@ namespace basecross {
 				moveStop = true;//移動停止解除
 			}
 		}
-
-		if (action == L"GameOver") {
-			if (now) {
-				GameOver = 1;
-				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			}
-		}
-		//文字列の表示
-		DrawStrings();
-	}
-
-	//文字列の表示
-	void Player::DrawStrings() {
-		auto pos = GetComponent<Transform>()->GetPosition();
-
-		wstring positionStr(L"Position:\t");
-		positionStr += L"X=" + Util::FloatToWStr(pos.x, 6, Util::FloatModify::Fixed) + L",\t";
-		positionStr += L"Y=" + Util::FloatToWStr(pos.y, 6, Util::FloatModify::Fixed) + L",\t";
-		positionStr += L"Z=" + Util::FloatToWStr(pos.z, 6, Util::FloatModify::Fixed) + L"\n";
-
-		wstring str = positionStr;
-
-		//文字列コンポーネントの取得
-		auto ptrString = GetComponent<StringSprite>();
-		ptrString->SetText(str);
 
 	}
 
