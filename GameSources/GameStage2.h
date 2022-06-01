@@ -49,10 +49,12 @@ namespace basecross {
 		//トータル時間
 		float m_TotalTime;
 
+		//OpeningCamera用のビュー
+		shared_ptr<SingleView> m_OpeningCameraView;
 		//MyCamera用のビュー
-		shared_ptr<SingleView> m_BackCameraView;
+		shared_ptr<SingleView> m_MyCameraView;
 		//ObjCamera用のビュー
-		shared_ptr<SingleView> m_MainCameraView;
+		//shared_ptr<SingleView> m_ObjCameraView;
 		CameraSelect m_CameraSelect;
 
 		//入力ハンドラー
@@ -85,8 +87,8 @@ namespace basecross {
 		CameraSelect GetCameraSelect() const {
 			return m_CameraSelect;
 		}
-		void GameStage2::ToMainCamera();
-		void GameStage2::ToBackCamera();
+		void GameStage2::ToMyCamera();
+		void GameStage2::ToObjCamera();
 	};
 
 }
