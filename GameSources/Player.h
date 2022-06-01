@@ -9,6 +9,7 @@
 namespace basecross{
 	class Player : public GameObject
 	{
+		void DrawStrings();
 		const float MaxMoveSpeed; // ˆÚ“®‚ÌÅ‘å‘¬
 
 		bool moveStop;//Player‚ÌˆÚ“®’â~‚Ì”»’è

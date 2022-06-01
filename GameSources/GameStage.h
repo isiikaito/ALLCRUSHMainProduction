@@ -120,6 +120,8 @@ namespace basecross {
 
 		//void ToObjCamera();
 		void ToMyCamera();
+		//void ToMainCamera();
+		//void ToBackCamera();
 	};
 
 }

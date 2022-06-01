@@ -87,8 +87,8 @@ namespace basecross {
 		CameraSelect GetCameraSelect() const {
 			return m_CameraSelect;
 		}
-		void GameStage2::ToMyCamera();
-		void GameStage2::ToObjCamera();
+		void ToMyCamera();
+		void ToObjCamera();
 	};
 
 }

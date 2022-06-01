@@ -567,8 +567,8 @@ namespace basecross {
 				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
-		//文字列の表示
-		DrawStrings();
+		////文字列の表示
+		//DrawStrings();
 	}
 
 	//文字列の表示
@@ -582,9 +582,9 @@ namespace basecross {
 
 		wstring str = positionStr;
 
-		//文字列コンポーネントの取得
-		auto ptrString = GetComponent<StringSprite>();
-		ptrString->SetText(str);
+		////文字列コンポーネントの取得
+		//auto ptrString = GetComponent<StringSprite>();
+		//ptrString->SetText(str);
 
 	}
 
