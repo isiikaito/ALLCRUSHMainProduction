@@ -23,7 +23,7 @@ namespace basecross {
 		CsvFile m_CsvC;
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
-		void CreatestageObject();
+		
 		//’Œ
 		void CreatePillar();
 		

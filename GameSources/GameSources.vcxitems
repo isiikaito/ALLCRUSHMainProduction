@@ -14,11 +14,8 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
@@ -54,7 +51,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h" />
@@ -68,11 +64,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
@@ -105,7 +98,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp" />
