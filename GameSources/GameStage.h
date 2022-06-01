@@ -23,7 +23,7 @@ namespace basecross {
 	CsvFile m_CsvC;
 	//ビューの作成
 	void CreateViewLight();
-	void CreatestageObject();
+	
 	//スパークエフェクトの作成
 	void CreateMultiSpark();
 	void CreateMultiSpark1();

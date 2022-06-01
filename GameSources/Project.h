@@ -21,8 +21,7 @@
 #include "StageFloor.h"
 #include "GameOverStage.h"
 #include "GameOverSprite.h"
-#include "ClearSprite.h"
-#include "ClearStage.h"
+
 #include "MenuSprite1.h"
 #include "GageSprite.h"
 #include "GageSprite2.h"
@@ -41,11 +40,11 @@
 #include "GameStage.h"
 #include "GameStage2.h"
 #include "MyCamera.h"
-#include "stageObject.h"
+
 #include "Character.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "brakeWall.h"
+
 #include "Wall.h"
 #include "Obstacle1.h"
 #include "Obstacle2.h"
