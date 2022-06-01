@@ -40,7 +40,6 @@ namespace basecross{
 		int PillarCount;
 		float SoundTime;
 
-
 		//出口にぶつかった
 		int ExitCount;
 		//プレイヤーとボスとの距離
@@ -48,7 +47,6 @@ namespace basecross{
 
 		//プレイヤーと柱の処理
 		float PPdistance;
-
 
 		//振り向きカウントタイム
 		float m_TurnTime;
@@ -74,7 +72,6 @@ namespace basecross{
 		void CreateTelop4();
 		float m_Telop4Time;
 
-
 		Vec3 GetMoveVector() const;
 
 		InputHandler<Player> m_InputHandler;
@@ -82,25 +79,6 @@ namespace basecross{
 		InputHandler2<Player> m_InputHandler2;
 		shared_ptr<SoundItem> m_BGM;
 		void OnDestroy();
-
-		// エフェクト関連
-		//float m_TotalTime;
-		//bool m_isPlay;
-		//Effekseer::Handle m_handle;
-		//Effekseer::ManagerRef m_manager;
-		//EffekseerRendererDX11::RendererRef m_renderer;
-		//Effekseer::EffectRef m_effect;
-
-		// エフェクト関連1
-		//float m_TotalTime1;
-		//bool m_isPlay1;
-		//Effekseer::Handle m_handle1;
-		//Effekseer::ManagerRef m_manager1;
-		//EffekseerRendererDX11::RendererRef m_renderer1;
-		//Effekseer::EffectRef m_effect1;
-
-		//void CreateEffect();
-		//void CreateEffect1();
 
 		//オープニング
 		float m_opningStop;
@@ -173,7 +151,6 @@ namespace basecross{
 		{
 			PowerCount = PowerCount;
 		}
-
 		//パワーアップ
 		int GetPower()const {
 			return Power;
@@ -205,7 +182,6 @@ namespace basecross{
 		void SetGameOver(int GameOver) {
 			GameOver = GameOver;
 		}
-
 	};
 }
 //end basecross

@@ -13,7 +13,6 @@ namespace basecross {
 		const Vec3& Rotation,
 		const Vec3& Position,
 		const int HP
-
 	) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
@@ -21,7 +20,6 @@ namespace basecross {
 		m_Position(Position),
 		m_HP(HP)
 	{}
-
 
 	void Wall::OnCreate() {
 		
@@ -37,7 +35,6 @@ namespace basecross {
 			Vec3(0.0f, XM_PI * 0.0f, 0.0f),//回転
 			Vec3(-0.3f, -0.6f, 0.0f)//Position
 		);
-
 		
 		//オブジェクトのグループを得る
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
@@ -50,7 +47,6 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 		ptrDraw->SetMeshResource(L"UNBREAKWALL_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
@@ -58,7 +54,6 @@ namespace basecross {
 		//Obbの衝突判定をつける
 		auto ptrColl = AddComponent<CollisionObb>();
 		
-	
 			//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		ptrColl->SetFixed(true);
 	}
@@ -79,8 +74,6 @@ namespace basecross {
 			SetDrawActive(true);
 		}
 		
-		
-		
 		auto WallHP = GetHP();
 		auto ptrDraw = GetComponent<PNTStaticModelDraw>();
 		
@@ -100,7 +93,6 @@ namespace basecross {
 			);
 			ptrDraw->SetMeshResource(L"DAMAGEWALL2_MESH");
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
-			
 		}
 		else if (WallHP <= 1)
 		{
@@ -127,12 +119,8 @@ namespace basecross {
 			ptrDraw->SetMeshResource(L"DAMAGEWALL3_MESH");
 		
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
-			
 		}
-
 	}
-
-
 	void  Wall::OnPushB() {
 	}
 
@@ -145,6 +133,5 @@ namespace basecross {
 	//壁に当たったら
 	void Wall::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 				}
-			
 }
 //end basecross

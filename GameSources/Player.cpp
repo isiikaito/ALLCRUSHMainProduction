@@ -21,7 +21,6 @@ namespace basecross {
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 		itemCount = 0;
 
-
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		/*ptrColl->SetDrawActive(true);*/
@@ -67,7 +66,6 @@ namespace basecross {
 
 		//CreateEffect();
 		//CreateEffect1();
-
 	}
 
 	void Player::OnUpdate()
@@ -138,12 +136,10 @@ namespace basecross {
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
-
 		//ボスの座標取得
 		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
 		auto EnemyPositon = ptrEnemy->GetComponent<Transform>()->GetPosition();
-
 
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
@@ -163,8 +159,6 @@ namespace basecross {
 				moveStop = false;
 			}
 		}
-
-
 		//柱が壊れていないとき
 		if (PillarCount == 0)
 		{
@@ -182,8 +176,6 @@ namespace basecross {
 				position.z = 1;
 				Rotation.y = 90;
 				speed = 0;
-
-
 			}
 		}
 
@@ -231,7 +223,6 @@ namespace basecross {
 			return;
 		}
 
-
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		//moveStop = false;
@@ -254,7 +245,6 @@ namespace basecross {
 		}
 
 	}
-
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() {
 
@@ -298,8 +288,6 @@ namespace basecross {
 		if (ptr1) {
 			ExitCount = 1;
 		}
-
-
 
 	}
 	void Player::OnPushY() {
@@ -357,10 +345,8 @@ namespace basecross {
 			{
 				// 1秒後に表示がオフになる
 				ptrStage1->SetDrawActive(false);
-
 			}
 		}
-
 		// 出口テロップ
 		if (pos.x < -83.0f) {
 			auto ptrStage3 = GetStage()->GetSharedGameObject<Telop3>(L"Telop3");
@@ -371,7 +357,6 @@ namespace basecross {
 			{
 				// 1秒後に表示がオフになる
 				ptrStage3->SetDrawActive(false);
-
 			}
 		}
 
@@ -385,10 +370,8 @@ namespace basecross {
 			{
 				// 1秒後に表示がオフになる
 				ptrStage4->SetDrawActive(false);
-
 			}
 		}
-
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
@@ -438,8 +421,6 @@ namespace basecross {
 							case 1:
 								WallHP -= 1;
 								break;
-
-
 							}
 							ptrWall->SetHP(WallHP);
 
@@ -452,7 +433,6 @@ namespace basecross {
 								{
 									PowerCount = 3;
 								}
-
 							}
 
 							auto elps = App::GetApp()->GetElapsedTime();
@@ -464,7 +444,6 @@ namespace basecross {
 								return;
 							}
 
-
 							if (WallHP <= 0)
 							{
 								auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
@@ -474,7 +453,6 @@ namespace basecross {
 									PtrSpark->InsertSpark1(pos);
 									
 								}
-
 								auto BrakeSound = App::GetApp()->GetXAudio2Manager();
 								GetStage()->RemoveGameObject<Wall>(shPtr);
 								//サウンドの再生
@@ -524,7 +502,6 @@ namespace basecross {
 							//壁との距離が2.0以下になった
 							GetStage()->RemoveGameObject<Pillar>(shPtr2);
 
-
 							//落石の処理
 							Falling1 = 1;
 							ptrFallingRock->SetFalling(Falling1);
@@ -532,7 +509,6 @@ namespace basecross {
 							PillarCount = 1;
 
 						}
-
 					}
 				}
 				return;
@@ -551,14 +527,12 @@ namespace basecross {
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.5f);
 				moveStop = true;//移動停止解除
-
 			}
 		}
 		else {
 			if (now) {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				ptrXA->Stop(m_BGM);
-
 				moveStop = true;//移動停止解除
 			}
 		}
@@ -587,9 +561,7 @@ namespace basecross {
 		//文字列コンポーネントの取得
 		auto ptrString = GetComponent<StringSprite>();
 		ptrString->SetText(str);
-
 	}
-
 	void Player::OnDestroy() {
 		//BGMのストップ
 		auto PtrXA = App::GetApp()->GetXAudio2Manager();

@@ -37,10 +37,8 @@ namespace basecross {
 	}
 	void MenuStage::CerateFadeOutBlack1()
 	{
-
 		AddGameObject<FadeOutBlack1>(true,
 			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-		
 	}
 
 	//初期化
@@ -118,7 +116,6 @@ namespace basecross {
 		// //選択されてないときは表示されたまま
 		//else{ ptrStage1->SetDrawActive(true); }
 
-
 		 ////menuSprite1を取得する
 		 //auto ptrStage2 = GetSharedGameObject<MenuSprite2>(L"MenuSprite2");
 		
@@ -143,12 +140,9 @@ namespace basecross {
 		 ////選択されてないときは表示されたまま
 		 //else { ptrStage2->SetDrawActive(true); }
 			//	
-			//	
-				
+			//			
 	}
 
-	
-	
 	void MenuStage::OnPushB() {
 		CerateFadeOutBlack1();
 		OnPushBCheck = true;
@@ -164,7 +158,6 @@ namespace basecross {
 		//
 		//
 		//}
-		
 	}
 }
 

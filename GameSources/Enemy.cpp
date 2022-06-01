@@ -74,7 +74,6 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		//落石に当たったら
 		auto ptr = dynamic_pointer_cast<FallingRock>(Other);
 		
-		  
 		if (ptr) {
 			//落石オブジェクトを消す
 			GetStage()->RemoveGameObject<FallingRock>(Other);
@@ -88,13 +87,10 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 				auto pos = GetComponent<Transform>()->GetPosition();
 				PtrSpark->InsertSpark3(pos);
 			}
-		
 		}
-		
 	}
 	//操作
 	void EnemyObject::OnUpdate() {
-		
 
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
@@ -110,7 +106,6 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		if (StopCount==1)
 		{  
 			float elapsedTime = App::GetApp()->GetElapsedTime();
-			
 			
            //時間を変数に足す
 		   StopTime += elapsedTime;
@@ -165,12 +160,8 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		{
 			SetDrawActive(false);
 		}
-
-		
-		
 		////コントローラチェックして入力があればコマンド呼び出し
 		//m_InputHandler.PushHandle(GetThis<EnemyObject>());
-
 	}
 
 	void EnemyObject::OnUpdate2()
@@ -192,17 +183,14 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		{
 			// 1秒後に表示がオフになる
 			ptrStage2->SetDrawActive(false);
-
 		}
 		}
-
 	}
 
 	Vec3 EnemyObject::GetTargetPos()const {
 		auto ptrTarget = GetStage()->GetSharedObject(L"Player");
 		return ptrTarget->GetComponent<Transform>()->GetWorldPosition();
 	}
-
 
 	void EnemyObject::ApplyForce() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -223,8 +211,6 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		pos += m_Velocity * elapsedTime;
 		ptrTrans->SetPosition(pos);
 	}
-
-	
 
 	//--------------------------------------------------------------------------------------
 	//	プレイヤーから遠いときの移動
@@ -276,12 +262,8 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 	}
 	void SeekNearState::Exit(const shared_ptr<EnemyObject>& Obj) {
 	}
-
-	
 	/*void EnemyObject::OnPushB() {
 		
-
-
 	}*/
 
 }

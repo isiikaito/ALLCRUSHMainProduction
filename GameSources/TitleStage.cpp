@@ -34,9 +34,6 @@ namespace basecross {
 		CreateViewLight();
 		AddGameObject<TitleSprite>(L"TITLLE_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
-
-	
-		
 	}
 	//çXêV
 	void TitleStage::OnUpdate() {
@@ -50,13 +47,11 @@ namespace basecross {
 			OnPushBCheck1 = true;
 			}			
 		}
-		
 	}
 	void TitleStage::OnPushB() {	
 			CerateFadeOutBlack();
 			OnPushBCheck = true;
 	}
-	
 }
 
 //end namespace basecross

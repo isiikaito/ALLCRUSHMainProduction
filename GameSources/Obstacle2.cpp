@@ -15,7 +15,6 @@ namespace basecross {
 		m_Position(Position)
 	{}
 
-
 	//初期化
 	void Obstacle2::OnCreate() {
 		//衝突判定エリアを決める
@@ -56,8 +55,5 @@ namespace basecross {
 
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		/*Coll->SetFixed(true);*/
-
-
 	}
-
 }

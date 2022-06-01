@@ -15,7 +15,6 @@ namespace basecross {
 		m_Position(Position)
 	{}
 
-
 	//初期化
 	void Pillar::OnCreate() {
 		//衝突判定エリアを決める
@@ -24,8 +23,6 @@ namespace basecross {
 		ptrTrans->SetScale(m_Scale);
 		ptrTrans->SetRotation(m_Rotation);
 		ptrTrans->SetPosition(m_Position);
-
-
 
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -65,5 +62,4 @@ namespace basecross {
 		//読み込みの設定をする
 		GetStage()->SetSharedGameObject(L"Pillar", GetThis<Pillar>());
 	}
-
 }

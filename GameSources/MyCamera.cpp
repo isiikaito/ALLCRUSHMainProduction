@@ -9,11 +9,9 @@ namespace basecross {
 		}
 		return nullptr;
 	}
-
 	void BackCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
 		m_TargetObject = Obj;
 	}
-
 	// カメラ
 	void BackCamera::OnUpdate()
 	{
@@ -25,7 +23,6 @@ namespace basecross {
 		const auto& pad = device.GetControlerVec()[0];
 
 		//auto rotate = GetCameraObject()->GetComponent<Transform>()->GetRotation();
-
 
 		// プレイヤーの座標を取得する
 		Vec3 playerPos(0.0f); // プレイヤーの座標（仮）
@@ -65,7 +62,6 @@ namespace basecross {
 			Enemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
 			break;
 			}
-			
 		}
 
 		auto CameraAngleY = XM_PI;
@@ -92,14 +88,12 @@ namespace basecross {
 				eye.y = 2.0f;
 				SetEye(eye);
 
-
 			}
 		}
 				
 		//柱が壊れたら
 		if (PillarCount == 1)
 		{
-
 			//elapsedTimeを取得することにより時間を使える
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			//時間を変数に足す
@@ -120,12 +114,6 @@ namespace basecross {
 			}
 			
 		}
-
-
-
-
-
-
 	}
 
 	//--------------------------------------------------------------------------------------

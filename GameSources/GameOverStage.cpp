@@ -24,9 +24,6 @@ namespace basecross {
 		//デフォルトのライティングを指定
 		ptrMultiLight->SetDefaultLighting();
 	}
-
-
-
 	//初期化
 	void GameOverStage::OnCreate() {
 		CreateViewLight();
@@ -38,12 +35,10 @@ namespace basecross {
 	void GameOverStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<GameOverStage>());
-
 	}
 	//Bボタンを押したときの処理
 	void GameOverStage::OnPushB() {
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
-
 	}
 }
 

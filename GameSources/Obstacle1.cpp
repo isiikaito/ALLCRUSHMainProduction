@@ -14,8 +14,6 @@ namespace basecross {
 		m_Rotation(Rotation),
 		m_Position(Position)
 	{}
-
-
 	//初期化
 	void Obstacle1::OnCreate() {
 		//衝突判定エリアを決める
@@ -24,8 +22,6 @@ namespace basecross {
 		ptrTrans->SetScale(m_Scale);
 		ptrTrans->SetRotation(m_Rotation);
 		ptrTrans->SetPosition(m_Position);
-
-	
 
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -61,8 +57,6 @@ namespace basecross {
        
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
 		Coll->SetFixed(true);
-
-
 	}
 
 }

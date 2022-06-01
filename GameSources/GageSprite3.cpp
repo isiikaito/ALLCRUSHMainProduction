@@ -23,7 +23,6 @@ namespace basecross {
 	GageSprite3::~GageSprite3() {}
 	void GageSprite3::OnCreate() {
 
-
 		float helfSize = 0.5f;
 		//頂点配列
 		m_BackupVertices = {
@@ -49,14 +48,9 @@ namespace basecross {
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
 
-
-
-
 	}
 	//点滅処理（Elapsedtimeを利用している）
 	void GageSprite3::OnUpdate() {
-
-
 
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
@@ -72,15 +66,10 @@ namespace basecross {
 		//壁を三回壊したら
 		if (PowerCount == 3)
 
-
 		{ //プレイヤーの座標取得
 
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
-
-
-
-
 		}
 		//パワーアップしてるかどうか
 		if (Power == 0)
