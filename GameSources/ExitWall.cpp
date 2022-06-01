@@ -15,6 +15,7 @@ namespace basecross {
 		m_Position(Position)
 	{}
 
+
 	//‰Šú‰»
 	void ExitWall::OnCreate() {
 		//Õ“Ë”»’èƒGƒŠƒA‚ğŒˆ‚ß‚é
@@ -54,5 +55,8 @@ namespace basecross {
 		auto Coll = AddComponent<CollisionObb>();
 
 		Coll->SetFixed(true);
+
+
 	}
+
 }

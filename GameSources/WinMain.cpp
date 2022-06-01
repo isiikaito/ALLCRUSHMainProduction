@@ -12,6 +12,7 @@ LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 const wchar_t* pClassName = L"BaseCrossFullClass";
 const wchar_t* pWndTitle = L"ALLCRUSH";
 
+
 //--------------------------------------------------------------------------------------
 //
 //  関数: MyRegisterClass()
@@ -114,6 +115,7 @@ HWND InitInstance(HINSTANCE hInstance, int nCmdShow, bool isFullScreen, int iCli
 	return hWnd;
 }
 
+
 //--------------------------------------------------------------------------------------
 //	int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth, int iClientHeight);
 //	用途: メインループ
@@ -209,6 +211,7 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 	return RetCode;
 }
 
+
 //--------------------------------------------------------------------------------------
 //	int APIENTRY _tWinMain();
 //	用途: エントリポイント
@@ -250,6 +253,9 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 }
 
+
+
+
 //--------------------------------------------------------------------------------------
 //
 //  関数: WndProc(HWND, UINT, WPARAM, LPARAM)
@@ -284,3 +290,5 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
+
+

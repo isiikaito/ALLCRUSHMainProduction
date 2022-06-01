@@ -48,12 +48,21 @@ namespace basecross {
 		ptrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 0.0f));
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
+
+
+
+
 	}
 	//点滅処理（Elapsedtimeを利用している）
 	void GageSprite::OnUpdate() {
 
+
+
 		//		auto ptrDraw = GetComponent<PCSpriteDraw>();
 		//		ptrDraw->SetDiffuse(Col4(1.0f,0,0,1.0f));
+
+
+
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto PowerCount = ptrPlayer->GetPowerCount();
@@ -68,11 +77,18 @@ namespace basecross {
 		//壁を１回殴ったら
 			if (PowerCount == 1)
 
+
 			{
 				//ゲージの表示
 				auto ptrDraw = GetComponent<PCSpriteDraw>();
 				ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
+
+
+
+
 			}
+
+
 		
 			//パワーアップした時
 		if (Power == 0)
@@ -99,6 +115,7 @@ namespace basecross {
 			}
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->UpdateVertices(newVertices);
+
 		}
 		//アイテムを使った後
 		if (Gageflash == 1)
@@ -108,5 +125,7 @@ namespace basecross {
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
 			Gageflash = 0;
 		}
+
 	}
+
 }

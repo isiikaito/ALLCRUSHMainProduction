@@ -23,6 +23,7 @@ namespace basecross {
 	GageSprite2::~GageSprite2() {}
 	void GageSprite2::OnCreate() {
 
+
 		float helfSize = 0.5f;
 		//頂点配列
 		m_BackupVertices = {
@@ -47,9 +48,15 @@ namespace basecross {
 		ptrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 0.0f));
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
+
+
+
+
 	}
 	
 	void GageSprite2::OnUpdate() {
+
+
 
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
@@ -65,10 +72,16 @@ namespace basecross {
 
 		//壁を２回殴ったら
 		if (PowerCount == 2)
+
+
 		{ 
 			//ゲージを表示
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
+
+
+
+
 		}
 		//パワーアップ
 		if (Power == 0)

@@ -37,6 +37,7 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	
 	void GameStage2::CreateWall() {
 		auto group = CreateSharedObjectGroup(L"Wall_Group");
 		//CSVの行単位の配列
@@ -77,6 +78,7 @@ namespace basecross {
 		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-21.0f, 1.0f, 0.0f),2);
 		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-29.0f, 1.0f, 0.0f),4);
 		//AddGameObject<Wall>(Vec3(1.0f, 10.0f, 10.0f), Vec3(), Vec3(-37.0f, 1.0f, 0.0f),4);
+
 	}
 	//マヤの壁の作成
 	void GameStage2::CreateStageWall() {
@@ -109,7 +111,10 @@ namespace basecross {
 			);
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<StageWall>(Scale, Rot, Pos);
+
+
 		}
+
 	}
 
 	//マヤの壁の作成
@@ -128,6 +133,7 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
+
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -142,7 +148,10 @@ namespace basecross {
 			);
 			//各値が揃ったのでオブジェクトの作成
 			AddGameObject<ExitWall>(Scale, Rot, Pos);
+
+
 		}
+
 	}
 
 	//マヤの床の作成
@@ -178,6 +187,8 @@ namespace basecross {
 			AddGameObject<StageFloor>(Scale, Rot, Pos);
 		}
 
+
+
 	}
 	//障害物１作成
 	void GameStage2::CreateObstacle1() {
@@ -196,6 +207,7 @@ namespace basecross {
 				(float)_wtof(Tokens[1].c_str()),
 				(float)_wtof(Tokens[2].c_str()),
 				(float)_wtof(Tokens[3].c_str())
+
 			);
 			Vec3 Rot;
 			//回転は「XM_PLDIV2」の文字列になっている場合がある
@@ -281,6 +293,7 @@ namespace basecross {
 			AddGameObject<Pillar>(Scale, Rot, Pos);
 		}
 	}
+
 	//落石の作成
 	void GameStage2::CreateFallingRock() {
 
@@ -359,8 +372,6 @@ namespace basecross {
 
 	//カメラマンの作成
 	void GameStage2::CreateCameraman() {
-<<<<<<< HEAD
-=======
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		auto ptrCameraman = AddGameObject<Cameraman>(2.0f);
 		//シェア配列にCameramanを追加
@@ -373,7 +384,6 @@ namespace basecross {
 			SetView(m_MainCameraView);
 			m_CameraSelect = CameraSelect::mainCamera;
 		}
->>>>>>> develop
 		//auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
 		//シェア配列にOpeningCameramanを追加
 		//SetSharedGameObject(L"OpeningCameraman", ptrOpeningCameraman);
@@ -384,6 +394,7 @@ namespace basecross {
 		//	SetView(m_OpeningCameraView);
 		//	m_CameraSelect = CameraSelect::openingCamera;
 		//}
+
 	}
 
 	void GameStage2::OnCreate() {
@@ -503,6 +514,21 @@ namespace basecross {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}	
+	
+	//void GameStage::ToMainCamera() {
+	//	auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+	//	//ObjCameraに変更
+	//	auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
+	//	auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_MainCameraView->GetCamera());
+	//	if (ptrObjCamera) {
+	//		ptrObjCamera->SetCameraObject(ptrCameraman);
+	//		ptrObjCamera->SetTargetObject(ptrPlayer);
+	//		//m_MainCameraViewを使う
+	//		SetView(m_MainCameraView);
+	//		m_CameraSelect = CameraSelect::mainCamera;
+	//	}
+	//}
+
 	//void GameStage::ToBackCamera() {
 	//	auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 	//	//MyCameraに変更
@@ -514,5 +540,6 @@ namespace basecross {
 	//		m_CameraSelect = CameraSelect::backCamera;
 	//	}
 	//}
+
 }
 //end basecross

@@ -70,6 +70,7 @@ namespace basecross {
 					target.y = playerPos.y + 2.0f;
 					target.x = playerPos.x - 5.0f;
 				}
+			
 		}
 
 		if (m_PillarCount == 1)
@@ -85,6 +86,7 @@ namespace basecross {
 				m_Turn = 1;
 			}
 		}
+
 		//auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		auto enemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 

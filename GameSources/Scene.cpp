@@ -187,6 +187,7 @@ namespace basecross {
 		CursorWav = dataDir + L"RockAttack.wav";
 		App::GetApp()->RegisterWav(L"RockAttack", CursorWav);
 
+
 	}
 	void Scene::OnCreate() {
 		try {
@@ -199,7 +200,9 @@ namespace basecross {
 			//自分自身にイベントを送る
 			//最初のシーンに設定できる
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+
 		}
+
 		catch (...) {
 			throw;
 		}
@@ -218,6 +221,7 @@ namespace basecross {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage>();
 		}
+
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージ2の設定
 			ResetActiveStage<GameStage2>();
@@ -242,5 +246,6 @@ namespace basecross {
 			ResetActiveStage<MyMovieStage>();
 		}
 	}
+
 }
 //end basecross
