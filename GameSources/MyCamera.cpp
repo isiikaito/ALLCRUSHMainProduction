@@ -39,6 +39,8 @@ namespace basecross {
 		{
 			// プレイヤーへのキャストを試みる
 			auto player = dynamic_pointer_cast<Player>(obj);
+			auto pillar = dynamic_pointer_cast<Pillar>(obj);
+			auto Enemy = dynamic_pointer_cast<EnemyObject>(obj);
 			if (player)
 			{
 				// キャストに成功していたら座標を取得する
@@ -46,41 +48,38 @@ namespace basecross {
 				playerPos = playerTrans->GetPosition();
 				PillarCount = player->GetPillarCount();
 				player->SetPillarCount(PillarCount);
-				break;
+	//			break;
 			}
 
 			// 柱へのキャストを試みる
-			auto pillar = dynamic_pointer_cast<Pillar>(obj);
-			if (pillar)
+			else if (pillar)
 			{
 				// キャストに成功していたら座標を取得する
 				auto pillarTrans = pillar->GetComponent<Transform>();
 				pillarPos = pillarTrans->GetPosition();
-				break;
+	//			break;
 			}
 			//ボスへのキャストを試みる
-			auto Enemy = dynamic_pointer_cast<EnemyObject>(obj);
-			if (Enemy)
+			else if (Enemy)
 			{
 				EnemySetDrawActiveCount = Enemy->GetEnemySetDrawActiveCount();
 				Enemy->SetEnemySetDrawActiveCount(EnemySetDrawActiveCount);
 				enemyPos = Enemy->GetComponent<Transform>()->GetPosition();
-				break;
+	//			break;
 			}
 			
 		}
 
-		//float ed = playerPos.x - enemyPos.x;//プレイヤーとエネミーの距離
+		float ed = playerPos.x - enemyPos.x;//プレイヤーとエネミーの距離
 
-		auto eye = playerPos + Vec3(cosf(0.0f), 0.0f, sinf(0.0f)) * distance;//
+		auto eye = playerPos + Vec3(cosf(0.0f), 0.0f, sinf(0.0f)) * distance;
 		eye.y = 2.0f;
 		playerPos.y = 0.5f;
 
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B)// || ed <= 5.0f
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B|| ed >= -5.0f)// 
 		{
-			//auto CameraAngleY = XM_PI;
 			eye.x = playerPos.x - 5.0f;
 		}
 
@@ -94,7 +93,7 @@ namespace basecross {
 		
 		if (m_Turn==0)
 		{
-			if (PPdistance < -75)
+			if (PPdistance <= 5)
 			{
 				EnemySetDrawActiveCount = 0;
 				auto CameraAngleY = XM_PI;
@@ -130,12 +129,6 @@ namespace basecross {
 				
 			}
 		}
-
-
-
-
-
-
 	}
 
 	//--------------------------------------------------------------------------------------
