@@ -23,12 +23,7 @@ namespace basecross {
 		ptrMultiLight->SetDefaultLighting();
 	}
 
-	void TitleStage::CerateFadeOutBlack()
-	{		
-		AddGameObject<FadeOutBlack>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
-
+	
 	//初期化
 	void TitleStage::OnCreate() {
 		CreateViewLight();
@@ -53,7 +48,16 @@ namespace basecross {
 		
 	}
 	void TitleStage::OnPushB() {	
-			CerateFadeOutBlack();
+
+		if (m_OnPushB)
+		{
+			//フェードアウトの作成
+			AddGameObject<FadeOut>( true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f,0.0f));
+			PostEvent(XM_PI / 2, GetThis<TitleStage>(), App::GetApp()->GetScene<Scene>(), L"ToMenuStage");
+			m_OnPushB = false;
+		}
+	
 			OnPushBCheck = true;
 	}
 	

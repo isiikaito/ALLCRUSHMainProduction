@@ -13,16 +13,17 @@ namespace basecross {
 	class TitleStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
-		void CerateFadeOutBlack();
+	
 		int SceneCountbakc;
 		bool  OnPushBCheck = false;
 		bool  OnPushBCheck1 = false;
+		bool m_OnPushB=true;
 		//入力ハンドラー
 		InputHandler2<TitleStage> m_InputHandler;
 
 	public:
 		//構築と破棄
-		TitleStage() :Stage() {}
+		TitleStage() :Stage(),SceneCountbakc(0) {}
 		virtual ~TitleStage() {}
 		//初期化
 		virtual void OnCreate()override;

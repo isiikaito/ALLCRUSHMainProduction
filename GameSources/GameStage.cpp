@@ -397,17 +397,8 @@ namespace basecross {
 	}
 
 	
-	//ゲームクリアのフェードアウト
-	void GameStage::CreateFadeOut() {
-		AddGameObject<FadeOut>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
 
-	//ゲームオーバー時ののフェードアウト
-	void GameStage::CreateFadeOutEnd() {
-		AddGameObject<FadeOutEnd>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
+
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -553,8 +544,6 @@ namespace basecross {
 			CreateGageWhite();
 
 
-			//ゲームクリアのFadeOut
-			CreateFadeOut();
 			
 			
 			// 逃げるテロップ
@@ -612,8 +601,10 @@ namespace basecross {
 		auto GameOver = ptrPlayer->GetGameOver();
 	
 		if (GameOver >= 1) {
-			//ゲームのオーバー時のFadeOutEnd
-			CreateFadeOutEnd();
+			//フェードアウトの作成
+			AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
         ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間
@@ -670,6 +661,11 @@ namespace basecross {
 
 		}
 		return;
+
+		
+	
+	
+
 	}
 
 	//Bボタンカメラの変更

@@ -15,6 +15,7 @@ namespace basecross {
 		Vec3 m_StartPos;
 		float m_TotalTime;
 		
+		
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
 
