@@ -52,10 +52,8 @@ namespace basecross {
 	void CreateGageSprite2();
 	void CreateGageSprite3();
 	void CreateGageWhite();
-	//ゲームクリアFadeOut
-	void CreateFadeOut();
-	//ゲームオーバー時のFadeOut
-	void CreateFadeOutEnd();
+	
+	
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
@@ -78,6 +76,8 @@ namespace basecross {
 
 	//トータル時間
 	float m_TotalTime;
+
+	int Exit;
 	
 		//OpeningCamera用のビュー
 		shared_ptr<SingleView> m_OpeningCameraView;
