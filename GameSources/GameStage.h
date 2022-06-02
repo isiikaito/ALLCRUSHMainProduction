@@ -77,7 +77,9 @@ namespace basecross {
 	//トータル時間
 	float m_TotalTime;
 
-	int Exit;
+	float m_ExitTime;
+
+	int m_Exit;
 	
 		//OpeningCamera用のビュー
 		shared_ptr<SingleView> m_OpeningCameraView;
