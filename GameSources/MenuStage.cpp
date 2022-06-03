@@ -40,7 +40,7 @@ namespace basecross {
 	//初期化
 	void MenuStage::OnCreate() {
 		CreateViewLight();
-		AddGameObject<TitleSprite>(L"メニュー画面_TX", false,
+		AddGameObject<TitleSprite>(L"MenuSelect_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
 		//Stage1スプライト
 		CreateMenuSprite1();
