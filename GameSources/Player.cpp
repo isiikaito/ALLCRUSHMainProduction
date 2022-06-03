@@ -136,6 +136,10 @@ namespace basecross {
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
 
 
+
+
+
+
 		//ボスの座標取得
 		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
@@ -287,15 +291,19 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-
+      
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
-			ExitCount = 1;
-			PostEvent(0.0, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+		
+			if (ExitCount == 0)
+			{
+				
+                ExitCount = 1;
+			 }
 			
 		}
 
