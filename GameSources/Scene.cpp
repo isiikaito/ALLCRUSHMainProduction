@@ -24,7 +24,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
 
 		strTexture = dataDir + L"TITLE.png";
-		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"TITLE_TX", strTexture);
 
 		//strTexture = dataDir + L"GameOver.png";
 		//App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);

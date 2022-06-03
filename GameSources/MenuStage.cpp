@@ -150,7 +150,7 @@ namespace basecross {
          //フェードアウトの作成
 		AddGameObject<FadeOut>(true,
 			Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
-		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 		m_OnPushB = false;
 		}
 		

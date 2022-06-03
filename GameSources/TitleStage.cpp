@@ -27,7 +27,7 @@ namespace basecross {
 	//‰Šú‰»
 	void TitleStage::OnCreate() {
 		CreateViewLight();
-		AddGameObject<TitleSprite>(L"TITLLE_TX", false,
+		AddGameObject<TitleSprite>(L"TITLE_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
 
 	
