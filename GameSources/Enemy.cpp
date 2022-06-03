@@ -18,7 +18,12 @@ namespace basecross {
 		m_StateChangeSize(5.0f),
 		m_Force(0),
 		m_Velocity(0),
-		StopCount(0)
+		StopCount(0),
+		EnemyTime(0.0f),
+	    PillarCount(0),
+		StopTime(0.0f),
+		m_EnemySetDrawActiveCount(0),
+		m_Telop2Time(0.0f)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
