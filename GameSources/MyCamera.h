@@ -10,7 +10,7 @@ namespace basecross {
 
 		weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
 		bsm::Vec3 m_TargetToAt;	//目標から視点を調整する位置ベクトル
-		float m_ToTargetLerp;	//目標を追いかける際の補間値
+		//float m_ToTargetLerp;	//目標を追いかける際の補間値
 		float PPdistance;
 		float m_TurnTime;
 		float m_Turn;
@@ -18,14 +18,18 @@ namespace basecross {
 		void SetTargetObject(const shared_ptr<GameObject>& Obj);
 
 		shared_ptr<GameObject> GetTargetObject() const;
-		float GetToTargetLerp() const;
-		void SetToTargetLerp(float f);
+		/*float GetToTargetLerp() const;
+		void SetToTargetLerp(float f);*/
 		//Bボタンカメラの変更
 		//void OnPushB();
 
 
 		MyCamera()
-			: angleY(0.0f), distance(5.0f)
+			: angleY(0.0f), 
+			distance(5.0f),
+			PPdistance(0.0f),
+			m_Turn(0.0f),
+			m_TurnTime(0.0f)
 		{
 			//void SetTargetObject(const shared_ptr<GameObject>&Obj);
 			//weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト

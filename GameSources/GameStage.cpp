@@ -397,17 +397,8 @@ namespace basecross {
 	}
 
 	
-	//ゲームクリアのフェードアウト
-	void GameStage::CreateFadeOut() {
-		AddGameObject<FadeOut>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
 
-	//ゲームオーバー時ののフェードアウト
-	void GameStage::CreateFadeOutEnd() {
-		AddGameObject<FadeOutEnd>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
+
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -434,28 +425,28 @@ namespace basecross {
 	// 柱を壊すテロップ
 	void GameStage::CreateTelop()
 	{
-		AddGameObject<Telop>(L"柱を壊す_TX", true,
+		AddGameObject<Telop>(L"PillarBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 柱を壊すタイミングテロップ
 	void GameStage::CreateTelop2()
 	{
-		AddGameObject<Telop2>(L"柱壊すタイミング_TX", true,
+		AddGameObject<Telop2>(L"JustTiming_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 出口前テロップ
 	void GameStage::CreateTelop3()
 	{
-		AddGameObject<Telop3>(L"出口前_TX", true,
+		AddGameObject<Telop3>(L"ClearNear_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 壁を壊せ！！テロップ
 	void GameStage::CreateTelop4()
 	{
-		AddGameObject<Telop4>(L"壁を壊せ！！_TX", true,
+		AddGameObject<Telop4>(L"WallBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
@@ -552,8 +543,6 @@ namespace basecross {
 			CreateGageWhite();
 
 
-			//ゲームクリアのFadeOut
-			CreateFadeOut();
 			
 			
 			// 逃げるテロップ
@@ -609,11 +598,26 @@ namespace basecross {
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		auto GameOver = ptrPlayer->GetGameOver();
-	
+		auto Exit = ptrPlayer->GetExitCount();
+
 		if (GameOver >= 1) {
-			//ゲームのオーバー時のFadeOutEnd
-			CreateFadeOutEnd();
+			//フェードアウトの作成
+			AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
+
+		if (m_Exit>=1)
+		{
+		
+		
+			//フェードアウトの作成
+			AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			
+			
+		}
+		ptrPlayer->SetExitCount(Exit);
         ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間
 		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
@@ -669,6 +673,11 @@ namespace basecross {
 
 		}
 		return;
+
+		
+	
+	
+
 	}
 
 	//Bボタンカメラの変更

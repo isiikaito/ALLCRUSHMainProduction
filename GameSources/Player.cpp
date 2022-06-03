@@ -295,6 +295,8 @@ namespace basecross {
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
 			ExitCount = 1;
+			PostEvent(0.0, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			
 		}
 
 

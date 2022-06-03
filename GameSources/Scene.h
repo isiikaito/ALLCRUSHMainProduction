@@ -20,7 +20,7 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		void CreateResourses();
 		bool m_MovieActive;
-		Scene() :SceneBase() {}
+		Scene() :SceneBase() , m_MovieActive(false){}
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief デストラクタ

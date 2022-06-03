@@ -27,9 +27,9 @@
 #include "GageSprite2.h"
 #include "GageSprite3.h"
 #include "FadeOut.h"
-#include "FadeOutBlack.h"
-#include "FadeOutBlack1.h"
-#include "FadeOutEnd.h"
+
+
+
 #include "GageSpriteWhite.h"
 #include "Pillar.h"
 #include "FallingRock.h"

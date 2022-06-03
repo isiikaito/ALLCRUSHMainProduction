@@ -19,7 +19,7 @@ namespace basecross {
 		//Stage2プライト作成
 		void CreateMenuSprite2();
 
-		void CerateFadeOutBlack1();
+		bool m_OnPushB = true;
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
 		float m_idleTime;
@@ -31,7 +31,7 @@ namespace basecross {
 	public:
 		
 		//構築と破棄
-		MenuStage() :Stage() {}
+		MenuStage() :Stage() , m_idleTime(0.0f){}
 		virtual ~MenuStage() {}
 		//初期化
 		virtual void OnCreate()override;

@@ -52,10 +52,8 @@ namespace basecross {
 	void CreateGageSprite2();
 	void CreateGageSprite3();
 	void CreateGageWhite();
-	//ゲームクリアFadeOut
-	void CreateFadeOut();
-	//ゲームオーバー時のFadeOut
-	void CreateFadeOutEnd();
+	
+	
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
@@ -78,6 +76,10 @@ namespace basecross {
 
 	//トータル時間
 	float m_TotalTime;
+
+	float m_ExitTime;
+
+	int m_Exit;
 	
 		//OpeningCamera用のビュー
 		shared_ptr<SingleView> m_OpeningCameraView;
@@ -103,7 +105,19 @@ namespace basecross {
 		void CreateCameraman();
 	public:
 		//構築と破棄
-		GameStage() :Stage(), m_TotalTime(0) {}
+		GameStage() :Stage(),
+			m_TotalTime(0),
+			m_CameraSelect(),
+			m_Exit(0),
+			m_TelopTime(0.0f),
+			m_Telop2Time(0.0f),
+			m_Telop3Time(0.0f),
+			m_Telop4Time(0.0f),
+			m_idleTime(0.0f),
+			m_ExitTime(0.0f)
+
+
+		{}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;

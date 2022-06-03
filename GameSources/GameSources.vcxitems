@@ -19,9 +19,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutEnd.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h" />
@@ -69,9 +66,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutEnd.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp" />

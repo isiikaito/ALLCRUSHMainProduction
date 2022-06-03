@@ -74,7 +74,10 @@ namespace basecross {
 		void CreateCameraman();
 	public:
 		//\’z‚Æ”jŠü
-		GameStage2() :Stage(), m_TotalTime(0) {}
+		GameStage2() :Stage(), 
+			m_TotalTime(0),
+			m_CameraSelect()
+		{}
 		virtual ~GameStage2() {}
 		//‰Šú‰»
 		virtual void OnCreate()override;

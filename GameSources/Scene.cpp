@@ -32,23 +32,23 @@ namespace basecross {
 		//strTexture = dataDir + L"GameOver.png";
 		//App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
-		strTexture = dataDir + L"ゲームオーバー.jpg";
+		strTexture = dataDir + L"GameOver.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
 		strTexture = dataDir + L"flee.png";
 		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 
-		strTexture = dataDir + L"柱を壊す.png";
-		App::GetApp()->RegisterTexture(L"柱を壊す_TX", strTexture);
+		strTexture = dataDir + L"PillarBrake.png";
+		App::GetApp()->RegisterTexture(L"PillarBrake_TX", strTexture);
 
-		strTexture = dataDir + L"柱壊すタイミング.png";
-		App::GetApp()->RegisterTexture(L"柱壊すタイミング_TX", strTexture);
+		strTexture = dataDir + L"JustTiming.png";
+		App::GetApp()->RegisterTexture(L"JustTiming_TX", strTexture);
 
-		strTexture = dataDir + L"出口前.png";
-		App::GetApp()->RegisterTexture(L"出口前_TX", strTexture);
+		strTexture = dataDir + L"ClearNear.png";
+		App::GetApp()->RegisterTexture(L"ClearNear_TX", strTexture);
 
-		strTexture = dataDir + L"壁を壊せ！！.png";
-		App::GetApp()->RegisterTexture(L"壁を壊せ！！_TX", strTexture);
+		strTexture = dataDir + L"WallBrake.png";
+		App::GetApp()->RegisterTexture(L"WallBrake_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
@@ -145,9 +145,9 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
 		
 		//エフェクト関連
-		strTexture = dataDir + L"Splash02.png";
+		strTexture = dataDir + L"Splash.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
-		strTexture = dataDir + L"spark2.png";
+		strTexture = dataDir + L"spark.png";
 		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
 		strTexture = dataDir + L"SpeedUp.png";
 		App::GetApp()->RegisterTexture(L"SPEEDUP_TX", strTexture);
