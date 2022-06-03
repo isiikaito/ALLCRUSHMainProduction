@@ -46,12 +46,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)YSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutBlack1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOutEnd.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)stageObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
@@ -101,11 +95,5 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutBlack1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOutEnd.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)stageObject.h" />
   </ItemGroup>
 </Project>
