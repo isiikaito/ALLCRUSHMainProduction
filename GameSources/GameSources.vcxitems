@@ -14,11 +14,8 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
-=======
->>>>>>> master
     <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
@@ -66,11 +63,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
-=======
->>>>>>> master
     <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
