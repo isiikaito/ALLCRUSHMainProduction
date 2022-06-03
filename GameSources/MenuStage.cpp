@@ -145,7 +145,7 @@ namespace basecross {
 	
 	void MenuStage::OnPushB() {
 		
-		if (m_OnPushB)
+		if (m_OnPushB==true)
 		{
          //フェードアウトの作成
 		AddGameObject<FadeOut>(true,

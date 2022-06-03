@@ -18,14 +18,18 @@ namespace basecross {
 		void SetTargetObject(const shared_ptr<GameObject>& Obj);
 
 		shared_ptr<GameObject> GetTargetObject() const;
-		float GetToTargetLerp() const;
-		void SetToTargetLerp(float f);
+		/*float GetToTargetLerp() const;
+		void SetToTargetLerp(float f);*/
 		//Bボタンカメラの変更
 		//void OnPushB();
 
 
 		MyCamera()
-			: angleY(0.0f), distance(5.0f)
+			: angleY(0.0f), 
+			distance(5.0f),
+			PPdistance(0.0f),
+			m_Turn(0.0f),
+			m_TurnTime(0.0f)
 		{
 			//void SetTargetObject(const shared_ptr<GameObject>&Obj);
 			//weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
