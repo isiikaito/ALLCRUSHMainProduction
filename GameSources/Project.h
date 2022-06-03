@@ -58,4 +58,4 @@
 #include "Telop2.h"
 #include "Telop3.h"
 #include "Telop4.h"
-
+#include "GameOverTelop.h"

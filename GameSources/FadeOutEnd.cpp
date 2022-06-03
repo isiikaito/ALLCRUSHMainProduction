@@ -62,12 +62,20 @@ namespace basecross {
 				col
 			);
 			newVertices.push_back(v);
-		}
-		auto ptrDraw = GetComponent<PCSpriteDraw>();
-		ptrDraw->UpdateVertices(newVertices);
-		if (m_TotalTime >= 1)
-		{
-			PostEvent(0.0f, GetThis<FadeOutEnd>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				if (m_TotalTime >= 1)
+				{
+					auto ptrGMOStage = GetStage()->GetSharedGameObject<GMOTelop>(L"GMOTelop");
+					ptrGMOStage->SetDrawActive(true);
+					// ŽžŠÔ‚Ì•Ï”‚É‘«‚·
+					//m_GMOTelopTime += elapsedTime;
+					//if (m_GMOTelopTime >= 5.0f)
+					//{
+					//1•bŒã‚É•\Ž¦‚ªƒIƒt‚É‚È‚é
+					//	ptrGMOStage->SetDrawActive(false);
+					//}
+				//PostEvent(0.0f, GetThis<FadeOutEnd>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				}
+
+			}
 		}
 	}
-}

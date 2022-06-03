@@ -17,7 +17,6 @@ namespace basecross {
 		int SceneCount;
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
-\
 	public:
 		FadeOutEnd(const shared_ptr<Stage>& StagePtr, bool Trace,
 			const Vec2& StartScale, const Vec3& StartPos);

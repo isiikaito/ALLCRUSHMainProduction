@@ -71,53 +71,35 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate()
-
 	{
 		auto ptrGameStage = dynamic_pointer_cast<GameStage>(GetStage());
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-
 		if (elapsedTime)
 		{
 			m_opningStop += elapsedTime;
 			if (m_opningStop >= XM_PI) {
 				m_opningStop = 0;
 			}
-
 			if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
 				return;
 			}
-			//moveStop = false;
-
 			if (m_opningStop == 1)
 			{
 				moveStop = true;
 			}
 		}
-
 		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		auto move = ptrDraw->GetCurrentAnimation();
-
 		// アプリケーションオブジェクトを取得する
 		auto& app = App::GetApp();
-
 		// デルタタイムを取得する
 		float delta = app->GetElapsedTime(); // 前フレームからの「経過時間」
-
 		// カメラを取得する
 		auto stage = GetStage(); // このオブジェクトが追加されているステージ
 		auto camera = stage->GetView()->GetTargetCamera(); // カメラを取得する
-
 		// カメラの回り込み
 		float rad = XM_PI * 0.5f;
-
-		// CameraオブジェクトをMainCameraオブジェクトに「ダウンキャスト」する
-		//auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
-		//if (mainCamera) // nullptr出なかったら、キャスト成功
-		//{
-		//	rad = mainCamera->GetAngleY() + XMConvertToRadians(90.0f);
-		//}
-
 		// ゲームコントローラーオブジェクトを取得する
 		auto& device = app->GetInputDevice();
 		const auto& pad = device.GetControlerVec()[0]; // ゼロ番目のコントローラーを取得する
@@ -127,24 +109,18 @@ namespace basecross {
 			Vec3(0.0f, 1.0f, 0.0f),  // Y軸の向き
 			Vec3(-sinf(rad), 0.0f, cosf(rad))); // Z軸の向き
 		moveDir = moveDir * m; // スティックの入力をangleYラジアン回転させる
-
 		speed = MaxMoveSpeed * moveDir.length() * moveStop; // 最大速×スティックベクトルの大きさ×停止させるかどうかの判定
 		moveDir.normalize(); // 移動方向を正規化する
-
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		auto Rotation = transComp->GetRotation();
 		auto scale = transComp->GetScale();
 		// プレイヤーの移動
 		position += moveDir * speed * delta * speed2; // デルタタイムを掛けて「秒間」の移動量に変換する
-
-
 		//ボスの座標取得
 		auto ptrEnemy = GetStage()->GetSharedGameObject<EnemyObject>(L"EnemyObject");
 		//クラスには（）が必要である引数があるときと無い時どっちでも必要
 		auto EnemyPositon = ptrEnemy->GetComponent<Transform>()->GetPosition();
-
-
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
 		if (PBdistance > -5)
@@ -153,6 +129,7 @@ namespace basecross {
 			if (move != L"GameOver") {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
 				float d;
+				GameOver = 1;
 				if (moveDir.y > 180.0f) {
 					d = +1.0f;
 				}
@@ -163,8 +140,6 @@ namespace basecross {
 				moveStop = false;
 			}
 		}
-
-
 		//柱が壊れていないとき
 		if (PillarCount == 0)
 		{
@@ -172,7 +147,6 @@ namespace basecross {
 			auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
 			//クラスには（）が必要である引数があるときと無い時どっちでも必要
 			auto PillarPositon = ptrPillar->GetComponent<Transform>()->GetPosition();
-
 			//柱とプレイヤーの距離
 			PPdistance = position.x - PillarPositon.x;
 			if (PPdistance < 5)
@@ -182,22 +156,17 @@ namespace basecross {
 				position.z = 1;
 				Rotation.y = 90;
 				speed = 0;
-
-
 			}
 		}
-
 		if (itemCount == 2)
 		{
         float elapsedTime1 = App::GetApp()->GetElapsedTime();
 		itemtime += elapsedTime1;
-
 		if (itemtime >= 4)
 		{
 			speed2 = 1;
 		}
 		}
-		
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -221,17 +190,13 @@ namespace basecross {
 				moveStop = true;//移動停止解除
 			}
 		}
-
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		//MovePlayer();
 		m_InputHandler2.PushHandle(GetThis<Player>());
-
 		if (ptrGameStage->GetCameraSelect() == CameraSelect::openingCamera) {
 			return;
 		}
-
-
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		//moveStop = false;
@@ -250,9 +215,7 @@ namespace basecross {
 			ptrXA->Stop(m_BGM);//bgm(足音の停止)
 
 			moveStop = false;//移動の停止
-
 		}
-
 	}
 
 	//プレイヤーがゴールにたどり着いたら
@@ -289,7 +252,6 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 
@@ -388,6 +350,7 @@ namespace basecross {
 
 			}
 		}
+		//ゲームオーバーテロップ
 
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		//float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -565,7 +528,7 @@ namespace basecross {
 
 		if (action == L"GameOver") {
 			if (now) {
-				GameOver = 1;
+				
 				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
@@ -597,192 +560,3 @@ namespace basecross {
 	}
 }
 	//end basecross
-//void Player::CreateEffect() {
-//	auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
-//	auto d3D11DeviceContext = App::GetApp()->GetDeviceResources()->GetD3DDeviceContext();;
-//	// エフェクトのレンダラーの作成
-//	m_renderer = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
-//
-//
-//	// エフェクトのマネージャーの作成
-//	m_manager = ::Effekseer::Manager::Create(8000);
-//	// 描画モジュールの設定
-//	m_manager->SetSpriteRenderer(m_renderer->CreateSpriteRenderer());
-//	m_manager->SetRibbonRenderer(m_renderer->CreateRibbonRenderer());
-//	m_manager->SetRingRenderer(m_renderer->CreateRingRenderer());
-//	m_manager->SetTrackRenderer(m_renderer->CreateTrackRenderer());
-//	m_manager->SetModelRenderer(m_renderer->CreateModelRenderer());
-//
-//	// テクスチャ、モデル、カーブ、マテリアルローダーの設定する。
-//	// ユーザーが独自で拡張できる。現在はファイルから読み込んでいる。
-//	m_manager->SetTextureLoader(m_renderer->CreateTextureLoader());
-//	m_manager->SetModelLoader(m_renderer->CreateModelLoader());
-//	m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
-//	m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
-//	//m_manager->GetCameraCullingMaskToShowAllEffects();
-//	//m_manager->CreateCullingWorld(10, 10, 10, 5);
-//
-//	// 視点位置を確定
-//	//auto g_position = ::Effekseer::Vector3D(10.0f, 5.0f, 20.0f);
-//	auto g_position = ::Effekseer::Vector3D(0.0f, 0.0f, -5.0f);
-//
-//	// 投影行列を設定
-//	float w = (float)App::GetApp()->GetGameWidth();
-//	float h = (float)App::GetApp()->GetGameHeight();
-//	auto cameraTgt = OnGetDrawCamera();
-//	auto eye = cameraTgt->GetEye();
-//	cameraTgt->SetEye(eye);
-//	auto at = cameraTgt->GetAt();
-//	cameraTgt->SetAt(at);
-//	auto up = cameraTgt->GetUp();
-//	cameraTgt->SetUp(up);
-//	auto ne = cameraTgt->GetNear();
-//	auto fa = cameraTgt->GetFar();
-//	auto fovY = cameraTgt->GetFovY();
-//
-//	m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-//		fovY, w / h, ne, fa));
-//	//カメラ行列を設定
-//   //m_renderer->SetCameraMatrix(
-//   //	::Effekseer::Matrix44().LookAtRH(::Effekseer::Vector3D(eye.x,eye.y,eye.z), ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
-//	m_renderer->SetCameraMatrix(
-//		::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(at.x, at.y, at.z), ::Effekseer::Vector3D(up.x, up.y, up.z)));
-//	m_renderer->SetCameraParameter(::Effekseer::Vector3D(eye.x, eye.y, eye.z), ::Effekseer::Vector3D(g_position));
-//	//m_renderer->SetCameraMatrix(
-//	//	::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
-//
-//	wstring dataDir;
-//	App::GetApp()->GetDataDirectory(dataDir);
-//	dataDir += L"effect\\";
-//	//wstring wstrEfk = dataDir + L"Laser01.efk";
-//	//wstring wstrEfk = dataDir + L"BrakeSmoke.efkefc";
-//	wstring wstrEfk = dataDir + L"ImpactDamage.efkefc";
-//
-//	m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
-//
-//}
-//
-//void Player::CreateEffect1() {
-//	auto d3D11Device = App::GetApp()->GetDeviceResources()->GetD3DDevice();
-//	auto d3D11DeviceContext = App::GetApp()->GetDeviceResources()->GetD3DDeviceContext();;
-//	// エフェクトのレンダラーの作成
-//	m_renderer1 = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
-//
-//
-//	// エフェクトのマネージャーの作成
-//	m_manager1 = ::Effekseer::Manager::Create(8000);
-//	// 描画モジュールの設定
-//	m_manager1->SetSpriteRenderer(m_renderer1->CreateSpriteRenderer());
-//	m_manager1->SetRibbonRenderer(m_renderer1->CreateRibbonRenderer());
-//	m_manager1->SetRingRenderer(m_renderer1->CreateRingRenderer());
-//	m_manager1->SetTrackRenderer(m_renderer1->CreateTrackRenderer());
-//	m_manager1->SetModelRenderer(m_renderer1->CreateModelRenderer());
-//
-//	// テクスチャ、モデル、カーブ、マテリアルローダーの設定する。
-//	// ユーザーが独自で拡張できる。現在はファイルから読み込んでいる。
-//	m_manager1->SetTextureLoader(m_renderer1->CreateTextureLoader());
-//	m_manager1->SetModelLoader(m_renderer1->CreateModelLoader());
-//	m_manager1->SetMaterialLoader(m_renderer1->CreateMaterialLoader());
-//	m_manager1->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
-//
-//	// 視点位置を確定
-//	auto g_position = ::Effekseer::Vector3D(5.0f, 3.0f, 5.0f);
-//
-//	// 投影行列を設定
-//	float w = (float)App::GetApp()->GetGameWidth();
-//	float h = (float)App::GetApp()->GetGameHeight();
-//	auto cameraTgt = OnGetDrawCamera();
-//
-//	auto eye = cameraTgt->GetEye();
-//	auto at = cameraTgt->GetAt();
-//	auto up = cameraTgt->GetUp();
-//	auto ne = cameraTgt->GetNear();
-//	auto fa = cameraTgt->GetFar();
-//	auto fovY = cameraTgt->GetFovY();
-//
-//	m_renderer->SetProjectionMatrix(::Effekseer::Matrix44().PerspectiveFovRH(
-//		fovY, w / h, ne, fa));
-//	// カメラ行列を設定
-//	m_renderer->SetCameraMatrix(
-//		::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
-//
-//	wstring dataDir1;
-//	App::GetApp()->GetDataDirectory(dataDir1);
-//	dataDir1 += L"effect\\";
-//
-//	wstring wstrEfk1 = dataDir1 + L"SpeedUp.efkefc";
-//
-//	m_effect1 = ::Effekseer::Effect::Create(m_manager1, (const char16_t*)wstrEfk1.c_str());
-//
-//}
-//if (!m_isPlay) {
-//	auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
-//	auto WallPos = ptrWall->GetComponent<Transform>()->GetPosition();
-	//m_manager->SetTargetLocation(m_handle, ::Effekseer::Vector3D(WallPos.x, 0, 0));
-	//m_handle = m_manager->Play(m_effect, WallPos.x,0,0);
-
-	//m_handle = m_manager->Play(m_effect,0,0,0);
-
-	////m_isPlay = true;
-//}
-//void Player::OnDraw() {
-//	GameObject::OnDraw();
-//	auto elps = App::GetApp()->GetElapsedTime();
-//	m_manager->Update();
-//	if (m_isPlay) {
-//		m_TotalTime += elps;
-//		m_manager->Update();
-//		if (m_TotalTime >= 2.0f) {
-//			m_manager->StopEffect(m_handle);
-//			m_TotalTime = 0.0f;
-//			m_isPlay = false;
-//			return;
-//		}
-//		else {
-//			// マネージャーの更新
-//			m_manager->Update();
-//			// 時間を更新する
-//			m_renderer->SetTime(elps);
-//			// エフェクトの描画開始処理を行う。
-//			m_renderer->BeginRendering();
-//			// エフェクトの描画を行う。
-//			m_manager->Draw();
-//			//m_manager->DrawHandle(m_handle);
-//			//// エフェクトの描画を行う。
-//			m_manager->DrawBack();
-//			//// エフェクトの描画を行う。
-//			m_manager->DrawFront();
-//			// エフェクトの描画終了処理を行う。
-//			m_renderer->EndRendering();
-//		}
-//
-//	}
-//	//スピードアップエフェクト
-//	if (m_isPlay1) {
-//		m_TotalTime1 += elps;
-//		if (m_TotalTime >= 2.0f) {
-//			m_manager1->StopEffect(m_handle1);
-//			m_TotalTime1 = 0.0f;
-//			m_isPlay1 = false;
-//			return;
-//		}
-//		else {
-//			// マネージャーの更新
-//			m_manager1->Update();
-//			// 時間を更新する
-//			m_renderer1->SetTime(elps);
-//			// エフェクトの描画開始処理を行う。
-//			m_renderer1->BeginRendering();
-//			// エフェクトの描画を行う。
-//			m_manager1->Draw();
-//			// エフェクトの描画を行う。
-//			m_manager1->DrawBack();
-//			// エフェクトの描画を行う。
-//			m_manager1->DrawFront();
-//			// エフェクトの描画終了処理を行う。
-//			m_renderer1->EndRendering();
-//		}
-//
-//	}
-//}
-

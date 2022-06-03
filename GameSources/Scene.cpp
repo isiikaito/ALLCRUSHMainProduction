@@ -50,6 +50,9 @@ namespace basecross {
 		strTexture = dataDir + L"壁を壊せ！！.png";
 		App::GetApp()->RegisterTexture(L"壁を壊せ！！_TX", strTexture);
 
+		strTexture = dataDir + L"Game Over_font.png";
+		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
+
 		//モデル
 		//ボーンモデルの通常リソース
 		auto multiModelMesh = MeshResource::CreateBoneModelMesh(dataDir, L"player05.bmf");
@@ -139,6 +142,7 @@ namespace basecross {
 		//文字テクスチャ
 		strTexture = dataDir + L"Stage2.png";
 		App::GetApp()->RegisterTexture(L"Stage2_TX", strTexture);
+
 		
 		//メニューテクスチャ
 		strTexture = dataDir + L"メニュー画面.png";

@@ -86,9 +86,7 @@ namespace basecross {
           PostEvent(0.0f, GetThis<FadeOut>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
 		}
-			
-		
-	}
+				}
 	
 	
 }

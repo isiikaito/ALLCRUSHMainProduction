@@ -76,6 +76,9 @@ namespace basecross {
 	void CreateTelop4();
 	float m_Telop4Time;
 
+	void CreateGMOTelop();
+	float m_GMOTelopTime;
+
 	//トータル時間
 	float m_TotalTime;
 	
@@ -103,7 +106,7 @@ namespace basecross {
 		void CreateCameraman();
 	public:
 		//構築と破棄
-		GameStage() :Stage(), m_TotalTime(0) {}
+		GameStage() :Stage(), m_TotalTime(0){}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;

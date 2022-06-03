@@ -490,6 +490,11 @@ namespace basecross {
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
+	void GameStage::CreateGMOTelop() {
+		AddGameObject<GMOTelop>(L"GAMEOVER_TX", true,
+			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
+	}
+
 	void GameStage::BGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
@@ -597,6 +602,7 @@ namespace basecross {
 			CreateTelop4();
 			//カメラマンの作成
 			CreateCameraman();
+			CreateGMOTelop();
 		}
 		catch (...) {
 			throw;
@@ -701,7 +707,20 @@ namespace basecross {
 			ptrStage4->SetDrawActive(false);
 
 		}
+
+		// ゲームオーバーテロップの時間
+		auto ptrGMOTelop = GetSharedGameObject<GMOTelop>(L"GMOTelop");
+		// 時間の変数に足す
+		m_GMOTelopTime += elapsedTime;
+		if (m_GMOTelopTime >= 5.0f)
+		{
+			// 1秒後に表示がオフになる
+			ptrGMOTelop->SetDrawActive(false);
+
+		}
+
 		return;
+
 	}
 
 	//Bボタンカメラの変更
