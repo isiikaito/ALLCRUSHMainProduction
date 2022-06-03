@@ -27,10 +27,10 @@ namespace basecross {
 		//頂点配列
 		m_BackupVertices = {
 			//カラー　透明度
-{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(0.0f,0.0f,0.0f,0.0f)) },
-{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
-{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
-{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
+{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,1.0f,1.0f,1.0f)) },
+{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f,1.0f,1.0f,1.0f)) },
+{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f,1.0f,1.0f,1.0f)) },
+{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f,1.0f,1.0f,1.0f)) },
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };

@@ -603,8 +603,8 @@ namespace basecross {
 		ptrScor->SetScore(m_TotalTime);
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		auto GameOver = ptrPlayer->GetGameOver();
 		auto Exit = ptrPlayer->GetExitCount();
+		auto GameOver = ptrPlayer->GetGameOver();
 
 		if (GameOver >= 1) {
 			//フェードアウトの作成
@@ -613,13 +613,19 @@ namespace basecross {
 			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
 
-		if (m_Exit>=1)
+		if (Exit>=1)
 		{
-		
 		
 			//フェードアウトの作成
 			AddGameObject<FadeOut>(true,
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			float elapsedTime1 = App::GetApp()->GetElapsedTime();
+			m_ExitTime += elapsedTime1;
+			if (m_ExitTime >= 1.0f)
+			{
+              PostEvent(0.0, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			}
+			
 			
 			
 		}

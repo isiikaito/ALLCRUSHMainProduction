@@ -40,7 +40,7 @@ namespace basecross {
 	//初期化
 	void MenuStage::OnCreate() {
 		CreateViewLight();
-		AddGameObject<TitleSprite>(L"メニュー画面_TX", false,
+		AddGameObject<TitleSprite>(L"MenuSelect_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
 		//Stage1スプライト
 		CreateMenuSprite1();
@@ -150,7 +150,7 @@ namespace basecross {
          //フェードアウトの作成
 		AddGameObject<FadeOut>(true,
 			Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
-		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 		m_OnPushB = false;
 		}
 		

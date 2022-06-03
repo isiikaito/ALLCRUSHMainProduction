@@ -16,10 +16,7 @@ namespace basecross {
 		//サンプルのためアセットディレクトリを取得
 		App::GetApp()->GetAssetsDirectory(dataDir);
 		//各ゲームは以下のようにデータディレクトリを取得すべき
-		//App::GetApp()->GetDataDirectory(DataDir);
-		wstring strTexture = dataDir + L"分割岩.jpg";
-		App::GetApp()->RegisterTexture(L"DAMAGEWALL_TX", strTexture);
-		strTexture = dataDir + L"trace.png";
+		wstring strTexture = dataDir + L"trace.png";
 		App::GetApp()->RegisterTexture(L"TRACE_TX", strTexture);
 		strTexture = dataDir + L"wall.jpg";
 		App::GetApp()->RegisterTexture(L"WALL_TX", strTexture);
@@ -27,7 +24,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"DOUKUTU_TX", strTexture);
 
 		strTexture = dataDir + L"TITLE.png";
-		App::GetApp()->RegisterTexture(L"TITLLE_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"TITLE_TX", strTexture);
 
 		//strTexture = dataDir + L"GameOver.png";
 		//App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
@@ -123,16 +120,16 @@ namespace basecross {
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);
 		//アイテムテクスチャ
-		strTexture = dataDir + L"スピード.png";
+		strTexture = dataDir + L"SPEED.png";
 		App::GetApp()->RegisterTexture(L"SPEED_TX", strTexture);
 		//Xボタンテクスチャ
-		strTexture = dataDir + L"ボタンX.png";
+		strTexture = dataDir + L"XButton.png";
 		App::GetApp()->RegisterTexture(L"XButton_TX", strTexture);
 		//Yボタンテクスチャ
-		strTexture = dataDir + L"ボタンY.png";
+		strTexture = dataDir + L"YButton.png";
 		App::GetApp()->RegisterTexture(L"YButton_TX", strTexture);
 		//ハンマーゲージ
-		strTexture = dataDir + L"ハンマーゲージ.png";
+		strTexture = dataDir + L"GAGE.png";
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
@@ -145,8 +142,8 @@ namespace basecross {
 
 		
 		//メニューテクスチャ
-		strTexture = dataDir + L"メニュー画面.png";
-		App::GetApp()->RegisterTexture(L"メニュー画面_TX", strTexture);
+		strTexture = dataDir + L"MenuSelect.png";
+		App::GetApp()->RegisterTexture(L"MenuSelect_TX", strTexture);
 		
 		//エフェクト関連
 		strTexture = dataDir + L"Splash.png";

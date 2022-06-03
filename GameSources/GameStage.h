@@ -109,15 +109,15 @@ namespace basecross {
 	public:
 		//構築と破棄
 		GameStage() :Stage(), m_TotalTime(0){}
-			m_TotalTime(0),
-			m_CameraSelect(),
-			m_Exit(0),
-			m_TelopTime(0.0f),
-			m_Telop2Time(0.0f),
-			m_Telop3Time(0.0f),
-			m_Telop4Time(0.0f),
-			m_idleTime(0.0f),
-			m_ExitTime(0.0f)
+			//m_TotalTime(0),
+			//m_CameraSelect(),
+			//m_Exit(0),
+			//m_TelopTime(0.0f),
+			//m_Telop2Time(0.0f),
+			//m_Telop3Time(0.0f),
+			//m_Telop4Time(0.0f),
+			//m_idleTime(0.0f),
+			//m_ExitTime(0.0f)
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;

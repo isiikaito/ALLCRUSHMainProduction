@@ -16,7 +16,6 @@ namespace basecross {
 		wstring dataDir;
 		//サンプルのためアセットディレクトリを取得
 		App::GetApp()->GetAssetsDirectory(dataDir);
-		//wstring strMovie = dataDir + L"BOSU WALK MY.mp4";
 		wstring strMovie = dataDir + L"BOSU WALK TRUE.mp4";
 		SetMovieFileName(strMovie);
 		//再生
@@ -28,7 +27,7 @@ namespace basecross {
 		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
 		auto elps = App::GetApp()->GetElapsedTime();
 		MovieTime += elps;
-		if (MovieTime >= 1.6f) {
+		if (MovieTime >= 43.6f) {
 			SetAutoRepeat(false);
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
