@@ -692,13 +692,6 @@ namespace basecross {
 
 		return;
 
-<<<<<<< HEAD
-=======
-		
-	
-	
-
->>>>>>> master
 	}
 
 	//Bボタンカメラの変更
