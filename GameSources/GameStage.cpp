@@ -425,28 +425,28 @@ namespace basecross {
 	// 柱を壊すテロップ
 	void GameStage::CreateTelop()
 	{
-		AddGameObject<Telop>(L"柱を壊す_TX", true,
+		AddGameObject<Telop>(L"PillarBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 柱を壊すタイミングテロップ
 	void GameStage::CreateTelop2()
 	{
-		AddGameObject<Telop2>(L"柱壊すタイミング_TX", true,
+		AddGameObject<Telop2>(L"JustTiming_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 出口前テロップ
 	void GameStage::CreateTelop3()
 	{
-		AddGameObject<Telop3>(L"出口前_TX", true,
+		AddGameObject<Telop3>(L"ClearNear_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 壁を壊せ！！テロップ
 	void GameStage::CreateTelop4()
 	{
-		AddGameObject<Telop4>(L"壁を壊せ！！_TX", true,
+		AddGameObject<Telop4>(L"WallBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
