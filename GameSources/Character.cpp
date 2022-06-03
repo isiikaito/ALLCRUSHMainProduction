@@ -15,7 +15,11 @@ namespace basecross {
 		float ToPlayerLen
 	) :
 		GameObject(StagePtr),
-		m_ToPlayerLen(ToPlayerLen)
+		m_ToPlayerLen(ToPlayerLen),
+		m_PPdistance(0.0f),
+		m_PillarCount(0),
+		m_Turn(0),
+		m_TurnTime(0.0f)
 	{}
 	Cameraman::~Cameraman() {}
 

@@ -31,7 +31,7 @@ namespace basecross {
 	public:
 		
 		//\’z‚Æ”jŠü
-		MenuStage() :Stage() {}
+		MenuStage() :Stage() , m_idleTime(0.0f){}
 		virtual ~MenuStage() {}
 		//‰Šú‰»
 		virtual void OnCreate()override;
