@@ -57,13 +57,10 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
-		ptrDraw->AddAnimation(L"GameOver", 70, 10, false, 15.0f);
+		ptrDraw->AddAnimation(L"GameOver", 75, 24, false, 15.0f);
+		//ptrDraw->AddAnimation(L"GameOverFirst", 70, 10, false, 15.0f);
+		//ptrDraw->AddAnimation(L"GameOverLast", 80, 14, false, 10.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
-
-		//文字列をつける
-		auto ptrString = AddComponent<StringSprite>();
-		ptrString->SetText(L"");
-		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
 		//CreateEffect();
 		//CreateEffect1();
@@ -128,6 +125,7 @@ namespace basecross {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			if (move != L"GameOver") {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
+				GameOver = 1;
 				float d;
 				GameOver = 1;
 				if (moveDir.y > 180.0f) {
@@ -259,6 +257,8 @@ namespace basecross {
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
 			ExitCount = 1;
+			PostEvent(0.0, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			
 		}
 
 
@@ -532,8 +532,8 @@ namespace basecross {
 				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
-		//文字列の表示
-		DrawStrings();
+		////文字列の表示
+		//DrawStrings();
 	}
 
 	//文字列の表示
@@ -547,9 +547,9 @@ namespace basecross {
 
 		wstring str = positionStr;
 
-		//文字列コンポーネントの取得
-		auto ptrString = GetComponent<StringSprite>();
-		ptrString->SetText(str);
+		////文字列コンポーネントの取得
+		//auto ptrString = GetComponent<StringSprite>();
+		//ptrString->SetText(str);
 
 	}
 

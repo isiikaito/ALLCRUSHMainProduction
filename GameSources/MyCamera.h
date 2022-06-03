@@ -3,7 +3,7 @@
 
 namespace basecross {
 
-	class BackCamera : public Camera
+	class MyCamera : public Camera
 	{
 		float angleY; // Y軸中心の回り込み（ラジアン角）
 		float distance; // 注視対象からの距離
@@ -18,14 +18,18 @@ namespace basecross {
 		void SetTargetObject(const shared_ptr<GameObject>& Obj);
 
 		shared_ptr<GameObject> GetTargetObject() const;
-		float GetToTargetLerp() const;
-		void SetToTargetLerp(float f);
+		/*float GetToTargetLerp() const;
+		void SetToTargetLerp(float f);*/
 		//Bボタンカメラの変更
 		//void OnPushB();
 
 
-		BackCamera()
-			: angleY(0.0f), distance(5.0f)
+		MyCamera()
+			: angleY(0.0f), 
+			distance(5.0f),
+			PPdistance(0.0f),
+			m_Turn(0.0f),
+			m_TurnTime(0.0f)
 		{
 			//void SetTargetObject(const shared_ptr<GameObject>&Obj);
 			//weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
@@ -70,7 +74,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	メインカメラ（コンポーネントではない）
 	//--------------------------------------------------------------------------------------
-	class MainCamera : public Camera {
+	class ObjCamera : public Camera {
 		weak_ptr<GameObject> m_TargetObject;	//目標となるオブジェクト
 	public:
 		//--------------------------------------------------------------------------------------
@@ -78,13 +82,13 @@ namespace basecross {
 		@brief	コンストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		MainCamera();
+		ObjCamera();
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	デストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		virtual ~MainCamera();
+		virtual ~ObjCamera();
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	カメラの目標オブジェクトを設定する

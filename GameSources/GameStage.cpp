@@ -20,16 +20,16 @@ namespace basecross {
 		m_OpeningCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
 		auto ptrOpeningCamera = ObjectFactory::Create<OpeningCamera>();
 		m_OpeningCameraView->SetCamera(ptrOpeningCamera);
-		//BackCamera用のビュー
-		m_BackCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrBackCamera = ObjectFactory::Create<BackCamera>();
-		ptrBackCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
-		ptrBackCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
-		m_BackCameraView->SetCamera(ptrBackCamera);
-		//MainCamera用のビュー
-		m_MainCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		auto ptrMainCamera = ObjectFactory::Create<MainCamera>();
-		m_MainCameraView->SetCamera(ptrMainCamera);
+		//MyCamera用のビュー
+		m_MyCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		auto ptrMyCamera = ObjectFactory::Create<MyCamera>();
+		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
+		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		m_MyCameraView->SetCamera(ptrMyCamera);
+		//ObjCamera用のビュー
+		//m_ObjCameraView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		//auto ptrObjCamera = ObjectFactory::Create<ObjCamera>();
+		//m_ObjCameraView->SetCamera(ptrObjCamera);
 		//初期状態ではm_OpeningCameraViewを使う
 		SetView(m_OpeningCameraView);
 		m_CameraSelect = CameraSelect::openingCamera;
@@ -52,38 +52,7 @@ namespace basecross {
 		SetSharedGameObject(L"MultiSpark1", MultiSparkPtr);
 	}
 
-	void GameStage::CreatestageObject() {
-		//CSVの行単位の配列
-		vector<wstring>LineVec;
-		//0番目のカラムがL"stageObject"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"stageObject");
-		for (auto& v : LineVec) {
-			//トークン（カラム）の配置
-			vector<wstring>Tokens;
-			//トークン（カラム）単位で文字列を抽出（L','）
-			Util::WStrToTokenVector(Tokens, v, L',');
-			//トークン（カラム）をスケール、回転、位置に読み込む
-			Vec3 Scale(
-				(float)_wtof(Tokens[1].c_str()),
-				(float)_wtof(Tokens[2].c_str()),
-				(float)_wtof(Tokens[3].c_str())
-
-			);
-			Vec3 Rot;
-			//回転は「XM_PLDIV2」の文字列になっている場合がある
-			Rot.x = (Tokens[4] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[4].c_str());
-			Rot.y = (Tokens[5] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[5].c_str());
-			Rot.z = (Tokens[6] == L"XM_PIDIV2") ? XM_PIDIV2 : (float)_wtof(Tokens[6].c_str());
-
-			Vec3 Pos(
-				(float)_wtof(Tokens[7].c_str()),
-				(float)_wtof(Tokens[8].c_str()),
-				(float)_wtof(Tokens[9].c_str())
-			);
-			//各値が揃ったのでオブジェクトの作成
-			AddGameObject<stageObject>(Scale, Rot, Pos, 1.0f, 1.0f, Tokens[10]);
-		}
-	}
+	
 
 	void GameStage::CreateWall() {
 		auto group = CreateSharedObjectGroup(L"Wall_Group");
@@ -428,17 +397,8 @@ namespace basecross {
 	}
 
 	
-	//ゲームクリアのフェードアウト
-	void GameStage::CreateFadeOut() {
-		AddGameObject<FadeOut>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
 
-	//ゲームオーバー時ののフェードアウト
-	void GameStage::CreateFadeOutEnd() {
-		AddGameObject<FadeOutEnd>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-	}
+
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
@@ -465,28 +425,28 @@ namespace basecross {
 	// 柱を壊すテロップ
 	void GameStage::CreateTelop()
 	{
-		AddGameObject<Telop>(L"柱を壊す_TX", true,
+		AddGameObject<Telop>(L"PillarBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 柱を壊すタイミングテロップ
 	void GameStage::CreateTelop2()
 	{
-		AddGameObject<Telop2>(L"柱壊すタイミング_TX", true,
+		AddGameObject<Telop2>(L"JustTiming_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 出口前テロップ
 	void GameStage::CreateTelop3()
 	{
-		AddGameObject<Telop3>(L"出口前_TX", true,
+		AddGameObject<Telop3>(L"ClearNear_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
 	// 壁を壊せ！！テロップ
 	void GameStage::CreateTelop4()
 	{
-		AddGameObject<Telop4>(L"壁を壊せ！！_TX", true,
+		AddGameObject<Telop4>(L"WallBrake_TX", true,
 			Vec2(500.0f, 700.0f), Vec2(0.0f, 0.0f));
 	}
 
@@ -515,8 +475,8 @@ namespace basecross {
 		//	m_CameraSelect = CameraSelect::objCamera;
 		//}
 
-		auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
 		//シェア配列にOpeningCameramanを追加
+		auto ptrOpeningCameraman = AddGameObject<OpeningCameraman>();
 		SetSharedGameObject(L"OpeningCameraman", ptrOpeningCameraman);
 
 		auto ptrOpeningCamera = dynamic_pointer_cast<OpeningCamera>(m_OpeningCameraView->GetCamera());
@@ -527,7 +487,6 @@ namespace basecross {
 		}
 
 	}
-
 
 	void GameStage::OnCreate() {
 		try {
@@ -562,8 +521,7 @@ namespace basecross {
 
 			CreatePillar();
 			AddGameObject<EnemyObject>();
-			//オブジェクトの追加
-			CreatestageObject();
+		
 			//マヤでつくったステージの壁の追加
 			CreateStageWall(); 
 			//マヤで作った床の追加
@@ -590,8 +548,6 @@ namespace basecross {
 			CreateGageWhite();
 
 
-			//ゲームクリアのFadeOut
-			CreateFadeOut();
 			
 			
 			// 逃げるテロップ
@@ -609,28 +565,28 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::ToMainCamera() {
+	//void GameStage::ToObjCamera() {
+	//	auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
+	//	//ObjCameraに変更
+	//	auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
+	//	auto ptrObjCamera = dynamic_pointer_cast<ObjCamera>(m_ObjCameraView->GetCamera());
+	//	if (ptrObjCamera) {
+	//		ptrObjCamera->SetCameraObject(ptrCameraman);
+	//		ptrObjCamera->SetTargetObject(ptrPlayer);
+	//		//m_ObjCameraViewを使う
+	//		SetView(m_ObjCameraView);
+	//		m_CameraSelect = CameraSelect::objCamera;
+	//	}
+	//}
+	void GameStage::ToMyCamera() {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//ObjCameraに変更
-		auto ptrCameraman = GetSharedGameObject<Cameraman>(L"Cameraman");
-		auto ptrMainCamera = dynamic_pointer_cast<MainCamera>(m_MainCameraView->GetCamera());
-		if (ptrMainCamera) {
-			ptrMainCamera->SetCameraObject(ptrCameraman);
-			ptrMainCamera->SetTargetObject(ptrPlayer);
-			//m_ObjCameraViewを使う
-			SetView(m_MainCameraView);
-			m_CameraSelect = CameraSelect::mainCamera;
-		}
-	}
-	void GameStage::ToBackCamera() {
-		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
-		//BackCameraに変更
-		auto ptrBackCamera = dynamic_pointer_cast<BackCamera>(m_BackCameraView->GetCamera());
-		if (ptrBackCamera) {
-			ptrBackCamera->SetTargetObject(ptrPlayer);
-			//m_BackCameraViewを使う
-			SetView(m_BackCameraView);
-			m_CameraSelect = CameraSelect::backCamera;
+		//MyCameraに変更
+		auto ptrMyCamera = dynamic_pointer_cast<MyCamera>(m_MyCameraView->GetCamera());
+		if (ptrMyCamera) {
+			ptrMyCamera->SetTargetObject(ptrPlayer);
+			//m_MyCameraViewを使う
+			SetView(m_MyCameraView);
+			m_CameraSelect = CameraSelect::myCamera;
 		}
 	}
 
@@ -648,11 +604,26 @@ namespace basecross {
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		auto GameOver = ptrPlayer->GetGameOver();
-	
+		auto Exit = ptrPlayer->GetExitCount();
+
 		if (GameOver >= 1) {
-			//ゲームのオーバー時のFadeOutEnd
-			CreateFadeOutEnd();
+			//フェードアウトの作成
+			AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
+
+		if (m_Exit>=1)
+		{
+		
+		
+			//フェードアウトの作成
+			AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			
+			
+		}
+		ptrPlayer->SetExitCount(Exit);
         ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間
 		auto ptrStage = GetSharedGameObject<TickerSprite>(L"TickerSprite");
@@ -721,22 +692,29 @@ namespace basecross {
 
 		return;
 
+<<<<<<< HEAD
+=======
+		
+	
+	
+
+>>>>>>> master
 	}
 
 	//Bボタンカメラの変更
 	void GameStage::OnPushB() {
-		switch (m_CameraSelect) {
-		case CameraSelect::backCamera:
-		{
-			ToMainCamera();
-		}
-		break;
-		case CameraSelect::mainCamera:
-		{
-			ToBackCamera();
-		}
-		break;
-		}
+		//switch (m_CameraSelect) {
+		//case CameraSelect::myCamera:
+		//{
+		//	ToObjCamera();
+		//}
+		//break;
+		//case CameraSelect::objCamera:
+		//{
+		//	ToMyCamera();
+		//}
+		//break;
+		//}
 	}
 
 	void GameStage::OnDestroy() {

@@ -28,7 +28,7 @@ namespace basecross {
 		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
 		auto elps = App::GetApp()->GetElapsedTime();
 		MovieTime += elps;
-		if (MovieTime >= 49.6f) {
+		if (MovieTime >= 1.6f) {
 			SetAutoRepeat(false);
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToGameStage");

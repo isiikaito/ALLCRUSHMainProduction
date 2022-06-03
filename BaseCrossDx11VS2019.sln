@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseCrossDx11VS2019", "Dx11
 		{371B9FA9-4C90-4AC6-A123-ACED756D6C77} = {371B9FA9-4C90-4AC6-A123-ACED756D6C77}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameSources", "GameSources\GameSources.vcxitems", "{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutoGenNameee113a58f6b64b9390636aebcc688a15", "..\..\..\AppData\Local\Temp\AutoGenNameee113a58f6b64b9390636aebcc688a15", "{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTex", "..\Libs\DirectXTex\DirectXTex_Desktop_2019_Win10.vcxproj", "{371B9FA9-4C90-4AC6-A123-ACED756D6C77}"
 EndProject
@@ -33,9 +33,7 @@ Global
 		..\Libs\BaseLib\DxLib\DxLib.vcxitems*{4f613869-cf2d-4d7d-aee1-586434b63440}*SharedItemsImports = 4
 		..\Libs\BaseLib\DxShaders\DxShaders.vcxitems*{4f613869-cf2d-4d7d-aee1-586434b63440}*SharedItemsImports = 4
 		..\Libs\BaseLib\SharedLib\SharedLib.vcxitems*{4f613869-cf2d-4d7d-aee1-586434b63440}*SharedItemsImports = 4
-		GameSources\GameSources.vcxitems*{4f613869-cf2d-4d7d-aee1-586434b63440}*SharedItemsImports = 4
 		..\Libs\BaseLib\DxShaders\DxShaders.vcxitems*{577bccee-82df-4f0e-bfcd-c4787d95afd3}*SharedItemsImports = 9
-		GameSources\GameSources.vcxitems*{8c1d084c-c178-4a5d-84d5-9d8b94e39ab0}*SharedItemsImports = 9
 		..\Libs\BaseLib\DxLib\DxLib.vcxitems*{974c28f3-3934-456b-be8e-408774ef14cf}*SharedItemsImports = 9
 		..\Libs\BaseLib\SharedLib\SharedLib.vcxitems*{caa0470e-f76d-42a8-84fa-d6562fa70f4a}*SharedItemsImports = 9
 	EndGlobalSection
@@ -48,6 +46,9 @@ Global
 		{4F613869-CF2D-4D7D-AEE1-586434B63440}.Debug|x64.Build.0 = Debug|x64
 		{4F613869-CF2D-4D7D-AEE1-586434B63440}.Release|x64.ActiveCfg = Release|x64
 		{4F613869-CF2D-4D7D-AEE1-586434B63440}.Release|x64.Build.0 = Release|x64
+		{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}.Debug|x64.ActiveCfg = Debug|Win32
+		{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}.Release|x64.ActiveCfg = Debug|Win32
+		{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}.Release|x64.Build.0 = Debug|Win32
 		{371B9FA9-4C90-4AC6-A123-ACED756D6C77}.Debug|x64.ActiveCfg = Debug|x64
 		{371B9FA9-4C90-4AC6-A123-ACED756D6C77}.Debug|x64.Build.0 = Debug|x64
 		{371B9FA9-4C90-4AC6-A123-ACED756D6C77}.Release|x64.ActiveCfg = Release|x64

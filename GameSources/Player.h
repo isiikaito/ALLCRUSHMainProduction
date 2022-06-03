@@ -9,10 +9,7 @@
 namespace basecross{
 	class Player : public GameObject
 	{
-
-		//文字列の表示
 		void DrawStrings();
-
 		const float MaxMoveSpeed; // 移動の最大速
 
 		bool moveStop;//Playerの移動停止の判定
@@ -34,7 +31,7 @@ namespace basecross{
 		//プレイヤーのスピード
 		float speed2;
 		//落石のカウント
-		float FallingCount;
+		int FallingCount;
 
 		//柱カウント
 		int PillarCount;
@@ -109,10 +106,10 @@ namespace basecross{
 		float m_opningStop;
 		float m_TotalTime1;
 		bool m_isPlay1;
-		Effekseer::Handle m_handle1;
+		/*Effekseer::Handle m_handle1;
 		Effekseer::ManagerRef m_manager1;
 		EffekseerRendererDX11::RendererRef m_renderer1;
-		Effekseer::EffectRef m_effect1;
+		Effekseer::EffectRef m_effect1;*/
 
 		//void CreateEffect();
 		//void CreateEffect1();
@@ -134,7 +131,21 @@ namespace basecross{
 			Power(1),
 			ExitCount(0),
 			Gageflash(0),
-			SoundTime(0.0f)
+			SoundTime(0.0f),
+			FallingCount(0),
+			PillarCount(0),
+			PBdistance(0),
+			PPdistance(0),
+			itemtime(0.0f),
+			m_TelopTime(0.0f),
+			m_Telop2Time(0.0f),
+			m_Telop3Time(0.0f),
+			m_Telop4Time(0.0f),
+			m_TotalTime1(0.0f),
+			m_isPlay1(0),
+			m_opningStop(0.0f),
+			m_TurnTime(0.0f)
+			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
 			//m_TotalTime1(0.0f), m_isPlay1(false),m_handle1(0),

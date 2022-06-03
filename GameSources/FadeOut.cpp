@@ -15,9 +15,8 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0),
-		m_ColwUP(0),
-		m_ColwDOWN(0)
+		m_TotalTime(0)
+
 	{}
 
 	FadeOut::~FadeOut() {}
@@ -28,10 +27,10 @@ namespace basecross {
 		//頂点配列
 		m_BackupVertices = {
 			//カラー　透明度
-{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,1.0f,1.0f,0.0f)) },
-{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f,1.0f,1.0f,0.0f)) },
-{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f,1.0f,1.0f,0.0f)) },
-{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f,1.0f,1.0f,0.0f)) },
+{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(0.0f,0.0f,0.0f,0.0f)) },
+{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
+{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
+{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(0.0f,0.0f,0.0f,0.0f)) },
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
@@ -54,18 +53,19 @@ namespace basecross {
 	//点滅処理（Elapsedtimeを利用している）
 	void FadeOut::OnUpdate() {
 
-		//プレイヤーの取得
-		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
-		auto Exit = ptrPlayer->GetExitCount();
-		ptrPlayer->SetExitCount(Exit);
-		
-		if (Exit == 1)
-		{
+
+
+		////プレイヤーの取得
+		//auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//auto Exit = ptrPlayer->GetExitCount();
+		//ptrPlayer->SetExitCount(Exit);
+
+
 	  //時間の取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_TotalTime += elapsedTime;
-		if (m_TotalTime >= XM_PI) {
-			m_TotalTime = 0;
+		if (m_TotalTime >= XM_PI / 2) {
+			m_TotalTime = XM_PI / 2;
 		}
 
 		vector<VertexPositionColor> newVertices;
@@ -83,10 +83,12 @@ namespace basecross {
 		ptrDraw->UpdateVertices(newVertices);
 		if (m_TotalTime >= 1)
 		{
-          PostEvent(0.0f, GetThis<FadeOut>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			//1次のシーンへの秒数.
+			//2渡すほうのポインタ
+			//3渡されるほう
+			//登録した文字を利用して移動
+			//       1            2                  3                     4
+		 /* PostEvent(0.0f, GetThis<FadeOut>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");*/
 		}
-		}
-				}
-	
-	
-}
+	}
+}		

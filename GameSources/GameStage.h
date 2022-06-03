@@ -10,10 +10,10 @@
 namespace basecross {
 	enum class CameraSelect {
 		openingCamera,
-		//myCamera,
+		myCamera,
 		//objCamera,
-		mainCamera,
-		backCamera
+		//mainCamera,
+		//backCamera
 	};
 	//--------------------------------------------------------------------------------------
 	// ゲームステージクラス
@@ -23,7 +23,7 @@ namespace basecross {
 	CsvFile m_CsvC;
 	//ビューの作成
 	void CreateViewLight();
-	void CreatestageObject();
+	
 	//スパークエフェクトの作成
 	void CreateMultiSpark();
 	void CreateMultiSpark1();
@@ -52,10 +52,8 @@ namespace basecross {
 	void CreateGageSprite2();
 	void CreateGageSprite3();
 	void CreateGageWhite();
-	//ゲームクリアFadeOut
-	void CreateFadeOut();
-	//ゲームオーバー時のFadeOut
-	void CreateFadeOutEnd();
+	
+	
 	//出口の作成
 	void CreateExitWall();
 	//タイム作成
@@ -81,13 +79,17 @@ namespace basecross {
 
 	//トータル時間
 	float m_TotalTime;
+
+	float m_ExitTime;
+
+	int m_Exit;
 	
 		//OpeningCamera用のビュー
 		shared_ptr<SingleView> m_OpeningCameraView;
 		//MyCamera用のビュー
-		shared_ptr<SingleView> m_BackCameraView;
+		shared_ptr<SingleView> m_MyCameraView;
 		//ObjCamera用のビュー
-		shared_ptr<SingleView> m_MainCameraView;
+		//shared_ptr<SingleView> m_ObjCameraView;
 		CameraSelect m_CameraSelect;
 		//入力ハンドラー
 		InputHandler<GameStage> m_InputHandler;
@@ -106,7 +108,23 @@ namespace basecross {
 		void CreateCameraman();
 	public:
 		//構築と破棄
+<<<<<<< HEAD
 		GameStage() :Stage(), m_TotalTime(0){}
+=======
+		GameStage() :Stage(),
+			m_TotalTime(0),
+			m_CameraSelect(),
+			m_Exit(0),
+			m_TelopTime(0.0f),
+			m_Telop2Time(0.0f),
+			m_Telop3Time(0.0f),
+			m_Telop4Time(0.0f),
+			m_idleTime(0.0f),
+			m_ExitTime(0.0f)
+
+
+		{}
+>>>>>>> master
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;
@@ -121,8 +139,10 @@ namespace basecross {
 			return m_CameraSelect;
 		}
 
-		void ToMainCamera();
-		void ToBackCamera();
+		//void ToObjCamera();
+		void ToMyCamera();
+		//void ToMainCamera();
+		//void ToBackCamera();
 	};
 
 }

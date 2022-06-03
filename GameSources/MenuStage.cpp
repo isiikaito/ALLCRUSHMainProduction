@@ -35,13 +35,7 @@ namespace basecross {
 			//テクスチャの大きさ　　　　位置
 			Vec2(200.0f, 100.0f), Vec3(120.0f, -100.0f, 0.0f));
 	}
-	void MenuStage::CerateFadeOutBlack1()
-	{
-
-		AddGameObject<FadeOutBlack1>(true,
-			Vec2(1300.0f, 800.0f), Vec3(0.0f, 0.0f, 0.0f));
-		
-	}
+	
 
 	//初期化
 	void MenuStage::OnCreate() {
@@ -150,21 +144,18 @@ namespace basecross {
 	
 	
 	void MenuStage::OnPushB() {
-		CerateFadeOutBlack1();
-		OnPushBCheck = true;
-		//switch (num)
-		//{
-		//	case 0:
-		//		
-		//		/*PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");*/
-		//		break;
-		//	case 1:
-		//		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
-		//		break;
-		//
-		//
-		//}
 		
+		if (m_OnPushB==true)
+		{
+         //フェードアウトの作成
+		AddGameObject<FadeOut>(true,
+			Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+		m_OnPushB = false;
+		}
+		
+		
+		OnPushBCheck = true;
 	}
 }
 
