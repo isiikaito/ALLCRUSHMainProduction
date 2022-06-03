@@ -56,23 +56,23 @@ namespace basecross{
 		int Gageflash;
 		
 		// テロップ
-		void CreateTelop();
+		/*void CreateTelop();*/
 		float m_TelopTime;
 
 		// テロップ2
-		void CreateTelop2();
+		/*void CreateTelop2();*/
 		float m_Telop2Time;
 
 		// テロップ3
-		void CreateTelop3();
+		/*void CreateTelop3();*/
 		float m_Telop3Time;
 
 		// テロップ4
-		void CreateTelop4();
+		/*void CreateTelop4();*/
 		float m_Telop4Time;
 
 
-		Vec3 GetMoveVector() const;
+		/*Vec3 GetMoveVector() const;*/
 
 		InputHandler<Player> m_InputHandler;
 		//void MovePlayer();

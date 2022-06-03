@@ -35,7 +35,7 @@ namespace basecross {
 		int m_EnemySetDrawActiveCount;
 
 		// ƒeƒƒbƒv2
-		void CreateTelop2();
+		/*void CreateTelop2();*/
 		float m_Telop2Time;
 
 	public:

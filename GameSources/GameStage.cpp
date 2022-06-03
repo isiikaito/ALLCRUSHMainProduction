@@ -615,7 +615,7 @@ namespace basecross {
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 			float elapsedTime1 = App::GetApp()->GetElapsedTime();
 			m_ExitTime += elapsedTime1;
-			if (m_ExitTime >= 0.5)
+			if (m_ExitTime >= 1.0f)
 			{
               PostEvent(0.0, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 			}
