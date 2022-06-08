@@ -11,9 +11,9 @@ namespace basecross {
 	//	ゲームオーバースプライトクラス
 	//--------------------------------------------------------------------------------------
 	class GameOverSprite : public GameObject {
-		bool m_Trace;//透明になるかどうか
-		Vec2 m_StartScale;//スケーリング
-		Vec2 m_StartPos;//場所
+		bool m_Trace;        //透明になるかどうか
+		Vec2 m_StartScale;   //スケーリング
+		Vec2 m_StartPos;     //場所
 		wstring m_TextureKey;//テクスチャの名前
 	public:
 		GameOverSprite(const shared_ptr<Stage>& StagePtr,

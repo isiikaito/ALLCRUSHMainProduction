@@ -77,8 +77,9 @@ namespace basecross {
 	//トータル時間
 	float m_TotalTime;
 
+	//出口からムービーへの移動時間
 	float m_ExitTime;
-
+	//出口に触れているか
 	int m_Exit;
 	
 		//OpeningCamera用のビュー

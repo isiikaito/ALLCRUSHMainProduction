@@ -29,13 +29,11 @@ namespace basecross {
 		int StopCount;
 		//柱が消えているかどうか
 		int PillarCount;
-		////入力ハンドラー
-		//InputHandler2<EnemyObject> m_InputHandler;
+	
 		//ボスの表示カウント
 		int m_EnemySetDrawActiveCount;
 
 		// テロップ2
-		/*void CreateTelop2();*/
 		float m_Telop2Time;
 
 	public:

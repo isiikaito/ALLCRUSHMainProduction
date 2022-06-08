@@ -15,9 +15,7 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0),
-		m_ColwUP(0),
-		m_ColwDOWN(0)
+		m_TotalTime(0)
 	{}
 
 	GageSprite3::~GageSprite3() {}

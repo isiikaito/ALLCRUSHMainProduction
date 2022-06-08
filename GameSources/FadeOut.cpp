@@ -55,11 +55,7 @@ namespace basecross {
 
 
 		
-		////プレイヤーの取得
-		//auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
-		//auto Exit = ptrPlayer->GetExitCount();
-		//ptrPlayer->SetExitCount(Exit);
-		
+	
 		
 	  //時間の取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -67,7 +63,7 @@ namespace basecross {
 		if (m_TotalTime >= XM_PI/2) {
 			m_TotalTime = XM_PI/2;
 		}
-
+		//頂点の取得
 		vector<VertexPositionColor> newVertices;
 		for (size_t i = 0; i < m_BackupVertices.size(); i++) {
 			Col4 col = m_BackupVertices[i].color;

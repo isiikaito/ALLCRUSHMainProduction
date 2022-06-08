@@ -13,15 +13,15 @@ namespace basecross {
 	class MenuStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
-
 		//Stage1スプライト作成
 		void CreateMenuSprite1();
 		//Stage2プライト作成
 		void CreateMenuSprite2();
-
+		//Bボタンを押しているか
 		bool m_OnPushB = true;
 		//入力ハンドラー
 		InputHandler2<MenuStage> m_InputHandler;
+
 		float m_idleTime;
 		int num = 0;
 		bool  OnPushBCheck = false;
