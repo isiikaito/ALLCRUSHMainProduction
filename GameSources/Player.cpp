@@ -25,8 +25,7 @@ namespace basecross {
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		/*ptrColl->SetDrawActive(true);*/
-		//衝突判定を表示
-		/*ptrColl->SetDrawActive(true);*/
+		
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(0.2f, 0.2f, 0.2f),
@@ -177,14 +176,14 @@ namespace basecross {
 
 			//柱とプレイヤーの距離
 			PPdistance = position.x - PillarPositon.x;
-			if (PPdistance < 5)
+			if (PPdistance <= 5)
 			{
 				moveStop = 0.0f;//移動の停止
 				position.x = -80;
 				position.z = 1;
 				Rotation.y = 90;
 				speed = 0;
-
+				m_Event = true;
 
 			}
 		}

@@ -31,6 +31,7 @@ namespace basecross{
 		int Power;                //パワーアップがあるかないか
 		int Gageflash;            //パワーアップを使ったかどうか
 		float m_TelopTime;	// テロップ
+		bool m_Event;
 
 		// テロップ2
 		
@@ -114,7 +115,8 @@ namespace basecross{
 			m_TotalTime1(0.0f),
 			m_isPlay1(0),
 			m_opningStop(0.0f),
-			m_TurnTime(0.0f)
+			m_TurnTime(0.0f),
+			m_Event(false)
 			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -183,6 +185,15 @@ namespace basecross{
 		{
 			ExitCount = ExitCount;
 		}
+		//柱イベントが発生したかどうか
+		bool GetPEvent()const {
+			return m_Event;
+		}
+		void SetPEvent(bool m_Event)
+		{
+			m_Event = m_Event;
+		}
+
 		int GetGameOver()const {
 			return GameOver;
 		}

@@ -15,26 +15,24 @@ namespace basecross {
 	class EnemyObject : public GameObject {
 		//ステートマシーン
 		unique_ptr< StateMachine<EnemyObject> >  m_StateMachine;
-		Vec3 m_StartPos;
+		Vec3 m_StartPos;              //位置
 		float m_StateChangeSize;
-		//フォース
-		Vec3 m_Force;
-		//速度
-		Vec3 m_Velocity;
-		int m_Speed=30;
-		float EnemyTime;
-		//ボスの止めている時間
-		float StopTime;
-		//ボスが動きを止めているかどうか
-		int StopCount;
-		//柱が消えているかどうか
-		int PillarCount;
+	    Vec3 m_Force;	              //フォース
+		Vec3 m_Velocity;              //速度
+		int m_Speed=30;               //スピード
+		float EnemyTime;              //鳴き声
+		float StopTime;               //ボスの止めている時間
+		int StopCount;                //ボスが動きを止めているかどうか
+		int PillarCount;              //柱が消えているかどうか
+		int m_EnemySetDrawActiveCount;//ボスの表示カウント
+		float m_Telop2Time;           // テロップ2
+		bool m_Event;
 	
-		//ボスの表示カウント
-		int m_EnemySetDrawActiveCount;
+		
+		
 
-		// テロップ2
-		float m_Telop2Time;
+		
+		
 
 	public:
 		//構築と破棄
