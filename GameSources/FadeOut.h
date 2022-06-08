@@ -1,6 +1,6 @@
 /*!
 @file FadeOut.h
-@brief ゲージ
+@brief フェードアウト
 */
 
 #pragma once

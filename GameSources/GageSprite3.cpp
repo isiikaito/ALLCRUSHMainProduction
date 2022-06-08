@@ -1,5 +1,5 @@
 /*!
-@file GageSprite2.cpp
+@file GageSprite3.cpp
 @brief ƒQ[ƒW‚ÌÀ‘Ìa
 */
 

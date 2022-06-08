@@ -1,6 +1,6 @@
 /*!
 @file Pillar.h
-@brief@áŠQ•¨
+@brief@’Œ
 */
 
 #pragma once

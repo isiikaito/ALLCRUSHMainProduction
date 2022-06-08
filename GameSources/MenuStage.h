@@ -1,5 +1,5 @@
 /*!
-@file menuStage.h
+@file MenuStage.h
 @brief メニューステージ
 */
 

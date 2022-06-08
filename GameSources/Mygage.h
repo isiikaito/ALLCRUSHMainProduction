@@ -1,6 +1,6 @@
 /*!
-@file Myitem1.h
-@brief アイテム
+@file Mygage.h
+@brief ゲージ
 */
 
 #pragma once

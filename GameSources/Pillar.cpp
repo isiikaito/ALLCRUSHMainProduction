@@ -1,6 +1,6 @@
 /*!
-@file Obstacle1.cpp
-@brief áŠQ•¨À‘Ì
+@file Pillar.cpp
+@brief ’ŒÀ‘Ì
 */
 
 #include "stdafx.h"

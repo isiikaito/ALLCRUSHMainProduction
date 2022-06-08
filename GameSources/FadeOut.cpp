@@ -1,6 +1,6 @@
 /*!
 @file FadeOut.cpp
-@brief ゲージの実体a
+@briefフェードアウトの実体
 */
 
 #include "stdafx.h"
