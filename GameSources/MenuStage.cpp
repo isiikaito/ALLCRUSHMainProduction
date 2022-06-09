@@ -142,7 +142,7 @@ namespace basecross {
 	}
 
 	
-	
+	//Bボタンが押されていたら
 	void MenuStage::OnPushB() {
 		
 		if (m_OnPushB==true)
@@ -150,6 +150,7 @@ namespace basecross {
          //フェードアウトの作成
 		AddGameObject<FadeOut>(true,
 			Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+		//次のステージへ移行
 		PostEvent(XM_PI / 2, GetThis<MenuStage>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 		m_OnPushB = false;
 		}

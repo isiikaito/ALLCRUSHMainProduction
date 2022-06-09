@@ -41,21 +41,20 @@ namespace basecross {
 		//影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"OBSTACLE2_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
+		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-
+		//メッシュの読み込み
 		ptrDraw->SetMeshResource(L"OBSTACLE2_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//当たり判定を見せる
-		/*PsPtr->SetDrawActive(true);*/
+		
 
 		auto Coll = AddComponent<CollisionObb>();
 
 		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
-		/*Coll->SetFixed(true);*/
+		Coll->SetFixed(true);
 
 
 	}

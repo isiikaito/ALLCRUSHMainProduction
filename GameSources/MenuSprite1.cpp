@@ -43,6 +43,7 @@ namespace basecross {
 		//頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PCTSpriteDraw>(vertices, indices);
 		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
+		//テクスチャの設定
 		ptrDraw->SetTextureResource(m_TextureKey);
 
 		//読み込みの設定をする

@@ -15,9 +15,8 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0),
-		m_ColwUP(0),
-		m_ColwDOWN(0)
+		m_TotalTime(0)
+
 	{}
 
 	GageSprite::~GageSprite() {}
@@ -26,13 +25,14 @@ namespace basecross {
 
 		float helfSize = 0.5f;
 		//頂点配列
-		m_BackupVertices = {
-			//カラー　透明度
-{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
-		};
+		m_BackupVertices = 
+		{
+			                                                                           //カラー　透明度
+                           { VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
+                           { VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+                           { VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+                           { VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
+	    };
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
 		SetAlphaActive(m_Trace);
@@ -56,52 +56,42 @@ namespace basecross {
 	//点滅処理（Elapsedtimeを利用している）
 	void GageSprite::OnUpdate() {
 
-
-
-		//		auto ptrDraw = GetComponent<PCSpriteDraw>();
-		//		ptrDraw->SetDiffuse(Col4(1.0f,0,0,1.0f));
-
-
-
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto PowerCount = ptrPlayer->GetPowerCount();
 		//壁を殴った回数
 		ptrPlayer->SetPowerCount(PowerCount);
-        //パワーアップしているかどうか
+		//パワーアップしているかどうか
 		auto Power = ptrPlayer->GetPower();
 		ptrPlayer->SetPower(Power);
 		//アイテムを使ったかどうか
 		auto Gageflash = ptrPlayer->GetGageflash();
 		ptrPlayer->SetGageflash(Gageflash);
 		//壁を１回殴ったら
-			if (PowerCount == 1)
+		if (PowerCount == 1)
 
 
-			{
-				//ゲージの表示
-				auto ptrDraw = GetComponent<PCSpriteDraw>();
-				ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
+		{
+			//ゲージの表示
+			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
+
+		}
 
 
 
-
-			}
-
-
-		
-			//パワーアップした時
+		//パワーアップした時
 		if (Power == 0)
 		{
-            //点滅
-			
+			//点滅
+
 			//時間の取得
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			m_TotalTime += elapsedTime;
 			if (m_TotalTime >= XM_PI) {
 				m_TotalTime = 0;
 			}
-
+			//頂点の取得
 			vector<VertexPositionColor> newVertices;
 			for (size_t i = 0; i < m_BackupVertices.size(); i++) {
 				Col4 col = m_BackupVertices[i].color;

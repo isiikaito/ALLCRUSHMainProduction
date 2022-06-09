@@ -1,6 +1,6 @@
 /*!
 @file StageWall.h
-@brief ゲームステージの壁
+@brief ステージの壁
 */
 
 #pragma once

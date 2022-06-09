@@ -11,56 +11,30 @@ namespace basecross{
 	{
 		void DrawStrings();
 		const float MaxMoveSpeed; // 移動の最大速
-
-		bool moveStop;//Playerの移動停止の判定
-
-		Vec3 moveDir; // 移動方向ベクトル（単位ベクトル）
+		bool moveStop;            //Playerの移動停止の判定
+		Vec3 moveDir;             // 移動方向ベクトル（単位ベクトル）
 		Vec3 at1;
-		float speed; // 移動の速さ
-
-		float accel; // 加速度
-
+		float speed;              // 移動の速さ
+		float accel;              // 加速度
 		int GameOver = 0;
-
-		//アイテムの所持数
-		float itemCount;
-		//
-		float itemtime;
-		//パワーアップアイテム
-		int PowerCount;
-		//プレイヤーのスピード
-		float speed2;
-		//落石のカウント
-		int FallingCount;
-
-		//柱カウント
-		int PillarCount;
+		float itemCount;          //アイテムの所持数
+		float itemtime;           //アイテムの持続時間
+		int PowerCount;           //パワーアップアイテム
+		float speed2;             //プレイヤーのスピード
+		int FallingCount;	      //落石のカウント
+		int PillarCount;	      //柱が壊れているかどうか
 		float SoundTime;
-
-
-		//出口にぶつかった
-		int ExitCount;
-		//プレイヤーとボスとの距離
-		float PBdistance;
-
-		//プレイヤーと柱の処理
-		float PPdistance;
-
-
-		//振り向きカウントタイム
-		float m_TurnTime;
-
-		//パワーアップがあるかないか
-		int Power;
-		
-		int Gageflash;
-		
-		// テロップ
-		/*void CreateTelop();*/
-		float m_TelopTime;
+		int ExitCount;            //出口にぶつかった
+	    float PBdistance;         //プレイヤーとボスとの距離
+		float PPdistance;         //プレイヤーと柱の処理
+		float m_TurnTime;         //振り向きから直るまでの時間
+		int Power;                //パワーアップがあるかないか
+		int Gageflash;            //パワーアップを使ったかどうか
+		float m_TelopTime;	// テロップ
+		bool m_Event;
 
 		// テロップ2
-		/*void CreateTelop2();*/
+		
 		float m_Telop2Time;
 
 		// テロップ3
@@ -144,7 +118,8 @@ namespace basecross{
 			m_TotalTime1(0.0f),
 			m_isPlay1(0),
 			m_opningStop(0.0f),
-			m_TurnTime(0.0f)
+			m_TurnTime(0.0f),
+			m_Event(false)
 			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -213,6 +188,15 @@ namespace basecross{
 		{
 			ExitCount = ExitCount;
 		}
+		//柱イベントが発生したかどうか
+		bool GetPEvent()const {
+			return m_Event;
+		}
+		void SetPEvent(bool m_Event)
+		{
+			m_Event = m_Event;
+		}
+
 		int GetGameOver()const {
 			return GameOver;
 		}

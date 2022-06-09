@@ -15,9 +15,7 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0),
-		m_ColwUP(0),
-		m_ColwDOWN(0)
+		m_TotalTime(0)
 	{}
 
 	GageSprite2::~GageSprite2() {}
@@ -26,12 +24,13 @@ namespace basecross {
 
 		float helfSize = 0.5f;
 		//頂点配列
-		m_BackupVertices = {
-			//カラー　透明度
-{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
+		m_BackupVertices = 
+		{
+			                                                                          //カラー　透明度
+                           { VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
+                           { VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+                           { VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+                           { VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
@@ -79,9 +78,6 @@ namespace basecross {
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
 
-
-
-
 		}
 		//パワーアップ
 		if (Power == 0)
@@ -112,6 +108,7 @@ namespace basecross {
 		//アイテムを使ったら
 		if (Gageflash == 1)
 		{
+			//ゲージを消す
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
 			Gageflash = 0;
