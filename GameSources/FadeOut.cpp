@@ -53,21 +53,12 @@ namespace basecross {
 	//点滅処理（Elapsedtimeを利用している）
 	void FadeOut::OnUpdate() {
 
-
-<<<<<<< HEAD
-		
-	
-		
-=======
-
 		////プレイヤーの取得
 		//auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		//auto Exit = ptrPlayer->GetExitCount();
 		//ptrPlayer->SetExitCount(Exit);
 
-
->>>>>>> develop
-	  //時間の取得
+		//時間の取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_TotalTime += elapsedTime;
 		if (m_TotalTime >= XM_PI / 2) {

@@ -457,7 +457,7 @@ namespace basecross {
 
 	void GameStage::BGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"BGM", XAUDIO2_LOOP_INFINITE, 0.4f);
 	}
 
 	//カメラマンの作成
@@ -608,6 +608,7 @@ namespace basecross {
 
 		if (GameOver >= 1) {
 			//フェードアウトの作成
+
 			AddGameObject<FadeOut>(true,
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
@@ -652,28 +653,27 @@ namespace basecross {
 
 		}
 
-		// テロップの時間
-		auto ptrStage2 = GetSharedGameObject<Telop2>(L"Telop2");
-		// 時間の変数に足す
-		m_Telop2Time += elapsedTime;
-		if (m_Telop2Time >= 2.0f)
-		{
-			// 1秒後に表示がオフになる
-			ptrStage2->SetDrawActive(false);
+		
 
-		}
+		//// テロップの時間
+		//auto ptrStage3 = GetSharedGameObject<Telop3>(L"Telop3");
+		//// 時間の変数に足す
+		//m_Telop3Time += elapsedTime;
+		//if (m_Telop3Time >= 2.0f)
+		//{
+		//	// 1秒後に表示がオフになる
+		//	ptrStage3->SetDrawActive(false);
 
-		// テロップの時間
-		auto ptrStage3 = GetSharedGameObject<Telop3>(L"Telop3");
-		// 時間の変数に足す
-		m_Telop3Time += elapsedTime;
-		if (m_Telop3Time >= 2.0f)
-		{
-			// 1秒後に表示がオフになる
-			ptrStage3->SetDrawActive(false);
+		//}
 
-		}
-
+		//// テロップの時間
+		//auto ptrStage4 = GetSharedGameObject<Telop4>(L"Telop4");
+		//// 時間の変数に足す
+		//m_Telop4Time += elapsedTime;
+		//if (m_Telop4Time >= 2.0f)
+		//{
+		//	// 1秒後に表示がオフになる
+		//	ptrStage4->SetDrawActive(false);
 		// テロップの時間
 		auto ptrStage4 = GetSharedGameObject<Telop4>(L"Telop4");
 		// 時間の変数に足す
@@ -684,6 +684,8 @@ namespace basecross {
 			ptrStage4->SetDrawActive(false);
 
 		}
+		//}
+		return;
 
 		// ゲームオーバーテロップの時間
 		auto ptrGMOTelop = GetSharedGameObject<GMOTelop>(L"GMOTelop");
