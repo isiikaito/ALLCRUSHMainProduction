@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{FB998396-DAD2-4787-BB8F-0E2EF1E22D6D}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseCrossDx11VS2019", "Dx11\BaseCrossDx11VS2019.vcxproj", "{4F613869-CF2D-4D7D-AEE1-586434B63440}"
 	ProjectSection(ProjectDependencies) = postProject
 		{371B9FA9-4C90-4AC6-A123-ACED756D6C77} = {371B9FA9-4C90-4AC6-A123-ACED756D6C77}
@@ -11,8 +13,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutoGenNameee113a58f6b64b9390636aebcc688a15", "..\..\..\AppData\Local\Temp\AutoGenNameee113a58f6b64b9390636aebcc688a15", "{8C1D084C-C178-4A5D-84D5-9D8B94E39AB0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTex", "..\Libs\DirectXTex\DirectXTex_Desktop_2019_Win10.vcxproj", "{371B9FA9-4C90-4AC6-A123-ACED756D6C77}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{FB998396-DAD2-4787-BB8F-0E2EF1E22D6D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dx11FullLib", "..\Libs\BaseLib\Dx11FullLib\Dx11FullLib.vcxitems", "{12B4EA0B-BF4F-4C4E-B659-DD6561EA2666}"
 EndProject
