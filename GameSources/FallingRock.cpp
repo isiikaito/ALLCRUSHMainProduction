@@ -48,22 +48,17 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"IWA_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		
+		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-
+		//メッシュ
 		ptrDraw->SetMeshResource(L"IWA_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
-		//RigidbodyBoxの追加
-		/*PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
-		auto PsPtr = AddComponent<RigidbodyBox>(param);*/
-		////当たり判定を見せる
-		//PsPtr->SetDrawActive(true);
-
+		
+		//キューブ型の当たり判定
 		auto Coll = AddComponent<CollisionObb>();
 		
-		////衝突判定を表示
-		//Coll->SetDrawActive(true);
-		//ほかのオブジェクトの影響を受けない（例プレイヤーに当たったら消えるなどの処理）
+		
+		//ほかのオブジェクトの影響を受けない
 		Coll->SetFixed(true);
         
 		//読み込みの設定をする
@@ -72,6 +67,7 @@ namespace basecross {
 
 	void FallingRock::OnUpdate()
 	{
+		//柱が壊れたら
 		if (m_Falling==1)
 		{
 			//重力をつける

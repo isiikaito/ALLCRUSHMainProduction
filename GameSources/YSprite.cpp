@@ -1,6 +1,6 @@
 /*!
-@file XSprite.cpp
-@brief アイテムテクスチャ
+@file YSprite.cpp
+@brief　パワーボタン
 */
 
 #include "stdafx.h"
@@ -39,7 +39,9 @@ namespace basecross {
 		//頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PTSpriteDraw>(m_BackupVertices, indices);
 		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
+		//テクスチャの読み込み
 		ptrDraw->SetTextureResource(m_TextureKey);
+		//テクスチャの表示をしない
 		SetDrawActive(false);
 		//読み込みの設定をする
 		GetStage()->SetSharedGameObject(L"YSprite", GetThis<YSprite>());
@@ -57,11 +59,13 @@ namespace basecross {
 		ptrPlayer->SetGageflash(Gageflash);
 		if (PowerCount == 3)
 		{
+			//テクスチャを表示する
 			SetDrawActive(true);
 		}
 		//ゲージを使い終わったら
 		if (Gageflash == 1)
 		{
+			//テクスチャの表示をしない
 			SetDrawActive(false);
 			Gageflash = 0;
 		}

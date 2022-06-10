@@ -10,12 +10,11 @@ namespace basecross {
 	//ゲージ
 	class GageSprite : public GameObject
 	{
-		bool m_Trace;
-		Vec2 m_StartScale;
-		Vec3 m_StartPos;
-		float m_TotalTime;
-		float m_ColwUP;//ゲージ上の透明度
-		float m_ColwDOWN;//ゲージ下の透明度
+		bool m_Trace;      //透明
+		Vec2 m_StartScale; //大きさ
+		Vec3 m_StartPos;   //位置
+		float m_TotalTime; //時間の取得
+		
 		//バックアップ頂点データ
 		vector<VertexPositionColor>m_BackupVertices;
 

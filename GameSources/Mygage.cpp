@@ -1,6 +1,6 @@
 /*!
 @file Mygage.cpp
-@brief アイテムテクスチャ
+@brief ゲージ
 */
 
 #include "stdafx.h"

@@ -1,6 +1,6 @@
 /*!
 @file FadeOut.h
-@brief ゲージ
+@brief フェードアウト
 */
 
 #pragma once
@@ -10,10 +10,10 @@ namespace basecross {
 	//ゲージ
 	class FadeOut : public GameObject
 	{
-		bool m_Trace;
-		Vec2 m_StartScale;
-		Vec3 m_StartPos;
-		float m_TotalTime;
+		bool m_Trace;      //透明
+		Vec2 m_StartScale;//大きさ
+		Vec3 m_StartPos;  //位置
+		float m_TotalTime;//時間の取得
 		
 		
 		//バックアップ頂点データ

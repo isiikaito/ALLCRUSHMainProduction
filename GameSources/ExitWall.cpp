@@ -42,6 +42,7 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"EXITWALL_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
+		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 
 		ptrDraw->SetMeshResource(L"EXITWALL_MESH");
@@ -49,11 +50,10 @@ namespace basecross {
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//当たり判定を見せる
-		/*PsPtr->SetDrawActive(true);*/
-
+		
+		//キューブ型の当たり判定
 		auto Coll = AddComponent<CollisionObb>();
-
+		//他のオブジェクトの影響を受けない
 		Coll->SetFixed(true);
 
 

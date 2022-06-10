@@ -1,6 +1,6 @@
 /*!
-@file Obstacle1.cpp
-@brief 障害物実体
+@file Pillar.cpp
+@brief 柱実体
 */
 
 #include "stdafx.h"
@@ -30,10 +30,10 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.5f, 0.5f, 0.5f),//スケールyuka
+			Vec3(0.5f, 0.5f, 0.5f),    //スケールyuka
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(-0.4f, -0.5f, -0.6f)//ポジションyuka
+			Vec3(0.0f, 0.0f, 0.0f),    //回転
+			Vec3(-0.4f, -0.5f, -0.6f)  //ポジションyuka
 		);
 
 		//オブジェクトのグループを得る
@@ -46,16 +46,15 @@ namespace basecross {
 		//影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"PILLAR_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
+		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-
+		//メッシュ読み込み
 		ptrDraw->SetMeshResource(L"PILLAR_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		//当たり判定を見せる
-		/*PsPtr->SetDrawActive(true);*/
+		
 
 		auto Coll = AddComponent<CollisionObb>();
 		

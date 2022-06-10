@@ -23,7 +23,8 @@ namespace basecross {
 	    PillarCount(0),
 		StopTime(0.0f),
 		m_EnemySetDrawActiveCount(0),
-		m_Telop2Time(0.0f)
+		m_Telop2Time(0.0f),
+		m_Event(false)
 	{
 	}
 	EnemyObject::~EnemyObject() {}
@@ -186,20 +187,27 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
+		auto ptrPlayer=GetStage()->GetSharedGameObject<Player>(L"Player");
+		m_Event=ptrPlayer->GetPEvent();
+		ptrPlayer->SetPEvent(m_Event);
 
-		//今だ！！テロップ
+		if (m_Event == true)
+		{
+        //今だ！！テロップ
 		if (pos.x < -45.0f) {
 			auto ptrStage2 = GetStage()->GetSharedGameObject<Telop2>(L"Telop2");
 			ptrStage2->SetDrawActive(true);
 			// 時間の変数に足す
 			m_Telop2Time += elapsedTime;
-		if (m_Telop2Time >= 2.0f)
-		{
-			// 1秒後に表示がオフになる
-			ptrStage2->SetDrawActive(false);
+			if (m_Telop2Time >= 2.0f)
+			{
+				// 2秒後に表示がオフになる
+				ptrStage2->SetDrawActive(false);
 
+			}m_Event = false;
 		}
 		}
+		
 
 	}
 
