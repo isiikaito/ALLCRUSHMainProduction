@@ -355,7 +355,6 @@ namespace basecross {
 			}
 		}
 		//ゲームオーバーテロップ
-
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
