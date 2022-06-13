@@ -45,7 +45,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)YSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)brakeWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
@@ -94,6 +93,5 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)brakeWall.h" />
   </ItemGroup>
 </Project>
