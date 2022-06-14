@@ -1,97 +1,342 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyClearStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Mygage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Telop4.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)YSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp">
+      <Filter>Exit</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp">
+      <Filter>FadeOut</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp">
+      <Filter>FallingRock</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp">
+      <Filter>Gage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite2.cpp">
+      <Filter>Gage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite3.cpp">
+      <Filter>Gage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GageSpriteWhite.cpp">
+      <Filter>Gage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
+      <Filter>GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
+      <Filter>GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
+      <Filter>GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite2.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyClearStage.cpp">
+      <Filter>ClearStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Mygage.cpp">
+      <Filter>Gage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Myitem1.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle1.cpp">
+      <Filter>StageObject\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Obstacle2.cpp">
+      <Filter>StageObject\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp">
+      <Filter>Pillar</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp">
+      <Filter>StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp">
+      <Filter>StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp">
+      <Filter>Telop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop2.cpp">
+      <Filter>Telop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop3.cpp">
+      <Filter>Telop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Telop4.cpp">
+      <Filter>Telop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TickerSprite.cpp">
+      <Filter>Telop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp">
+      <Filter>StageObject\BreakWall</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
+      <Filter>TitleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
+      <Filter>TitleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)YSprite.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite3.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyClearStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h">
+      <Filter>Exit</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h">
+      <Filter>FadeOut</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h">
+      <Filter>FallingRock</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h">
+      <Filter>Gage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite2.h">
+      <Filter>Gage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite3.h">
+      <Filter>Gage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GageSpriteWhite.h">
+      <Filter>Gage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
+      <Filter>GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h">
+      <Filter>GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
+      <Filter>GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite2.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyClearStage.h">
+      <Filter>ClearStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Mygage.h">
+      <Filter>Gage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Myitem1.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle1.h">
+      <Filter>StageObject\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Obstacle2.h">
+      <Filter>StageObject\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h">
+      <Filter>Pillar</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h">
+      <Filter>StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h">
+      <Filter>StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h">
+      <Filter>Telop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop2.h">
+      <Filter>Telop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop3.h">
+      <Filter>Telop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Telop4.h">
+      <Filter>Telop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TickerSprite.h">
+      <Filter>Telop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h">
+      <Filter>StageObject\BreakWall</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
+      <Filter>TitleStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>TitleStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{fac2930d-340e-41b3-9a87-0ab83f4cb4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{6cd8201a-d28c-4ec4-8909-884db60b5579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exit">
+      <UniqueIdentifier>{6a411b31-6362-4811-85ee-1f3db45ec06a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FadeOut">
+      <UniqueIdentifier>{467b1e41-182a-46cc-8f28-677a345b620b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FallingRock">
+      <UniqueIdentifier>{3383889e-e4f3-4456-860c-252595c44742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gage">
+      <UniqueIdentifier>{c166d6fe-a584-4d4b-acaa-bef6d60326d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameOver">
+      <UniqueIdentifier>{9a7b3c20-df66-4f71-bc2c-79b2a6a46d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage">
+      <UniqueIdentifier>{509f6c3f-dad6-4232-87d0-e79f091d8a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{5ffd03db-970b-4919-b2ad-c834854ad4d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{f9b978aa-c0cc-42a7-b640-95254be11a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClearStage">
+      <UniqueIdentifier>{97a46c9f-46dc-452e-b6e5-e67b39066ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{bbaaf492-efd9-4077-9bb6-3c42ad1171bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{743cec19-7656-4491-84a8-c139059ee493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{833105d0-25b2-4915-b715-53356f09d7cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pillar">
+      <UniqueIdentifier>{40f1020d-8c74-4bb6-acd8-364677eae154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{6416975e-65fc-4b77-9246-f2d22ae2ceaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{83501921-0bbe-47df-8c76-8aaf21602c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject">
+      <UniqueIdentifier>{37e63ee5-2755-4e29-9533-4c1786b8f316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Obstacle">
+      <UniqueIdentifier>{e95bcaea-4d53-4142-a0e4-92a10a18e866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Telop">
+      <UniqueIdentifier>{00026fae-0141-4db1-8703-f0f5c788fcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\BreakWall">
+      <UniqueIdentifier>{70578c92-6408-4f1f-84d4-b79d01f4b0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TitleStage">
+      <UniqueIdentifier>{80feef14-a24f-4cf6-9837-86d000bdcf05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{de38a79d-5a6d-4130-9c5a-e96b2efd9c77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
