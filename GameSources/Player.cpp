@@ -167,14 +167,7 @@ namespace basecross {
 				speed2 = 1;
 			}
 		}
-		float elapsedTime1 = App::GetApp()->GetElapsedTime();
-		itemtime += elapsedTime1;
-
-		if (itemtime >= 4)
-		{
-			speed2 = 1;
-		}
-	
+		
 		transComp->SetPosition(position); // 更新した値で再設定する
 		if (speed > 0.0f) // スティックが倒れていたら・・
 		{
@@ -506,7 +499,7 @@ namespace basecross {
 		auto SpeedUpSound = App::GetApp()->GetXAudio2Manager();
 
 		if (itemCount == 1) {
-			speed2 = 10;
+			speed2 = 2;
 			itemCount = 2;
 
 			auto XSprite1 = GetStage()->GetSharedGameObject<XSprite>(L"XSprite");
