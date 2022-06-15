@@ -608,14 +608,17 @@ namespace basecross {
 
 		if (GameOver >= 1) {
 			//フェードアウトの作成
+			if (!m_createGameOverObjectFlg)
+			{
+				AddGameObject<FadeOut>(true,
+					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX",true,
+					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 
-			AddGameObject<FadeOut>(true,
-				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
-			//AddGameObject<FadeOut>(L"GAMEOVERTELOP_TX",true,
-			//	Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+				m_createGameOverObjectFlg = true;
+			}
 			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
-
 		if (Exit>=1)
 		{
 		

@@ -14,7 +14,7 @@ namespace basecross {
 		const wstring& TextureKey,
 		bool Trace,
 		const Vec2& StartScale,
-		const Vec2& StartPos) :
+		const Vec3& StartPos) :
 		GameObject(StagePtr),
 		m_TextureKey(TextureKey),
 		m_Trace(Trace),

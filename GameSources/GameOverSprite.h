@@ -13,14 +13,14 @@ namespace basecross {
 	class GameOverSprite : public GameObject {
 		bool m_Trace;        //透明になるかどうか
 		Vec2 m_StartScale;   //スケーリング
-		Vec2 m_StartPos;     //場所
+		Vec3 m_StartPos;     //場所
 		wstring m_TextureKey;//テクスチャの名前
 	public:
 		GameOverSprite(const shared_ptr<Stage>& StagePtr,
 			const wstring& TextureKey,
 			bool Trace,
 			const Vec2& StartScale,
-			const Vec2& StartPos);
+			const Vec3& StartPos);
 		//破壊
 		virtual ~GameOverSprite();
 		//初期化
