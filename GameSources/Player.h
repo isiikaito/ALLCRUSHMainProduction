@@ -22,6 +22,8 @@ namespace basecross{
 		bool moveStop;            //Playerの移動停止の判定
 		Vec3 moveDir;             // 移動方向ベクトル（単位ベクトル）
 		Vec3 at1;
+		float EndPos;			  // ゲームオーバー時のプレイヤー座標
+		float EndAngle;			  // ゲームオーバー時のプレイヤーの向き
 		float speed;              // 移動の速さ
 		float accel;              // 加速度
 		int GameOver = 0;
@@ -104,6 +106,8 @@ namespace basecross{
 			: GameObject(stage), // ステージは親クラスに投げる
 			MaxMoveSpeed(6.0f),
 			moveStop(1.0f),	
+			EndPos(1.0f),
+			EndAngle(180.0f * XM_PI / 180.0f),
 			moveDir(0.0f, 0.0f, 0.0f),
 			at1(0.0f,0.0f,0.0f),
 			speed(0.0f),
