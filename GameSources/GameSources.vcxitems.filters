@@ -40,9 +40,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
@@ -172,9 +169,6 @@
       <Filter>GameOver</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">

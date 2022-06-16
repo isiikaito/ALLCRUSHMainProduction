@@ -490,17 +490,20 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-
-
+			
+			auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
+			
+			
+			
 			//物理計算有効
 			SetPhysicsActive(true);
-
+			
 			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
 			auto& app = App::GetApp();
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			//CSVファイルその読み込みC
-			m_CsvC.SetFileName(DataDir + L"stage1.csv");
+			m_CsvC.SetFileName(DataDir + L"stage"+ Util::IntToWStr(Select)+L".csv");
 			m_CsvC.ReadCsv();
 
 			//ビューとライトの作成
@@ -605,15 +608,38 @@ namespace basecross {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		auto Exit = ptrPlayer->GetExitCount();
 		auto GameOver = ptrPlayer->GetGameOver();
-
-		if (GameOver >= 1) {
-			//フェードアウトの作成
-
-			AddGameObject<FadeOut>(true,
+		auto state = ptrPlayer->GetGameState();
+		static shared_ptr<FadeOut> fadeOut = nullptr;
+		static float FadeTime = 0.0f;
+		switch (state)
+		{
+		case GameState::Game:
+			break;
+		case GameState::Down:
+			ptrPlayer->SetGameState(GameState::FadeStart);
+			break;
+		case GameState::FadeStart:
+			fadeOut = AddGameObject<FadeOut>(true,
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
-			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
-		}
+			ptrPlayer->SetGameState(GameState::FadeOut);
+		case GameState::FadeOut:
+			FadeTime += elapsedTime;
+			if (FadeTime >= 1.0f)
+			{
+				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX", true,
+					Vec2(500.0f, 500.0f), Vec3(0.0f, 0.0f, 0.0f));
+				ptrPlayer->SetGameState(GameState::ChangeStage);
+			}
+			break;
+		case GameState::ChangeStage:
+			break;
 
+			//フェードアウトの作成
+				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX",true,
+					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+
+				m_createGameOverObjectFlg = true;
+		}
 		if (Exit>=1)
 		{
 		

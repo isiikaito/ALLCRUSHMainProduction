@@ -19,6 +19,7 @@ namespace basecross {
 	// ゲームステージクラス
 	//--------------------------------------------------------------------------------------
 	class GameStage : public Stage {
+		bool m_createGameOverObjectFlg = false;
 	//CSVファイルそのC
 	CsvFile m_CsvC;
 	//ビューの作成

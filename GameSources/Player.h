@@ -7,6 +7,14 @@
 #include "stdafx.h"
 
 namespace basecross{
+	enum class  GameState {
+		Game,
+		Down,
+		FadeStart,
+		FadeOut,
+		ChangeStage
+	};
+
 	class Player : public GameObject
 	{
 		void DrawStrings();
@@ -14,6 +22,8 @@ namespace basecross{
 		bool moveStop;            //Playerの移動停止の判定
 		Vec3 moveDir;             // 移動方向ベクトル（単位ベクトル）
 		Vec3 at1;
+		float EndPos;			  // ゲームオーバー時のプレイヤー座標
+		float EndAngle;			  // ゲームオーバー時のプレイヤーの向き
 		float speed;              // 移動の速さ
 		float accel;              // 加速度
 		int GameOver = 0;
@@ -30,6 +40,7 @@ namespace basecross{
 		float m_TurnTime;         //振り向きから直るまでの時間
 		int Power;                //パワーアップがあるかないか
 		int Gageflash;            //パワーアップを使ったかどうか
+		GameState m_State;		  //ゲームオーバー用のステート
 		float m_TelopTime;	// テロップ
 		bool m_Event;
 
@@ -95,6 +106,8 @@ namespace basecross{
 			: GameObject(stage), // ステージは親クラスに投げる
 			MaxMoveSpeed(6.0f),
 			moveStop(1.0f),	
+			EndPos(1.0f),
+			EndAngle(180.0f * XM_PI / 180.0f),
 			moveDir(0.0f, 0.0f, 0.0f),
 			at1(0.0f,0.0f,0.0f),
 			speed(0.0f),
@@ -119,7 +132,8 @@ namespace basecross{
 			m_isPlay1(0),
 			m_opningStop(0.0f),
 			m_TurnTime(0.0f),
-			m_Event(false)
+			m_Event(false),
+			m_State(GameState::Game)
 			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -202,6 +216,12 @@ namespace basecross{
 		}
 		void SetGameOver(int GameOver) {
 			GameOver = GameOver;
+		}
+		GameState GetGameState() {
+			return m_State;
+		}
+		void SetGameState(GameState s) {
+			m_State = s;
 		}
 
 	};
