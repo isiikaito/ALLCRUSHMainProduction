@@ -267,6 +267,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Myitem1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heders\Project.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Enemy">
