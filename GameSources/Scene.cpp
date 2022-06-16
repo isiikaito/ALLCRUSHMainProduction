@@ -133,7 +133,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"GAGE_TX", strTexture);
 
 		//文字テクスチャ
-		strTexture = dataDir + L"go.png";
+		strTexture = dataDir + L"Stage1.png";
 		App::GetApp()->RegisterTexture(L"Stage1_TX", strTexture);
 
 		//文字テクスチャ
@@ -222,11 +222,7 @@ namespace basecross {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage>();
 		}
-
-		else if (event->m_MsgStr == L"ToGameStage2") {
-			//ゲームステージ2の設定
-			ResetActiveStage<GameStage2>();
-		}
+	
 		else if (event->m_MsgStr == L"ToMenuStage") {
 			//メニューステージの設定
 			ResetActiveStage<MenuStage>();

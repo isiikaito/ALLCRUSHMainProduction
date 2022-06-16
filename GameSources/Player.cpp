@@ -23,8 +23,8 @@ namespace basecross {
 
 
 		//CollisionSphere衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionCapsule>();
-		/*ptrColl->SetDrawActive(true);*/
+		AddComponent<CollisionCapsule>();
+		
 		
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
@@ -35,7 +35,7 @@ namespace basecross {
 		);
 
 		//重力をつける
-		auto ptrGra = AddComponent<Gravity>();
+		AddComponent<Gravity>();
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 
@@ -155,8 +155,8 @@ namespace basecross {
 				Rotation.y = 90;
 				speed = 0;
 				m_Event = true;
-				m_Event = true;
-			}
+
+			};
 		}
 		if (itemCount == 2)
 		{

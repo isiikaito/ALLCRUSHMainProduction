@@ -490,17 +490,20 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-
-
+			
+			auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
+			
+			
+			
 			//物理計算有効
 			SetPhysicsActive(true);
-
+			
 			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
 			auto& app = App::GetApp();
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			//CSVファイルその読み込みC
-			m_CsvC.SetFileName(DataDir + L"stage1.csv");
+			m_CsvC.SetFileName(DataDir + L"stage"+ Util::IntToWStr(Select)+L".csv");
 			m_CsvC.ReadCsv();
 
 			//ビューとライトの作成
