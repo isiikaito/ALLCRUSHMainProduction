@@ -56,8 +56,8 @@ namespace basecross{
 		float m_Telop4Time;
 
 		//ゲームオーバーテロップ
-		void CreateGMOTelop();
-		float m_GMOTelopTime;
+		//void CreateGMOTelop();
+		//float m_GMOTelopTime;
 
 		/*Vec3 GetMoveVector() const;*/
 

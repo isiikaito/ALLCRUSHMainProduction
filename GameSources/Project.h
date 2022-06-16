@@ -38,7 +38,7 @@
 
 #include "MenuStage.h"
 #include "GameStage.h"
-#include "GameStage2.h"
+
 #include "MyCamera.h"
 
 #include "Character.h"

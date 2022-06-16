@@ -78,7 +78,7 @@ namespace basecross {
 
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B|| ed >= -5.0f)// 
+		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B|| ed >= -3.0f)// 
 		{
 			eye.x = playerPos.x - 5.0f;
 		}
