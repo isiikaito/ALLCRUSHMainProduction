@@ -20,7 +20,8 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		void CreateResourses();
 		bool m_MovieActive;
-		Scene() :SceneBase() , m_MovieActive(false){}
+		int m_StageSelect;
+		Scene() :SceneBase() , m_MovieActive(false),m_StageSelect(1){}
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief デストラクタ
@@ -43,6 +44,13 @@ namespace basecross {
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 		bool IsMovieActive() const {
 			return m_MovieActive;
+		}
+		//ステージの選択の取得
+		int GetStageSelect()const {
+			return m_StageSelect;
+		}
+		void SetStageSelect(int StageSelect) {
+			m_StageSelect = StageSelect;
 		}
 	};
 
