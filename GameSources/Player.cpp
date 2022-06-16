@@ -56,7 +56,7 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
-		ptrDraw->AddAnimation(L"GameOver", 75, 24, false, 15.0f);
+		ptrDraw->AddAnimation(L"GameOver", 75, 24, false, 3.0f);
 		//ptrDraw->AddAnimation(L"GameOverFirst", 70, 10, false, 15.0f);
 		//ptrDraw->AddAnimation(L"GameOverLast", 80, 14, false, 10.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
@@ -120,7 +120,7 @@ namespace basecross {
 
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
-		if (PBdistance >= -5)
+		if (PBdistance >= -3)
 		{
 			position.z = EndPos;
 			transComp->SetRotation(EndAngle, 0.0f, EndAngle);
@@ -129,6 +129,13 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
 				GameOver = 1;
 				moveStop = false;
+			if (moveStop == false)
+				{
+					if (m_State == GameState::Game)
+					{
+						m_State = GameState::Down;
+					}
+				}
 			}
 		}
 		//柱が壊れていないとき
@@ -460,10 +467,6 @@ namespace basecross {
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
       auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
-			if (m_State == GameState::Game)
-			{
-				m_State = GameState::Down;
-			}
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
