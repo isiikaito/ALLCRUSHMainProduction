@@ -48,6 +48,9 @@ namespace basecross {
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.3f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.3f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.3f - 0.1f;
+
+			rParticleSprite.m_LocalScale.x = 5.0f;
+			rParticleSprite.m_LocalScale.y = 5.0f;
 			//各パーティクルの移動速度を指定
 			rParticleSprite.m_Color = Col4(0.8f, 0.8f, 0.0f, 0.4f);
 
@@ -69,6 +72,9 @@ namespace basecross {
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.3f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.3f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.3f - 0.1f;
+
+			rParticleSprite.m_LocalScale.x = 5.0f;
+			rParticleSprite.m_LocalScale.y = 5.0f;
 			//各パーティクルの移動速度を指定
 			rParticleSprite.m_Velocity = Vec3(
 				rParticleSprite.m_LocalPos.x * 28.0f,
@@ -89,6 +95,9 @@ namespace basecross {
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.2f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.2f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.2f - 0.1f;
+
+			rParticleSprite.m_LocalScale.x = 5.0f;
+			rParticleSprite.m_LocalScale.y = 5.0f;
 			//各パーティクルの移動速度を指定
 			rParticleSprite.m_Velocity = Vec3(
 				rParticleSprite.m_LocalPos.x * 25.0f,
@@ -109,6 +118,9 @@ namespace basecross {
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.2f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.2f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.2f - 0.1f;
+
+			rParticleSprite.m_LocalScale.x = 5.0f;
+			rParticleSprite.m_LocalScale.y = 5.0f;
 			//各パーティクルの移動速度を指定
 			rParticleSprite.m_Velocity = Vec3(
 				rParticleSprite.m_LocalPos.x * 20.0f,
@@ -129,6 +141,9 @@ namespace basecross {
 			rParticleSprite.m_LocalPos.x = Util::RandZeroToOne() * 0.2f - 0.1f;
 			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne() * 0.2f;
 			rParticleSprite.m_LocalPos.z = Util::RandZeroToOne() * 0.2f - 0.1f;
+
+			rParticleSprite.m_LocalScale.x = 5.0f;
+			rParticleSprite.m_LocalScale.y = 5.0f;
 			//各パーティクルの移動速度を指定
 			rParticleSprite.m_Velocity = Vec3(
 				rParticleSprite.m_LocalPos.x * 18.0f,
