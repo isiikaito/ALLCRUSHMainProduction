@@ -224,8 +224,6 @@ namespace basecross {
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnAttack() 
 	{
-
-
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
@@ -459,7 +457,6 @@ namespace basecross {
 
 		if (action == L"GameOver") {
 			if (now) {
-				
 				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
@@ -470,6 +467,10 @@ namespace basecross {
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
       auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
+			if (m_State == GameState::Game)
+			{
+				m_State = GameState::Down;
+			}
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
@@ -514,6 +515,9 @@ namespace basecross {
 				auto pos = GetComponent<Transform>()->GetPosition();
 				PtrSpark->InsertSpark2(pos);
 			}
+		}
+		if (GetGameState() == GameState::ChangeStage) {
+			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
 	}
 

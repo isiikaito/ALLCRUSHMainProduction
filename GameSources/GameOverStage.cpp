@@ -29,10 +29,6 @@ namespace basecross {
 
 	//初期化
 	void GameOverStage::OnCreate() {
-		CreateViewLight();
-		//ゲームオーバーのテクスチャの指定
-		AddGameObject<GameOverSprite>(L"GAMEOVER_TX", false,
-			Vec2(1300.0f, 800.0f), Vec2(0.0f, 0.0f));
 	}
 	//更新
 	void GameOverStage::OnUpdate() {

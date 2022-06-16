@@ -605,19 +605,37 @@ namespace basecross {
 		auto ptrPlayer = GetSharedGameObject<Player>(L"Player");
 		auto Exit = ptrPlayer->GetExitCount();
 		auto GameOver = ptrPlayer->GetGameOver();
-
-		if (GameOver >= 1) {
-			//フェードアウトの作成
-			if (!m_createGameOverObjectFlg)
+		auto state = ptrPlayer->GetGameState();
+		static shared_ptr<FadeOut> fadeOut = nullptr;
+		static float FadeTime = 0.0f;
+		switch (state)
+		{
+		case GameState::Game:
+			break;
+		case GameState::Down:
+			ptrPlayer->SetGameState(GameState::FadeStart);
+			break;
+		case GameState::FadeStart:
+			fadeOut = AddGameObject<FadeOut>(true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			ptrPlayer->SetGameState(GameState::FadeOut);
+		case GameState::FadeOut:
+			FadeTime += elapsedTime;
+			if (FadeTime >= 1.0f)
 			{
-				AddGameObject<FadeOut>(true,
-					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX", true,
+					Vec2(500.0f, 500.0f), Vec3(0.0f, 0.0f, 0.0f));
+				ptrPlayer->SetGameState(GameState::ChangeStage);
+			}
+			break;
+		case GameState::ChangeStage:
+			break;
+
+			//フェードアウトの作成
 				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX",true,
 					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 
 				m_createGameOverObjectFlg = true;
-			}
-			PostEvent(XM_PI / 2, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
 		if (Exit>=1)
 		{

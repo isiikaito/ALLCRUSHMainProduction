@@ -7,6 +7,14 @@
 #include "stdafx.h"
 
 namespace basecross{
+	enum class  GameState {
+		Game,
+		Down,
+		FadeStart,
+		FadeOut,
+		ChangeStage
+	};
+
 	class Player : public GameObject
 	{
 		void DrawStrings();
@@ -30,6 +38,7 @@ namespace basecross{
 		float m_TurnTime;         //振り向きから直るまでの時間
 		int Power;                //パワーアップがあるかないか
 		int Gageflash;            //パワーアップを使ったかどうか
+		GameState m_State;		  //ゲームオーバー用のステート
 		float m_TelopTime;	// テロップ
 		bool m_Event;
 
@@ -119,7 +128,8 @@ namespace basecross{
 			m_isPlay1(0),
 			m_opningStop(0.0f),
 			m_TurnTime(0.0f),
-			m_Event(false)
+			m_Event(false),
+			m_State(GameState::Game)
 			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),
 			//m_manager(nullptr), m_renderer(nullptr), m_effect(nullptr),
@@ -202,6 +212,12 @@ namespace basecross{
 		}
 		void SetGameOver(int GameOver) {
 			GameOver = GameOver;
+		}
+		GameState GetGameState() {
+			return m_State;
+		}
+		void SetGameState(GameState s) {
+			m_State = s;
 		}
 
 	};

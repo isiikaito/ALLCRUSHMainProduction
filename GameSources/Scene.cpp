@@ -48,7 +48,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"WallBrake_TX", strTexture);
 
 		strTexture = dataDir + L"Game Over_font.png";
-		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"GAMEOVERTELOP_TX", strTexture);
 
 		//モデル
 		//ボーンモデルの通常リソース
