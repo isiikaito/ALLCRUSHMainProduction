@@ -148,7 +148,6 @@ namespace basecross {
 				transComp->SetRotation(XM_PI, 0.0f, XM_PI);//プレイヤーの向きを前方に固定
 				speed = 0;
 				m_Event = true;
-				m_Event = true;
 			}
 		}
 		if (itemCount == 2)
@@ -453,8 +452,6 @@ namespace basecross {
 				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
-		////文字列の表示
-		//DrawStrings();
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
@@ -512,23 +509,6 @@ namespace basecross {
 		if (GetGameState() == GameState::ChangeStage) {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
-	}
-
-	//文字列の表示
-	void Player::DrawStrings() {
-		auto pos = GetComponent<Transform>()->GetPosition();
-
-		wstring positionStr(L"Position:\t");
-		positionStr += L"X=" + Util::FloatToWStr(pos.x, 6, Util::FloatModify::Fixed) + L",\t";
-		positionStr += L"Y=" + Util::FloatToWStr(pos.y, 6, Util::FloatModify::Fixed) + L",\t";
-		positionStr += L"Z=" + Util::FloatToWStr(pos.z, 6, Util::FloatModify::Fixed) + L"\n";
-
-		wstring str = positionStr;
-
-		////文字列コンポーネントの取得
-		//auto ptrString = GetComponent<StringSprite>();
-		//ptrString->SetText(str);
-
 	}
 
 	void Player::OnDestroy() {

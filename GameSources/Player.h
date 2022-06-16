@@ -17,7 +17,6 @@ namespace basecross{
 
 	class Player : public GameObject
 	{
-		void DrawStrings();
 		const float MaxMoveSpeed; // 移動の最大速
 		bool moveStop;            //Playerの移動停止の判定
 		Vec3 moveDir;             // 移動方向ベクトル（単位ベクトル）
