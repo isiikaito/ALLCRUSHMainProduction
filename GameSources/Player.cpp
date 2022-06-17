@@ -469,10 +469,7 @@ namespace basecross {
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
-			if (ExitCount == 0)
-			{
-                ExitCount = 1;
-			 }	
+				SetGameState(GameState::GameExit);
 		}
 	}
 	void Player::OnPushY() {

@@ -130,6 +130,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -261,6 +262,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Enemy">
