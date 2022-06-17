@@ -150,7 +150,7 @@ namespace basecross {
 			if (PPdistance <= 5)
 			{
 				moveStop = 0.0f;//移動の停止
-				position.x = -80;
+				position.x = PillarPositon.x;
 				position.z = 1;
 				transComp->SetRotation(XM_PI, 0.0f, XM_PI);//プレイヤーの向きを前方に固定
 				speed = 0;
@@ -416,9 +416,10 @@ namespace basecross {
 					auto shPtr2 = v2.lock();
 					Vec3 ret2;
 					auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
-					auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
+					
 					if (ptrPillar) {
 						auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
+						auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
 						auto Falling1 = ptrFallingRock->GetFalling();
 						if (/*近づいたら*/
 							HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
