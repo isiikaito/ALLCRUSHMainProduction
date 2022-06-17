@@ -635,14 +635,11 @@ namespace basecross {
 			break;
 
 			//フェードアウトの作成
-				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX",true,
-					Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+			AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX", true,
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 
-				m_createGameOverObjectFlg = true;
-		}
-		if (Exit>=1)
-		{
-		
+			m_createGameOverObjectFlg = true;
+		case GameState::GameExit:
 			//フェードアウトの作成
 			AddGameObject<FadeOut>(true,
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
@@ -650,12 +647,9 @@ namespace basecross {
 			m_ExitTime += elapsedTime1;
 			if (m_ExitTime >= 1.0f)
 			{
-              PostEvent(0.0, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+				PostEvent(0.0, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 			}
-			
-			
-			
-		}
+	}
 		ptrPlayer->SetExitCount(Exit);
         ptrPlayer->SetGameOver(GameOver);
 		// テロップの時間

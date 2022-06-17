@@ -40,9 +40,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
@@ -133,6 +130,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -172,9 +170,6 @@
       <Filter>GameOver</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
@@ -267,6 +262,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Enemy">

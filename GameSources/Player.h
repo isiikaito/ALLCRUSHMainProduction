@@ -12,7 +12,8 @@ namespace basecross{
 		Down,
 		FadeStart,
 		FadeOut,
-		ChangeStage
+		ChangeStage,
+		GameExit
 	};
 
 	class Player : public GameObject
