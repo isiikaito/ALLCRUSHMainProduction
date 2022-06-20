@@ -194,7 +194,7 @@ void EnemyObject::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		if (m_Event == true)
 		{
         //今だ！！テロップ
-		if (pos.x < -45.0f) {
+		if (pos.x <-25) {
 			auto ptrStage2 = GetStage()->GetSharedGameObject<Telop2>(L"Telop2");
 			ptrStage2->SetDrawActive(true);
 			// 時間の変数に足す

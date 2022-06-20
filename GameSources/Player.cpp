@@ -149,9 +149,9 @@ namespace basecross {
 			PPdistance = position.x - PillarPositon.x;
 			if (PPdistance <= 5)
 			{
-				moveStop = 0.0f;//移動の停止
-				position.x = -80;
+				position.x = PillarPositon.x;
 				position.z = 1;
+				moveStop = false;//移動の停止
 				transComp->SetRotation(XM_PI, 0.0f, XM_PI);//プレイヤーの向きを前方に固定
 				speed = 0;
 				m_Event = true;
@@ -188,7 +188,7 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
-				moveStop = true;//移動停止解除
+				//moveStop = true;//移動停止解除
 			}
 		}
 		//コントローラチェックして入力があればコマンド呼び出し
@@ -221,35 +221,6 @@ namespace basecross {
 		}
 	}
 
-	//プレイヤーがゴールにたどり着いたら
-	void Player::OnAttack() 
-	{
-		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		auto now = ptrDraw->UpdateAnimation(elapsedTime);
-
-		auto action = ptrDraw->GetCurrentAnimation();
-
-		if (action == L"ActionPull") {
-
-			if (ptrDraw->IsTargetAnimeEnd()) {
-				//ActionPullのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
-				ptrDraw->ChangeCurrentAnimation(L"ActionPush");
-				auto ptrXA = App::GetApp()->GetXAudio2Manager();
-				//サウンドの再生
-				ptrXA->Start(L"Hammer", 0, 0.0f);
-
-				moveStop = false;//移動の停止
-			}
-		}
-		else {
-			if (now) {
-				ptrDraw->ChangeCurrentAnimation(L"Default");
-				auto ptrXA = App::GetApp()->GetXAudio2Manager();
-				ptrXA->Stop(m_BGM);
-			}
-		}
-	}
 
 	//プレイヤーがゴールにたどり着いたら
 	void Player::OnUpdate2() {
@@ -317,7 +288,7 @@ namespace basecross {
 				auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 				auto vec = group->GetGroupVector();
 				ptrXA->Start(L"Hammer", 0, 0.5f);
-				moveStop = 1.0f;//移動停止解除
+				//moveStop = 1.0f;//移動停止解除
 
 				//壁の破壊処理
 				for (auto& v : vec) {
@@ -414,9 +385,10 @@ namespace basecross {
 					auto shPtr2 = v2.lock();
 					Vec3 ret2;
 					auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
-					auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
+					
 					if (ptrPillar) {
 						auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
+						auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
 						auto Falling1 = ptrFallingRock->GetFalling();
 						if (/*近づいたら*/
 							HitTest::SPHERE_OBB(playerSp, PillarObb, ret2)) {
@@ -441,7 +413,7 @@ namespace basecross {
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.5f);
-				moveStop = true;//移動停止解除
+				//moveStop = true;//移動停止解除
 			}
 		}
 		else {
@@ -450,12 +422,6 @@ namespace basecross {
 				ptrXA->Stop(m_BGM);
 
 				moveStop = true;//移動停止解除
-			}
-		}
-
-		if (action == L"GameOver") {
-			if (now) {
-				//PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
 	}

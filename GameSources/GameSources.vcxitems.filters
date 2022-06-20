@@ -14,7 +14,7 @@
       <Filter>FadeOut</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingRock.cpp">
-      <Filter>FallingRock</Filter>
+      <Filter>StageObject\FallingRock</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GageSprite.cpp">
       <Filter>Gage</Filter>
@@ -77,7 +77,7 @@
       <Filter>StageObject\Obstacle</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp">
-      <Filter>Pillar</Filter>
+      <Filter>StageObject\Pillar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
       <Filter>Player</Filter>
@@ -130,7 +130,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -146,7 +145,7 @@
       <Filter>FadeOut</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingRock.h">
-      <Filter>FallingRock</Filter>
+      <Filter>StageObject\FallingRock</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GageSprite.h">
       <Filter>Gage</Filter>
@@ -209,7 +208,7 @@
       <Filter>StageObject\Obstacle</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h">
-      <Filter>Pillar</Filter>
+      <Filter>StageObject\Pillar</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
       <Filter>Player</Filter>
@@ -262,7 +261,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Enemy">
@@ -276,9 +274,6 @@
     </Filter>
     <Filter Include="FadeOut">
       <UniqueIdentifier>{467b1e41-182a-46cc-8f28-677a345b620b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FallingRock">
-      <UniqueIdentifier>{3383889e-e4f3-4456-860c-252595c44742}</UniqueIdentifier>
     </Filter>
     <Filter Include="Gage">
       <UniqueIdentifier>{c166d6fe-a584-4d4b-acaa-bef6d60326d8}</UniqueIdentifier>
@@ -307,9 +302,6 @@
     <Filter Include="Time">
       <UniqueIdentifier>{833105d0-25b2-4915-b715-53356f09d7cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pillar">
-      <UniqueIdentifier>{40f1020d-8c74-4bb6-acd8-364677eae154}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{6416975e-65fc-4b77-9246-f2d22ae2ceaa}</UniqueIdentifier>
     </Filter>
@@ -333,6 +325,12 @@
     </Filter>
     <Filter Include="Other">
       <UniqueIdentifier>{de38a79d-5a6d-4130-9c5a-e96b2efd9c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Pillar">
+      <UniqueIdentifier>{40f1020d-8c74-4bb6-acd8-364677eae154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\FallingRock">
+      <UniqueIdentifier>{3383889e-e4f3-4456-860c-252595c44742}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
