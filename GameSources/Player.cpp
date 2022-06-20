@@ -51,7 +51,7 @@ namespace basecross {
 		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 10, true, 15.0f);
-		ptrDraw->AddAnimation(L"Move", 10, 30, true, 50.0f);
+		ptrDraw->AddAnimation(L"Move", 10, 30, true, 40.0f);
 		ptrDraw->AddAnimation(L"Action", 40, 35, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
@@ -247,8 +247,6 @@ namespace basecross {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
-
-				moveStop = true;//ˆÚ“®’âŽ~‰ðœ
 			}
 		}
 	}
