@@ -16,7 +16,7 @@ namespace basecross {
 
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(0.5f, 0.5f, 0.5f);
+		ptrTrans->SetScale(0.4f, 0.4f, 0.4f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 		itemCount = 0;
@@ -52,11 +52,11 @@ namespace basecross {
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->AddAnimation(L"Default", 0, 10, true, 15.0f);
 		ptrDraw->AddAnimation(L"Move", 10, 30, true, 40.0f);
-		ptrDraw->AddAnimation(L"Action", 40, 35, false, 35.0f);
+		ptrDraw->AddAnimation(L"Action", 40, 30, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
-		ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
-		ptrDraw->AddAnimation(L"GameOver", 75, 24, false, 3.0f);
+		//ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
+		ptrDraw->AddAnimation(L"GameOver", 70, 20, false, 17.0f);
 		//ptrDraw->AddAnimation(L"GameOverFirst", 70, 10, false, 15.0f);
 		//ptrDraw->AddAnimation(L"GameOverLast", 80, 14, false, 10.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
