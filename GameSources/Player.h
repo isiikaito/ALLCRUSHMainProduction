@@ -143,6 +143,16 @@ namespace basecross{
 		void OnPushDOWN() {}
 		//Xボタン
 		void OnPushX();
+		//壁を壊す処理
+		void BreakWall();
+		//柱を壊す処理
+		void BreakPillar();
+		//障害物を壊す処理
+		void BreakObstacle();
+		//プレイヤーとボスとの距離
+		void Enemydistance();
+		//柱との距離
+		void Pillardistance();
 		//敵の攻撃(/)にぶつかったとき
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
