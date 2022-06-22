@@ -200,32 +200,10 @@ namespace basecross {
 		}
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
-		//moveStop = false;
-	}
-	
-
-	//Aボタン
-	void Player::OnPushA() 
-	{
-		//ハンマーを振るアニメーション
-		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		auto action = ptrDraw->GetCurrentAnimation();
-
-		if (action != L"ActionPull") {
-			ptrDraw->ChangeCurrentAnimation(L"ActionPull");
-
-			auto ptrXA = App::GetApp()->GetXAudio2Manager();
-			ptrXA->Stop(m_BGM);//bgm(足音の停止)
-
-			moveStop = false;//移動の停止
-		}
-	}
+		
 
 
-	//プレイヤーがゴールにたどり着いたら
-	void Player::OnUpdate2() {
-
-		float elapsedTime = App::GetApp()->GetElapsedTime();
+		
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		//moveStop = false;
@@ -272,9 +250,7 @@ namespace basecross {
 
 			}
 		}
-		//ゲームオーバーテロップ
-		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		//float elapsedTime = App::GetApp()->GetElapsedTime();
+		
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
 		auto action = ptrDraw->GetCurrentAnimation();
 
@@ -385,7 +361,7 @@ namespace basecross {
 					auto shPtr2 = v2.lock();
 					Vec3 ret2;
 					auto ptrPillar = dynamic_pointer_cast<Pillar>(shPtr2);
-					
+
 					if (ptrPillar) {
 						auto PillarObb = ptrPillar->GetComponent<CollisionObb>()->GetObb();
 						auto ptrFallingRock = GetStage()->GetSharedGameObject<FallingRock>(L"FallingRock");
@@ -427,14 +403,35 @@ namespace basecross {
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-      auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
+		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
 		}
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
-				SetGameState(GameState::GameExit);
+			SetGameState(GameState::GameExit);
 		}
 	}
+	
+
+	//Aボタン
+	void Player::OnPushA() 
+	{
+		//ハンマーを振るアニメーション
+		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
+		auto action = ptrDraw->GetCurrentAnimation();
+
+		if (action != L"ActionPull") {
+			ptrDraw->ChangeCurrentAnimation(L"ActionPull");
+
+			auto ptrXA = App::GetApp()->GetXAudio2Manager();
+			ptrXA->Stop(m_BGM);//bgm(足音の停止)
+
+			moveStop = false;//移動の停止
+		}
+	}
+
+
+	
 	void Player::OnPushY() {
 		auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
 		auto PowerUpSound = App::GetApp()->GetXAudio2Manager();

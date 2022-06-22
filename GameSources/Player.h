@@ -41,29 +41,17 @@ namespace basecross{
 		int Power;                //パワーアップがあるかないか
 		int Gageflash;            //パワーアップを使ったかどうか
 		GameState m_State;		  //ゲームオーバー用のステート
-		float m_TelopTime;	// テロップ
-		bool m_Event;
+		bool m_Event;             //柱のイベントを行うかどうか
+		float m_TelopTime;	      // テロップ
+		float m_Telop2Time;       // テロップ2	
+		float m_Telop3Time;       // テロップ3
+		float m_Telop4Time;       // テロップ4
 
-		// テロップ2
-		
-		float m_Telop2Time;
-
-		// テロップ3
-		/*void CreateTelop3();*/
-		float m_Telop3Time;
-
-		// テロップ4
-		/*void CreateTelop4();*/
-		float m_Telop4Time;
-
-		//ゲームオーバーテロップ
-		//void CreateGMOTelop();
-		//float m_GMOTelopTime;
 
 		/*Vec3 GetMoveVector() const;*/
 
 		InputHandler<Player> m_InputHandler;
-		//void MovePlayer();
+		
 		InputHandler2<Player> m_InputHandler2;
 		shared_ptr<SoundItem> m_BGM;
 		void OnDestroy();
@@ -159,7 +147,7 @@ namespace basecross{
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
-		void OnUpdate2() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
+		
 		//柱カウント
 		int GetPillarCount()const {
 			return PillarCount;
@@ -209,7 +197,7 @@ namespace basecross{
 		{
 			m_Event = m_Event;
 		}
-
+		//
 		int GetGameOver()const {
 			return GameOver;
 		}
