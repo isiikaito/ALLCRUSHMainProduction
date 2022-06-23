@@ -32,6 +32,9 @@ namespace basecross {
 		strTexture = dataDir + L"GameOver.jpg";
 		App::GetApp()->RegisterTexture(L"GAMEOVER_TX", strTexture);
 
+		strTexture = dataDir + L"PushButtonX.png";
+		App::GetApp()->RegisterTexture(L"PushButtonX_TX", strTexture);
+
 		strTexture = dataDir + L"flee.png";
 		App::GetApp()->RegisterTexture(L"FLEE_TX", strTexture);
 

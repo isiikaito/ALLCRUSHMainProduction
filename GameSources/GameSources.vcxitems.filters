@@ -130,6 +130,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OnPushButtonXTelop.cpp">
+      <Filter>GameOver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -260,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PushButtonXTelop.h">
+      <Filter>GameOver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

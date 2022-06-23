@@ -599,6 +599,8 @@ namespace basecross {
 			{
 				AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX", true,
 					Vec2(500.0f, 500.0f), Vec3(0.0f, 0.0f, 0.0f));
+				AddGameObject<PushButtonXTelop>(L"PushButtonX_TX", true,
+					Vec2(500.0f, 500.0f), Vec3(0.0f, -250.0f, 0.0f));
 				ptrPlayer->SetGameState(GameState::ChangeStage);
 			}
 			break;
