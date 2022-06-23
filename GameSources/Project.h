@@ -58,3 +58,4 @@
 #include "Telop3.h"
 #include "Telop4.h"
 #include "GameOverTelop.h"
+#include "PushButtonXTelop.h"
