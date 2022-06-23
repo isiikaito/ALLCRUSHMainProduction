@@ -143,6 +143,8 @@ namespace basecross{
 		void OnPushDOWN() {}
 		//Xボタン
 		void OnPushX();
+		//テロップを出す
+		void TelopManager();
 		//壁を壊す処理
 		void BreakWall();
 		//柱を壊す処理

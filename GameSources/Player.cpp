@@ -364,56 +364,8 @@ namespace basecross {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		
-
-
-		
-		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<Player>());
 		//moveStop = false;
 		auto ptrXA = App::GetApp()->GetXAudio2Manager();
-		auto ptrTrans = GetComponent<Transform>();
-		Vec3 pos = ptrTrans->GetPosition();
-		if (pos.x < -52.0f) {
-			auto ptrStage1 = GetStage()->GetSharedGameObject<Telop>(L"Telop");
-			ptrStage1->SetDrawActive(true);
-			// 時間の変数に足す
-			m_TelopTime += elapsedTime;
-			if (m_TelopTime >= 2.0f)
-			{
-				// 1秒後に表示がオフになる
-				ptrStage1->SetDrawActive(false);
-
-			}
-		}
-
-		// 出口テロップ
-		if (pos.x < -83.0f) {
-			auto ptrStage3 = GetStage()->GetSharedGameObject<Telop3>(L"Telop3");
-			ptrStage3->SetDrawActive(true);
-			// 時間の変数に足す
-			m_Telop3Time += elapsedTime;
-			if (m_Telop3Time >= 2.0f)
-			{
-				// 1秒後に表示がオフになる
-				ptrStage3->SetDrawActive(false);
-
-			}
-		}
-
-		// 壁を壊せ！！テロップ
-		if (pos.x < 22.0f) {
-			auto ptrStage4 = GetStage()->GetSharedGameObject<Telop4>(L"Telop4");
-			ptrStage4->SetDrawActive(true);
-			// 時間の変数に足す
-			m_Telop4Time += elapsedTime;
-			if (m_Telop4Time >= 2.0f)
-			{
-				// 1秒後に表示がオフになる
-				ptrStage4->SetDrawActive(false);
-
-			}
-		}
-		
 		auto now = ptrDraw->UpdateAnimation(elapsedTime);
 		auto action = ptrDraw->GetCurrentAnimation();
 
@@ -450,6 +402,7 @@ namespace basecross {
 				moveStop = true;//移動停止解除
 			}
 		}
+		TelopManager();
 	}
 	//プレイヤーがEnemyに当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
@@ -522,7 +475,55 @@ namespace basecross {
 			PostEvent(0.0f, GetThis<Player>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 		}
 	}
+	void Player::TelopManager() {
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<Player>());
 
+		if (pos.x < -52.0f) {
+			auto ptrStage1 = GetStage()->GetSharedGameObject<Telop>(L"Telop");
+			ptrStage1->SetDrawActive(true);
+			// 時間の変数に足す
+			m_TelopTime += elapsedTime;
+			if (m_TelopTime >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage1->SetDrawActive(false);
+
+			}
+		}
+
+		// 出口テロップ
+		if (pos.x < -83.0f) {
+			auto ptrStage3 = GetStage()->GetSharedGameObject<Telop3>(L"Telop3");
+			ptrStage3->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop3Time += elapsedTime;
+			if (m_Telop3Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage3->SetDrawActive(false);
+
+			}
+		}
+
+		// 壁を壊せ！！テロップ
+		if (pos.x < 22.0f) {
+			auto ptrStage4 = GetStage()->GetSharedGameObject<Telop4>(L"Telop4");
+			ptrStage4->SetDrawActive(true);
+			// 時間の変数に足す
+			m_Telop4Time += elapsedTime;
+			if (m_Telop4Time >= 2.0f)
+			{
+				// 1秒後に表示がオフになる
+				ptrStage4->SetDrawActive(false);
+
+			}
+		}
+
+	}
 	void Player::OnDestroy() {
 		//BGMのストップ
 		auto PtrXA = App::GetApp()->GetXAudio2Manager();
