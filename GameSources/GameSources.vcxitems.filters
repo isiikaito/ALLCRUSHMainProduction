@@ -85,12 +85,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp">
-      <Filter>StageObject</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp">
-      <Filter>StageObject</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Telop.cpp">
       <Filter>Telop</Filter>
     </ClCompile>
@@ -129,6 +123,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageWall.cpp">
+      <Filter>StageObject\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageFloor.cpp">
+      <Filter>StageObject\Floor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,12 +216,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h">
-      <Filter>StageObject</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h">
-      <Filter>StageObject</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Telop.h">
       <Filter>Telop</Filter>
     </ClInclude>
@@ -260,6 +254,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageWall.h">
+      <Filter>StageObject\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageFloor.h">
+      <Filter>StageObject\Floor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +331,12 @@
     </Filter>
     <Filter Include="StageObject\FallingRock">
       <UniqueIdentifier>{3383889e-e4f3-4456-860c-252595c44742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Wall">
+      <UniqueIdentifier>{5b6b9dac-c0b3-4722-af9b-99962c4cafbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Floor">
+      <UniqueIdentifier>{cdd94ed3-7f88-48af-8bc9-987ec902a465}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
