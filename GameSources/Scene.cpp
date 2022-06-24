@@ -103,7 +103,7 @@ namespace basecross {
 		App::GetApp()->RegisterResource(L"IWA_MESH", staticModelMesh7);
 
 		//‰ó‚·•ÇMaya“Ç‚Ýž‚Ý
-		auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"WallHPMax.bmf");
+		auto staticModelMesh8 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall.bmf");
 		App::GetApp()->RegisterResource(L"UNBREAKWALL_MESH", staticModelMesh8);
 
 
