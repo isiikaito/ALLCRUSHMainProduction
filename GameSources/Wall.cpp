@@ -32,10 +32,10 @@ namespace basecross {
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.09f, 0.095f, 0.3f),  //スケールkabe
+			Vec3(0.3f, 0.095f, 0.09f),//スケール
 			Vec3(0.0f, 5.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),     //回転
-			Vec3(-0.1f, -0.7f, 0.3f)    //ポジション
+			Vec3(0.0f, 0.0f, 0.0f),//回転
+			Vec3(-0.4f, -0.7f, 0.0f)//ポジション
 		);
 
 		
@@ -94,36 +94,36 @@ namespace basecross {
 		{
 			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 			spanMat.affineTransformation(
-				Vec3(1.0f, 0.3f, 0.1f),//Scale
-				Vec3(0.0f, 5.0f, 0.0f),//Position
+				Vec3(0.3f, 0.095f, 0.09f),//スケール
+				Vec3(0.0f, 5.0f, 0.0f),
 				Vec3(0.0f, 0.0f, 0.0f),//回転
-				Vec3(-0.5f, -0.6f, 0.0f)//Position
+				Vec3(-0.4f, -0.7f, 0.0f)//ポジション
 			);
-			ptrDraw->SetMeshResource(L"DAMAGEWALL2_MESH");
+			ptrDraw->SetMeshResource(L"DAMAGEWALL1_MESH");
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
 			
 		}
-		else if (WallHP <= 1)
+		else if (WallHP >=2)
 		{
 		
 			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 			spanMat.affineTransformation(
-				Vec3(1.0f, 0.1f, 0.1f),//Scale
-				Vec3(0.0f, 5.0f, 0.0f),//Position
-				Vec3(0.0f,0.0f, 0.0f),//回転
-				Vec3(1.0f, -0.6f, 0.0f)//Position
+				Vec3(0.3f, 0.095f, 0.09f),//スケール
+				Vec3(0.0f, 5.0f, 0.0f),
+				Vec3(0.0f, 0.0f, 0.0f),//回転
+				Vec3(-0.4f, -0.7f, 0.0f)//ポジション
 			);
-			ptrDraw->SetMeshResource(L"DAMAGEWALL1_MESH");
+			ptrDraw->SetMeshResource(L"DAMAGEWALL2_MESH");
 			ptrDraw->SetMeshToTransformMatrix(spanMat);
 		}
 		else if (WallHP >= 1)
 		{
 			Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 			spanMat.affineTransformation(
-				Vec3(1.0f, 0.1f, 0.1f),//Scale
-				Vec3(0.0f, 5.0f, 0.0f),//Position
+				Vec3(0.3f, 0.095f, 0.09f),//スケール
+				Vec3(0.0f, 5.0f, 0.0f),
 				Vec3(0.0f, 0.0f, 0.0f),//回転
-				Vec3(-0.2f, -0.6f, 0.0f)//Position
+				Vec3(-0.4f, -0.7f, 0.0f)//ポジション
 			);
 			ptrDraw->SetMeshResource(L"DAMAGEWALL3_MESH");
 		
