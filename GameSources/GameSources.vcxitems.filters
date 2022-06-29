@@ -130,6 +130,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
       <Filter>Stage\GameOver\GameOverTelop</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
@@ -261,6 +262,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
       <Filter>Stage\GameOver\GameOverTelop</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
