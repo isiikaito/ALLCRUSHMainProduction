@@ -235,10 +235,6 @@ namespace basecross {
 			ResetActiveStage<MyClearStage>();
 		}
 
-		else if (event->m_MsgStr == L"ToGameOverStage") {
-			//ゲームオーバーステージの設定
-			ResetActiveStage<GameOverStage>();
-		}
 		
 		else if (event->m_MsgStr == L"ToMovieStage") {
 			m_MovieActive = true;

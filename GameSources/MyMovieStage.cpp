@@ -23,27 +23,19 @@ namespace basecross {
 	}
 
 	void MyMovieStage::OnUpdate() {
-		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
+		
 		auto elps = App::GetApp()->GetElapsedTime();
-		MovieTime += elps;
-		if (MovieTime >= 43.6f) {
+		m_Time += elps;
+		//動画時間の設定
+		if (m_Time >= MovieTime) {
 			SetAutoRepeat(false);
+			//シーンの切り替え
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 			return;
 		}
 
 	}
-	//Aボタン
-	void MyMovieStage::OnPushA() {
-		//何もしない
-	}
-	//Bボタン
-	void MyMovieStage::OnPushB() {
-		//ゲームステージに移行
-		//PostEvent(0.0f, GetThis<ObjectInterface>(),
-		//	App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-	}
+	
 }
 //end basecross

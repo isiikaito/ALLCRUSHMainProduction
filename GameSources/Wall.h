@@ -8,21 +8,15 @@
 
 namespace basecross {
 
-	//--------------------------------------------------------------------------------------
-	///	物理計算する固定のボックス
-	//--------------------------------------------------------------------------------------
 	class Wall : public GameObject {
 		
-		Vec3 m_Scale;
-		Vec3 m_Rotation;
-		Vec3 m_Position;
-		int m_HP;
+		Vec3 m_Scale;     //大きさ
+		Vec3 m_Rotation;  //回転
+		Vec3 m_Position;  //位置
+		int m_HP;         //壁のHP
 
 		//入力ハンドラー
 		InputHandler2<Wall> m_InputHandler;
-
-		//HP
-		//int HP;
 
 	public:
 		//構築と破棄
@@ -32,28 +26,25 @@ namespace basecross {
 			const Vec3& Position,
 			const int HP
 		);
-		//アクセサ
-		
 		
 		//初期化
 		virtual void OnCreate() override;
-		//衝突判定
-		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
 
-		//コントローラーのボタン判定X
-		void OnPushX();
-		void OnPushA() {}
-		void OnPushUP() {}
-		void OnPushDOWN() {}
-		void OnPushY(){}
-		void OnPushB();
+		
+		void OnPushX(){}     //コントローラーのボタン判定X
+		void OnPushA() {}    //コントローラーのボタン判定A
+		void OnPushUP() {}   //コントローラーのボタン判定十字キー上
+		void OnPushDOWN() {} //コントローラーのボタン判定十字キー下
+		void OnPushY(){}     //コントローラーのボタン判定Y
+		void OnPushB(){}     //コントローラーのボタン判定B
 
 		void OnUpdate();
 		public:
-			
+			//HPの取得
 			int GetHP()const {
 				return m_HP;
 			}
+			//HPの管理
 			void SetHP(int HP) {
 				m_HP = HP;
 			}

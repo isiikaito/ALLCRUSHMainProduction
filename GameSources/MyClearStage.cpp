@@ -23,12 +23,12 @@ namespace basecross {
 	}
 
 	void MyClearStage::OnUpdate() {
-		//コントローラチェックして入力があればコマンド呼び出し
-		//m_InputHandler.PushHandle(GetThis<MyClearStage>());
 		auto elps = App::GetApp()->GetElapsedTime();
-		MovieTime += elps;
-		if (MovieTime >= 21.0f) {
+		m_Time += elps;
+		//動画の時間調整
+		if ( m_Time>= MovieTime) {
 			SetAutoRepeat(true);
+			//シーンの切り替え
 			PostEvent(0.0f, GetThis<ObjectInterface>(),
 				App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 			return;
@@ -37,15 +37,6 @@ namespace basecross {
 	}
 
 
-	//Aボタン
-	void MyClearStage::OnPushA() {
-		//何もしない
-	}
-	//Bボタン
-	void MyClearStage::OnPushB() {
-		//ゲームステージに移行
-		//PostEvent(0.0f, GetThis<ObjectInterface>(),
-		//	App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-	}
+	
 }
 //end basecross

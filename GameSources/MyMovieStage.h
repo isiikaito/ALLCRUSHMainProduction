@@ -14,18 +14,17 @@ namespace basecross {
 	class MyMovieStage : public MovieStage {
 		//入力ハンドラー
 		InputHandler<MyMovieStage> m_InputHandler;
-		float MovieTime = 0.0f;
+		float MovieTime;
+		float m_Time;
 	public:
 		//構築と破棄
-		MyMovieStage() :MovieStage() {}
+		MyMovieStage() :MovieStage(),
+		MovieTime(43.6f),
+		m_Time(0.0f){}
 		virtual ~MyMovieStage() {}
 		//初期化
 		virtual void OnCreate()override;
 		virtual void OnUpdate() override;
-		//Aボタン
-		void OnPushA();
-		//Bボタン
-		void OnPushB();
 	};
 }
 //end namespace basecross

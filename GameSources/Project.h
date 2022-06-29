@@ -19,7 +19,6 @@
 #include "MyTime.h"
 #include "stageWall.h"
 #include "StageFloor.h"
-#include "GameOverStage.h"
 #include "GameOverSprite.h"
 
 #include "MenuSprite1.h"

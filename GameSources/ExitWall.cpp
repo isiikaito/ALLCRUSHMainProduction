@@ -18,26 +18,26 @@ namespace basecross {
 
 	//初期化
 	void ExitWall::OnCreate() {
-		//衝突判定エリアを決める
-		//初期位置などの設定
+		//初期位置の設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_Scale);
 		ptrTrans->SetRotation(m_Rotation);
 		ptrTrans->SetPosition(m_Position);
 
-		//モデルと衝突判定を合わせなければならない
 
-		//モデルの見た目を決める
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		//モデルの見た目と衝突判定の大きさを合わせる
+        // モデルとトランスフォームの間の差分行列
+		Mat4x4 spanMat; 
 		spanMat.affineTransformation(
-			Vec3(1.0f, 0.15f, 0.08),//スケールkabe
+			Vec3(1.0f, 0.15f, 0.08),//大きさ
 			Vec3(0.0f, 5.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.8f, 0.0f)//ポジションkabe
+			Vec3(0.0f, 0.0f, 0.0f), //回転
+			Vec3(0.0f, -0.8f, 0.0f) //位置
 		);
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
+
 		//影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"EXITWALL_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
@@ -45,14 +45,17 @@ namespace basecross {
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 
+		//メッシュの設定
 		ptrDraw->SetMeshResource(L"EXITWALL_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
 		//RigidbodyBoxの追加
 		PsBoxParam param(ptrTrans->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		
 		//キューブ型の当たり判定
 		auto Coll = AddComponent<CollisionObb>();
+
 		//他のオブジェクトの影響を受けない
 		Coll->SetFixed(true);
 

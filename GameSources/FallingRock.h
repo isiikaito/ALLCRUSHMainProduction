@@ -12,7 +12,7 @@ namespace basecross {
 		Vec3 m_Scale;    //‘å‚«‚³
 		Vec3 m_Rotation; //‰ñ“]
 		Vec3 m_Position; //ˆÊ’u
-		int m_Falling;   //’Œ‚ª‰ó‚ê‚½‚©‚Ç‚¤‚©
+		int m_Falling;   //’Œ‚ª”j‰ó‚³‚ê‚½‚©‚Ç‚¤‚©
 	public:
 		//\’z‚Æ”jŠü
 		FallingRock(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position);
@@ -22,9 +22,13 @@ namespace basecross {
 		//‰Šú‰»
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		//’Œ‚ª”j‰ó‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìæ“¾
 		int GetFalling()const {
 			return m_Falling;
 		}
+
+		//’Œ‚ª”j‰ó‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ÌŠÇ—
 		void SetFalling(int Falling) {
 			m_Falling = Falling;
 		}

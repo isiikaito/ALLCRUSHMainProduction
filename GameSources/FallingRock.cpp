@@ -19,8 +19,7 @@ namespace basecross {
 
 	//初期化
 	void FallingRock::OnCreate() {
-		//衝突判定エリアを決める
-		//初期位置などの設定
+		//初期位置の設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_Scale);
 		ptrTrans->SetRotation(m_Rotation);
@@ -31,32 +30,34 @@ namespace basecross {
 		//モデルの見た目を決める
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(0.2f, 0.2f, 0.2f),//スケール
+			Vec3(0.2f, 0.2f, 0.2f),//大きさ
 			Vec3(0.0f, 5.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.5f, 0.5f)//ポジション
+			Vec3(0.0f, -0.5f, 0.5f)//位置
 		);
 
 		//オブジェクトのグループを得る
 		auto group3 = GetStage()->GetSharedObjectGroup(L"FallingRock_Group1");
+
 		//グループに自分自身を追加
 		group3->IntoGroup(GetThis < FallingRock > ());
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
+
 		//影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"IWA_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-		//メッシュ
+
+		//メッシュの設定
 		ptrDraw->SetMeshResource(L"IWA_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		
 		//キューブ型の当たり判定
 		auto Coll = AddComponent<CollisionObb>();
-		
 		
 		//ほかのオブジェクトの影響を受けない
 		Coll->SetFixed(true);
@@ -73,9 +74,5 @@ namespace basecross {
 			//重力をつける
 			auto ptrGra = AddComponent<Gravity>();
 		}
-
 	}
-
-	
-		
 }

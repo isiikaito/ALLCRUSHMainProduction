@@ -4,9 +4,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
-      <Filter>Stage\GameOver</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuStage.cpp">
       <Filter>Stage\Menu</Filter>
     </ClCompile>
@@ -35,9 +32,6 @@
       <Filter>FageOut</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
-      <Filter>Stage\GameOver\GameOverSprite</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
@@ -133,13 +127,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
+      <Filter>Stage\GameOver\GameOverTelop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h">
-      <Filter>Stage\GameOver</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuStage.h">
       <Filter>Stage\Menu</Filter>
@@ -169,9 +163,6 @@
       <Filter>FageOut</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
-      <Filter>Stage\GameOver\GameOverSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
@@ -267,6 +258,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
+      <Filter>Stage\GameOver\GameOverTelop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -358,6 +352,9 @@
     </Filter>
     <Filter Include="Other">
       <UniqueIdentifier>{4889d8cd-6148-4332-9db1-ee9143f32d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\GameOver\GameOverTelop">
+      <UniqueIdentifier>{08132979-383e-4c7f-862a-10c2844f7bf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
