@@ -11,44 +11,46 @@ namespace basecross {
 	//	メニューステージクラス
 	//--------------------------------------------------------------------------------------
 	class MenuStage : public Stage {
-		//ビューの作成
-		void CreateViewLight();
-		//Stage1スプライト作成
-		void CreateMenuSprite1();
-		//Stage2プライト作成
-		void CreateMenuSprite2();
 		
-		//Bボタンを押しているか
-		bool m_OnPushB = true;
-		//入力ハンドラー
-		InputHandler2<MenuStage> m_InputHandler;
+		void CreateViewLight();  //ビューの作成
+		void CreateMenuSprite1();//Stage1スプライト作成
+		void CreateMenuSprite2();//Stage2プライト作成
 
-		float m_idleTime;
-		int StageNum ;
-		bool  OnPushBCheck = false;
-		bool  OnPushBCheck1 = false;
+       float m_idleTime;   //時間
+		bool m_OnPushB;     //Bボタンを押しているか
+		bool OnPushBCheck; //Bボタンの判定
+		bool OnPushBCheck1;//Bボタンの判定
+		int m_UPlimit;      //ステージ選択の上限(上)
+		int m_DOWNlimit;    //ステージ上限(下)
+        int StageNum ;      //ステージの番号
 
+InputHandler2<MenuStage> m_InputHandler;//入力ハンドラー
 
 	public:
 		
 		//構築と破棄
-		MenuStage() :Stage() , m_idleTime(0.0f),StageNum(1){}
+		MenuStage() :Stage() ,
+			OnPushBCheck(false),
+			OnPushBCheck1(false),
+			m_OnPushB(true),
+			m_idleTime(0.0f),
+			StageNum(1),
+		    m_UPlimit(1),
+		    m_DOWNlimit(2){}
+			
 		virtual ~MenuStage() {}
-		//初期化
-		virtual void OnCreate()override;
-		//更新
-		virtual void OnUpdate()override;
-		//ステージ選択
-		void SelectStage();
-		//入力イベントに応答する関数
-		void OnPushB();
-		void OnPushX() {}
-		//Yボタン
-		void OnPushY() {}
-		//十字キー上
-		void OnPushUP();
-		//十字キー下
-		void OnPushDOWN();
+		
+		virtual void OnCreate()override;//初期化
+		virtual void OnUpdate()override;//更新
+		void StageSprite1();            //ステージスプライト1の処理
+		void StageSprite2();            //ステージスプライト2の処理
+		void SelectStage();             //ステージ選択
+		void OnPushX() {}               //コントローラーのボタン判定X
+		void OnPushA() {}               //コントローラーのボタン判定A
+		void OnPushUP();                //コントローラーのボタン判定十字キー上
+		void OnPushDOWN();              //コントローラーのボタン判定十字キー下
+		void OnPushY() {}               //コントローラーのボタン判定Y
+		void OnPushB();                 //コントローラーのボタン判定B
 	};
 }
 //end namespace basecross

@@ -49,8 +49,9 @@ namespace basecross {
 	}
 
 	
-
+	//壊れる壁の作成
 	void GameStage::CreateWall() {
+		//グループの取得
 		auto group = CreateSharedObjectGroup(L"Wall_Group");
 		//CSVの行単位の配列
 		vector<wstring>LineVec;
@@ -79,6 +80,7 @@ namespace basecross {
 				(float)_wtof(Tokens[8].c_str()),
 				(float)_wtof(Tokens[9].c_str())
 			);
+			//HPの取得
 			int HP(
 				(int)_wtof(Tokens[10].c_str())
 				);
@@ -86,12 +88,12 @@ namespace basecross {
 			AddGameObject<Wall>(Scale, Rot, Pos,HP);
 		}
 	}
-	//マヤの壁の作成
+	//ステージの壁の作成
 	void GameStage::CreateStageWall() {
-		//CSVの行単位の配列
-		vector<wstring>LineVec;
-		//0番目のカラムがL"stageObject"である行を抜き出す
-		m_CsvC.GetSelect(LineVec, 0, L"StageWall");
+    //CSVの行単位の配列
+	vector<wstring>LineVec;
+	//0番目のカラムがL"stageObject"である行を抜き出す
+	m_CsvC.GetSelect(LineVec, 0, L"StageWall");
 		for (auto& v : LineVec) {
 			//トークン（カラム）の配置
 			vector<wstring>Tokens;
@@ -403,13 +405,6 @@ namespace basecross {
 		//シェア配列にプレイヤーを追加
 		SetSharedGameObject(L"Player", PlayerPtr);
 	}
-	//敵の作成
-	void GameStage::CreateEnemy() {
-		////プレーヤーの作成
-		//auto EnemyPtr = AddGameObject<EnemyObject>();
-		////シェア配列にプレイヤーを追加
-		//SetSharedGameObject(L"Enemy", EnemyPtr);
-	}
 
 	// 逃げるテロップ
 	void GameStage::CreateTickerSprite()
@@ -476,11 +471,8 @@ namespace basecross {
 		try {
 			
 			auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
-			
-			
-			
-			//物理計算有効
-			SetPhysicsActive(true);
+
+			SetPhysicsActive(true);//物理計算有効
 			
 			// 「アプリ」オブジェクトのインスタンスを取得する（インスタンス：クラスの実態、オブジェクト指向のオブジェクトのこと）
 			auto& app = App::GetApp();
@@ -490,62 +482,36 @@ namespace basecross {
 			m_CsvC.SetFileName(DataDir + L"stage"+ Util::IntToWStr(Select)+L".csv");
 			m_CsvC.ReadCsv();
 
-			//ビューとライトの作成
-			CreateViewLight();
-
-			// プレイヤーオブジェクトをステージに追加する
-			//AddGameObject<Player>(); // 指定のゲームオブジェクトを生成してステージに追加し、そのポインタを返す
-			//エフェクトの作成
-			CreateMultiSpark();
-			CreateMultiSpark1();
-
-			//プレーヤーの作成
-			CreatePlayer();
-			//敵の作成
-			CreateEnemy();
-			//BGMの再生
-			BGM();
-
-			CreatePillar();
-			AddGameObject<EnemyObject>();
-		
-			//マヤでつくったステージの壁の追加
-			CreateStageWall(); 
-			//マヤで作った床の追加
-			CreateStageFloor();
-			//障害物１の追加
-			CreateObstacle1();
-			//落石
-			CreateFallingRock();
-			//マヤでつくった出口
-			CreateExitWall();
-			//タイムスプライト作成
-			CreateTime();
-			//壊れる壁の作成
-			CreateWall();
-			//アイテムスプライト
-			CreateMyitem1();
-			CreateXSprite();
-			CreateYSprite();
-			//ゲージスプライト
-			CreateMygage();
-			CreateGageSprite();
-			CreateGageSprite2();
-			CreateGageSprite3();
-			CreateGageWhite();
-
-
 			
-			
-			// 逃げるテロップ
-			CreateTickerSprite();
-			CreateTelop();
-			CreateTelop2();
-			CreateTelop3();
-			CreateTelop4();
-			//カメラマンの作成
-			CreateCameraman();
-			//CreateGMOTelop();
+			CreateViewLight();           //ビューとライトの作成
+			CreateMultiSpark();          //エフェクト0の作成
+			CreateMultiSpark1();         //エフェクト1の作成
+			CreatePlayer();              //プレーヤーの作成
+			BGM();                       //BGMの再生
+			CreatePillar();              //柱の作成
+			AddGameObject<EnemyObject>();//敵の作成
+			CreateStageWall();           //ステージの壁の追加	
+			CreateStageFloor();          //床の追加
+			CreateObstacle1();           //障害物１の追加
+			CreateFallingRock();         //落石
+			CreateExitWall();            //マヤでつくった出口
+			CreateTime();                //タイムスプライト作成
+			CreateWall();                //壊れる壁の作成
+			CreateMyitem1();             //アイテムスプライト
+			CreateXSprite();             //Xボタンのスプライトの作成
+			CreateYSprite();             //Yボタンのスプライトの作成
+			CreateMygage();              //ゲージの枠の作成
+			CreateGageSprite();          //ゲージのスプライト1の作成
+			CreateGageSprite2();         //ゲージのスプライト2の作成
+			CreateGageSprite3();         //ゲージのスプライト3の作成
+			CreateGageWhite();           //ゲージの背景の作成
+			CreateTickerSprite();        //テロップ0の作成
+			CreateTelop();               //テロップ1の作成
+			CreateTelop2();              //テロップ2の作成
+			CreateTelop3();              //テロップ3の作成
+			CreateTelop4();              //テロップ4の作成
+			CreateCameraman();           //カメラマンの作成
+
 		}
 		catch (...) {
 			throw;

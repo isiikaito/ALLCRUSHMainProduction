@@ -46,7 +46,6 @@ namespace basecross {
 	void CreateTelop2();      //テロップ2
 	void CreateTelop3();      //テロップ3
 	void CreateTelop4();      //テロップ4
-	void CreateEnemy();       //敵の作成
 	void CreatePlayer();      //プレイヤーの作成
 	void BGM();               //BGMの再生1
 	void OnDestroy();         //音楽を止める
