@@ -19,7 +19,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
       <Filter>Stage\Title</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
@@ -150,7 +150,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
       <Filter>Stage\Title</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">

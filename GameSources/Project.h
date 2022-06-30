@@ -40,7 +40,7 @@
 
 #include "MyCamera.h"
 
-#include "Character.h"
+#include "OpCamera.h"
 #include "Enemy.h"
 #include "Player.h"
 
