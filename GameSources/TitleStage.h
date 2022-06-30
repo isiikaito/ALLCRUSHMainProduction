@@ -14,29 +14,30 @@ namespace basecross {
 		//ビューの作成
 		void CreateViewLight();
 	
-		int SceneCountbakc;
-		bool  OnPushBCheck = false;
-		bool  OnPushBCheck1 = false;
-		bool m_OnPushB=true;
+		bool  OnPushBCheck; //Bボタンの判定1
+		bool  OnPushBCheck1;//Bボタンの判定2
+		bool m_OnPushB;     //Bボタンが押されたかどうか
 		//入力ハンドラー
 		InputHandler2<TitleStage> m_InputHandler;
 
 	public:
 		//構築と破棄
-		TitleStage() :Stage(),SceneCountbakc(0) {}
+		TitleStage() :Stage(),
+			OnPushBCheck(false),
+			OnPushBCheck1(false),
+			m_OnPushB(true)
+		{}
 		virtual ~TitleStage() {}
-		//初期化
-		virtual void OnCreate()override;
-		//更新
-		virtual void OnUpdate()override;
-		//入力イベントに応答する関数
-		void OnPushB();
-		void OnPushX(){}
-		void OnPushY(){}
-		void OnPushUP() {}
-		void OnPushDOWN() {}
 
-		
+
+		virtual void OnCreate()override;//初期化
+		virtual void OnUpdate()override;//更新
+		//入力イベントに応答する関数
+		void OnPushX() {}               //コントローラーのボタン判定X
+		void OnPushUP() {}              //コントローラーのボタン判定十字キー上
+		void OnPushDOWN(){}             //コントローラーのボタン判定十字キー下
+		void OnPushY() {}               //コントローラーのボタン判定Y
+		void OnPushB();                 //コントローラーのボタン判定B
 	};
 }
 //end namespace basecross

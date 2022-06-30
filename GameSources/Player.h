@@ -129,38 +129,26 @@ namespace basecross{
 			//m_manager1(nullptr), m_renderer1(nullptr), m_effect1(nullptr)
 		{
 		}
-		//virtual void OnDraw() override;
 
-		//Aボタン
-		void OnPushA();
-		//Bボタン
-		void OnPushB(){}
-		//Yボタン
-		void OnPushY();
-		//十字キー上
-		void OnPushUP() {}
-		//十字キー下
-		void OnPushDOWN() {}
-		//Xボタン
-		void OnPushX();
-		//テロップを出す
-		void TelopManager();
-		//壁を壊す処理
-		void BreakWall();
-		//柱を壊す処理
-		void BreakPillar();
-		//障害物を壊す処理
-		void BreakObstacle();
-		//プレイヤーとボスとの距離
-		void Enemydistance();
-		//柱との距離
-		void Pillardistance();
-		//敵の攻撃(/)にぶつかったとき
-		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);
+		void OnPushX();           //コントローラーのボタン判定X
+		void OnPushA();           //コントローラーのボタン判定A
+		void OnPushUP() {}        //コントローラーのボタン判定十字キー上
+		void OnPushDOWN(){}       //コントローラーのボタン判定十字キー下
+		void OnPushY();           //コントローラーのボタン判定Y
+		void OnPushB() {}         //コントローラーのボタン判定B
+		void TelopManager();      //テロップを出す
+		void BreakWall();         //壁を壊す処理
+		void BreakPillar();       //柱を壊す処理
+		void BreakObstacle();     //障害物を壊す処理
+		void Enemydistance();     //プレイヤーとボスとの距離
+		void Pillardistance();    //柱との距離
 		void OnCreate() override; // オブジェクトの初期化用関数（UnityのStart関数）
 		void OnUpdate() override; // オブジェクトのフレームごとの処理（UnityのUpdate関数）
+
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other);//敵の攻撃にぶつかったとき
 		
-		//柱カウント
+		
+		//柱が壊れているか判定する
 		int GetPillarCount()const {
 			return PillarCount;
 		}
@@ -184,7 +172,7 @@ namespace basecross{
 		{
 			Power = Power;
 		}
-		//パワーアップを使ったかどうか
+		//パワーアップを使ったかどうか判定する
 		int GetGageflash()const {
 			return Gageflash;
 		}
@@ -209,13 +197,14 @@ namespace basecross{
 		{
 			m_Event = m_Event;
 		}
-		//
+		//ゲームオーバー判定
 		int GetGameOver()const {
 			return GameOver;
 		}
 		void SetGameOver(int GameOver) {
 			GameOver = GameOver;
 		}
+		//ステージを切り替え
 		GameState GetGameState() {
 			return m_State;
 		}

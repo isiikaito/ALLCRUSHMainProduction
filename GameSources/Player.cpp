@@ -21,10 +21,8 @@ namespace basecross {
 		ptrTrans->SetPosition(40.0f, 0.25f, 0.0f);
 		itemCount = 0;
 
-
 		//CollisionSphere衝突判定を付ける
 		AddComponent<CollisionCapsule>();
-		
 		
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
@@ -36,6 +34,7 @@ namespace basecross {
 
 		//重力をつける
 		AddComponent<Gravity>();
+
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 
@@ -46,6 +45,7 @@ namespace basecross {
 		//描画コンポーネントの設定
 		auto ptrDraw = AddComponent<BcPNTnTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
+
 		//描画するメッシュを設定
 		ptrDraw->SetMeshResource(L"Object_WalkAnimation_MESH_WITH_TAN");
 		ptrDraw->SetNormalMapTextureResource(L"OBJECT_NORMAL_TX");
@@ -55,10 +55,7 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Action", 40, 30, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPull", 40, 20, false, 35.0f);
 		ptrDraw->AddAnimation(L"ActionPush", 60, 10, false, 35.0f);
-		//ptrDraw->AddAnimation(L"ActionEnd", 70, 5, false, 35.0f);
 		ptrDraw->AddAnimation(L"GameOver", 70, 20, false, 17.0f);
-		//ptrDraw->AddAnimation(L"GameOverFirst", 70, 10, false, 15.0f);
-		//ptrDraw->AddAnimation(L"GameOverLast", 80, 14, false, 10.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		//CreateEffect();
@@ -71,22 +68,23 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		SPHERE playerSp(position, 2.0f);
+
+		//壊れる壁のグループの取得
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
 		auto vec = group->GetGroupVector();
-		
-		//moveStop = 1.0f;//移動停止解除
 
 		//壁の破壊処理
 		for (auto& v : vec) {
+			//グループの１つを取り出す
 			auto shPtr = v.lock();
 			Vec3 ret;
+			//壊れる壁の取得
 			auto ptrWall = dynamic_pointer_cast<Wall>(shPtr);
 			if (ptrWall) {
-				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();
-				auto WallHP = ptrWall->GetHP();
-
-				if (/*近づいたら*/
-					HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
+				auto WallObb = ptrWall->GetComponent<CollisionObb>()->GetObb();//壊れる壁の衝突判定取得
+				auto WallHP = ptrWall->GetHP();                                //壊れる壁のHP取得
+                 /*近づいたら*/
+				if (HitTest::SPHERE_OBB(playerSp, WallObb, ret)) {
 					//壁との距離が2.0以下になった
 					auto ctrlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 					//パワーアップ時の処理

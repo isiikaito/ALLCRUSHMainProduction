@@ -42,55 +42,42 @@ namespace basecross {
 		CreateViewLight();
 		AddGameObject<TitleSprite>(L"MenuSelect_TX", false,
 			Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f));
-		//Stage1スプライト
-		CreateMenuSprite1();
-
+		CreateMenuSprite1();//Stage1スプライト
+		CreateMenuSprite2();//Stage2スプライト
+	}
 	
-		//Stage2スプライト
-		CreateMenuSprite2();
-	}void MenuStage::SelectStage()
+	void MenuStage::SelectStage()
 	{
+		//sceneの取得
 		auto scene = App::GetApp()->GetScene<Scene>();
+		//ステージ番号の取得
 		auto Select = scene->GetStageSelect();
+		//今選んでいるステージ番号を渡す
 		Select = StageNum;
 		scene->SetStageSelect(Select);
-		
-
 	}
+
 	//十字キー上
 	void MenuStage:: OnPushUP() {
 
 		StageNum--;
-		if (StageNum < 1)
+		if (StageNum < m_UPlimit)
 		{
-			StageNum = 1;
+			StageNum = m_UPlimit;
 		}
 	}
 	//十字キー下
 	void MenuStage::OnPushDOWN() {
 		StageNum++;
-		if (StageNum > 2)
+		if (StageNum > m_DOWNlimit)
 		{
-			StageNum = 2;
+			StageNum = m_DOWNlimit;
 		}
 	}
-	//更新
-	void MenuStage::OnUpdate() {
-		SelectStage();
-		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<MenuStage>());
-		auto& app = App::GetApp();
 
-		float delta = app->GetElapsedTime();
-
-		auto& device = app->GetInputDevice();
-		const auto& pad = device.GetControlerVec()[0];
-        //コントローラの取得
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-
-		//ステージ選択処理
-		
-		//menuSprite1を取得する
+	void MenuStage::StageSprite1()
+	{
+	    //menuSprite1を取得する
 		auto ptrStage1 = GetSharedGameObject<MenuSprite1>(L"MenuSprite1");
 		//elapsedTimeを取得することにより時間を使える
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -105,7 +92,7 @@ namespace basecross {
 		//時間を変数に足す
 		m_idleTime += elapsedTime;
 		//十字キーを利用してnumが０の時
-		 if (StageNum == 1)
+		 if (StageNum == m_UPlimit)
 		    {   //時間が1秒後に表示がオフになる
 				if (m_idleTime >= 1.0f)
 				  {
@@ -123,14 +110,18 @@ namespace basecross {
 		 //選択されてないときは表示されたまま
 		else{ ptrStage1->SetDrawActive(true); }
 
+	}
 
-		 //menuSprite1を取得する
+	//ステージスプライト２の処理
+	void MenuStage::StageSprite2()
+	{
+         //menuSprite1を取得する
 		 auto ptrStage2 = GetSharedGameObject<MenuSprite2>(L"MenuSprite2");
 		
 		 //時間を変数に足す
 		
 		 //十字キーを利用してnumが０の時
-		 if (StageNum == 2)
+		 if (StageNum == m_DOWNlimit)
 		 {   //時間が1秒後に表示がオフになる
 			 if (m_idleTime >= 1.0f)
 			 {
@@ -149,7 +140,22 @@ namespace basecross {
 		 else { ptrStage2->SetDrawActive(true); }
 				
 				
-				
+	}
+	//更新
+	void MenuStage::OnUpdate() {
+		SelectStage();
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<MenuStage>());
+		auto& app = App::GetApp();
+
+		float delta = app->GetElapsedTime();
+
+		auto& device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+        //コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		StageSprite1();
+		StageSprite2();		
 	}
 
 	
@@ -158,7 +164,6 @@ namespace basecross {
 		
 		wstring stagename[]
 		{
-			L"a",
 			L"ToMovieStage",
 			L"ToGameStage"
 		};
