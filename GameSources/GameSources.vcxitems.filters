@@ -19,9 +19,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
       <Filter>Stage\Title</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
@@ -130,6 +127,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
       <Filter>Stage\GameOver\GameOverTelop</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
@@ -149,9 +149,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
       <Filter>Stage\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
-      <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>Enemy</Filter>
@@ -260,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
       <Filter>Stage\GameOver\GameOverTelop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
