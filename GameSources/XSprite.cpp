@@ -31,18 +31,25 @@ namespace basecross {
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
+		//透明処理
 		SetAlphaActive(m_Trace);
+
+		//初期位置の設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_StartScale.x, m_StartScale.y, 1.0f);
 		ptrTrans->SetRotation(0, 0, 0);
 		ptrTrans->SetPosition(m_StartPos);
+
 		//頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PTSpriteDraw>(m_BackupVertices, indices);
 		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
+
 		//テクスチャの読み込み
 		ptrDraw->SetTextureResource(m_TextureKey);
+
 		//テクスチャの表示をオフにする
 		SetDrawActive(false);
+
 		//読み込みの設定をする
 		GetStage()->SetSharedGameObject(L"XSprite", GetThis<XSprite>());
 	}

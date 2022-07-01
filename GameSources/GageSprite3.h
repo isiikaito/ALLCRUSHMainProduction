@@ -14,9 +14,10 @@ namespace basecross {
 		Vec2 m_StartScale;  //大きい
 		Vec3 m_StartPos;    //位置
 		float m_TotalTime;  //時間の取得
-		
-		//バックアップ頂点データ
-		vector<VertexPositionColor>m_BackupVertices;
+		int m_BreakCount;   //壁を壊した回数
+		int m_PowerON;      //パワーアップ中
+		int m_PowerOFF;     //パワーアップしてない
+		vector<VertexPositionColor>m_BackupVertices;//バックアップ頂点データ
 
 
 	public:
@@ -25,9 +26,8 @@ namespace basecross {
 
 		virtual ~GageSprite3();
 
-		virtual void OnCreate() override;
-
-		virtual void OnUpdate()override;
+		virtual void OnCreate() override;//初期化
+		virtual void OnUpdate()override; //更新
 
 		
 	};

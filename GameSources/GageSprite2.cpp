@@ -15,7 +15,10 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0)
+		m_TotalTime(0),
+		m_BreakCount(2),
+		m_PowerON(0),
+		m_PowerOFF(1)
 	{}
 
 	GageSprite2::~GageSprite2() {}
@@ -35,12 +38,14 @@ namespace basecross {
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
 		SetAlphaActive(m_Trace);
-		//頂点とインデックスを指定してスプライト作成
-
+		
+		//初期位置の設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_StartScale.x, m_StartScale.y, 1.0f);
 		ptrTrans->SetRotation(0, 0, 0);
 		ptrTrans->SetPosition(m_StartPos);
+
+        //頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
 		SetAlphaActive(true);
 
@@ -55,22 +60,23 @@ namespace basecross {
 	
 	void GageSprite2::OnUpdate() {
 
-
-
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto PowerCount = ptrPlayer->GetPowerCount();
+
 		//壁を殴った数
 		ptrPlayer->SetPowerCount(PowerCount);
+
         //パワーアップ
 		auto Power = ptrPlayer->GetPower();
 		ptrPlayer->SetPower(Power);
+
 		//ゲージを使った
 		auto Gageflash = ptrPlayer->GetGageflash();
 		ptrPlayer->SetGageflash(Gageflash);
 
 		//壁を２回殴ったら
-		if (PowerCount == 2)
+		if (PowerCount == m_BreakCount)
 
 
 		{ 
@@ -80,7 +86,7 @@ namespace basecross {
 
 		}
 		//パワーアップ
-		if (Power == 0)
+		if (Power == m_PowerON)
 		{
 			//点滅
 			//時間の取得
@@ -105,13 +111,15 @@ namespace basecross {
 			ptrDraw->UpdateVertices(newVertices);
 
 		}
+
 		//アイテムを使ったら
-		if (Gageflash == 1)
+		if (Gageflash == m_PowerOFF)
 		{
-			//ゲージを消す
+			//描画コンポーネント
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
+			//色を変化させる
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
-			Gageflash = 0;
+			Gageflash = m_PowerON;
 		}
 	}
 }

@@ -15,7 +15,10 @@ namespace basecross {
 		m_Trace(Trace),
 		m_StartScale(StartScale),
 		m_StartPos(StartPos),
-		m_TotalTime(0)
+		m_TotalTime(0),
+		m_BreakCount(3),
+		m_PowerON(0),
+		m_PowerOFF(1)
 	{}
 
 	GageSprite3::~GageSprite3() {}
@@ -26,24 +29,30 @@ namespace basecross {
 		//頂点配列
 		m_BackupVertices = {
 			//カラー　透明度
-{ VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
-{ VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
+          { VertexPositionColor(Vec3(-helfSize, helfSize, 0),Col4(1.0f,0.0f,0.0f,1.0f)) },
+          { VertexPositionColor(Vec3(helfSize, helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+          { VertexPositionColor(Vec3(-helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f, 1.0f)) },
+          { VertexPositionColor(Vec3(helfSize, -helfSize, 0), Col4(1.0f, 0.0f, 0.0f,1.0f)) },
 		};
 		//インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
-		SetAlphaActive(m_Trace);
-		//頂点とインデックスを指定してスプライト作成
 
+		//透明処理
+		SetAlphaActive(m_Trace);
+
+		//初期位置の設定
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_StartScale.x, m_StartScale.y, 1.0f);
 		ptrTrans->SetRotation(0, 0, 0);
 		ptrTrans->SetPosition(m_StartPos);
+
+        //頂点とインデックスを指定してスプライト作成
 		auto ptrDraw = AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
 		SetAlphaActive(true);
 
+		//色を変える
 		ptrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 0.0f));
+
 		//頂点とインデックスを指定してスプライト作成
 		AddComponent<PCSpriteDraw>(m_BackupVertices, indices);
 
@@ -58,30 +67,28 @@ namespace basecross {
 
 		//プレイヤーの取得
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"Player");
+
 		//壁を壊した回数
 		auto PowerCount = ptrPlayer->GetPowerCount();
 		ptrPlayer->SetPowerCount(PowerCount);
+
 		//パワーアップしてるかどうか
 		auto Power = ptrPlayer->GetPower();
 		ptrPlayer->SetPower(Power);
+
 		//使い終わってるかどうか
 		auto Gageflash = ptrPlayer->GetGageflash();
 		ptrPlayer->SetGageflash(Gageflash);
+
 		//壁を三回壊したら
-		if (PowerCount == 3)
-
-
-		{ //プレイヤーの座標取得
-
+		if (PowerCount == m_BreakCount)
+		{
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 1.0f));
-
-
-
-
 		}
+
 		//パワーアップしてるかどうか
-		if (Power == 0)
+		if (Power == m_PowerON)
 		{
 			//点滅
 			//時間の取得
@@ -106,13 +113,16 @@ namespace basecross {
 			ptrDraw->UpdateVertices(newVertices);
 
 		}
+
 		//ゲージを使い終わったら
-		if (Gageflash == 1)
+		if (Gageflash == m_PowerOFF)
 		{
-			//消える
+			//描画コンポーネントの取得
 			auto ptrDraw = GetComponent<PCSpriteDraw>();
+
+			//色を透明にする
 			ptrDraw->SetDiffuse(Col4(1.0f, 0.0, 0.0f, 0.0f));
-			Gageflash = 0;
+			Gageflash = m_PowerON;
 		}
 	}
 }

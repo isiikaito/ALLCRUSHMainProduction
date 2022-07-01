@@ -14,8 +14,7 @@ namespace basecross {
 		Vec3 m_StartPos;     //位置
 		wstring m_TextureKey;//テクスチャ
 		float m_TotalTime;   //時間
-		//バックアップ頂点データ
-		vector<VertexPositionTexture> m_BackupVertices;
+		vector<VertexPositionTexture> m_BackupVertices;	//バックアップ頂点データ
 	public:
 		
 		Myitem1(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
@@ -23,7 +22,7 @@ namespace basecross {
 		
 		virtual ~Myitem1();
 		
-		virtual void OnCreate() override;
+		virtual void OnCreate() override;//初期化
 		
 	};
 }

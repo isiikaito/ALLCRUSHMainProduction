@@ -14,8 +14,7 @@ namespace basecross {
 		Vec3 m_StartPos;     //位置
 		wstring m_TextureKey;//テクスチャ
 		float m_TotalTime;   //時間の取得
-		//バックアップ頂点データ
-		vector<VertexPositionTexture> m_BackupVertices;
+		vector<VertexPositionTexture> m_BackupVertices;//バックアップ頂点データ
 	public:
 
 		XSprite(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
