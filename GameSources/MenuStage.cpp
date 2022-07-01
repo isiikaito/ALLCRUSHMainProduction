@@ -75,6 +75,7 @@ namespace basecross {
 		}
 	}
 
+	
 	void MenuStage::StageSprite1()
 	{
 	    //menuSprite1‚ðŽæ“¾‚·‚é

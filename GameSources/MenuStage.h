@@ -16,10 +16,10 @@ namespace basecross {
 		void CreateMenuSprite1();//Stage1スプライト作成
 		void CreateMenuSprite2();//Stage2プライト作成
 
-       float m_idleTime;   //時間
+       float m_idleTime;    //時間
 		bool m_OnPushB;     //Bボタンを押しているか
-		bool OnPushBCheck; //Bボタンの判定
-		bool OnPushBCheck1;//Bボタンの判定
+		bool OnPushBCheck;  //Bボタンの判定
+		bool OnPushBCheck1; //Bボタンの判定
 		int m_UPlimit;      //ステージ選択の上限(上)
 		int m_DOWNlimit;    //ステージ上限(下)
         int StageNum ;      //ステージの番号

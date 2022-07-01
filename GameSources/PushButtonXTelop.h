@@ -21,12 +21,10 @@ namespace basecross {
 			bool Trace,
 			const Vec2& StartScale,
 			const Vec3& StartPos);
-		//破壊
-		virtual ~PushButtonXTelop();
-		//初期化
-		virtual void OnCreate()override;
-		//更新
-		virtual void OnUpdate()override {}
+		
+		virtual ~PushButtonXTelop();      //破壊
+		virtual void OnCreate()override;  //初期化
+		virtual void OnUpdate()override {}//更新
 	};
 }
 //end namespace basecross
