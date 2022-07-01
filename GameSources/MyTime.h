@@ -7,9 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	//--------------------------------------------------------------------------------------
-		///	スコア表示のスプライト
-		//--------------------------------------------------------------------------------------
+	
 	class MyTime : public GameObject {
 		bool m_Trace;         //透明
 		Vec2 m_StartScale;    //大きさ
@@ -31,7 +29,7 @@ namespace basecross {
 		void SetScore(float f) {
 			m_Score = f;
 		}
-		
+		//
 		virtual void OnCreate() override;
 		
 		virtual void OnUpdate()override;
