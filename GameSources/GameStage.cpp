@@ -550,14 +550,15 @@ namespace basecross {
 		static float FadeTime = 0.0f;
 		switch (state)
 		{
-		case GameState::Game:
+		//!ステートの遷移
+		case GameState::Game://!何もしていない初期状態
 			break;
-		case GameState::Down:
+		case GameState::Down://!ボスに追いつかれた状態
 			ptrPlayer->SetGameState(GameState::FadeStart);
 			break;
-		case GameState::FadeStart:
+		case GameState::FadeStart://!フェードアウトが始まった状態
 			fadeOut = AddGameObject<FadeOut>(true,
-				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
+				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));//!
 			ptrPlayer->SetGameState(GameState::FadeOut);
 		case GameState::FadeOut:
 			FadeTime += elapsedTime;
@@ -573,7 +574,7 @@ namespace basecross {
 		case GameState::ChangeStage:
 			break;
 
-			//フェードアウトの作成
+			//!ゲームオーバーの時にGameOverの文字の作成
 			AddGameObject<GameOverSprite>(L"GAMEOVERTELOP_TX", true,
 				Vec2(1290.0f, 960.0f), Vec3(0.0f, 0.0f, 0.0f));
 
