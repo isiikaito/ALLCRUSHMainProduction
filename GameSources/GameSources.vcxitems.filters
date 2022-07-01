@@ -4,7 +4,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OnPushButtonXTelop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExitWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
@@ -44,12 +43,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)YSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PushButtonXTelop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExitWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
@@ -89,5 +88,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)YSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h" />
   </ItemGroup>
 </Project>
