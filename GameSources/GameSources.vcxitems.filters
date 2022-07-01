@@ -127,9 +127,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
       <Filter>Stage\GameOver\GameOverTelop</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
