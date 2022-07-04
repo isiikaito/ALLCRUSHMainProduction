@@ -1,6 +1,6 @@
-/*!
-@file Character.h
-@brief キャラクターなど
+/**
+* @file OpCamera.h
+* @brief オープニングカメラクラスの定義が記述されているヘッダーファイル
 */
 
 #pragma once

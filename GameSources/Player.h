@@ -1,11 +1,12 @@
-/*!
-@file Player.h
-@brief プレイヤーなど
+/**
+* @file Player.h
+* @brief プレイヤークラスの定義が記述されているヘッダーファイル
 */
 
 #pragma once
 #include "stdafx.h"
 
+/** basecross共通のネームスペース */
 namespace basecross{
 	enum class  GameState {
 		Game,
@@ -16,10 +17,11 @@ namespace basecross{
 		GameExit
 	};
 
+	/** プレイヤーの操作・状態・その他*/
 	class Player : public GameObject
 	{
 		const float MaxMoveSpeed; //移動の最大速
-		bool moveStop;            //Playerの移動停止の判定
+		bool moveStop;            //Playerの移動停止の判定(trueなら移動可能,falseなら移動停止)
 		Vec3 moveDir;             //移動方向ベクトル（単位ベクトル）
 		float EndPos;			  //ゲームオーバー時のプレイヤー座標
 		float EndAngle;			  //ゲームオーバー時のプレイヤーの向き

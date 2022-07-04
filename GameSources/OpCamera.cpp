@@ -1,6 +1,6 @@
-/*!
-@file Character.cpp
-@brief キャラクターなど実体
+/**
+* @file OpCamera.cpp
+* @brief オープニングカメラクラスの定義が記述されているソースファイル
 */
 
 #include"stdafx.h"

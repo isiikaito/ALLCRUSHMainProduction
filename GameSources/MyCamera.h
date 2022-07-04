@@ -1,3 +1,8 @@
+/**
+* @file MyCamera.h
+* @brief カメラクラスの定義が記述されているヘッダーファイル
+*/
+
 #pragma once
 #include "stdafx.h"
 

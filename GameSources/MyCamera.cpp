@@ -1,3 +1,8 @@
+/**
+* @file MyCamera.cpp
+* @brief カメラクラスの定義が記述されているソースファイル
+*/
+
 #include "stdafx.h"
 #include "Project.h"
 
@@ -23,8 +28,6 @@ namespace basecross {
 
 		auto& device = app->GetInputDevice();
 		const auto& pad = device.GetControlerVec()[0];
-
-		//auto rotate = GetCameraObject()->GetComponent<Transform>()->GetRotation();
 
 
 		// プレイヤーの座標を取得する

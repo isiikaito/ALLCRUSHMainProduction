@@ -1,6 +1,6 @@
-/*!
-@file Player.cpp
-@brief プレイヤーなど実体
+/**
+* @file Player.cpp
+* @brief プレイヤークラスの実装が記述されているソースファイルファイル
 */
 
 #include "stdafx.h"
@@ -10,7 +10,9 @@ namespace basecross {
 //#pragma comment(lib, "Effekseer.lib")
 //#pragma comment(lib, "EffekseerRendererDX11.lib")
 
-
+	/** プレイヤーの初期位置などの設定する関数
+	*
+	*/
 	void Player::OnCreate()
 	{
 
@@ -210,7 +212,7 @@ namespace basecross {
 	{
 		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		auto move = ptrDraw->GetCurrentAnimation();
+		auto AnimationName = ptrDraw->GetCurrentAnimation();//現在のアニメーション名を取得する
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
 		auto rotation = transComp->GetRotation();
@@ -226,7 +228,7 @@ namespace basecross {
 			position.z = EndPos;
 			transComp->SetRotation(EndAngle, 0.0f, EndAngle);
 
-			if (move != L"GameOver") {
+			if (AnimationName != L"GameOver") {
 				ptrDraw->ChangeCurrentAnimation(L"GameOver");
 				GameOver = 1;
 				moveStop = false;
@@ -266,7 +268,7 @@ namespace basecross {
 		}
 		//アニメーション
 		auto ptrDraw = GetComponent<BcPNTnTBoneModelDraw>();
-		auto move = ptrDraw->GetCurrentAnimation();
+		auto AnimationName = ptrDraw->GetCurrentAnimation();
 
 		// アプリケーションオブジェクトを取得する
 		auto& app = App::GetApp();
@@ -335,8 +337,7 @@ namespace basecross {
 			float rotY = atan2f(-moveDir.z, moveDir.x); // アークタンジェントを使うとベクトルを角度に変換できる
 			transComp->SetRotation(0.0f, rotY, 0.0f); // ラジアン角で設定
 			//歩くアニメーション
-			//if (move != L"Move") {
-			if (move == L"Default") {
+			if (AnimationName == L"Default") {
 				ptrDraw->ChangeCurrentAnimation(L"Move");
 				//サウンドの再生
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
@@ -345,7 +346,7 @@ namespace basecross {
 		}
 		else {
 			//立ち止まるアニメーション
-			if (move == L"Move") {
+			if (AnimationName == L"Move") {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				ptrXA->Stop(m_BGM);
@@ -362,12 +363,11 @@ namespace basecross {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<Player>());
 		
-		//moveStop = false;
 		auto ptrXA = App::GetApp()->GetXAudio2Manager();
-		auto now = ptrDraw->UpdateAnimation(elapsedTime);
-		auto action = ptrDraw->GetCurrentAnimation();
+		auto AnimationNow = ptrDraw->UpdateAnimation(elapsedTime);	//現在のアニメーションが終了したら、true
+		auto ActionName = ptrDraw->GetCurrentAnimation();
 
-		if (action == L"ActionPull") {
+		if (ActionName == L"ActionPull") {
 			if (ptrDraw->IsTargetAnimeEnd()) {
 				//ActionPullのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
 				ptrDraw->ChangeCurrentAnimation(L"ActionPush");
@@ -382,18 +382,17 @@ namespace basecross {
 			}
 		}
 		//攻撃処理
-		else if (action == L"ActionPull") {
+		else if (ActionName == L"ActionPull") {
 			if (ptrDraw->IsTargetAnimeEnd()) {
 				//ActionPushのときこのif文に入ったら、ChangeCurrentAnimationをActionPuhにする
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				auto ptrXA = App::GetApp()->GetXAudio2Manager();
 				//サウンドの再生
 				ptrXA->Start(L"Hammer", 0, 0.5f);
-				//moveStop = true;//移動停止解除
 			}
 		}
 		else {
-			if (now) {
+			if (AnimationNow) {
 				ptrDraw->ChangeCurrentAnimation(L"Default");
 				ptrXA->Stop(m_BGM);
 
