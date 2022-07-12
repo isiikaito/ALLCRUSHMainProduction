@@ -11,18 +11,18 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	/// 複数のスパーククラス
 	//--------------------------------------------------------------------------------------
-	class ImpactSmoke : public MultiParticle {
+	class InsertEffect : public MultiParticle {
 	public:
 		//構築と破棄
-		ImpactSmoke(shared_ptr<Stage>& StagePtr);
-		virtual ~ImpactSmoke();
+		InsertEffect(shared_ptr<Stage>& StagePtr);
+		virtual ~InsertEffect();
 		//初期化
 		virtual void OnCreate() override;
+		void InsertSplash(const Vec3& Pos);
 		void InsertSpark(const Vec3& Pos);
-		void InsertSpark1(const Vec3& Pos);
-		void InsertSpark2(const Vec3& Pos);
-		void InsertSpark3(const Vec3& Pos);
-		void InsertSpark4(const Vec3& Pos);
+		void InsertSpeedUp(const Vec3& Pos);
+		void InsertImpact(const Vec3& Pos);
+		void InsertPowerUp(const Vec3& Pos);
 
 		virtual void OnUpdate() override;
 

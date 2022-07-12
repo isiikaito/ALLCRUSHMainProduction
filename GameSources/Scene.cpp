@@ -150,15 +150,15 @@ namespace basecross {
 		
 		//エフェクト関連
 		strTexture = dataDir + L"Splash.png";
-		App::GetApp()->RegisterTexture(L"SPARK_TX", strTexture);
-		strTexture = dataDir + L"spark.png";
-		App::GetApp()->RegisterTexture(L"SPARK_TX1", strTexture);
+		App::GetApp()->RegisterTexture(L"Splash_TX", strTexture);
+		strTexture = dataDir + L"Spark.png";
+		App::GetApp()->RegisterTexture(L"Spark_TX", strTexture);
 		strTexture = dataDir + L"SpeedUp.png";
-		App::GetApp()->RegisterTexture(L"SPEEDUP_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"SpeedUp_TX", strTexture);
 		strTexture = dataDir + L"Impact.png";
-		App::GetApp()->RegisterTexture(L"IMPACT_TX", strTexture);
+		App::GetApp()->RegisterTexture(L"Impact_TX", strTexture);
 		strTexture = dataDir + L"PowerUp.png";
-		App::GetApp()->RegisterTexture(L"POWERUP_TX1", strTexture);
+		App::GetApp()->RegisterTexture(L"PowerUp_TX", strTexture);
 
 		//サウンド
 		wstring CursorWav = dataDir + L"music.mp3";

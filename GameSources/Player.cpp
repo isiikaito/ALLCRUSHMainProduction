@@ -127,11 +127,11 @@ namespace basecross {
 
 					if (WallHP <= 0)
 					{
-						auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+						auto PtrSpark = GetStage()->GetSharedGameObject<InsertEffect>(L"MultiEffect", false);
 						if (PtrSpark) {
 							auto pos = GetComponent<Transform>()->GetPosition();
+							PtrSpark->InsertSplash(pos);
 							PtrSpark->InsertSpark(pos);
-							PtrSpark->InsertSpark1(pos);
 						}
 						auto BrakeSound = App::GetApp()->GetXAudio2Manager();
 						GetStage()->RemoveGameObject<Wall>(shPtr);
@@ -436,7 +436,7 @@ namespace basecross {
 
 	
 	void Player::OnPushY() {
-		auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+		auto PtrSpark = GetStage()->GetSharedGameObject<InsertEffect>(L"MultiEffect", false);
 		auto PowerUpSound = App::GetApp()->GetXAudio2Manager();
 		//ゲージが溜まったら
 		if (PowerCount >= 3)
@@ -444,7 +444,7 @@ namespace basecross {
 			auto pos = GetComponent<Transform>()->GetPosition();
 			PowerUpSound->Start(L"PowerUp", 0, 0.5f);
 			Power = 0;
-			PtrSpark->InsertSpark4(pos);
+			PtrSpark->InsertPowerUp(pos);
 		}
 	}
 
@@ -465,10 +465,10 @@ namespace basecross {
 			//サウンドの再生
 			SpeedUpSound->Start(L"SpeedUp", 0, 0.5f);
 
-			auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+			auto PtrSpark = GetStage()->GetSharedGameObject<InsertEffect>(L"MultiEffect", false);
 			if (PtrSpark) {
 				auto pos = GetComponent<Transform>()->GetPosition();
-				PtrSpark->InsertSpark2(pos);
+				PtrSpark->InsertSpeedUp(pos);
 			}
 		}
 		if (GetGameState() == GameState::ChangeStage) {

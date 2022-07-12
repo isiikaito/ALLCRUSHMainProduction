@@ -16,7 +16,7 @@ namespace basecross {
 		//ステートマシーン
 		unique_ptr< StateMachine<EnemyObject> >  m_StateMachine;
 		Vec3 m_StartPos;              //位置
-		float m_StateChangeSize;
+		float m_StateChangeSize;	  //ステートを切り替える距離感
 	    Vec3 m_Force;	              //フォース
 		Vec3 m_Velocity;              //速度
 		int m_Speed=30;               //スピード
@@ -25,14 +25,8 @@ namespace basecross {
 		int StopCount;                //ボスが動きを止めているかどうか
 		int PillarCount;              //柱が消えているかどうか
 		int m_EnemySetDrawActiveCount;//ボスの表示カウント
-		float m_Telop2Time;           // テロップ2
-		bool m_Event;
-	
-		
-		
-
-		
-		
+		float m_Telop2Time;           //テロップ2
+		bool m_Event;				  //イベントの判断	
 
 	public:
 		//構築と破棄
