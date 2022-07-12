@@ -17,9 +17,9 @@ namespace basecross {
 		m_StateChangeSize(5.0f),
 		m_Force(0),
 		m_Velocity(0),
-		StopCount(0),
 		EnemyTime(0.0f),
-	    PillarCount(0),
+		StopCount(0),
+		PillarCount(0),
 		StopTime(0.0f),
 		m_EnemySetDrawActiveCount(0),
 		m_Telop2Time(0.0f),
@@ -68,12 +68,12 @@ namespace basecross {
 			GetStage()->RemoveGameObject<FallingRock>(Other); //落石オブジェクトを消す
 			StopCount = 1;	
 			m_Speed = 0; //ボスのスピードを0にする
-			auto PtrSpark = GetStage()->GetSharedGameObject<ImpactSmoke>(L"MultiSpark", false);
+			auto PtrSpark = GetStage()->GetSharedGameObject<InsertEffect>(L"MultiEffect", false);
 			auto RockSound = App::GetApp()->GetXAudio2Manager();
 			RockSound->Start(L"RockAttack", 0, 0.5f);
 			if (PtrSpark) {
 				auto pos = GetComponent<Transform>()->GetPosition();
-				PtrSpark->InsertSpark3(pos);
+				PtrSpark->InsertImpact(pos);
 			}
 		}
 	}

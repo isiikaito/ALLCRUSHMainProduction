@@ -37,15 +37,15 @@ namespace basecross {
 	}
 
 	void GameStage::CreateMultiSpark() {
-		auto MultiSparkPtr = AddGameObject<ImpactSmoke>();
+		auto MultiSparkPtr = AddGameObject<InsertEffect>();
 		//共有オブジェクトにスパークを登録
-		SetSharedGameObject(L"MultiSpark", MultiSparkPtr);
+		SetSharedGameObject(L"MultiEffect", MultiSparkPtr);
 	}
 
 	void GameStage::CreateMultiSpark1() {
-		auto MultiSparkPtr = AddGameObject<ImpactSmoke>();
+		auto MultiSparkPtr = AddGameObject<InsertEffect>();
 		//共有オブジェクトにスパークを登録
-		SetSharedGameObject(L"MultiSpark1", MultiSparkPtr);
+		SetSharedGameObject(L"MultiEffect1", MultiSparkPtr);
 	}
 
 	
