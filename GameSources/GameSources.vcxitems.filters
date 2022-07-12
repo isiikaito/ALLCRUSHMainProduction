@@ -34,7 +34,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)InsertEffect.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp">
@@ -165,7 +165,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)InsertEffect.h">
       <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h">
