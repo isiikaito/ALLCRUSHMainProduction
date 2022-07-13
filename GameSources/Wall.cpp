@@ -70,19 +70,34 @@ namespace basecross {
 	{
 		m_InputHandler.PushHandle(GetThis<Wall>());
 
-		//コントローラの取得
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		Vec3 playerPos(0.0f);//プレイヤーの座標（仮）
+		Vec3 cameraPos(0.0f);//カメラの座標（仮）
 
-		//Bボタンが押されているとき
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
-			//壁の描画の表示をしない
-			SetDrawActive(false);
+		auto& app = App::GetApp();
+		auto stage = app->GetScene<Scene>()->GetActiveStage(); // ステージオブジェクトを取得する
+		auto objs = stage->GetGameObjectVec(); // ステージに追加されているすべてのオブジェクト
+
+		for (auto& obj : objs)
+		{
+			// プレイヤーへのキャストを試みる
+			auto player = dynamic_pointer_cast<Player>(obj);
+			if (player)
+			{
+				//キャストに成功したら、座標を取得
+				auto playerTrans = player->GetComponent<Transform>();
+				playerPos = playerTrans->GetPosition();
+				//カメラの座標を取得する
+				cameraPos = player->OnGetDrawCamera()->GetEye();
+			}
 		}
-
-		//Bボタンが押されていないとき
-		else {
-			//壁の描画の処理をする
+		// カメラの座標がプレイヤーよりも後ろなら、
+		if ( cameraPos.x > playerPos.x){
+			//壁の描画の表示
 			SetDrawActive(true);
+		}
+		else {
+			//壁の描画の非表示
+			SetDrawActive(false);
 		}
 		
 		auto WallHP = GetHP();                            //壁のHP取得
