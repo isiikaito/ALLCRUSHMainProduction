@@ -1,23 +1,34 @@
-/*!
-@file StageWall.h
-@brief ステージの壁
+/**
+*@file StageWall.h
+*@brief ステージの壁の実装が定義されているヘッダーファイル
+*@author Kaito Isii
+*@details ステージの壁の実装
 */
 
 #pragma once
 #include "stdafx.h"
 
+/** basecross共通のネームスペース */
 namespace basecross {
 
 	class StageWall : public GameObject {
-		Vec3 m_Scale;   //大きさ
-		Vec3 m_Rotation;//回転
-		Vec3 m_Position;//位置
+		Vec3 m_Scale;   //!大きさ
+		Vec3 m_Rotation;//!回転
+		Vec3 m_Position;//!位置
 	public:
-		//構築と破棄
+		/**
+		* コンストラクタ
+		*/
 		StageWall(const shared_ptr<Stage>& StagePtr, const Vec3& Scale,const Vec3& Rotation,const Vec3& Position);
+
+		/**
+　　　　* デストラクタ
+　　　　*/
 		virtual ~StageWall() {}
 		
-		//初期化
+		/**
+		* ステージの壁の初期パラメータを初期化する関数
+		*/
 		virtual void OnCreate() override;
 
 	};
