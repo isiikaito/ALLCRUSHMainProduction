@@ -31,9 +31,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)InsertEffect.cpp">
-      <Filter>Effect</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuSprite1.cpp">
       <Filter>Stage\Menu\MenuSprite</Filter>
     </ClCompile>
@@ -130,6 +127,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
@@ -161,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
       <Filter>Stage\GameOver\GameOverSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)InsertEffect.h">
-      <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuSprite1.h">
       <Filter>Stage\Menu\MenuSprite</Filter>
@@ -260,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
+      <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

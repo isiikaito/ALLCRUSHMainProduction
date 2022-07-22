@@ -61,7 +61,7 @@ namespace basecross {
 	void MenuStage:: OnPushUP() {
 
 		StageNum--;
-		if (StageNum < m_UPlimit)
+		if (StageNum <= m_UPlimit)
 		{
 			StageNum = m_UPlimit;
 		}
@@ -69,7 +69,7 @@ namespace basecross {
 	//十字キー下
 	void MenuStage::OnPushDOWN() {
 		StageNum++;
-		if (StageNum > m_DOWNlimit)
+		if (StageNum >= m_DOWNlimit)
 		{
 			StageNum = m_DOWNlimit;
 		}
@@ -156,7 +156,8 @@ namespace basecross {
         //コントローラの取得
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		StageSprite1();
-		StageSprite2();		
+		StageSprite2();	
+		
 	}
 
 	
@@ -164,7 +165,7 @@ namespace basecross {
 	void MenuStage::OnPushB() {
 		
 		wstring stagename[]
-		{
+		{  
 			L"ToMovieStage",
 			L"ToGameStage"
 		};
