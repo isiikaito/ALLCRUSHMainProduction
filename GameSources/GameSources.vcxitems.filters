@@ -127,9 +127,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImpactSmoke.cpp">
-      <Filter>Effect</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)InsertEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
@@ -258,9 +256,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImpactSmoke.h">
-      <Filter>Effect</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)InsertEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">

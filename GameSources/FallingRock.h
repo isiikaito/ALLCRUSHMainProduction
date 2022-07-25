@@ -37,7 +37,7 @@ namespace basecross {
 		* 柱オブジェクトが破壊されたときに落石が落ちる関数
 		*/
 		virtual void OnUpdate() override;
-
+		
 		/**
          * 柱オブジェクトが破壊されたかどうか
          * @return int 柱オブジェクトがステージ上に存在するかどうかが返ってくる
