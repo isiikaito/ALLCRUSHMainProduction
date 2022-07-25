@@ -3,11 +3,19 @@
 @brief 落石実体
 */
 
+/**
+*@file FallingRock.cpp
+*@brief落石実体が実装されているソースファイル
+*@author Kaito Isii
+*@details 落石実体の実装
+*/
+
 #include "stdafx.h"
 #include "Project.h"
 
+/** basecross共通のネームスペース */
 namespace basecross {
-	//構築と破棄
+	//!パラメータの初期化
 	FallingRock::FallingRock(const shared_ptr<Stage>& StagePtr, const Vec3& Scale, const Vec3& Rotation, const Vec3& Position) :
 		GameObject(StagePtr),
 		m_Scale(Scale),
@@ -17,62 +25,50 @@ namespace basecross {
 	{}
 
 
-	//初期化
+	
 	void FallingRock::OnCreate() {
-		//初期位置の設定
+		//!初期位置などの設定
+		
+		//!衝突判定の設定
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(m_Scale);
-		ptrTrans->SetRotation(m_Rotation);
-		ptrTrans->SetPosition(m_Position);
+		ptrTrans->SetScale(m_Scale);      //!大きさ
+		ptrTrans->SetRotation(m_Rotation);//!回転
+		ptrTrans->SetPosition(m_Position);//!位置
 
-
-
-		//モデルの見た目を決める
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		//!モデルとトランスフォームの間の差分行列
+		Mat4x4 spanMat; 
 		spanMat.affineTransformation(
-			Vec3(0.2f, 0.2f, 0.2f),//大きさ
+			Vec3(0.2f, 0.2f, 0.2f),//!大きさ
 			Vec3(0.0f, 5.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),//回転
-			Vec3(0.0f, -0.5f, 0.5f)//位置
+			Vec3(0.0f, 0.0f, 0.0f),//!回転
+			Vec3(0.0f, -0.5f, 0.5f)//!位置
 		);
 
-		//オブジェクトのグループを得る
-		auto group3 = GetStage()->GetSharedObjectGroup(L"FallingRock_Group1");
-
-		//グループに自分自身を追加
-		group3->IntoGroup(GetThis < FallingRock > ());
-
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = AddComponent<Shadowmap>();
-
-		//影の形（メッシュ）を設定
+		
+		auto group3 = GetStage()->GetSharedObjectGroup(L"FallingRock_Group1");  //!オブジェクトのグループを得る
+        group3->IntoGroup(GetThis < FallingRock > ());                          //!グループに自分自身を追加
+		auto ptrShadow = AddComponent<Shadowmap>();                             //!影をつける（シャドウマップを描画する）
+		auto Coll = AddComponent<CollisionObb>();                               //!キューブ型の当たり判定
+		Coll->SetFixed(true);                                                   //!ほかのオブジェクトの影響を受けない
+		GetStage()->SetSharedGameObject(L"FallingRock", GetThis<FallingRock>());//!読み込みの設定をする
+        auto ptrDraw = AddComponent<PNTStaticModelDraw>();                      //!描画コンポーネント
+		
+		//!影の形（メッシュ）を設定
 		ptrShadow->SetMeshResource(L"IWA_MESH");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		//描画コンポーネント
-		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-
-		//メッシュの設定
+		//!メッシュの設定
 		ptrDraw->SetMeshResource(L"IWA_MESH");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		
-		//キューブ型の当たり判定
-		auto Coll = AddComponent<CollisionObb>();
-		
-		//ほかのオブジェクトの影響を受けない
-		Coll->SetFixed(true);
-        
-		//読み込みの設定をする
-		GetStage()->SetSharedGameObject(L"FallingRock", GetThis<FallingRock>());
 	}
 
 	void FallingRock::OnUpdate()
 	{
-		//柱が壊れたら
+		//!柱が壊れたら
 		if (m_Falling==1)
 		{
-			//重力をつける
-			auto ptrGra = AddComponent<Gravity>();
+			auto ptrGra = AddComponent<Gravity>();//!重力をつける
 		}
 	}
 }

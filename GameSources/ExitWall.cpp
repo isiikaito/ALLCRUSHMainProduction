@@ -19,7 +19,7 @@ namespace basecross {
 	{}
 
 
-	//!‰Šú‰»
+	
 	void ExitWall::OnCreate() {
 		//!‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 
