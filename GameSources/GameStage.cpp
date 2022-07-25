@@ -533,6 +533,7 @@ namespace basecross {
 	void GameStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<GameStage>());
+		ResetHandler.ResetHandle(GetThis<GameStage>());
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_TotalTime += elapsedTime;
 		if (m_TotalTime >= 10000.0f) {
@@ -601,6 +602,15 @@ namespace basecross {
 			// 1秒後に表示がオフになる
 			ptrStage->SetDrawActive(false);
 		}
+	}
+	void GameStage::OnPushReset()
+	{
+		GameReset();
+	}
+
+	void GameStage::GameReset()
+	{
+		PostEvent(0.0f, GetThis<GameStage>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 	}
 
 	void GameStage::OnDestroy() {

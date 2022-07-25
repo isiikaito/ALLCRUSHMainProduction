@@ -29,7 +29,7 @@
       <Filter>FageOut</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverSprite.cpp">
-      <Filter>Stage\GameOver\GameOverSprite</Filter>
+      <Filter>Stage\EntryMovie\GameOver\GameOverSprite</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)InsertEffect.cpp">
       <Filter>Effect</Filter>
@@ -125,7 +125,7 @@
       <Filter>Other</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp">
-      <Filter>Stage\GameOver\GameOverTelop</Filter>
+      <Filter>Stage\EntryMovie\GameOver\GameOverTelop</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp">
       <Filter>Camera</Filter>
@@ -160,7 +160,7 @@
       <Filter>FageOut</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverSprite.h">
-      <Filter>Stage\GameOver\GameOverSprite</Filter>
+      <Filter>Stage\EntryMovie\GameOver\GameOverSprite</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)InsertEffect.h">
       <Filter>Effect</Filter>
@@ -256,7 +256,7 @@
       <Filter>Other</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h">
-      <Filter>Stage\GameOver\GameOverTelop</Filter>
+      <Filter>Stage\EntryMovie\GameOver\GameOverTelop</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h">
       <Filter>Camera</Filter>
@@ -268,9 +268,6 @@
     </Filter>
     <Filter Include="Stage">
       <UniqueIdentifier>{58334b12-ab0c-4184-ba70-095b9980c901}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage\GameOver">
-      <UniqueIdentifier>{f7578bcf-7dd6-4145-aff9-c46f351a1eb4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Stage\Menu">
       <UniqueIdentifier>{e9c784f3-15af-490b-b486-657859294081}</UniqueIdentifier>
@@ -301,9 +298,6 @@
     </Filter>
     <Filter Include="Gage">
       <UniqueIdentifier>{1d662ffa-26b0-49fa-8dbe-2b9c2228cea4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage\GameOver\GameOverSprite">
-      <UniqueIdentifier>{eac88e4a-d2d2-449b-a83d-18797c3ed4da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Effect">
       <UniqueIdentifier>{1b4b0054-2131-4b69-b959-ee2f6ef80892}</UniqueIdentifier>
@@ -353,7 +347,13 @@
     <Filter Include="Other">
       <UniqueIdentifier>{4889d8cd-6148-4332-9db1-ee9143f32d16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Stage\GameOver\GameOverTelop">
+    <Filter Include="Stage\EntryMovie\GameOver">
+      <UniqueIdentifier>{f7578bcf-7dd6-4145-aff9-c46f351a1eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\EntryMovie\GameOver\GameOverSprite">
+      <UniqueIdentifier>{eac88e4a-d2d2-449b-a83d-18797c3ed4da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\EntryMovie\GameOver\GameOverTelop">
       <UniqueIdentifier>{08132979-383e-4c7f-862a-10c2844f7bf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

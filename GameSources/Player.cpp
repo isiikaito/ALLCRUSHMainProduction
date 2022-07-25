@@ -412,7 +412,6 @@ namespace basecross {
 		}
 	}
 	
-
 	//Aƒ{ƒ^ƒ“
 	void Player::OnPushA() 
 	{

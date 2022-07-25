@@ -49,6 +49,7 @@ namespace basecross {
 	void CreatePlayer();      //プレイヤーの作成
 	void BGM();               //BGMの再生1
 	void OnDestroy();         //音楽を止める
+	void GameReset();
 	void CreateCameraman();   //カメラマンの作成
 	float m_idleTime;         //テロップの表示時間0
 	float m_TelopTime;        //テロップの表示時間1
@@ -64,6 +65,7 @@ namespace basecross {
 	shared_ptr<SingleView> m_MyCameraView;     //MyCamera用のビュー
 	CameraSelect m_CameraSelect;               //カメラを切り替える
 	InputHandler<GameStage> m_InputHandler;    //入力ハンドラー
+	ResetHandler<GameStage> ResetHandler;	   //リセットハンドラー
 	shared_ptr<SoundItem> m_BGM;               //BGM
 		
 	public:
@@ -85,6 +87,7 @@ namespace basecross {
 		virtual void OnCreate()override;//初期化
 		virtual void OnUpdate()override;//更新
 		void OnPushA() {}               //Aボタンなにもしない
+		void OnPushReset();
 
 		CameraSelect GetCameraSelect() const {
 			return m_CameraSelect;
