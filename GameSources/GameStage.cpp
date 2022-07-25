@@ -478,7 +478,7 @@ namespace basecross {
 			auto& app = App::GetApp();
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
-			//CSVファイルその読み込みC
+			//CSVファイルその読み込み
 			m_CsvC.SetFileName(DataDir + L"stage"+ Util::IntToWStr(Select)+L".csv");
 			m_CsvC.ReadCsv();
 

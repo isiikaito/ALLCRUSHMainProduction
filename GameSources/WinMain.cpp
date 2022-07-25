@@ -230,11 +230,16 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	setlocale(LC_ALL, "JPN");
 
 	//ウインドウの幅と高さ
+	bool test = true;
+	int testWidth = 1536;
+	int testHeight = 864;
+
 	int iClientWidth = 1280;
 	int iClientHeight = 800;
 	// フルスクリーンにするかどうかの判定
 	// コマンドラインに/fが設定されていたらフルスクリーンにする
 	bool isFullScreen = false;
+	
 	wstring wstrcmd = lpCmdLine;
 	if (wstrcmd == L"/f" || wstrcmd == L"/F") {
 		isFullScreen = true;     // フラグをtrueに設定
@@ -242,7 +247,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	MyRegisterClass(hInstance);
 	// アプリケーションの初期化を実行します:
-	HWND hWnd = InitInstance(hInstance, nCmdShow, isFullScreen, iClientWidth, iClientHeight);
+	HWND hWnd = InitInstance(hInstance, nCmdShow, test, testWidth, testHeight);
 
 	if (!hWnd)
 	{
