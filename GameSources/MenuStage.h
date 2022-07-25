@@ -34,9 +34,9 @@ InputHandler2<MenuStage> m_InputHandler;//“ü—Íƒnƒ“ƒhƒ‰[
 			OnPushBCheck1(false),
 			m_OnPushB(true),
 			m_idleTime(0.0f),
-			StageNum(1),
-		    m_UPlimit(1),
-		    m_DOWNlimit(2){}
+			StageNum(0),
+		    m_UPlimit(0),
+		    m_DOWNlimit(1){}
 			
 		virtual ~MenuStage() {}
 		
