@@ -147,6 +147,7 @@ namespace basecross {
 		SelectStage();
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<MenuStage>());
+
 		auto& app = App::GetApp();
 
 		float delta = app->GetElapsedTime();
@@ -180,10 +181,8 @@ namespace basecross {
 		m_OnPushB = false;
 		}
 		
-		
 		OnPushBCheck = true;
 	}
-	
 }
 
 //end namespace basecross

@@ -24,7 +24,7 @@ namespace basecross {
 		int m_DOWNlimit;    //ステージ上限(下)
         int StageNum ;      //ステージの番号
 
-InputHandler2<MenuStage> m_InputHandler;//入力ハンドラー
+		InputHandler2<MenuStage> m_InputHandler;//入力ハンドラー
 
 	public:
 		

@@ -23,7 +23,7 @@ namespace basecross {
 	}
 
 	void MyMovieStage::OnUpdate() {
-		
+		ResetHandler.ResetHandle(GetThis<MyMovieStage>());//コントローラーのチェック
 		auto elps = App::GetApp()->GetElapsedTime();
 		m_Time += elps;
 		//動画時間の設定
@@ -36,6 +36,13 @@ namespace basecross {
 		}
 
 	}
-	
+	void MyMovieStage::OnPushSkip()
+	{
+		MovieSkip();
+	}
+	void MyMovieStage::MovieSkip()
+	{
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+	}
 }
 //end basecross
