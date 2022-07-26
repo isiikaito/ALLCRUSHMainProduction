@@ -61,8 +61,8 @@ HWND InitInstance(HINSTANCE hInstance, int nCmdShow, bool isFullScreen, int iCli
 						// 画面全体の幅と高さを取得
 						//もし画面全体の解像度で処理する場合は以下を有効に
 						//メモリを圧迫するので動作速度注意！
-						//        iClientWidth = GetSystemMetrics(SM_CXSCREEN);
-						//        iClientHeight = GetSystemMetrics(SM_CYSCREEN);
+						        iClientWidth = GetSystemMetrics(SM_CXSCREEN);
+						        iClientHeight = GetSystemMetrics(SM_CYSCREEN);
 		hWnd = CreateWindow(
 			pClassName,			// 登録されているクラス名
 			pWndTitle,			// ウインドウ名
@@ -229,16 +229,12 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	//ロケールの設定
 	setlocale(LC_ALL, "JPN");
 
-	//ウインドウの幅と高さ
-	bool test = true;
-	int testWidth = 1536;
-	int testHeight = 864;
-
+	////ウインドウの幅と高さ
 	int iClientWidth = 1280;
 	int iClientHeight = 800;
 	// フルスクリーンにするかどうかの判定
 	// コマンドラインに/fが設定されていたらフルスクリーンにする
-	bool isFullScreen = false;
+	bool isFullScreen = true;
 	
 	wstring wstrcmd = lpCmdLine;
 	if (wstrcmd == L"/f" || wstrcmd == L"/F") {
@@ -247,7 +243,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	MyRegisterClass(hInstance);
 	// アプリケーションの初期化を実行します:
-	HWND hWnd = InitInstance(hInstance, nCmdShow, test, testWidth, testHeight);
+	HWND hWnd = InitInstance(hInstance, nCmdShow, isFullScreen, iClientWidth, iClientHeight);
 
 	if (!hWnd)
 	{

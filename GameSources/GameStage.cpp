@@ -531,6 +531,7 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
+		
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<GameStage>());
 		ResetHandler.ResetHandle(GetThis<GameStage>());

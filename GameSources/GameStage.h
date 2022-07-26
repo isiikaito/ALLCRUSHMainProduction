@@ -87,6 +87,7 @@ namespace basecross {
 		virtual void OnCreate()override;//初期化
 		virtual void OnUpdate()override;//更新
 		void OnPushA() {}               //Aボタンなにもしない
+		void OnPushSkip(){}
 		void OnPushReset();
 
 		CameraSelect GetCameraSelect() const {

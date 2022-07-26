@@ -61,9 +61,15 @@ namespace basecross {
 			//コントローラの取得
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			if (cntlVec[0].bConnected) {
-				//Aボタン
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
+				//リセットコマンド
+				if ((cntlVec[0].wButtons & XINPUT_GAMEPAD_START) && (cntlVec[0].wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
+					&&(cntlVec[0].wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER))
+				{
 					Obj->OnPushReset();
+				}
+				//スキップコマンド
+				if (cntlVec[0].wButtons && XINPUT_GAMEPAD_START) {
+					Obj->OnPushSkip();
 				}
 			}
 		}

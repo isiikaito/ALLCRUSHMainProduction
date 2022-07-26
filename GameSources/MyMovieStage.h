@@ -14,6 +14,8 @@ namespace basecross {
 	class MyMovieStage : public MovieStage {
 		//入力ハンドラー
 		InputHandler<MyMovieStage> m_InputHandler;
+		ResetHandler<MyMovieStage> ResetHandler;	   //リセットハンドラー
+		void MovieSkip();
 		float MovieTime;
 		float m_Time;
 	public:
@@ -25,6 +27,8 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate()override;
 		virtual void OnUpdate() override;
+		void OnPushReset(){}
+		void OnPushSkip();
 	};
 }
 //end namespace basecross
