@@ -301,9 +301,12 @@ namespace basecross {
 
 		//ボスとの距離が一定になったら行う処理
 		Enemydistance();
-		//柱が壊れていないとき
-		if (PillarCount == 0)
+		auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
+		if (Select == 0)
 		{
+        //柱が壊れていないとき
+		 if (PillarCount == 0)
+		 {
 			//柱の座標取得
 			auto ptrPillar = GetStage()->GetSharedGameObject<Pillar>(L"Pillar");
 			//クラスには（）が必要である引数があるときと無い時どっちでも必要
@@ -320,7 +323,9 @@ namespace basecross {
 				m_Event = true;
 			}
 
+		 }
 		}
+		
 		if (itemCount == 2)
 		{
 			float elapsedTime1 = App::GetApp()->GetElapsedTime();
@@ -472,6 +477,7 @@ namespace basecross {
 		}
 	}
 	void Player::TelopManager() {
+		auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -504,8 +510,10 @@ namespace basecross {
 
 			}
 		}
-
-		// 壁を壊せ！！テロップ
+		
+		if (Select == 0)
+		{
+        // 壁を壊せ！！テロップ
 		if (pos.x < 22.0f) {
 			auto ptrStage4 = GetStage()->GetSharedGameObject<Telop4>(L"Telop4");
 			ptrStage4->SetDrawActive(true);
@@ -518,6 +526,8 @@ namespace basecross {
 
 			}
 		}
+		}
+		
 
 	}
 	void Player::OnDestroy() {

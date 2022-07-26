@@ -68,7 +68,7 @@ namespace basecross {
 					Obj->OnPushReset();
 				}
 				//スキップコマンド
-				if (cntlVec[0].wButtons && XINPUT_GAMEPAD_START) {
+				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_START) {
 					Obj->OnPushSkip();
 				}
 			}

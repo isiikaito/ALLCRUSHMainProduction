@@ -47,6 +47,7 @@
 #include "Wall.h"
 #include "Obstacle1.h"
 #include "Obstacle2.h"
+
 #include "TitleSprite.h"
 #include "TitleStage.h"
 #include "MyMovieStage.h"

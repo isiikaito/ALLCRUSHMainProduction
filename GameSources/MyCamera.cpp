@@ -93,43 +93,50 @@ namespace basecross {
 		//プレイヤーと柱の距離
 		PPdistance = playerPos.x - pillarPos.x;
 		//プレイヤーと柱の位置が一定の距離になったら振り返る
-		
-		if (m_Turn==0)
+		auto  Select = App::GetApp()->GetScene<Scene>()->GetStageSelect();
+
+		//sutge1の時
+		if (Select == 0)
 		{
-			if (PPdistance <= 5)
+			//柱が存在するとき
+			if (m_Turn == true)
 			{
-				EnemySetDrawActiveCount = 0;
-				auto CameraAngleY = XM_PI;
+				//柱とプレイヤーの距離が5以下になったら
+				if (PPdistance <= 5)
+				{
+					EnemySetDrawActiveCount = 0;
+					auto CameraAngleY = XM_PI;
 
-				auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
-				eye.y = 2.0f;
-				SetEye(eye);
+					auto eye = playerPos + Vec3(cosf(CameraAngleY), 0.0f, sinf(0.0f)) * distance;
+					eye.y = 2.0f;
+					SetEye(eye);
 
 
+				}
 			}
-		}
-				
-		//柱が壊れたら
-		if (PillarCount == 1)
-		{
 
-			//elapsedTimeを取得することにより時間を使える
-			float elapsedTime = App::GetApp()->GetElapsedTime();
-			//時間を変数に足す
-			m_TurnTime += elapsedTime;
-			//柱が壊れてから二秒後に
-			if (m_TurnTime >2&&m_TurnTime<2.1)
+			//柱が壊れたら
+			if (PillarCount == 1)
 			{
-				EnemySetDrawActiveCount = 1;
-				//カメラが正面を向く
-				auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
-				eye.y = 2.0f;
-				playerPos.y = 0.5f;
 
-				m_Turn = 1;
-				SetEye(eye);
-				SetAt(playerPos); // プレイヤーを中止するようにする
-				
+				//elapsedTimeを取得することにより時間を使える
+				float elapsedTime = App::GetApp()->GetElapsedTime();
+				//時間を変数に足す
+				m_TurnTime += elapsedTime;
+				//柱が壊れてから二秒後に
+				if (m_TurnTime > 2 && m_TurnTime < 2.1)
+				{
+					EnemySetDrawActiveCount = 1;
+					//カメラが正面を向く
+					auto eye = playerPos + Vec3(cosf(angleY), 0.0f, sinf(angleY)) * distance; // プレイヤーの座標を中心に、angleY分回り込む（プレイヤーからの距離はdistance）
+					eye.y = 2.0f;
+					playerPos.y = 0.5f;
+
+					m_Turn = false;
+					SetEye(eye);
+					SetAt(playerPos); // プレイヤーを中止するようにする
+
+				}
 			}
 		}
 	}

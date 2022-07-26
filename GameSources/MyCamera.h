@@ -18,7 +18,7 @@ namespace basecross {
 		//float m_ToTargetLerp;	//–Ú•W‚ğ’Ç‚¢‚©‚¯‚éÛ‚Ì•âŠÔ’l
 		float PPdistance;
 		float m_TurnTime;
-		float m_Turn;
+		bool m_Turn;
 	public:
 		void SetTargetObject(const shared_ptr<GameObject>& Obj);
 
@@ -33,7 +33,7 @@ namespace basecross {
 			: angleY(0.0f), 
 			distance(5.0f),
 			PPdistance(0.0f),
-			m_Turn(0.0f),
+			m_Turn(true),
 			m_TurnTime(0.0f)
 		{
 			//void SetTargetObject(const shared_ptr<GameObject>&Obj);

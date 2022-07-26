@@ -1,8 +1,3 @@
-/*!
-@file FallingRock.cpp
-@brief 落石実体
-*/
-
 /**
 *@file FallingRock.cpp
 *@brief落石実体が実装されているソースファイル

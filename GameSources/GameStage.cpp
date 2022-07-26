@@ -508,10 +508,10 @@ namespace basecross {
 			CreateTickerSprite();        //テロップ0の作成
 			CreateTelop();               //テロップ1の作成
 			CreateTelop2();              //テロップ2の作成
-			CreateTelop3();              //テロップ3の作成
-			CreateTelop4();              //テロップ4の作成
+			CreateTelop3();              //テロップ3の作成             
 			CreateCameraman();           //カメラマンの作成
-
+            CreateTelop4();              //テロップ4の作成
+			
 		}
 		catch (...) {
 			throw;
