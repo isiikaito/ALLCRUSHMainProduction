@@ -41,6 +41,7 @@ namespace basecross{
 		float m_TurnTime;         //振り向きから直るまでの時間
 		int Power;                //パワーアップがあるかないか
 		int Gageflash;            //パワーアップを使ったかどうか
+		bool m_Trapdecision;      //トラップに当たったかどうか
 		GameState m_State;		  //ゲームオーバー用のステート
 		bool m_Event;             //柱のイベントを行うかどうか
 		float m_TelopTime;	      //テロップ
@@ -114,6 +115,7 @@ namespace basecross{
 			m_opningStop(0.0f),
 			m_TurnTime(0.0f),
 			m_Event(false),
+			m_Trapdecision(false),
 			m_State(GameState::Game)
 			
 			//m_TotalTime(0.0f), m_isPlay(false),m_handle(0),

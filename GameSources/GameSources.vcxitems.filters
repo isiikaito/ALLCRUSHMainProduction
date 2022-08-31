@@ -130,6 +130,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)InsertEffect.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Trap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
@@ -261,6 +262,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InsertEffect.h">
       <Filter>Effect</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Trap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">

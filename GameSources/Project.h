@@ -26,7 +26,7 @@
 #include "GageSprite2.h"
 #include "GageSprite3.h"
 #include "FadeOut.h"
-
+#include "Trap.h"
 
 
 #include "GageSpriteWhite.h"

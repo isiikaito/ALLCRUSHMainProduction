@@ -76,6 +76,11 @@ namespace basecross {
 				PtrSpark->InsertImpact(pos);
 			}
 		}
+		auto ptr1 = dynamic_pointer_cast<Trap>(Other);
+		if (ptr1) {
+			
+			GetStage()->RemoveGameObject<Trap>(Other);
+		}
 	}
 	
 	void EnemyObject::OnUpdate() {
@@ -100,7 +105,7 @@ namespace basecross {
 		   StopTime += elapsedTime; //ŽžŠÔ‚ð•Ï”‚É‘«‚·
 		   if (StopTime >=2.0f)
 		   {
-			   m_Speed=20;
+			   m_Speed=40;
 			   StopCount = 0;
 			   StopTime = 0.0f;
 		   }

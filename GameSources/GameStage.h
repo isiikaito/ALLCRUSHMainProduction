@@ -31,6 +31,7 @@ namespace basecross {
 	void CreateObstacle1();   //障害物１
 	void CreateObstacle2();   //障害物2
 	void CreateFallingRock(); //落石
+	void CreateTrap();        //トラップの作成
 	void CreateMyitem1();     //アイテムスプライト作成
 	void CreateXSprite();     //Xボタンスプライトの作成
 	void CreateYSprite();     //Yボタンスプライトの作成

@@ -119,6 +119,9 @@ namespace basecross {
 		auto staticModelMesh11 = MeshResource::CreateStaticModelMesh(dataDir, L"BreakWall4.bmf");
 		App::GetApp()->RegisterResource(L"DAMAGEWALL3_MESH", staticModelMesh11);
 
+		auto staticModelMesh12 = MeshResource::CreateStaticModelMesh(dataDir, L"kumonosu.bmf");
+		App::GetApp()->RegisterResource(L"KUMONOSU_MESH", staticModelMesh12);
+
 		//タイムのテクスチャ
 		strTexture = dataDir + L"number.png";
 		App::GetApp()->RegisterTexture(L"NUMBER_TX", strTexture);

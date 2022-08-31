@@ -19,7 +19,7 @@ namespace basecross {
 		float m_StateChangeSize;	  //ステートを切り替える距離感
 	    Vec3 m_Force;	              //フォース
 		Vec3 m_Velocity;              //速度
-		int m_Speed=30;               //スピード
+		int m_Speed=35;               //スピード
 		float EnemyTime;              //鳴き声
 		float StopTime;               //ボスの止めている時間
 		int StopCount;                //ボスが動きを止めているかどうか

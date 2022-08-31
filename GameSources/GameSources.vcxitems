@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverTelop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PushButtonXTelop.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Trap.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)XSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OpCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
@@ -61,6 +62,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverTelop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OnPushButtonXTelop.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Trap.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)XSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OpCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />

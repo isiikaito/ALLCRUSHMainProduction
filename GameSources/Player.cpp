@@ -406,7 +406,7 @@ namespace basecross {
 		}
 		TelopManager();
 	}
-	//プレイヤーがEnemyに当たったら
+	//プレイヤーが特定の物体に当たったら
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto ptr = dynamic_pointer_cast<EnemyObject>(Other);
 		if (ptr) {
@@ -414,6 +414,13 @@ namespace basecross {
 		auto ptr1 = dynamic_pointer_cast<ExitWall>(Other);
 		if (ptr1) {
 			SetGameState(GameState::GameExit);
+		}
+
+		auto ptr2 = dynamic_pointer_cast<Trap>(Other);
+		if (ptr2) {
+			speed2 = 0.5;
+			m_Trapdecision = true;
+			GetStage()->RemoveGameObject<Trap>(Other);
 		}
 	}
 	
