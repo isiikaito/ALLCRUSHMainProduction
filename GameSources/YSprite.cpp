@@ -7,7 +7,8 @@
 #include "Project.h"
 
 namespace basecross {
-
+	constexpr int m_powerMax = 3;
+	constexpr int m_gageflashTrue = 1;
 	YSprite::YSprite(const shared_ptr<Stage>& StagePtr,
 		const wstring& TextureKey, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
@@ -67,13 +68,13 @@ namespace basecross {
 		//使い終わってるかどうか
 		auto Gageflash = ptrPlayer->GetGageflash();
 		ptrPlayer->SetGageflash(Gageflash);
-		if (PowerCount == 3)
+		if (PowerCount == m_powerMax)
 		{
 			//テクスチャを表示する
 			SetDrawActive(true);
 		}
 		//ゲージを使い終わったら
-		if (Gageflash == 1)
+		if (Gageflash == m_gageflashTrue)
 		{
 			//テクスチャの表示をしない
 			SetDrawActive(false);

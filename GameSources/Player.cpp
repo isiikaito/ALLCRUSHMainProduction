@@ -9,6 +9,8 @@
 namespace basecross {
 //#pragma comment(lib, "Effekseer.lib")
 //#pragma comment(lib, "EffekseerRendererDX11.lib")
+	constexpr float m_playerBreakeSp = 2.0f;
+	constexpr float m_maxPBdistance = -3.0f;
 
 	/** プレイヤーの初期位置などの設定する関数
 	*
@@ -69,7 +71,7 @@ namespace basecross {
 	{
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		SPHERE playerSp(position, 2.0f);
+		SPHERE playerSp(position, m_playerBreakeSp);
 
 		//壊れる壁のグループの取得
 		auto group = GetStage()->GetSharedObjectGroup(L"Wall_Group");
@@ -150,7 +152,7 @@ namespace basecross {
 		//柱破壊処理
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		SPHERE playerSp(position, 2.0f);
+		SPHERE playerSp(position, m_playerBreakeSp);
 		auto group2 = GetStage()->GetSharedObjectGroup(L"Pillar_Group1");
 		auto vec2 = group2->GetGroupVector();
 		for (auto& v2 : vec2) {
@@ -180,7 +182,7 @@ namespace basecross {
 	{
 		auto transComp = GetComponent<Transform>();
 		auto position = transComp->GetPosition(); // 現在の位置座標を取得する
-		SPHERE playerSp(position, 2.0f);
+		SPHERE playerSp(position, m_playerBreakeSp);
 
 		//障害物１の破壊
 		auto group1 = GetStage()->GetSharedObjectGroup(L"Obstacle1_Group1");
@@ -223,7 +225,7 @@ namespace basecross {
 
 		//ボスとプレイヤーが一定の距離に達したら
 		PBdistance = position.x - EnemyPositon.x;
-		if (PBdistance >= -3)
+		if (PBdistance >= m_maxPBdistance)
 		{
 			position.z = EndPos;
 			transComp->SetRotation(EndAngle, 0.0f, EndAngle);

@@ -8,6 +8,14 @@
 
 namespace basecross {
 
+	constexpr float m_enemyVoiceTime = 6.0f;
+	constexpr float m_enemyPosition = -25.0f;
+	constexpr float m_enemyStopTelopTime = 2.0f;
+	constexpr int m_enemyDrawActiveCountTrue = 1;
+	constexpr float m_usualSpeed = 40.0;
+	constexpr float m_stopTime = 2.0f;
+	constexpr float m_exitTrue = 1;
+
 	//--------------------------------------------------------------------------------------
 	//	追いかける配置オブジェクト
 	//--------------------------------------------------------------------------------------
@@ -95,7 +103,7 @@ namespace basecross {
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
 
-		if (Exit == 1)
+		if (Exit == m_exitTrue)
 		{
 			m_Speed = 0;
 		}
@@ -103,9 +111,9 @@ namespace basecross {
 		if (StopCount==1) //ボスのStopCountが１だった場合
 		{  
 		   StopTime += elapsedTime; //時間を変数に足す
-		   if (StopTime >=2.0f)
+		   if (StopTime >= m_stopTime)
 		   {
-			   m_Speed=40;
+			   m_Speed= m_usualSpeed;
 			   StopCount = 0;
 			   StopTime = 0.0f;
 		   }
@@ -138,17 +146,17 @@ namespace basecross {
 		{
 			SetDrawActive(true);
 		}
-		if (m_EnemySetDrawActiveCount == 1)
+		if (m_EnemySetDrawActiveCount == m_enemyDrawActiveCountTrue)
 		{
 			SetDrawActive(false);
 		}
 		if (m_Event == true)
 		{
-			if (pos.x < -25) {
+			if (pos.x < m_enemyPosition) {
 				auto ptrStage2 = GetStage()->GetSharedGameObject<Telop2>(L"Telop2"); // 今だ！！テロップ
 				ptrStage2->SetDrawActive(true);
 				m_Telop2Time += elapsedTime; // 時間の変数に足す
-				if (m_Telop2Time >= 2.0f)
+				if (m_Telop2Time >= m_enemyStopTelopTime)
 				{
 					// 2秒後に表示がオフになる
 					ptrStage2->SetDrawActive(false);
@@ -166,7 +174,7 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto elps = App::GetApp()->GetElapsedTime();
 		EnemyTime += elps;
-		if (EnemyTime >= 6.0f) {
+		if (EnemyTime >= m_enemyVoiceTime) {
 			EnemyTime = 0.0f;
 			auto ptrXA = App::GetApp()->GetXAudio2Manager();
 			//サウンドの再生

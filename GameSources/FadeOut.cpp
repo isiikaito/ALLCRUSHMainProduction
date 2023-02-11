@@ -8,6 +8,7 @@
 
 namespace basecross {
 	//ゲージ
+	constexpr float m_fedeTimeSpeed = 2.0;
 
 	FadeOut::FadeOut(const shared_ptr<Stage>& StagePtr, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
@@ -61,8 +62,8 @@ namespace basecross {
 		//時間の取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_TotalTime += elapsedTime;
-		if (m_TotalTime >= XM_PI / 2) {
-			m_TotalTime = XM_PI / 2;
+		if (m_TotalTime >= XM_PI / m_fedeTimeSpeed) {
+			m_TotalTime = XM_PI / m_fedeTimeSpeed;
 		}
 		//頂点の取得
 		vector<VertexPositionColor> newVertices;
@@ -78,14 +79,6 @@ namespace basecross {
 		}
 		auto ptrDraw = GetComponent<PCSpriteDraw>();
 		ptrDraw->UpdateVertices(newVertices);
-		if (m_TotalTime >= 1)
-		{
-			//1次のシーンへの秒数.
-			//2渡すほうのポインタ
-			//3渡されるほう
-			//登録した文字を利用して移動
-			//       1            2                  3                     4
-		 /* PostEvent(0.0f, GetThis<FadeOut>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");*/
-		}
+		
 	}
 }		
